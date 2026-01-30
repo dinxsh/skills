@@ -11,6 +11,9 @@
   "banana-ai": [
     "art"
   ],
+  "banana-ai-1": [
+    "art"
+  ],
   "banana-ai-art": [
     "art"
   ],
@@ -204,6 +207,9 @@
     "art"
   ],
   "ocmaker": [
+    "art"
+  ],
+  "picrafts": [
     "art"
   ],
   "pictorial": [
@@ -572,6 +578,9 @@
   "magento": [
     "copywriting"
   ],
+  "manga-ai-translator": [
+    "copywriting"
+  ],
   "migma": [
     "copywriting"
   ],
@@ -821,6 +830,9 @@
   "x-design": [
     "design"
   ],
+  "ximagin": [
+    "design"
+  ],
   "yard-landscape-design": [
     "design"
   ],
@@ -990,9 +1002,6 @@
     "developer"
   ],
   "reachy-mini": [
-    "developer"
-  ],
-  "repotalent": [
     "developer"
   ],
   "roboto": [
@@ -1349,6 +1358,9 @@
   "aisthetic": [
     "fashion"
   ],
+  "bangs-hair": [
+    "fashion"
+  ],
   "hairstyle-changer": [
     "fashion"
   ],
@@ -1472,6 +1484,9 @@
   "deepseek-r1": [
     "llm"
   ],
+  "deepseekv4dev": [
+    "llm"
+  ],
   "delphi": [
     "llm"
   ],
@@ -1590,6 +1605,9 @@
     "music"
   ],
   "beatoven": [
+    "music"
+  ],
+  "beatviz": [
     "music"
   ],
   "elevenlabssound-effects": [
@@ -2384,6 +2402,9 @@
   "domain-name-generator": [
     "research"
   ],
+  "gaabstract": [
+    "research"
+  ],
   "heronai": [
     "research"
   ],
@@ -2871,6 +2892,9 @@
     "xtras"
   ],
   "artificial-analysis": [
+    "xtras"
+  ],
+  "astrocarto": [
     "xtras"
   ],
   "attractive-analyzer": [
