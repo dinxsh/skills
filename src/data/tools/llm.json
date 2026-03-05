@@ -200,14 +200,6 @@
     "slug": "llamaindex"
   },
   {
-    "title": "Maester",
-    "body": "GPT-3 template engine.",
-    "tag": "Free",
-    "url": "https://maester.app/?ref=riseofmachine.com",
-    "date-added": "2023-12-15",
-    "slug": "maester"
-  },
-  {
     "title": "Mastraai",
     "body": "Mastra is an opinionated TypeScript framework.",
     "tag": "Free",

@@ -525,6 +525,14 @@
           "slug": "nano-banana-pro"
         },
         {
+          "title": "Nanobanana 2",
+          "body": "Generate pro AI images fast.",
+          "tag": "Freemium",
+          "url": "https://trynanobanana2.im/?ref=riseofmachine.com",
+          "date-added": "2026-03-05",
+          "slug": "nanobanana-2"
+        },
+        {
           "title": "Nanobananaimage",
           "body": "Powerful AI image generation tools.",
           "tag": "Freemium",
@@ -669,6 +677,14 @@
           "slug": "stockimg"
         },
         {
+          "title": "TattooCoverUp.AI",
+          "body": "AI tattoo cover-up generator.",
+          "tag": "Freemium",
+          "url": "https://tattoocoverup.ai/?ref=riseofmachine.com",
+          "date-added": "2026-03-05",
+          "slug": "tattoocoverupai"
+        },
+        {
           "title": "Tattooer Info",
           "body": "AI tattoo generator.",
           "tag": "Freemium",
@@ -739,6 +755,14 @@
           "url": "https://yix.ai/?ref=riseofmachine.com",
           "date-added": "2025-12-14",
           "slug": "yix"
+        },
+        {
+          "title": "Z-Image",
+          "body": "Free AI image generator online.",
+          "tag": "Freemium",
+          "url": "https://zimageturbo.dev/?ref=riseofmachine.com",
+          "date-added": "2026-03-05",
+          "slug": "z-image"
         },
         {
           "title": "Zzo AI",
@@ -1025,6 +1049,14 @@
           "url": "https://www.aisongmaker.io/?ref=riseofmachine.com",
           "date-added": "2025-06-17",
           "slug": "song-maker"
+        },
+        {
+          "title": "Sonicker",
+          "body": "Free AI voice cloning tool.",
+          "tag": "Free",
+          "url": "https://www.sonicker.com/?ref=riseofmachine.com",
+          "date-added": "2026-03-05",
+          "slug": "sonicker"
         },
         {
           "title": "SpeechLab",
@@ -3857,14 +3889,6 @@
       "category": "health",
       "content": [
         {
-          "title": "Body Fat Calc",
-          "body": "Body fat percentage calculation.",
-          "tag": "Not applicable",
-          "url": "https://bodyfatcalc.top/en/ai-calc/?ref=riseofmachine.com",
-          "date-added": "2024-01-17",
-          "slug": "body-fat-calc"
-        },
-        {
           "title": "Deepen",
           "body": "AI therapy app.",
           "tag": "Free",
@@ -4143,14 +4167,6 @@
           "slug": "llamaindex"
         },
         {
-          "title": "Maester",
-          "body": "GPT-3 template engine.",
-          "tag": "Free",
-          "url": "https://maester.app/?ref=riseofmachine.com",
-          "date-added": "2023-12-15",
-          "slug": "maester"
-        },
-        {
           "title": "Mastraai",
           "body": "Mastra is an opinionated TypeScript framework.",
           "tag": "Free",
@@ -4410,6 +4426,14 @@
           "url": "https://www.jenmusic.ai/?ref=riseofmachine.com",
           "date-added": "2023-12-26",
           "slug": "jen"
+        },
+        {
+          "title": "Lyria3",
+          "body": "AI high-fidelity music creator.",
+          "tag": "Freemium",
+          "url": "https://lyria3.net/?ref=riseofmachine.com",
+          "date-added": "2026-03-05",
+          "slug": "lyria3"
         },
         {
           "title": "Lyrics to Song",
@@ -7300,6 +7324,14 @@
           "slug": "google-veo"
         },
         {
+          "title": "Grok Video Generator",
+          "body": "AI video with synced audio.",
+          "tag": "Freemium",
+          "url": "https://grokvideogenerator.com/?ref=riseofmachine.com",
+          "date-added": "2026-03-05",
+          "slug": "grok-video-generator"
+        },
+        {
           "title": "Hailuoai",
           "body": "AI Video Creation Tool by Minimax",
           "tag": "Not available",
@@ -7604,6 +7636,22 @@
           "slug": "seedance"
         },
         {
+          "title": "Seedance 2 AI Video Generator",
+          "body": "Multimodal AI video generator tool.",
+          "tag": "Freemium",
+          "url": "https://tryseedance2.com?ref=riseofmachine.com",
+          "date-added": "2026-03-05",
+          "slug": "seedance-2-ai-video-generator"
+        },
+        {
+          "title": "Seedance 2 Video",
+          "body": "High-quality AI video platform.",
+          "tag": "From $29.9/mo",
+          "url": "https://seedance2.video?ref=riseofmachine.com",
+          "date-added": "2026-03-05",
+          "slug": "seedance-2-video"
+        },
+        {
           "title": "Seedances",
           "body": "AI video generation from text and images.",
           "tag": "Freemium",
@@ -7698,6 +7746,14 @@
           "url": "https://kie.ai/features/v3-api?ref=riseofmachine.com",
           "date-added": "2025-06-17",
           "slug": "veo-3-by-kie"
+        },
+        {
+          "title": "Veo 4",
+          "body": "Free professional AI video generator.",
+          "tag": "Freemium",
+          "url": "https://veo4.im/?ref=riseofmachine.com",
+          "date-added": "2026-03-05",
+          "slug": "veo-4"
         },
         {
           "title": "Veo Video",
@@ -8128,6 +8184,14 @@
           "url": "https://largemi.com?ref=riseofmachine.com",
           "date-added": "2026-01-14",
           "slug": "largemi"
+        },
+        {
+          "title": "Love-MBTI",
+          "body": "AI personality analysis and compatibility.",
+          "tag": "Freemium",
+          "url": "https://love-mbti.com/?ref=riseofmachine.com",
+          "date-added": "2026-03-05",
+          "slug": "love-mbti"
         },
         {
           "title": "Madespace",

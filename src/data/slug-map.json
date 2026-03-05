@@ -194,6 +194,9 @@
   "nano-banana-pro": [
     "art"
   ],
+  "nanobanana-2": [
+    "art"
+  ],
   "nanobananaimage": [
     "art"
   ],
@@ -248,6 +251,9 @@
   "stockimg": [
     "art"
   ],
+  "tattoocoverupai": [
+    "art"
+  ],
   "tattooer-info": [
     "art"
   ],
@@ -273,6 +279,9 @@
     "art"
   ],
   "yix": [
+    "art"
+  ],
+  "z-image": [
     "art"
   ],
   "zzo-ai": [
@@ -378,6 +387,9 @@
     "audio"
   ],
   "song-maker": [
+    "audio"
+  ],
+  "sonicker": [
     "audio"
   ],
   "speechlab": [
@@ -1421,9 +1433,6 @@
   "soga-ai": [
     "gaming"
   ],
-  "body-fat-calc": [
-    "health"
-  ],
   "deepen": [
     "health"
   ],
@@ -1526,9 +1535,6 @@
   "llamaindex": [
     "llm"
   ],
-  "maester": [
-    "llm"
-  ],
   "mastraai": [
     "llm"
   ],
@@ -1620,6 +1626,9 @@
     "music"
   ],
   "jen": [
+    "music"
+  ],
+  "lyria3": [
     "music"
   ],
   "lyrics-to-song": [
@@ -2687,6 +2696,9 @@
   "google-veo": [
     "video"
   ],
+  "grok-video-generator": [
+    "video"
+  ],
   "hailuoai": [
     "video"
   ],
@@ -2801,6 +2813,12 @@
   "seedance": [
     "video"
   ],
+  "seedance-2-ai-video-generator": [
+    "video"
+  ],
+  "seedance-2-video": [
+    "video"
+  ],
   "seedances": [
     "video"
   ],
@@ -2835,6 +2853,9 @@
     "video"
   ],
   "veo-3-by-kie": [
+    "video"
+  ],
+  "veo-4": [
     "video"
   ],
   "veo-video": [
@@ -2994,6 +3015,9 @@
     "xtras"
   ],
   "largemi": [
+    "xtras"
+  ],
+  "love-mbti": [
     "xtras"
   ],
   "madespace": [
