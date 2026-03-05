@@ -3889,14 +3889,6 @@
       "category": "health",
       "content": [
         {
-          "title": "Body Fat Calc",
-          "body": "Body fat percentage calculation.",
-          "tag": "Not applicable",
-          "url": "https://bodyfatcalc.top/en/ai-calc/?ref=riseofmachine.com",
-          "date-added": "2024-01-17",
-          "slug": "body-fat-calc"
-        },
-        {
           "title": "Deepen",
           "body": "AI therapy app.",
           "tag": "Free",
@@ -4173,14 +4165,6 @@
           "url": "https://www.llamaindex.ai/?ref=riseofmachine.com",
           "date-added": "2023-12-26",
           "slug": "llamaindex"
-        },
-        {
-          "title": "Maester",
-          "body": "GPT-3 template engine.",
-          "tag": "Free",
-          "url": "https://maester.app/?ref=riseofmachine.com",
-          "date-added": "2023-12-15",
-          "slug": "maester"
         },
         {
           "title": "Mastraai",
@@ -5865,7 +5849,7 @@
           "title": "Love-MBTI",
           "body": "AI personality analysis and compatibility.",
           "tag": "Freemium",
-          "url": "http://love-mbti.com/?ref=riseofmachine.com",
+          "url": "https://love-mbti.com/?ref=riseofmachine.com",
           "date-added": "2026-03-05",
           "slug": "love-mbti"
         },
