@@ -1,0 +1,40 @@
+{
+  "title": "Cross-Chain Liquidity Map",
+  "description": "Visualise liquidity distribution across pools and chains for any token pair.",
+  "category": "defi",
+  "url": "https://goldrush.dev",
+  "tag": "API Key Required",
+  "date-added": "2026-03-16",
+  "slug": "cross-chain-liquidity-map",
+  "snippet": "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY);\n\nasync function getLiquidityMap(tokenAddress) {\n  const chains = [\"eth-mainnet\", \"matic-mainnet\", \"arbitrum-mainnet\", \"base-mainnet\"];\n  const results = await Promise.all(\n    chains.map(chain =>\n      client.BalanceService.getHistoricalTokenBalances(chain, tokenAddress)\n    )\n  );\n  return results.map((r, i) => ({ chain: chains[i], data: r.data }));\n}",
+  "endpoints": [
+    "BalanceService.getHistoricalTokenBalances",
+    "PricingService.getTokenPrices"
+  ],
+  "chains": [
+    "eth-mainnet",
+    "matic-mainnet",
+    "arbitrum-mainnet",
+    "base-mainnet",
+    "optimism-mainnet"
+  ],
+  "complexity": "advanced",
+  "useCase": "Cross-chain arbitrage, liquidity routing, DeFi aggregator tooling.",
+  "buildsWith": [
+    "@covalenthq/client-sdk"
+  ],
+  "creditCost": "1 credit per chain",
+  "keyParams": [
+    {
+      "name": "tokenAddress",
+      "type": "string",
+      "description": "ERC-20 token to map"
+    }
+  ],
+  "responseFields": [
+    "chain",
+    "tvl",
+    "volume24h",
+    "poolCount"
+  ]
+}

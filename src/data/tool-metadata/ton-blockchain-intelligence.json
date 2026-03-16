@@ -1,0 +1,36 @@
+{
+  "title": "TON Blockchain Intelligence",
+  "description": "Analytics for The Open Network — Jetton transfers, NFT activity, and wallet analytics.",
+  "category": "analytics",
+  "url": "https://goldrush.dev",
+  "tag": "Beta",
+  "date-added": "2026-03-16",
+  "slug": "ton-blockchain-intelligence",
+  "snippet": "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY);\n\nasync function getTONIntelligence(walletAddress) {\n  const [balances, txns] = await Promise.all([\n    client.BalanceService.getTokenBalancesForWalletAddress(\"ton-mainnet\", walletAddress),\n    client.TransactionService.getTransactionsForAddressV3(\"ton-mainnet\", walletAddress),\n  ]);\n  return { balances: balances.data?.items, txns: txns.data?.items };\n}",
+  "endpoints": [
+    "BalanceService.getTokenBalancesForWalletAddress",
+    "TransactionService.getTransactionsForAddressV3"
+  ],
+  "chains": [
+    "ton-mainnet"
+  ],
+  "complexity": "intermediate",
+  "useCase": "TON ecosystem analytics, Telegram wallet dashboards, Jetton token tracking.",
+  "buildsWith": [
+    "@covalenthq/client-sdk"
+  ],
+  "creditCost": "2 credits per wallet",
+  "keyParams": [
+    {
+      "name": "walletAddress",
+      "type": "string",
+      "description": "TON wallet address"
+    }
+  ],
+  "responseFields": [
+    "tonBalance",
+    "jettonHoldings",
+    "nftItems",
+    "txCount"
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "title": "Protocol Acquisition Intelligence",
+  "description": "Detect early signals of protocol acquisitions via treasury movements, governance changes, and token flows.",
+  "category": "analytics",
+  "url": "https://goldrush.dev",
+  "tag": "Beta",
+  "date-added": "2026-03-16",
+  "slug": "protocol-acquisition-intelligence",
+  "snippet": "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY);\n\nasync function getAcquisitionSignals(chainName, protocolTreasury) {\n  const txns = await client.TransactionService.getTransactionsForAddressV3(\n    chainName, protocolTreasury, { pageSize: 50 }\n  );\n  const largeOutflows = (txns.data?.items ?? []).filter(tx => (tx.value_quote ?? 0) > 100000);\n  return { largeOutflows, signalCount: largeOutflows.length };\n}",
+  "endpoints": [
+    "TransactionService.getTransactionsForAddressV3",
+    "BaseService.getLogEventsByAddress"
+  ],
+  "chains": [
+    "eth-mainnet",
+    "arbitrum-mainnet"
+  ],
+  "complexity": "advanced",
+  "useCase": "M&A intelligence, VC deal flow sourcing, protocol competitive analysis.",
+  "buildsWith": [
+    "@covalenthq/client-sdk"
+  ],
+  "creditCost": "1 credit per request",
+  "keyParams": [
+    {
+      "name": "chainName",
+      "type": "ChainName",
+      "description": "Chain of the protocol"
+    },
+    {
+      "name": "protocolTreasury",
+      "type": "string",
+      "description": "Protocol treasury address"
+    }
+  ],
+  "responseFields": [
+    "largeOutflows",
+    "signalCount",
+    "governanceChanges",
+    "tokenConcentration"
+  ]
+}

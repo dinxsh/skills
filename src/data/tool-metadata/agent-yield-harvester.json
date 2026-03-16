@@ -1,0 +1,38 @@
+{
+  "title": "Agent Yield Harvester",
+  "description": "AI agent that monitors yield opportunities and auto-harvests rewards across DeFi protocols.",
+  "category": "agents",
+  "url": "https://goldrush.dev",
+  "tag": "Beta",
+  "date-added": "2026-03-16",
+  "slug": "agent-yield-harvester",
+  "snippet": "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY);\n\nasync function findYieldOpportunities(agentWallet) {\n  const balances = await client.BalanceService.getTokenBalancesForWalletAddress(\n    \"eth-mainnet\", agentWallet\n  );\n  // Find tokens with pending DeFi rewards (positive quote change)\n  const opportunities = (balances.data?.items ?? []).filter(\n    item => (item.quote_24h ?? 0) > 0\n  );\n  return { agentWallet, opportunities };\n}",
+  "endpoints": [
+    "BalanceService.getTokenBalancesForWalletAddress",
+    "TransactionService.getTransactionsForAddressV3"
+  ],
+  "chains": [
+    "eth-mainnet",
+    "arbitrum-mainnet",
+    "base-mainnet"
+  ],
+  "complexity": "advanced",
+  "useCase": "Yield automation bots, DeFi reward harvesters, autonomous liquidity management.",
+  "buildsWith": [
+    "@covalenthq/client-sdk"
+  ],
+  "creditCost": "1 credit per wallet per scan",
+  "keyParams": [
+    {
+      "name": "agentWallet",
+      "type": "string",
+      "description": "Agent-controlled wallet"
+    }
+  ],
+  "responseFields": [
+    "opportunities",
+    "estimatedAPY",
+    "protocols",
+    "pendingRewards"
+  ]
+}

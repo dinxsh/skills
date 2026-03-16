@@ -1,0 +1,9 @@
+{
+  "title": "Wallet Balances Skill",
+  "description": "Fetch token balances and portfolio state for any wallet across 100+ chains.",
+  "category": "wallet",
+  "url": "https://goldrush.dev",
+  "tag": "Free Tier",
+  "date-added": "2026-03-12",
+  "slug": "wallet-balances-skill"
+}

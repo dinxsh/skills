@@ -1,0 +1,36 @@
+{
+  "title": "Agent Data Budget Manager",
+  "description": "Track and optimise GoldRush API credit consumption across AI agent workflows.",
+  "category": "agents",
+  "url": "https://goldrush.dev",
+  "tag": "Open Source",
+  "date-added": "2026-03-16",
+  "slug": "agent-data-budget-manager",
+  "snippet": "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\n// Lightweight wrapper that counts credits consumed\nclass BudgetedClient {\n  constructor(apiKey, maxCredits = 1000) {\n    this.client = new GoldRushClient(apiKey);\n    this.maxCredits = maxCredits;\n    this.used = 0;\n  }\n\n  async call(service, method, ...args) {\n    if (this.used >= this.maxCredits) throw new Error(\"Credit budget exhausted\");\n    this.used += 1;\n    return this.client[service][method](...args);\n  }\n\n  budget() {\n    return { used: this.used, remaining: this.maxCredits - this.used };\n  }\n}",
+  "endpoints": [
+    "BalanceService.getTokenBalancesForWalletAddress",
+    "TransactionService.getTransactionsForAddressV3"
+  ],
+  "chains": [
+    "eth-mainnet"
+  ],
+  "complexity": "beginner",
+  "useCase": "Agent cost control, API budget management, autonomous workflow optimisation.",
+  "buildsWith": [
+    "@covalenthq/client-sdk"
+  ],
+  "creditCost": "Tracks all credits consumed",
+  "keyParams": [
+    {
+      "name": "maxCredits",
+      "type": "number",
+      "description": "Maximum credits allowed per session"
+    }
+  ],
+  "responseFields": [
+    "used",
+    "remaining",
+    "breakdown",
+    "exceededAt"
+  ]
+}

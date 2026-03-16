@@ -1,0 +1,48 @@
+{
+  "title": "DAO Voter Intelligence",
+  "description": "Analyse governance participation, delegate power, and voting patterns for any DAO.",
+  "category": "analytics",
+  "url": "https://goldrush.dev",
+  "tag": "API Key Required",
+  "date-added": "2026-03-16",
+  "slug": "dao-voter-intelligence",
+  "snippet": "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY);\n\nasync function getDAOVoterIntelligence(chainName, govContractAddress, walletAddress) {\n  const events = await client.BaseService.getLogEventsByAddress(\n    chainName, govContractAddress, { startingBlock: \"earliest\" }\n  );\n  const votes = (events.data?.items ?? []).filter(e =>\n    e.decoded?.name === \"VoteCast\" &&\n    e.decoded?.params?.find(p => p.name === \"voter\")?.value === walletAddress\n  );\n  return { totalVotes: votes.length, votes };\n}",
+  "endpoints": [
+    "BaseService.getLogEventsByAddress",
+    "TransactionService.getTransactionsForAddressV3"
+  ],
+  "chains": [
+    "eth-mainnet",
+    "matic-mainnet",
+    "arbitrum-mainnet"
+  ],
+  "complexity": "advanced",
+  "useCase": "Governance analytics, delegate tracking, DAO participation scoring.",
+  "buildsWith": [
+    "@covalenthq/client-sdk"
+  ],
+  "creditCost": "1 credit per request",
+  "keyParams": [
+    {
+      "name": "chainName",
+      "type": "ChainName",
+      "description": "Chain hosting the DAO"
+    },
+    {
+      "name": "govContractAddress",
+      "type": "string",
+      "description": "Governor contract address"
+    },
+    {
+      "name": "walletAddress",
+      "type": "string",
+      "description": "Voter wallet"
+    }
+  ],
+  "responseFields": [
+    "totalVotes",
+    "proposalIds",
+    "voteDirection",
+    "votingPower"
+  ]
+}

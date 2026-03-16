@@ -1,0 +1,42 @@
+{
+  "title": "Agent Discovery Protocol",
+  "description": "Discover and verify registered AI agents onchain via their wallet signatures and activity.",
+  "category": "agents",
+  "url": "https://goldrush.dev",
+  "tag": "Beta",
+  "date-added": "2026-03-16",
+  "slug": "agent-discovery-protocol",
+  "snippet": "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY);\n\nasync function discoverAgents(registryAddress, chainName) {\n  const events = await client.BaseService.getLogEventsByAddress(\n    chainName, registryAddress\n  );\n  const registrations = (events.data?.items ?? []).filter(\n    e => e.decoded?.name === \"AgentRegistered\"\n  );\n  return registrations.map(e => ({\n    agent: e.decoded?.params?.find(p => p.name === \"agent\")?.value,\n    timestamp: e.block_signed_at,\n  }));\n}",
+  "endpoints": [
+    "BaseService.getLogEventsByAddress",
+    "TransactionService.getTransactionsForAddressV3"
+  ],
+  "chains": [
+    "eth-mainnet",
+    "base-mainnet"
+  ],
+  "complexity": "advanced",
+  "useCase": "Agent-to-agent discovery, multi-agent orchestration, decentralised AI networks.",
+  "buildsWith": [
+    "@covalenthq/client-sdk"
+  ],
+  "creditCost": "1 credit per request",
+  "keyParams": [
+    {
+      "name": "registryAddress",
+      "type": "string",
+      "description": "On-chain agent registry contract"
+    },
+    {
+      "name": "chainName",
+      "type": "ChainName",
+      "description": "Chain hosting the registry"
+    }
+  ],
+  "responseFields": [
+    "agentAddress",
+    "registeredAt",
+    "capabilities",
+    "reputationScore"
+  ]
+}

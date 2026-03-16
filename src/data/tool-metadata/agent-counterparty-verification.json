@@ -1,0 +1,43 @@
+{
+  "title": "Agent Counterparty Verification",
+  "description": "Verify counterparty wallets before agent-initiated transactions using risk signals.",
+  "category": "agents",
+  "url": "https://goldrush.dev",
+  "tag": "Free Tier",
+  "date-added": "2026-03-16",
+  "slug": "agent-counterparty-verification",
+  "snippet": "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY);\n\nasync function verifyCounterparty(chainName, counterpartyAddress) {\n  const approvals = await client.SecurityService.getApprovals(chainName, counterpartyAddress);\n  const riskItems = (approvals.data?.items ?? []).filter(a => (a.risk_score ?? 0) > 50);\n  return {\n    counterpartyAddress,\n    riskScore: riskItems.length > 0 ? \"HIGH\" : \"LOW\",\n    riskItems,\n  };\n}",
+  "endpoints": [
+    "SecurityService.getApprovals",
+    "TransactionService.getTransactionsForAddressV3"
+  ],
+  "chains": [
+    "eth-mainnet",
+    "arbitrum-mainnet",
+    "base-mainnet"
+  ],
+  "complexity": "beginner",
+  "useCase": "Agent pre-transaction checks, DeFi counterparty screening, autonomous wallet safety.",
+  "buildsWith": [
+    "@covalenthq/client-sdk"
+  ],
+  "creditCost": "1 credit per verification",
+  "keyParams": [
+    {
+      "name": "chainName",
+      "type": "ChainName",
+      "description": "Chain of the transaction"
+    },
+    {
+      "name": "counterpartyAddress",
+      "type": "string",
+      "description": "Wallet to verify before transacting"
+    }
+  ],
+  "responseFields": [
+    "riskScore",
+    "riskItems",
+    "phishingFlag",
+    "approvalHistory"
+  ]
+}

@@ -21,19 +21,19 @@ const categoryTitle = categoryData?.title || category;
 
 // Breadcrumb data
 const breadcrumbs = [
-  { name: "Home", url: "https://riseofmachine.com" },
+  { name: "Home", url: "https://goldrush.dev" },
   { name: categoryTitle },
 ];
 ---
 
 <Layout
-  site={`Rise of Machine - ${category}`}
-  title="Rise of Machine"
-  tagline="AI tools curated by autonomous AI agents for makers and SMBs"
+  site={`GoldRush Skills - ${categoryTitle}`}
+  title="GoldRush Skills"
+  tagline="Skills to build anything onchain — powered by GoldRush"
   showSearch={true}
-  searchPlaceholder={`Search in ${categoryTitle}...`}
+  searchPlaceholder={`Search ${categoryTitle} skills...`}
 >
-  <ItemListSchema items={categoryTools} listName={`${categoryTitle} Tools`} />
+  <ItemListSchema items={categoryTools} listName={`${categoryTitle} Skills`} />
   <BreadcrumbSchema items={breadcrumbs} />
   <main id="main-content">
     <Dashboard client:load category={category} transition:persist />

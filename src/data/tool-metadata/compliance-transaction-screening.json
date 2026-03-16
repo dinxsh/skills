@@ -1,0 +1,43 @@
+{
+  "title": "Compliance Transaction Screening",
+  "description": "Screen transactions and wallets for OFAC, sanctions, and AML compliance requirements.",
+  "category": "security",
+  "url": "https://goldrush.dev",
+  "tag": "API Key Required",
+  "date-added": "2026-03-16",
+  "slug": "compliance-transaction-screening",
+  "snippet": "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY);\n\nasync function screenForCompliance(chainName, walletAddress) {\n  const txns = await client.TransactionService.getTransactionsForAddressV3(\n    chainName, walletAddress, { pageSize: 100 }\n  );\n  // Flag interactions with known high-risk protocols (example: Tornado Cash)\n  const FLAGGED = [\"0x722122df12d4e14e13ac3b6895a86e84145b6967\"]; // example\n  const riskyTxns = (txns.data?.items ?? []).filter(tx =>\n    FLAGGED.includes(tx.to_address?.toLowerCase()) ||\n    FLAGGED.includes(tx.from_address?.toLowerCase())\n  );\n  return { walletAddress, compliancePass: riskyTxns.length === 0, flaggedTxns: riskyTxns.length };\n}",
+  "endpoints": [
+    "TransactionService.getTransactionsForAddressV3",
+    "SecurityService.getApprovals"
+  ],
+  "chains": [
+    "eth-mainnet",
+    "matic-mainnet",
+    "arbitrum-mainnet"
+  ],
+  "complexity": "advanced",
+  "useCase": "Exchange KYC/AML, institutional onboarding, compliance automation for DeFi.",
+  "buildsWith": [
+    "@covalenthq/client-sdk"
+  ],
+  "creditCost": "1 credit per wallet",
+  "keyParams": [
+    {
+      "name": "chainName",
+      "type": "ChainName",
+      "description": "Chain to screen"
+    },
+    {
+      "name": "walletAddress",
+      "type": "string",
+      "description": "Wallet to screen for compliance"
+    }
+  ],
+  "responseFields": [
+    "compliancePass",
+    "flaggedTxns",
+    "sanctionedCounterparties",
+    "riskBand"
+  ]
+}

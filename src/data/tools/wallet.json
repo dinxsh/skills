@@ -1,0 +1,58 @@
+[
+  {
+    "title": "Net Worth Calculator",
+    "body": "Calculate total wallet net worth across all EVM and non-EVM chains instantly.",
+    "tag": "Free Tier",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-12",
+    "slug": "net-worth-calculator"
+  },
+  {
+    "title": "Portfolio History",
+    "body": "30-day historical portfolio value over time — asset-by-asset breakdown per day.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-12",
+    "slug": "portfolio-history"
+  },
+  {
+    "title": "Portfolio Tracker",
+    "body": "Monitor multi-chain portfolio value and asset composition in real time.",
+    "tag": "Open Source",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-12",
+    "slug": "portfolio-tracker"
+  },
+  {
+    "title": "Transaction History",
+    "body": "Paginated, decoded transaction history with logs for any wallet or contract address.",
+    "tag": "Free Tier",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-12",
+    "slug": "transaction-history"
+  },
+  {
+    "title": "Wallet Activity Feed",
+    "body": "Stream live wallet events and transaction activity across any supported chain.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-12",
+    "slug": "wallet-activity-feed"
+  },
+  {
+    "title": "Wallet Attestations",
+    "body": "Surface onchain attestations and reputation signals for any wallet address.",
+    "tag": "Beta",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-12",
+    "slug": "wallet-attestations"
+  },
+  {
+    "title": "Wallet Balances Skill",
+    "body": "Fetch token balances and portfolio state for any wallet across 100+ chains.",
+    "tag": "Free Tier",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-12",
+    "slug": "wallet-balances-skill"
+  }
+]

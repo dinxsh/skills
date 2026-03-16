@@ -1,0 +1,9 @@
+{
+  "title": "Wallet Identity Graph",
+  "description": "Map onchain identity signals — ENS, attestations, NFTs — for any wallet address.",
+  "category": "identity",
+  "url": "https://goldrush.dev",
+  "tag": "Beta",
+  "date-added": "2026-03-12",
+  "slug": "wallet-identity-graph"
+}

@@ -1,0 +1,9 @@
+{
+  "title": "Token Price History",
+  "description": "Fetch historical spot prices and OHLCV data for any ERC-20 token onchain.",
+  "category": "analytics",
+  "url": "https://goldrush.dev",
+  "tag": "API Key Required",
+  "date-added": "2026-03-12",
+  "slug": "token-price-history"
+}

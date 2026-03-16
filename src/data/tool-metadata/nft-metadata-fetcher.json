@@ -1,0 +1,9 @@
+{
+  "title": "NFT Metadata Fetcher",
+  "description": "Retrieve full NFT metadata, traits, and ownership history for any token onchain.",
+  "category": "nft",
+  "url": "https://goldrush.dev",
+  "tag": "Free Tier",
+  "date-added": "2026-03-12",
+  "slug": "nft-metadata-fetcher"
+}

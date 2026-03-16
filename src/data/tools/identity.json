@@ -1,0 +1,58 @@
+[
+  {
+    "title": "ENS Resolver",
+    "body": "Resolve ENS names and reverse-lookup wallet addresses to human-readable identities.",
+    "tag": "Free Tier",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-12",
+    "slug": "ens-resolver"
+  },
+  {
+    "title": "NFT Gate",
+    "body": "Gate content or app features based on NFT ownership verified through GoldRush.",
+    "tag": "Open Source",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-12",
+    "slug": "nft-gate"
+  },
+  {
+    "title": "Proof of Onchain Activity",
+    "body": "Verify wallet activity depth and onchain history as a proof of genuine use.",
+    "tag": "Beta",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-12",
+    "slug": "proof-of-onchain-activity"
+  },
+  {
+    "title": "Wallet Identity Graph",
+    "body": "Map onchain identity signals — ENS, attestations, NFTs — for any wallet address.",
+    "tag": "Beta",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-12",
+    "slug": "wallet-identity-graph"
+  },
+  {
+    "title": "Sybil Resistance Scorer",
+    "body": "Score wallet uniqueness and detect Sybil patterns via onchain behavioural signals.",
+    "tag": "Beta",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-16",
+    "slug": "sybil-resistance-scorer"
+  },
+  {
+    "title": "Onchain Social Graph",
+    "body": "Map wallet interaction graphs and identify clusters, influencers, and community structures.",
+    "tag": "Beta",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-16",
+    "slug": "onchain-social-graph"
+  },
+  {
+    "title": "Reputation Score Aggregator",
+    "body": "Aggregate ENS, attestations, NFT badges, and activity into a unified reputation score.",
+    "tag": "Beta",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-16",
+    "slug": "reputation-score-aggregator"
+  }
+]

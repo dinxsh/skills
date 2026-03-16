@@ -1,0 +1,44 @@
+{
+  "title": "Agent Fleet Monitor",
+  "description": "Monitor a fleet of AI agent wallets for health, balances, and activity in one view.",
+  "category": "agents",
+  "url": "https://goldrush.dev",
+  "tag": "Beta",
+  "date-added": "2026-03-16",
+  "slug": "agent-fleet-monitor",
+  "snippet": "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY);\n\nasync function monitorAgentFleet(chainName, agentAddresses) {\n  const results = await Promise.all(\n    agentAddresses.map(addr =>\n      client.BalanceService.getTokenBalancesForWalletAddress(chainName, addr)\n    )\n  );\n  return agentAddresses.map((addr, i) => ({\n    agent: addr,\n    totalUSD: (results[i].data?.items ?? []).reduce((s, t) => s + (t.quote ?? 0), 0),\n    tokenCount: results[i].data?.items?.length ?? 0,\n  }));\n}",
+  "endpoints": [
+    "BalanceService.getTokenBalancesForWalletAddress",
+    "TransactionService.getTransactionsForAddressV3"
+  ],
+  "chains": [
+    "eth-mainnet",
+    "arbitrum-mainnet",
+    "base-mainnet"
+  ],
+  "complexity": "intermediate",
+  "useCase": "Multi-agent system ops, agent wallet dashboards, fleet health checks.",
+  "buildsWith": [
+    "@covalenthq/client-sdk"
+  ],
+  "creditCost": "1 credit per agent",
+  "keyParams": [
+    {
+      "name": "chainName",
+      "type": "ChainName",
+      "description": "Chain the fleet operates on"
+    },
+    {
+      "name": "agentAddresses",
+      "type": "string[]",
+      "description": "Array of agent wallet addresses"
+    }
+  ],
+  "responseFields": [
+    "agent",
+    "totalUSD",
+    "tokenCount",
+    "lastActivity",
+    "status"
+  ]
+}

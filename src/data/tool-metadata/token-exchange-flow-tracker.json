@@ -1,0 +1,44 @@
+{
+  "title": "Token Exchange Flow Tracker",
+  "description": "Track net token inflows and outflows to centralised exchange deposit addresses.",
+  "category": "token",
+  "url": "https://goldrush.dev",
+  "tag": "API Key Required",
+  "date-added": "2026-03-16",
+  "slug": "token-exchange-flow-tracker",
+  "snippet": "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY);\n\n// Known CEX hot wallet examples (replace with actual)\nconst CEX_WALLETS = [\n  \"0x28C6c06298d514Db089934071355E5743bf21d60\", // Binance\n  \"0xDFd5293D8e347dFe59E90eFd55b2956a1343963d\", // Coinbase\n];\n\nasync function getExchangeFlows(chainName, tokenAddress) {\n  const flows = await Promise.all(\n    CEX_WALLETS.map(wallet =>\n      client.BalanceService.getErc20TransfersForWalletAddress(chainName, wallet, { contractAddress: tokenAddress })\n    )\n  );\n  return flows.map((f, i) => ({ exchange: CEX_WALLETS[i], transfers: f.data?.items }));\n}",
+  "endpoints": [
+    "BalanceService.getErc20TransfersForWalletAddress",
+    "TransactionService.getTransactionsForAddressV3"
+  ],
+  "chains": [
+    "eth-mainnet",
+    "bsc-mainnet",
+    "matic-mainnet"
+  ],
+  "complexity": "intermediate",
+  "useCase": "Exchange flow analysis, buy/sell pressure signals, crypto market intelligence.",
+  "buildsWith": [
+    "@covalenthq/client-sdk"
+  ],
+  "creditCost": "1 credit per wallet",
+  "keyParams": [
+    {
+      "name": "chainName",
+      "type": "ChainName",
+      "description": "Chain to track"
+    },
+    {
+      "name": "tokenAddress",
+      "type": "string",
+      "description": "Token contract address"
+    }
+  ],
+  "responseFields": [
+    "inflow",
+    "outflow",
+    "netFlow",
+    "exchange",
+    "dominantDirection"
+  ]
+}

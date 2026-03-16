@@ -1,0 +1,9 @@
+{
+  "title": "Portfolio History",
+  "description": "30-day historical portfolio value over time — asset-by-asset breakdown per day.",
+  "category": "wallet",
+  "url": "https://goldrush.dev",
+  "tag": "API Key Required",
+  "date-added": "2026-03-12",
+  "slug": "portfolio-history"
+}

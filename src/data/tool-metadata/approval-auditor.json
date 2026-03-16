@@ -1,0 +1,9 @@
+{
+  "title": "Approval Auditor",
+  "description": "Scan and identify dangerous ERC-20 token approvals to revoke from any wallet.",
+  "category": "security",
+  "url": "https://goldrush.dev",
+  "tag": "Free Tier",
+  "date-added": "2026-03-12",
+  "slug": "approval-auditor"
+}

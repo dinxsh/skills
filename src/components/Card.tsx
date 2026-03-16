@@ -19,6 +19,7 @@ export default function Card({
     tag,
     dateAdded,
     slug,
+    category,
 }: CardProps) {
     const linkUrl = slug ? `/tools/${slug}` : href;
     const isNew = isRecentlyAdded(dateAdded, 30);
@@ -31,20 +32,15 @@ export default function Card({
                     window.dispatchEvent(new CustomEvent('tools:save-state'));
                 }}
             >
-                <strong className="nu-c-fs-normal nu-u-mt-1 nu-u-mb-1">{title}</strong>
-                <p className="nu-c-helper-text nu-u-mt-1 nu-u-mb-1">{body}</p>
-                <p className="distribution">
-                    {isNew && (
-                        <span
-                            className="tag nu-u-me-2 tag-new"
-                            title="Recently added"
-                            aria-label="New item"
-                        >
-                            🔥
-                        </span>
-                    )}
-                    <span className="tag">{tag}</span>
-                </p>
+                <div className="card-top">
+                    {category && <span className="card-category">{category}</span>}
+                    {isNew && <span className="tag-new" title="Recently added">new</span>}
+                </div>
+                <strong className="card-title">{title}</strong>
+                <p className="card-body">{body}</p>
+                <div className="card-footer">
+                    {tag && <span className="tag">{tag}</span>}
+                </div>
             </a>
             {slug && (
                 <div className="card-bookmark">

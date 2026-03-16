@@ -1,0 +1,38 @@
+{
+  "title": "Institutional Wallet Tracker",
+  "description": "Monitor large-wallet movements and institutional-grade position changes across chains.",
+  "category": "analytics",
+  "url": "https://goldrush.dev",
+  "tag": "API Key Required",
+  "date-added": "2026-03-16",
+  "slug": "institutional-wallet-tracker",
+  "snippet": "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY);\n\nasync function trackInstitutionalWallet(walletAddress) {\n  const [balances, activity] = await Promise.all([\n    client.BalanceService.getTokenBalancesForWalletAddress(\"eth-mainnet\", walletAddress),\n    client.AllChainsService.getAddressActivity(walletAddress),\n  ]);\n  return {\n    totalUSD: (balances.data?.items ?? []).reduce((s, i) => s + (i.quote ?? 0), 0),\n    chains: activity.data?.items?.map(c => c.name) ?? [],\n  };\n}",
+  "endpoints": [
+    "BalanceService.getTokenBalancesForWalletAddress",
+    "AllChainsService.getAddressActivity"
+  ],
+  "chains": [
+    "eth-mainnet",
+    "arbitrum-mainnet",
+    "matic-mainnet"
+  ],
+  "complexity": "intermediate",
+  "useCase": "Whale alerts, institutional flow analysis, copy-trading signals.",
+  "buildsWith": [
+    "@covalenthq/client-sdk"
+  ],
+  "creditCost": "2 credits per wallet",
+  "keyParams": [
+    {
+      "name": "walletAddress",
+      "type": "string",
+      "description": "Institutional wallet address"
+    }
+  ],
+  "responseFields": [
+    "totalUSD",
+    "chains",
+    "topHoldings",
+    "recentMoves"
+  ]
+}

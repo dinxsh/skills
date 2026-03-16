@@ -1,0 +1,38 @@
+{
+  "title": "Polkadot Parachain Intelligence",
+  "description": "Analytics across Polkadot parachains — XCM transfers, staking, and cross-chain balances.",
+  "category": "analytics",
+  "url": "https://goldrush.dev",
+  "tag": "Beta",
+  "date-added": "2026-03-16",
+  "slug": "polkadot-parachain-intelligence",
+  "snippet": "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY);\n\nasync function getPolkadotIntelligence(walletAddress) {\n  const balances = await client.BalanceService.getTokenBalancesForWalletAddress(\n    \"polkadot-mainnet\", walletAddress\n  );\n  return balances.data?.items ?? [];\n}",
+  "endpoints": [
+    "BalanceService.getTokenBalancesForWalletAddress",
+    "TransactionService.getTransactionsForAddressV3"
+  ],
+  "chains": [
+    "polkadot-mainnet",
+    "kusama-mainnet",
+    "astar-mainnet"
+  ],
+  "complexity": "intermediate",
+  "useCase": "Polkadot ecosystem dashboards, parachain analytics, XCM transfer tracking.",
+  "buildsWith": [
+    "@covalenthq/client-sdk"
+  ],
+  "creditCost": "1 credit per chain",
+  "keyParams": [
+    {
+      "name": "walletAddress",
+      "type": "string",
+      "description": "Polkadot/SS58 wallet address"
+    }
+  ],
+  "responseFields": [
+    "dotBalance",
+    "parachainBalances",
+    "xcmTransfers",
+    "stakingRewards"
+  ]
+}

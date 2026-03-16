@@ -1,0 +1,9 @@
+{
+  "title": "Event Log Decoder",
+  "description": "Decode and search contract event logs across any block range and chain.",
+  "category": "analytics",
+  "url": "https://goldrush.dev",
+  "tag": "API Key Required",
+  "date-added": "2026-03-12",
+  "slug": "event-log-decoder"
+}

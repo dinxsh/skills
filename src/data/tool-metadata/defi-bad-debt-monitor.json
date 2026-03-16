@@ -1,0 +1,43 @@
+{
+  "title": "DeFi Bad Debt Monitor",
+  "description": "Identify and track under-collateralised positions and bad debt accumulation in lending protocols.",
+  "category": "defi",
+  "url": "https://goldrush.dev",
+  "tag": "Beta",
+  "date-added": "2026-03-16",
+  "slug": "defi-bad-debt-monitor",
+  "snippet": "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY);\n\n// Monitor liquidation events on a lending protocol\nasync function getLiquidationEvents(chainName, protocolAddress) {\n  const resp = await client.BaseService.getLogEventsByAddress(\n    chainName, protocolAddress, { startingBlock: \"latest\" }\n  );\n  return (resp.data?.items ?? []).filter(e =>\n    e.decoded?.name === \"Liquidation\" || e.decoded?.name === \"LiquidateBorrow\"\n  );\n}",
+  "endpoints": [
+    "BaseService.getLogEventsByAddress",
+    "TransactionService.getTransactionsForAddressV3"
+  ],
+  "chains": [
+    "eth-mainnet",
+    "arbitrum-mainnet",
+    "optimism-mainnet"
+  ],
+  "complexity": "advanced",
+  "useCase": "Protocol risk dashboards, treasury management, liquidation monitoring for lending protocols.",
+  "buildsWith": [
+    "@covalenthq/client-sdk"
+  ],
+  "creditCost": "1 credit per request",
+  "keyParams": [
+    {
+      "name": "chainName",
+      "type": "ChainName",
+      "description": "Target chain"
+    },
+    {
+      "name": "protocolAddress",
+      "type": "string",
+      "description": "Lending protocol contract address"
+    }
+  ],
+  "responseFields": [
+    "liquidationCount",
+    "totalBadDebt",
+    "events",
+    "affectedWallets"
+  ]
+}

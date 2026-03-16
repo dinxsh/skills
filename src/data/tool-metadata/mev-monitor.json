@@ -1,0 +1,9 @@
+{
+  "title": "MEV Monitor",
+  "description": "Detect sandwich attacks, front-running, and MEV bot activity in real time.",
+  "category": "security",
+  "url": "https://goldrush.dev",
+  "tag": "Beta",
+  "date-added": "2026-03-12",
+  "slug": "mev-monitor"
+}

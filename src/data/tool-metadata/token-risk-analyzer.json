@@ -1,0 +1,9 @@
+{
+  "title": "Token Risk Analyzer",
+  "description": "Score tokens for rug-pull signals, ownership concentration, and LP lock status.",
+  "category": "security",
+  "url": "https://goldrush.dev",
+  "tag": "API Key Required",
+  "date-added": "2026-03-12",
+  "slug": "token-risk-analyzer"
+}

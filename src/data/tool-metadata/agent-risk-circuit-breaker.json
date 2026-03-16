@@ -1,0 +1,43 @@
+{
+  "title": "Agent Risk Circuit Breaker",
+  "description": "Automatically pause agent transactions when onchain risk thresholds are breached.",
+  "category": "agents",
+  "url": "https://goldrush.dev",
+  "tag": "Beta",
+  "date-added": "2026-03-16",
+  "slug": "agent-risk-circuit-breaker",
+  "snippet": "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY);\n\nasync function checkCircuitBreaker(chainName, agentWallet, maxDrawdownUSD = 1000) {\n  const balances = await client.BalanceService.getTokenBalancesForWalletAddress(\n    chainName, agentWallet\n  );\n  const totalUSD = (balances.data?.items ?? []).reduce((s, i) => s + (i.quote ?? 0), 0);\n  const breached = totalUSD < maxDrawdownUSD;\n  return { agentWallet, totalUSD, breached, action: breached ? \"PAUSE\" : \"OK\" };\n}",
+  "endpoints": [
+    "BalanceService.getTokenBalancesForWalletAddress",
+    "SecurityService.getApprovals"
+  ],
+  "chains": [
+    "eth-mainnet",
+    "arbitrum-mainnet",
+    "base-mainnet"
+  ],
+  "complexity": "intermediate",
+  "useCase": "Autonomous agent risk management, DeFi bot circuit breakers, portfolio protection.",
+  "buildsWith": [
+    "@covalenthq/client-sdk"
+  ],
+  "creditCost": "1 credit per check",
+  "keyParams": [
+    {
+      "name": "agentWallet",
+      "type": "string",
+      "description": "Agent-controlled wallet address"
+    },
+    {
+      "name": "maxDrawdownUSD",
+      "type": "number",
+      "description": "USD threshold triggering circuit breaker"
+    }
+  ],
+  "responseFields": [
+    "totalUSD",
+    "breached",
+    "action",
+    "triggeredRules"
+  ]
+}

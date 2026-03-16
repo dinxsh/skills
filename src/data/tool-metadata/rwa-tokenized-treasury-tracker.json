@@ -1,0 +1,42 @@
+{
+  "title": "RWA Tokenized Treasury Tracker",
+  "description": "Monitor tokenized T-bill and treasury product flows, yields, and on-chain supply.",
+  "category": "defi",
+  "url": "https://goldrush.dev",
+  "tag": "Beta",
+  "date-added": "2026-03-16",
+  "slug": "rwa-tokenized-treasury-tracker",
+  "snippet": "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY);\n\nasync function getRWATreasuryData(chainName, contractAddress) {\n  const resp = await client.BaseService.getLogEventsByAddress(\n    chainName, contractAddress, { startingBlock: \"latest\" }\n  );\n  return resp.data?.items ?? [];\n}",
+  "endpoints": [
+    "BaseService.getLogEventsByAddress",
+    "NftService.getNftsForAddress"
+  ],
+  "chains": [
+    "eth-mainnet",
+    "matic-mainnet"
+  ],
+  "complexity": "advanced",
+  "useCase": "RWA fund tracking, institutional DeFi, yield comparison for tokenized US treasuries.",
+  "buildsWith": [
+    "@covalenthq/client-sdk"
+  ],
+  "creditCost": "1 credit per request",
+  "keyParams": [
+    {
+      "name": "chainName",
+      "type": "ChainName",
+      "description": "Chain hosting the RWA contract"
+    },
+    {
+      "name": "contractAddress",
+      "type": "string",
+      "description": "RWA token contract address"
+    }
+  ],
+  "responseFields": [
+    "events",
+    "totalSupply",
+    "yieldRate",
+    "transferVolume"
+  ]
+}

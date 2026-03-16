@@ -1,0 +1,43 @@
+{
+  "title": "Oracle Manipulation Detector",
+  "description": "Detect oracle price manipulation attempts via flash-loan patterns and block-level price deviations.",
+  "category": "security",
+  "url": "https://goldrush.dev",
+  "tag": "Beta",
+  "date-added": "2026-03-16",
+  "slug": "oracle-manipulation-detector",
+  "snippet": "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY);\n\nasync function detectOracleManipulation(chainName, oracleAddress) {\n  const events = await client.BaseService.getLogEventsByAddress(\n    chainName, oracleAddress, { startingBlock: \"latest\" }\n  );\n  const priceUpdates = (events.data?.items ?? []).filter(\n    e => e.decoded?.name === \"AnswerUpdated\" || e.decoded?.name === \"PriceUpdated\"\n  );\n  // Flag if price changes >5% between consecutive updates\n  const anomalies = priceUpdates.filter((e, i) => {\n    if (i === 0) return false;\n    const prev = Number(priceUpdates[i - 1]?.decoded?.params?.[0]?.value ?? 1);\n    const curr = Number(e.decoded?.params?.[0]?.value ?? 1);\n    return Math.abs((curr - prev) / prev) > 0.05;\n  });\n  return { oracleAddress, anomalyCount: anomalies.length, anomalies };\n}",
+  "endpoints": [
+    "BaseService.getLogEventsByAddress",
+    "TransactionService.getTransactionsForBlock"
+  ],
+  "chains": [
+    "eth-mainnet",
+    "arbitrum-mainnet",
+    "bsc-mainnet"
+  ],
+  "complexity": "advanced",
+  "useCase": "DeFi protocol monitoring, oracle risk dashboards, pre-emptive exploit detection.",
+  "buildsWith": [
+    "@covalenthq/client-sdk"
+  ],
+  "creditCost": "1 credit per request",
+  "keyParams": [
+    {
+      "name": "chainName",
+      "type": "ChainName",
+      "description": "Chain hosting the oracle"
+    },
+    {
+      "name": "oracleAddress",
+      "type": "string",
+      "description": "Price oracle contract address"
+    }
+  ],
+  "responseFields": [
+    "anomalyCount",
+    "anomalies",
+    "maxDeviation",
+    "suspectedManipulator"
+  ]
+}

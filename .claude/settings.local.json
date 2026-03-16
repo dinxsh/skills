@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir /s/b \"C:\\\\Users\\\\hp\\\\Desktop\\\\code\\\\startups\\\\covalenthq\\\\skills\\\\skills\")",
+      "Bash(node -e \":*)",
+      "WebFetch(domain:www.notion.so)",
+      "Bash(node scripts/add-new-tools.js)",
+      "Bash(node scripts/add-new-tools.cjs)",
+      "Bash(git add -A)",
+      "Bash(git commit:*)"
+    ]
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "title": "GoldRush MCP Server",
+  "description": "Model Context Protocol server exposing GoldRush APIs to LLMs and AI agents.",
+  "category": "agents",
+  "url": "https://goldrush.dev",
+  "tag": "Open Source",
+  "date-added": "2026-03-12",
+  "slug": "goldrush-mcp-server"
+}

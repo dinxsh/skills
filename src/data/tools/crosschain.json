@@ -1,0 +1,42 @@
+[
+  {
+    "title": "Address Activity Scanner",
+    "body": "Discover every chain a wallet address is active on with a single API call.",
+    "tag": "Free Tier",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-12",
+    "slug": "address-activity-scanner"
+  },
+  {
+    "title": "Bridge Transaction Monitor",
+    "body": "Track cross-chain bridge activity, finality, and token transfers in real time.",
+    "tag": "Beta",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-12",
+    "slug": "bridge-transaction-monitor"
+  },
+  {
+    "title": "Chain Comparison Tool",
+    "body": "Compare chain metrics — TPS, TVL, active addresses — side by side across networks.",
+    "tag": "Beta",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-12",
+    "slug": "chain-comparison-tool"
+  },
+  {
+    "title": "Cross-chain Address Lookup",
+    "body": "Resolve and look up the same address across all supported EVM chains at once.",
+    "tag": "Free Tier",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-12",
+    "slug": "cross-chain-address-lookup"
+  },
+  {
+    "title": "Multichain Portfolio",
+    "body": "Unified portfolio view aggregating assets across every GoldRush-supported chain.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-12",
+    "slug": "multichain-portfolio"
+  }
+]

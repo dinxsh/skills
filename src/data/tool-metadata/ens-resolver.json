@@ -1,0 +1,9 @@
+{
+  "title": "ENS Resolver",
+  "description": "Resolve ENS names and reverse-lookup wallet addresses to human-readable identities.",
+  "category": "identity",
+  "url": "https://goldrush.dev",
+  "tag": "Free Tier",
+  "date-added": "2026-03-12",
+  "slug": "ens-resolver"
+}

@@ -1,0 +1,37 @@
+{
+  "title": "Sui and Aptos Intelligence",
+  "description": "Unified analytics for Sui and Aptos Move-based chains — objects, coins, and transactions.",
+  "category": "analytics",
+  "url": "https://goldrush.dev",
+  "tag": "Beta",
+  "date-added": "2026-03-16",
+  "slug": "sui-and-aptos-intelligence",
+  "snippet": "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY);\n\nasync function getMoveChainIntelligence(walletAddress) {\n  const [sui, aptos] = await Promise.all([\n    client.BalanceService.getTokenBalancesForWalletAddress(\"sui-mainnet\", walletAddress),\n    client.BalanceService.getTokenBalancesForWalletAddress(\"aptos-mainnet\", walletAddress),\n  ]);\n  return { sui: sui.data?.items, aptos: aptos.data?.items };\n}",
+  "endpoints": [
+    "BalanceService.getTokenBalancesForWalletAddress",
+    "TransactionService.getTransactionsForAddressV3"
+  ],
+  "chains": [
+    "sui-mainnet",
+    "aptos-mainnet"
+  ],
+  "complexity": "intermediate",
+  "useCase": "Move ecosystem analytics, cross-chain portfolios, developer dashboards.",
+  "buildsWith": [
+    "@covalenthq/client-sdk"
+  ],
+  "creditCost": "2 credits per wallet (1 per chain)",
+  "keyParams": [
+    {
+      "name": "walletAddress",
+      "type": "string",
+      "description": "Move chain wallet address"
+    }
+  ],
+  "responseFields": [
+    "suiCoins",
+    "aptosCoins",
+    "objects",
+    "txHistory"
+  ]
+}

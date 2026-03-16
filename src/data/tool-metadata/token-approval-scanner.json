@@ -1,0 +1,9 @@
+{
+  "title": "Token Approval Scanner",
+  "description": "Identify and audit all ERC-20 token approvals granted by any wallet address.",
+  "category": "token",
+  "url": "https://goldrush.dev",
+  "tag": "Free Tier",
+  "date-added": "2026-03-12",
+  "slug": "token-approval-scanner"
+}

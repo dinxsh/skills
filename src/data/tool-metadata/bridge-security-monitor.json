@@ -1,0 +1,44 @@
+{
+  "title": "Bridge Security Monitor",
+  "description": "Monitor bridge contracts for unusual outflows, signature reuse, and validator anomalies.",
+  "category": "security",
+  "url": "https://goldrush.dev",
+  "tag": "Beta",
+  "date-added": "2026-03-16",
+  "slug": "bridge-security-monitor",
+  "snippet": "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY);\n\nasync function monitorBridgeSecurity(chainName, bridgeContract) {\n  const events = await client.BaseService.getLogEventsByAddress(\n    chainName, bridgeContract, { startingBlock: \"latest\" }\n  );\n  const withdrawals = (events.data?.items ?? []).filter(\n    e => e.decoded?.name === \"TokensReleased\" || e.decoded?.name === \"Withdraw\"\n  );\n  const largeWithdrawals = withdrawals.filter(e => {\n    const amount = Number(e.decoded?.params?.find(p => p.name === \"amount\")?.value ?? 0);\n    return amount > 1e21;\n  });\n  return { bridgeContract, totalWithdrawals: withdrawals.length, largeWithdrawals: largeWithdrawals.length };\n}",
+  "endpoints": [
+    "BaseService.getLogEventsByAddress",
+    "TransactionService.getTransactionsForAddressV3"
+  ],
+  "chains": [
+    "eth-mainnet",
+    "arbitrum-mainnet",
+    "matic-mainnet",
+    "bsc-mainnet"
+  ],
+  "complexity": "advanced",
+  "useCase": "Bridge risk monitoring, cross-chain security dashboards, DeFi insurance.",
+  "buildsWith": [
+    "@covalenthq/client-sdk"
+  ],
+  "creditCost": "1 credit per request",
+  "keyParams": [
+    {
+      "name": "chainName",
+      "type": "ChainName",
+      "description": "Source chain of the bridge"
+    },
+    {
+      "name": "bridgeContract",
+      "type": "string",
+      "description": "Bridge contract address"
+    }
+  ],
+  "responseFields": [
+    "totalWithdrawals",
+    "largeWithdrawals",
+    "anomalyScore",
+    "validatorFlags"
+  ]
+}

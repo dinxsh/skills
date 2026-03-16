@@ -1,0 +1,39 @@
+{
+  "title": "Stablecoin Dominance Tracker",
+  "description": "Track stablecoin supply share, peg deviation, and flow dominance across chains.",
+  "category": "defi",
+  "url": "https://goldrush.dev",
+  "tag": "API Key Required",
+  "date-added": "2026-03-16",
+  "slug": "stablecoin-dominance-tracker",
+  "snippet": "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY);\n\nasync function getStablecoinDominance(chainName) {\n  const stablecoins = [\"USDC\", \"USDT\", \"DAI\", \"FRAX\", \"LUSD\"];\n  const results = await Promise.all(\n    stablecoins.map(symbol =>\n      client.PricingService.getTokenPrices(chainName, \"USD\", symbol)\n    )\n  );\n  return results.map((r, i) => ({\n    symbol: stablecoins[i],\n    price: r.data?.items?.[0]?.price ?? null,\n    pegDeviation: Math.abs((r.data?.items?.[0]?.price ?? 1) - 1),\n  }));\n}",
+  "endpoints": [
+    "PricingService.getTokenPrices"
+  ],
+  "chains": [
+    "eth-mainnet",
+    "matic-mainnet",
+    "bsc-mainnet",
+    "arbitrum-mainnet",
+    "optimism-mainnet"
+  ],
+  "complexity": "intermediate",
+  "useCase": "DeFi risk management, stablecoin portfolio oversight, peg monitoring dashboards.",
+  "buildsWith": [
+    "@covalenthq/client-sdk"
+  ],
+  "creditCost": "1 credit per chain per stablecoin",
+  "keyParams": [
+    {
+      "name": "chainName",
+      "type": "ChainName",
+      "description": "EVM chain to query"
+    }
+  ],
+  "responseFields": [
+    "symbol",
+    "price",
+    "pegDeviation",
+    "marketCap"
+  ]
+}

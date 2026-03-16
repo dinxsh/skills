@@ -1,0 +1,9 @@
+{
+  "title": "Transaction History",
+  "description": "Paginated, decoded transaction history with logs for any wallet or contract address.",
+  "category": "wallet",
+  "url": "https://goldrush.dev",
+  "tag": "Free Tier",
+  "date-added": "2026-03-12",
+  "slug": "transaction-history"
+}

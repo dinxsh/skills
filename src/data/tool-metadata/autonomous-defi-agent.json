@@ -1,0 +1,9 @@
+{
+  "title": "Autonomous DeFi Agent",
+  "description": "Autonomous agent that reads and reacts to DeFi state changes via GoldRush webhooks.",
+  "category": "agents",
+  "url": "https://goldrush.dev",
+  "tag": "Beta",
+  "date-added": "2026-03-12",
+  "slug": "autonomous-defi-agent"
+}

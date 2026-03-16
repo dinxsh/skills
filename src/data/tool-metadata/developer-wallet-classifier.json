@@ -1,0 +1,36 @@
+{
+  "title": "Developer Wallet Classifier",
+  "description": "Classify wallets as developer, trader, bot, or retail based on onchain interaction patterns.",
+  "category": "analytics",
+  "url": "https://goldrush.dev",
+  "tag": "Beta",
+  "date-added": "2026-03-16",
+  "slug": "developer-wallet-classifier",
+  "snippet": "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY);\n\nasync function classifyWallet(walletAddress) {\n  const txns = await client.TransactionService.getTransactionsForAddressV3(\n    \"eth-mainnet\", walletAddress, { noSpam: true }\n  );\n  const items = txns.data?.items ?? [];\n  const contractDeployments = items.filter(tx => !tx.to_address).length;\n  const contractInteractions = items.filter(tx => tx.to_address && tx.log_events?.length > 0).length;\n  const type = contractDeployments > 2 ? \"developer\"\n    : contractInteractions / items.length > 0.8 ? \"bot\"\n    : \"retail\";\n  return { walletAddress, type, contractDeployments, contractInteractions };\n}",
+  "endpoints": [
+    "TransactionService.getTransactionsForAddressV3"
+  ],
+  "chains": [
+    "eth-mainnet",
+    "matic-mainnet"
+  ],
+  "complexity": "intermediate",
+  "useCase": "Airdrop targeting, developer grants, user segmentation, bot detection.",
+  "buildsWith": [
+    "@covalenthq/client-sdk"
+  ],
+  "creditCost": "1 credit per wallet",
+  "keyParams": [
+    {
+      "name": "walletAddress",
+      "type": "string",
+      "description": "Wallet to classify"
+    }
+  ],
+  "responseFields": [
+    "type",
+    "contractDeployments",
+    "contractInteractions",
+    "confidence"
+  ]
+}

@@ -45,7 +45,7 @@ const {
     twitterImage,
     pageFavicon,
     showSearch = false,
-    searchPlaceholder = "Search by name, category, or feature...",
+    searchPlaceholder = "Search skills by name, chain, or use case...",
 } = Astro.props;
 ---
 
@@ -57,21 +57,21 @@ const {
         <link
             rel="icon"
             type="image/svg+xml"
-            href={pageFavicon || "/rise-of-machine.svg"}
+            href={pageFavicon || "/goldrush.svg"}
         />
         <meta name="generator" content={Astro.generator} />
         <title>
             {
                 pageTitle
-                    ? `${pageTitle} | Rise of Machine`
-                    : `${site} — AI tools curated by autonomous AI agents for makers and SMBs.`
+                    ? `${pageTitle} | GoldRush Skills`
+                    : `${site} — Skills to build anything onchain with GoldRush.`
             }
         </title>
-        <meta name="author" content="@planetabhi" />
+        <meta name="author" content="@covalenthq" />
         <meta
             name="description"
             content={pageDescription ||
-                "AI tools curated by autonomous AI agents for makers and SMBs."}
+                "Discover skills to build onchain apps with GoldRush — blockchain data APIs for wallets, DeFi, NFTs, and more across 100+ chains."}
         />
         <link rel="sitemap" href="/sitemap-index.xml" />
         {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
@@ -117,24 +117,20 @@ const {
         <a href="#main-content" class="skip-link">Skip to main content</a>
         <div class="floating-nav" aria-label="main navigation">
             <div class="left-group">
-                <div class="logo">
-                    <a href="/" aria-label="home page" tabindex="-1"
-                        ><img
-                            src="/rise-of-machine.svg"
-                            width="32"
-                            height="32"
-                            alt="Rise of Machine"
-                            aria-hidden="true"
-                        /></a
-                    >
-                </div>
+                <a href="/" class="logo-link" aria-label="GoldRush Skills home">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <rect width="24" height="24" fill="#FF8C00"/>
+                        <text x="12" y="17" text-anchor="middle" font-family="monospace" font-size="11" font-weight="700" fill="#000">GR</text>
+                    </svg>
+                    <span class="logo-text">GoldRush</span>
+                </a>
             </div>
             <div class="btn-group">
                 <button
                     class="new-filter-toggle"
                     id="new-filter-toggle"
-                    title="Recently added tools"
-                    aria-label="Filter new tools"
+                    title="Recently added skills"
+                    aria-label="Filter new skills"
                     aria-pressed="false"
                 >
                     <span class="fire-emoji">🔥</span>
@@ -145,11 +141,11 @@ const {
                     id="favoritesLink"
                     style="display: none;"
                 >
-                    <span class="favorites-text">Saved tools</span>
+                    <span class="favorites-text">Saved skills</span>
                     <span class="favorites-count" id="favoritesCount"></span>
                 </a>
                 <a
-                    href="https://github.com/planetabhi/riseofmachine/issues"
+                    href="https://github.com/covalenthq/goldrush-skills/issues"
                     target="_blank"
                     rel="noopener noreferrer"
                     class="submit-btn"
@@ -168,12 +164,12 @@ const {
 
         <div class="footer">
             <p>
-                ABHIMANYU RANA 2026 © <br />
+                COVALENT 2026 © <br />
                 <a
-                    href="https://planetabhi.com/"
+                    href="https://goldrush.dev"
                     class="nu-u-link--subtle"
                     target="_blank"
-                    rel="noopener noreferrer">@planetabhi</a
+                    rel="noopener noreferrer">goldrush.dev</a
                 >
                 <span class="footer-separator">·</span>
                 <a href="/privacy" class="nu-u-link--subtle">Privacy</a>
@@ -206,6 +202,7 @@ const {
         font-display: swap;
     }
     :root {
+        --nav-height: 48px; /* floating-nav height: 8px padding × 2 + 32px logo */
         --accent: var(--link);
         --body-copy: "ROM-Regular", var(--system-ui);
         --monospace: "ROM-Mono", var(--monospace-code);
@@ -294,7 +291,7 @@ const {
     }
 
     main {
-        margin: var(--spacing-09);
+        margin: var(--spacing-07) var(--spacing-09);
     }
     .container {
         margin: var(--spacing-15) var(--spacing-09);
@@ -318,14 +315,15 @@ const {
         color: var(--content-secondary) !important;
     }
     .floating-nav {
-        padding: var(--spacing-06) var(--spacing-09);
+        position: sticky;
         top: 0;
-        left: 0;
-        right: 0;
+        padding: var(--spacing-04) var(--spacing-09);
         display: flex;
         justify-content: space-between;
         align-items: center;
-        z-index: 999999;
+        z-index: 9999999;
+        background-color: var(--background-high-contrast);
+        border-bottom: 0.5px solid var(--border-muted);
     }
     .btn-group {
         display: flex;
@@ -367,6 +365,22 @@ const {
             outline: 1px solid var(--button-primary);
             color: var(--content-secondary);
         }
+    }
+    .logo-link {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-03);
+        text-decoration: none;
+    }
+    .logo-link svg {
+        flex-shrink: 0;
+    }
+    .logo-text {
+        font-family: var(--monospace);
+        font-size: var(--desktop-body-sm);
+        font-weight: 600;
+        color: var(--content-primary);
+        letter-spacing: 0.02em;
     }
     .left-group {
         display: flex;
@@ -548,7 +562,7 @@ const {
             margin: auto var(--spacing-06);
         }
         .floating-nav {
-            padding: var(--spacing-06) var(--spacing-06);
+            padding: var(--spacing-04) var(--spacing-06);
         }
         .container {
             margin: var(--spacing-06);

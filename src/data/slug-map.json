@@ -1,3125 +1,338 @@
 {
-  "anyimg": [
-    "art"
+  "net-worth-calculator": [
+    "wallet"
   ],
-  "artpose": [
-    "art"
+  "portfolio-history": [
+    "wallet"
   ],
-  "astria": [
-    "art"
+  "portfolio-tracker": [
+    "wallet"
   ],
-  "banana-ai": [
-    "art"
+  "transaction-history": [
+    "wallet"
   ],
-  "banana-ai-1": [
-    "art"
+  "wallet-activity-feed": [
+    "wallet"
   ],
-  "banana-ai-art": [
-    "art"
+  "wallet-attestations": [
+    "wallet"
   ],
-  "banana-pro": [
-    "art"
+  "wallet-balances-skill": [
+    "wallet"
   ],
-  "best-coloring-pages": [
-    "art"
+  "defi-position-tracker": [
+    "defi"
   ],
-  "blimey": [
-    "art"
+  "dex-trade-history": [
+    "defi"
   ],
-  "brickcenter": [
-    "art"
+  "liquidity-pool-monitor": [
+    "defi"
   ],
-  "bylo-ai": [
-    "art"
+  "protocol-revenue-feed": [
+    "defi"
   ],
-  "chronopets": [
-    "art"
+  "yield-dashboard": [
+    "defi"
   ],
-  "coloring-page": [
-    "art"
+  "collection-floor-monitor": [
+    "nft"
   ],
-  "colormon": [
-    "art"
+  "nft-metadata-fetcher": [
+    "nft"
   ],
-  "colorpageai": [
-    "art"
+  "nft-portfolio-valuation": [
+    "nft"
   ],
-  "comfy": [
-    "art"
+  "nft-transfer-tracker": [
+    "nft"
   ],
-  "comicsai": [
-    "art"
+  "rarity-analyzer": [
+    "nft"
   ],
-  "craiyon": [
-    "art"
+  "chain-activity-dashboard": [
+    "analytics"
   ],
-  "designer": [
-    "art"
+  "event-log-decoder": [
+    "analytics"
   ],
-  "draw3d": [
-    "art"
+  "gas-analytics": [
+    "analytics"
   ],
-  "drawww": [
-    "art"
+  "onchain-data-query": [
+    "analytics"
   ],
-  "dsnr": [
-    "art"
+  "token-price-history": [
+    "analytics"
   ],
-  "elf-on-the-shelf-generator": [
-    "art"
+  "agent-wallet-skill": [
+    "agents"
   ],
-  "emergent": [
-    "art"
+  "autonomous-defi-agent": [
+    "agents"
   ],
-  "exactly": [
-    "art"
+  "claude-goldrush-skill": [
+    "agents"
   ],
-  "faceto3d": [
-    "art"
+  "goldrush-mcp-server": [
+    "agents"
   ],
-  "fast-image-ai": [
-    "art"
+  "onchain-memory-store": [
+    "agents"
   ],
-  "fastimage": [
-    "art"
+  "onchain-research-agent": [
+    "agents"
   ],
-  "fiddlart": [
-    "art"
+  "realtime-wallet-stream": [
+    "agents"
   ],
-  "fileai": [
-    "art"
-  ],
-  "flux-context-ai": [
-    "art"
-  ],
-  "flux-kontext": [
-    "art"
-  ],
-  "freepik-pikaso": [
-    "art"
-  ],
-  "furryai": [
-    "art"
-  ],
-  "gempix2": [
-    "art"
-  ],
-  "gencolorai": [
-    "art"
-  ],
-  "genxi": [
-    "art"
-  ],
-  "getimg-ai": [
-    "art"
-  ],
-  "ghibli-app": [
-    "art"
-  ],
-  "ghibli-art-ai": [
-    "art"
-  ],
-  "grok-ghibli": [
-    "art"
-  ],
-  "hotpot": [
-    "art"
-  ],
-  "ideogramai": [
-    "art"
-  ],
-  "image-generator-nsfw": [
-    "art"
-  ],
-  "image-to-image-maker": [
-    "art"
-  ],
-  "image-to-prompt": [
-    "art"
-  ],
-  "imagefx": [
-    "art"
-  ],
-  "imgkits": [
-    "art"
-  ],
-  "imgnai": [
-    "art"
-  ],
-  "infinite-craft-guide": [
-    "art"
-  ],
-  "invoke": [
-    "art"
-  ],
-  "kixo": [
-    "art"
-  ],
-  "krea": [
-    "art"
-  ],
-  "leonardo": [
-    "art"
-  ],
-  "lexica": [
-    "art"
-  ],
-  "lora": [
-    "art"
-  ],
-  "lora-pro": [
-    "art"
-  ],
-  "magictryon": [
-    "art"
-  ],
-  "makebw": [
-    "art"
-  ],
-  "mediaai-art": [
-    "art"
-  ],
-  "melies": [
-    "art"
-  ],
-  "midjourney": [
-    "art"
-  ],
-  "mirrorize": [
-    "art"
-  ],
-  "muze-art": [
-    "art"
-  ],
-  "nano-banana-pro": [
-    "art"
-  ],
-  "nanobanana-2": [
-    "art"
-  ],
-  "nanobananaimage": [
-    "art"
-  ],
-  "nero-ai": [
-    "art"
-  ],
-  "nightcafe-creator": [
-    "art"
-  ],
-  "oc-maker": [
-    "art"
-  ],
-  "ocmaker": [
-    "art"
-  ],
-  "picrafts": [
-    "art"
-  ],
-  "pictorial": [
-    "art"
-  ],
-  "picture-generator": [
-    "art"
-  ],
-  "pixarai": [
-    "art"
-  ],
-  "prisma": [
-    "art"
-  ],
-  "ptool": [
-    "art"
-  ],
-  "rabbit-road": [
-    "art"
-  ],
-  "rundiffusion": [
-    "art"
-  ],
-  "sdxl-turbo": [
-    "art"
-  ],
-  "seede-ai": [
-    "art"
-  ],
-  "skybox-ai": [
-    "art"
-  ],
-  "sref-midjourney": [
-    "art"
-  ],
-  "stockimg": [
-    "art"
-  ],
-  "tattoocoverupai": [
-    "art"
-  ],
-  "tattooer-info": [
-    "art"
-  ],
-  "unicorn-coloring-pages": [
-    "art"
-  ],
-  "vieutopia": [
-    "art"
-  ],
-  "visual-chatgpt": [
-    "art"
-  ],
-  "vizcom": [
-    "art"
-  ],
-  "wanai": [
-    "art"
-  ],
-  "winter-comics": [
-    "art"
-  ],
-  "wplace-website": [
-    "art"
-  ],
-  "yix": [
-    "art"
-  ],
-  "z-image": [
-    "art"
-  ],
-  "zzo-ai": [
-    "art"
-  ],
-  "adtwin": [
-    "audio"
-  ],
-  "aimakesong": [
-    "audio"
-  ],
-  "altered": [
-    "audio"
-  ],
-  "audio-muse": [
-    "audio"
-  ],
-  "blogaudio": [
-    "audio"
-  ],
-  "calldock": [
-    "audio"
-  ],
-  "cleanvoice": [
-    "audio"
-  ],
-  "descript": [
-    "audio"
-  ],
-  "dubbing-30": [
-    "audio"
-  ],
-  "dubbing-ai": [
-    "audio"
-  ],
-  "eleven-ai": [
-    "audio"
-  ],
-  "elevenlabs": [
-    "audio"
-  ],
-  "f5-tts": [
-    "audio"
-  ],
-  "goose-pod": [
-    "audio"
-  ],
-  "harmonai": [
-    "audio"
-  ],
-  "kits-ai": [
-    "audio"
-  ],
-  "kyutai-tts": [
-    "audio"
-  ],
-  "lalal": [
-    "audio"
-  ],
-  "lami": [
-    "audio"
-  ],
-  "lyricstosong": [
-    "audio"
-  ],
-  "mix-audio": [
-    "audio"
-  ],
-  "monologue": [
-    "audio"
-  ],
-  "mp3-to-text": [
-    "audio"
-  ],
-  "nicevoice": [
-    "audio"
-  ],
-  "notevocal": [
-    "audio"
-  ],
-  "openwispr": [
-    "audio"
-  ],
-  "phone-app": [
-    "audio"
-  ],
-  "playht": [
-    "audio"
-  ],
-  "podcastle": [
-    "audio"
-  ],
-  "reelscribe": [
-    "audio"
-  ],
-  "respeecher": [
-    "audio"
-  ],
-  "seamless": [
-    "audio"
-  ],
-  "so-vits-svc": [
-    "audio"
-  ],
-  "song-maker": [
-    "audio"
-  ],
-  "sonicker": [
-    "audio"
-  ],
-  "speechlab": [
-    "audio"
-  ],
-  "sync": [
-    "audio"
-  ],
-  "trint": [
-    "audio"
-  ],
-  "unreal-speech": [
-    "audio"
-  ],
-  "voice-cloning-free": [
-    "audio"
-  ],
-  "voicebun": [
-    "audio"
-  ],
-  "voicemod": [
-    "audio"
-  ],
-  "voicemyai": [
-    "audio"
-  ],
-  "voicetype": [
-    "audio"
-  ],
-  "wellsaid-labs": [
-    "audio"
-  ],
-  "whisper": [
-    "audio"
-  ],
-  "wondercraft": [
-    "audio"
-  ],
-  "askcodebase": [
-    "code"
-  ],
-  "bito": [
-    "code"
-  ],
-  "blackbox-ai": [
-    "code"
-  ],
-  "builderio": [
-    "code"
-  ],
-  "code-snippets": [
-    "code"
-  ],
-  "codeium": [
-    "code"
-  ],
-  "codestream": [
-    "code"
-  ],
-  "cody-by-sourcegraph": [
-    "code"
-  ],
-  "continue": [
-    "code"
-  ],
-  "cursor": [
-    "code"
-  ],
-  "cursor-directory": [
-    "code"
-  ],
-  "developer-pal": [
-    "code"
-  ],
-  "github-copilot": [
-    "code"
-  ],
-  "grok-video": [
-    "code"
-  ],
-  "lovable": [
-    "code"
-  ],
-  "melty": [
-    "code"
-  ],
-  "q-developer": [
-    "code"
-  ],
-  "qodo": [
-    "code"
-  ],
-  "replit-ghostwriter": [
-    "code"
-  ],
-  "anyword": [
-    "copywriting"
-  ],
-  "audit-landing": [
-    "copywriting"
-  ],
-  "bertha": [
-    "copywriting"
-  ],
-  "bexiai": [
-    "copywriting"
-  ],
-  "blogwald": [
-    "copywriting"
-  ],
-  "booai": [
-    "copywriting"
-  ],
-  "botowski": [
-    "copywriting"
-  ],
-  "bypassgpt": [
-    "copywriting"
-  ],
-  "capitol": [
-    "copywriting"
-  ],
-  "closerscopy": [
-    "copywriting"
-  ],
-  "contents": [
-    "copywriting"
-  ],
-  "copyai": [
-    "copywriting"
-  ],
-  "copymatic": [
-    "copywriting"
-  ],
-  "cowriter": [
-    "copywriting"
-  ],
-  "daydrm": [
-    "copywriting"
-  ],
-  "deep-l-write": [
-    "copywriting"
-  ],
-  "detector-writer": [
-    "copywriting"
-  ],
-  "dupdub": [
-    "copywriting"
-  ],
-  "easy-peasy": [
-    "copywriting"
-  ],
-  "fastwrite": [
-    "copywriting"
-  ],
-  "generor": [
-    "copywriting"
-  ],
-  "grammarly": [
-    "copywriting"
-  ],
-  "hard-usernames": [
-    "copywriting"
-  ],
-  "headcanon-generator": [
-    "copywriting"
-  ],
-  "headcanon-generator-fun": [
-    "copywriting"
-  ],
-  "heynds": [
-    "copywriting"
-  ],
-  "humanize": [
-    "copywriting"
-  ],
-  "humanize-2": [
-    "copywriting"
-  ],
-  "hyperwrite": [
-    "copywriting"
-  ],
-  "hypotenuse": [
-    "copywriting"
-  ],
-  "jasper": [
-    "copywriting"
-  ],
-  "justdone-ai": [
-    "copywriting"
-  ],
-  "lek": [
-    "copywriting"
-  ],
-  "lxiai": [
-    "copywriting"
-  ],
-  "magento": [
-    "copywriting"
-  ],
-  "manga-ai-translator": [
-    "copywriting"
-  ],
-  "migma": [
-    "copywriting"
-  ],
-  "news-article-gen": [
-    "copywriting"
-  ],
-  "newsletter-name-generator": [
-    "copywriting"
-  ],
-  "notion-ai": [
-    "copywriting"
-  ],
-  "originality": [
-    "copywriting"
-  ],
-  "paragraphai": [
-    "copywriting"
-  ],
-  "passivecraft": [
-    "copywriting"
-  ],
-  "pepper-content": [
-    "copywriting"
-  ],
-  "pptdetector": [
-    "copywriting"
-  ],
-  "quillbot": [
-    "copywriting"
-  ],
-  "remagine-ai": [
-    "copywriting"
-  ],
-  "reword": [
-    "copywriting"
-  ],
-  "rightblogger": [
-    "copywriting"
-  ],
-  "roast-my-landing-page": [
-    "copywriting"
-  ],
-  "rytr": [
-    "copywriting"
-  ],
-  "sickleaveemail": [
-    "copywriting"
-  ],
-  "simplified": [
-    "copywriting"
-  ],
-  "strut": [
-    "copywriting"
-  ],
-  "successai": [
-    "copywriting"
-  ],
-  "textcraft": [
-    "copywriting"
-  ],
-  "textgen": [
-    "copywriting"
-  ],
-  "the-humanize": [
-    "copywriting"
-  ],
-  "transmonkey": [
-    "copywriting"
-  ],
-  "typli": [
-    "copywriting"
-  ],
-  "unbounce": [
-    "copywriting"
-  ],
-  "undetect": [
-    "copywriting"
-  ],
-  "voicepen": [
-    "copywriting"
-  ],
-  "woocommerce-ai": [
-    "copywriting"
-  ],
-  "wordstudio": [
-    "copywriting"
-  ],
-  "wordtune": [
-    "copywriting"
-  ],
-  "writego": [
-    "copywriting"
-  ],
-  "writesonic": [
-    "copywriting"
-  ],
-  "yahini": [
-    "copywriting"
-  ],
-  "banana-nano": [
-    "design"
-  ],
-  "cheers-geo": [
-    "design"
-  ],
-  "csm": [
-    "design"
-  ],
-  "designsai": [
-    "design"
-  ],
-  "designstripe": [
-    "design"
-  ],
-  "dora": [
-    "design"
-  ],
-  "durable": [
-    "design"
-  ],
-  "flair": [
-    "design"
-  ],
-  "flora-ai": [
-    "design"
-  ],
-  "flux2ai": [
-    "design"
-  ],
-  "gamma": [
-    "design"
-  ],
-  "graffiti": [
-    "design"
-  ],
-  "graffiti-generator": [
-    "design"
-  ],
-  "illostration-ai": [
-    "design"
-  ],
-  "illustrationapp": [
-    "design"
-  ],
-  "illustroke": [
-    "design"
-  ],
-  "kaedim": [
-    "design"
-  ],
-  "kinetix": [
-    "design"
-  ],
-  "kittl": [
-    "design"
-  ],
-  "logo-galleria": [
-    "design"
-  ],
-  "logollama": [
-    "design"
-  ],
-  "luma-ai": [
-    "design"
-  ],
-  "magicpath": [
-    "design"
-  ],
-  "magicpatterns": [
-    "design"
-  ],
-  "mewdesign": [
-    "design"
-  ],
-  "mixboard": [
-    "design"
-  ],
-  "mixo": [
-    "design"
-  ],
-  "move": [
-    "design"
-  ],
-  "nano-banana": [
-    "design"
-  ],
-  "napkin-ai": [
-    "design"
-  ],
-  "new-ui-templates": [
-    "design"
-  ],
-  "paper-design": [
-    "design"
-  ],
-  "patterned-ai": [
-    "design"
-  ],
-  "pencil": [
-    "design"
-  ],
-  "pixelesq": [
-    "design"
-  ],
-  "recraft-v3-svg": [
-    "design"
-  ],
-  "rustic-ai": [
-    "design"
-  ],
-  "sargam-icons": [
-    "design"
-  ],
-  "shape-of-ai": [
-    "design"
-  ],
-  "slea": [
-    "design"
-  ],
-  "sports-logo-generator": [
-    "design"
-  ],
-  "subframe": [
-    "design"
-  ],
-  "tempo": [
-    "design"
-  ],
-  "textomap": [
-    "design"
-  ],
-  "tripo": [
-    "design"
-  ],
-  "uizard": [
-    "design"
-  ],
-  "v0": [
-    "design"
-  ],
-  "variant": [
-    "design"
-  ],
-  "wix-logo-maker": [
-    "design"
-  ],
-  "wonder": [
-    "design"
-  ],
-  "x-design": [
-    "design"
-  ],
-  "ximagin": [
-    "design"
-  ],
-  "yard-landscape-design": [
-    "design"
-  ],
-  "yenex": [
-    "design"
-  ],
-  "new-ui": [
+  "api-reference": [
     "developer"
   ],
-  "ai-sdk-5-by-vercel": [
+  "goldrush-playground": [
     "developer"
   ],
-  "ai2sql": [
+  "goldrush-react-hooks": [
     "developer"
   ],
-  "amazon-codewhisperer": [
+  "goldrush-typescript-sdk": [
     "developer"
   ],
-  "amazon-sagemaker": [
+  "quickstart-templates": [
     "developer"
   ],
-  "archie": [
+  "webhook-builder": [
     "developer"
-  ],
-  "atla": [
-    "developer"
-  ],
-  "autoregex": [
-    "developer"
-  ],
-  "axflow": [
-    "developer"
-  ],
-  "bingchain": [
-    "developer"
-  ],
-  "blaze-sql": [
-    "developer"
-  ],
-  "buildrs": [
-    "developer"
-  ],
-  "buildship": [
-    "developer"
-  ],
-  "builduo": [
-    "developer"
-  ],
-  "capmonster-cloud": [
-    "developer"
-  ],
-  "cekura": [
-    "developer"
-  ],
-  "chatgpt-apps-sdk": [
-    "developer"
-  ],
-  "chef": [
-    "developer"
-  ],
-  "codebuddy": [
-    "developer"
-  ],
-  "cosine": [
-    "developer"
-  ],
-  "create-apidev": [
-    "developer"
-  ],
-  "cursor-mcp": [
-    "developer"
-  ],
-  "director": [
-    "developer"
-  ],
-  "droidrun": [
-    "developer"
-  ],
-  "evolink": [
-    "developer"
-  ],
-  "fitten-code": [
-    "developer"
-  ],
-  "flappy": [
-    "developer"
-  ],
-  "frontend": [
-    "developer"
-  ],
-  "helix": [
-    "developer"
-  ],
-  "i18n-code-gen": [
-    "developer"
-  ],
-  "kitops": [
-    "developer"
-  ],
-  "lightning": [
-    "developer"
-  ],
-  "liner": [
-    "developer"
-  ],
-  "lintrule": [
-    "developer"
-  ],
-  "lobe-chat": [
-    "developer"
-  ],
-  "makehub": [
-    "developer"
-  ],
-  "marscode": [
-    "developer"
-  ],
-  "marvin": [
-    "developer"
-  ],
-  "n8n-workflow-builder": [
-    "developer"
-  ],
-  "nat-checker": [
-    "developer"
-  ],
-  "neum": [
-    "developer"
-  ],
-  "nora": [
-    "developer"
-  ],
-  "ollama-desktop-app": [
-    "developer"
-  ],
-  "onenode": [
-    "developer"
-  ],
-  "open-interpreter": [
-    "developer"
-  ],
-  "orchids": [
-    "developer"
-  ],
-  "oss-insight": [
-    "developer"
-  ],
-  "pieces": [
-    "developer"
-  ],
-  "poe-api": [
-    "developer"
-  ],
-  "portia-ai": [
-    "developer"
-  ],
-  "postbot": [
-    "developer"
-  ],
-  "proofsio": [
-    "developer"
-  ],
-  "pythagora-20": [
-    "developer"
-  ],
-  "rantir": [
-    "developer"
-  ],
-  "reachy-mini": [
-    "developer"
-  ],
-  "roboto": [
-    "developer"
-  ],
-  "rork-app": [
-    "developer"
-  ],
-  "runpod": [
-    "developer"
-  ],
-  "rybbit": [
-    "developer"
-  ],
-  "rysana": [
-    "developer"
-  ],
-  "scade": [
-    "developer"
-  ],
-  "screenshot-to-code": [
-    "developer"
-  ],
-  "shaped": [
-    "developer"
-  ],
-  "smythos": [
-    "developer"
-  ],
-  "stackgen": [
-    "developer"
-  ],
-  "starter-best": [
-    "developer"
-  ],
-  "strata": [
-    "developer"
-  ],
-  "stringcom": [
-    "developer"
-  ],
-  "sweep": [
-    "developer"
-  ],
-  "synexa": [
-    "developer"
-  ],
-  "synthetic": [
-    "developer"
-  ],
-  "tabnine": [
-    "developer"
-  ],
-  "teable": [
-    "developer"
-  ],
-  "teachable-machine": [
-    "developer"
-  ],
-  "tensorblock-forge": [
-    "developer"
-  ],
-  "text-remover": [
-    "developer"
-  ],
-  "tinq": [
-    "developer"
-  ],
-  "tinygrad": [
-    "developer"
-  ],
-  "trae": [
-    "developer"
-  ],
-  "usesaaskit": [
-    "developer"
-  ],
-  "vellum": [
-    "developer"
-  ],
-  "viseal": [
-    "developer"
-  ],
-  "websparks": [
-    "developer"
-  ],
-  "x-note-writer-api": [
-    "developer"
-  ],
-  "zen-agents": [
-    "developer"
-  ],
-  "zeno": [
-    "developer"
-  ],
-  "aicoursify": [
-    "education"
-  ],
-  "bevinzey": [
-    "education"
-  ],
-  "eduaide": [
-    "education"
-  ],
-  "everlearns": [
-    "education"
-  ],
-  "examful-ai": [
-    "education"
-  ],
-  "fourgpa": [
-    "education"
-  ],
-  "grader-good": [
-    "education"
-  ],
-  "learnfast": [
-    "education"
-  ],
-  "lovestudyai": [
-    "education"
-  ],
-  "manna": [
-    "education"
-  ],
-  "mathnow": [
-    "education"
-  ],
-  "mindgrasp": [
-    "education"
-  ],
-  "my-math-solver-ai": [
-    "education"
-  ],
-  "quiz-cabin": [
-    "education"
-  ],
-  "studdy": [
-    "education"
-  ],
-  "study-fetch": [
-    "education"
-  ],
-  "teachany": [
-    "education"
-  ],
-  "thea": [
-    "education"
-  ],
-  "thesify": [
-    "education"
-  ],
-  "thesisai": [
-    "education"
-  ],
-  "adcopy": [
-    "enterprise"
-  ],
-  "albus": [
-    "enterprise"
-  ],
-  "amazely": [
-    "enterprise"
-  ],
-  "arches": [
-    "enterprise"
-  ],
-  "autoblocks": [
-    "enterprise"
-  ],
-  "bland": [
-    "enterprise"
-  ],
-  "brainfish": [
-    "enterprise"
-  ],
-  "chat-agents": [
-    "enterprise"
-  ],
-  "chat-whisperer": [
-    "enterprise"
-  ],
-  "chatclient": [
-    "enterprise"
-  ],
-  "chatsimple": [
-    "enterprise"
-  ],
-  "cody": [
-    "enterprise"
-  ],
-  "conduit": [
-    "enterprise"
-  ],
-  "convozen": [
-    "enterprise"
-  ],
-  "credal-ai": [
-    "enterprise"
-  ],
-  "dropshiphunt": [
-    "enterprise"
-  ],
-  "dust": [
-    "enterprise"
-  ],
-  "ellie": [
-    "enterprise"
-  ],
-  "explee": [
-    "enterprise"
-  ],
-  "flowla": [
-    "enterprise"
-  ],
-  "glean": [
-    "enterprise"
-  ],
-  "gptbotsai": [
-    "enterprise"
-  ],
-  "gradient": [
-    "enterprise"
-  ],
-  "guidde": [
-    "enterprise"
-  ],
-  "hoory": [
-    "enterprise"
-  ],
-  "insights-by-couplerio": [
-    "enterprise"
-  ],
-  "insightsquared": [
-    "enterprise"
-  ],
-  "invoice-mama": [
-    "enterprise"
-  ],
-  "ioni": [
-    "enterprise"
-  ],
-  "jude-ai": [
-    "enterprise"
-  ],
-  "kommunicate": [
-    "enterprise"
-  ],
-  "lindy": [
-    "enterprise"
-  ],
-  "magicblocks": [
-    "enterprise"
-  ],
-  "marblism": [
-    "enterprise"
-  ],
-  "mendable": [
-    "enterprise"
-  ],
-  "multimodal": [
-    "enterprise"
-  ],
-  "mutual": [
-    "enterprise"
-  ],
-  "my-askai": [
-    "enterprise"
-  ],
-  "myreport": [
-    "enterprise"
-  ],
-  "namelix": [
-    "enterprise"
-  ],
-  "nanonets": [
-    "enterprise"
-  ],
-  "normal": [
-    "enterprise"
-  ],
-  "nuclia": [
-    "enterprise"
-  ],
-  "poper-ai": [
-    "enterprise"
-  ],
-  "prometai": [
-    "enterprise"
-  ],
-  "rainex-agents": [
-    "enterprise"
-  ],
-  "rebellion": [
-    "enterprise"
-  ],
-  "receiptor": [
-    "enterprise"
-  ],
-  "retune": [
-    "enterprise"
-  ],
-  "revyou": [
-    "enterprise"
-  ],
-  "salestarget": [
-    "enterprise"
-  ],
-  "scale-ai": [
-    "enterprise"
-  ],
-  "security-questionnaire": [
-    "enterprise"
-  ],
-  "simple-phones": [
-    "enterprise"
-  ],
-  "sniff-job": [
-    "enterprise"
-  ],
-  "social-intents": [
-    "enterprise"
-  ],
-  "streaml": [
-    "enterprise"
-  ],
-  "supaboard": [
-    "enterprise"
-  ],
-  "superai": [
-    "enterprise"
-  ],
-  "toffu": [
-    "enterprise"
-  ],
-  "togetherai": [
-    "enterprise"
-  ],
-  "trenz": [
-    "enterprise"
-  ],
-  "triviat": [
-    "enterprise"
-  ],
-  "unify-ai-sales": [
-    "enterprise"
-  ],
-  "venturekit": [
-    "enterprise"
-  ],
-  "veriff": [
-    "enterprise"
-  ],
-  "aisthetic": [
-    "fashion"
-  ],
-  "bangs-hair": [
-    "fashion"
-  ],
-  "hairstyle-changer": [
-    "fashion"
-  ],
-  "higgsfield": [
-    "fashion"
-  ],
-  "huhu": [
-    "fashion"
-  ],
-  "looksky": [
-    "fashion"
-  ],
-  "outfitfm": [
-    "fashion"
-  ],
-  "saree-generator": [
-    "fashion"
-  ],
-  "uwear": [
-    "fashion"
-  ],
-  "chub": [
-    "gaming"
-  ],
-  "game-generator": [
-    "gaming"
-  ],
-  "meshy": [
-    "gaming"
-  ],
-  "path-weaver": [
-    "gaming"
-  ],
-  "pinpoint-answer": [
-    "gaming"
-  ],
-  "qmai": [
-    "gaming"
-  ],
-  "rolechar": [
-    "gaming"
-  ],
-  "roleplayr": [
-    "gaming"
-  ],
-  "rosebud-ai": [
-    "gaming"
-  ],
-  "saga": [
-    "gaming"
-  ],
-  "silentsalt": [
-    "gaming"
-  ],
-  "soga-ai": [
-    "gaming"
-  ],
-  "deepen": [
-    "health"
-  ],
-  "hypnotheraai": [
-    "health"
-  ],
-  "mealbymeal": [
-    "health"
-  ],
-  "mealschat": [
-    "health"
-  ],
-  "mybreath": [
-    "health"
-  ],
-  "noetik": [
-    "health"
-  ],
-  "rex": [
-    "health"
-  ],
-  "tallow-balm": [
-    "health"
-  ],
-  "your-avocado": [
-    "health"
-  ],
-  "agents-by-athena": [
-    "llm"
-  ],
-  "ai-agents-list": [
-    "llm"
-  ],
-  "ai-agents-live": [
-    "llm"
-  ],
-  "appagent": [
-    "llm"
-  ],
-  "archetype": [
-    "llm"
-  ],
-  "auto-gpt": [
-    "llm"
-  ],
-  "character": [
-    "llm"
-  ],
-  "chat100": [
-    "llm"
-  ],
-  "chatbotkit": [
-    "llm"
-  ],
-  "chatgpt": [
-    "llm"
-  ],
-  "deepseek": [
-    "llm"
-  ],
-  "deepseek-r1": [
-    "llm"
-  ],
-  "deepseekv4dev": [
-    "llm"
-  ],
-  "delphi": [
-    "llm"
-  ],
-  "flowpoint": [
-    "llm"
-  ],
-  "gemini": [
-    "llm"
-  ],
-  "giga-ml": [
-    "llm"
-  ],
-  "gpt4o": [
-    "llm"
-  ],
-  "grok": [
-    "llm"
-  ],
-  "grok-1": [
-    "llm"
-  ],
-  "helicone": [
-    "llm"
-  ],
-  "langchain": [
-    "llm"
-  ],
-  "langfuse": [
-    "llm"
-  ],
-  "litellm": [
-    "llm"
-  ],
-  "llamaindex": [
-    "llm"
-  ],
-  "mastraai": [
-    "llm"
-  ],
-  "microsoft-copilot": [
-    "llm"
-  ],
-  "modal": [
-    "llm"
-  ],
-  "numbers-station": [
-    "llm"
-  ],
-  "offlinechat": [
-    "llm"
-  ],
-  "openrouter": [
-    "llm"
-  ],
-  "patronus-ai": [
-    "llm"
-  ],
-  "potpie-aipotpie": [
-    "llm"
-  ],
-  "qwen": [
-    "llm"
-  ],
-  "replicate": [
-    "llm"
-  ],
-  "resolveai": [
-    "llm"
-  ],
-  "run-llm": [
-    "llm"
-  ],
-  "sarvam": [
-    "llm"
-  ],
-  "sensay": [
-    "llm"
-  ],
-  "sid": [
-    "llm"
-  ],
-  "smarter-chatgpt-by-athena": [
-    "llm"
-  ],
-  "thinkbuddy": [
-    "llm"
-  ],
-  "adalat": [
-    "legal"
-  ],
-  "ai-lawyer": [
-    "legal"
-  ],
-  "draftlex": [
-    "legal"
-  ],
-  "genie": [
-    "legal"
-  ],
-  "law-school-ai": [
-    "legal"
-  ],
-  "spellbook": [
-    "legal"
-  ],
-  "westaway-ace": [
-    "legal"
-  ],
-  "audiocraft": [
-    "music"
-  ],
-  "audiostrip": [
-    "music"
-  ],
-  "beatoven": [
-    "music"
-  ],
-  "beatviz": [
-    "music"
-  ],
-  "elevenlabssound-effects": [
-    "music"
-  ],
-  "imagetomusic": [
-    "music"
-  ],
-  "jen": [
-    "music"
-  ],
-  "lyria3": [
-    "music"
-  ],
-  "lyrics-to-song": [
-    "music"
-  ],
-  "mubert": [
-    "music"
-  ],
-  "murekaai": [
-    "music"
-  ],
-  "musegen": [
-    "music"
-  ],
-  "music-ai": [
-    "music"
-  ],
-  "music-generator": [
-    "music"
-  ],
-  "orange-music": [
-    "music"
-  ],
-  "raplyrics": [
-    "music"
-  ],
-  "shazam": [
-    "music"
-  ],
-  "snon-lyric": [
-    "music"
-  ],
-  "song-generator": [
-    "music"
-  ],
-  "songburst": [
-    "music"
-  ],
-  "soundraw": [
-    "music"
-  ],
-  "soundry": [
-    "music"
-  ],
-  "sprunki": [
-    "music"
-  ],
-  "stable-audio": [
-    "music"
-  ],
-  "suno": [
-    "music"
-  ],
-  "tempolor": [
-    "music"
-  ],
-  "tomusic": [
-    "music"
-  ],
-  "tracksy": [
-    "music"
-  ],
-  "vocal-remover": [
-    "music"
-  ],
-  "wondera": [
-    "music"
-  ],
-  "akkio": [
-    "nocode"
-  ],
-  "brancher-ai": [
-    "nocode"
-  ],
-  "browse-ai": [
-    "nocode"
-  ],
-  "buildai": [
-    "nocode"
-  ],
-  "butternut": [
-    "nocode"
-  ],
-  "chaindesk": [
-    "nocode"
-  ],
-  "create": [
-    "nocode"
-  ],
-  "droxy": [
-    "nocode"
-  ],
-  "easysite": [
-    "nocode"
-  ],
-  "ezsiteai": [
-    "nocode"
-  ],
-  "imagica": [
-    "nocode"
-  ],
-  "lindo": [
-    "nocode"
-  ],
-  "makeform": [
-    "nocode"
-  ],
-  "olive": [
-    "nocode"
-  ],
-  "pageai": [
-    "nocode"
-  ],
-  "riku": [
-    "nocode"
-  ],
-  "shader": [
-    "nocode"
-  ],
-  "stack": [
-    "nocode"
-  ],
-  "unideck-beta": [
-    "nocode"
-  ],
-  "vectorize-ai": [
-    "nocode"
-  ],
-  "aragon-ai": [
-    "photos"
-  ],
-  "attractiveness-scale": [
-    "photos"
-  ],
-  "background": [
-    "photos"
-  ],
-  "beauty-test": [
-    "photos"
-  ],
-  "beautycam-image-master": [
-    "photos"
-  ],
-  "befunky": [
-    "photos"
-  ],
-  "betterpic": [
-    "photos"
-  ],
-  "bg-eraser": [
-    "photos"
-  ],
-  "blonde-filter": [
-    "photos"
-  ],
-  "bria": [
-    "photos"
-  ],
-  "bulk-image-generator": [
-    "photos"
-  ],
-  "bulkgen-ai": [
-    "photos"
-  ],
-  "can-of-soup": [
-    "photos"
-  ],
-  "cartoon-to-real": [
-    "photos"
-  ],
-  "clipdrop": [
-    "photos"
-  ],
-  "clothes-changer": [
-    "photos"
-  ],
-  "cozaiphoto": [
-    "photos"
-  ],
-  "dressx": [
-    "photos"
-  ],
-  "dual-shades": [
-    "photos"
-  ],
-  "erase-bg": [
-    "photos"
-  ],
-  "facerate": [
-    "photos"
-  ],
-  "faceswap": [
-    "photos"
-  ],
-  "facevary": [
-    "photos"
-  ],
-  "flux-ai": [
-    "photos"
-  ],
-  "flux-ai-online": [
-    "photos"
-  ],
-  "food-generator": [
-    "photos"
-  ],
-  "foosh": [
-    "photos"
-  ],
-  "fotol-image-generator": [
-    "photos"
-  ],
-  "gemini-flash-image": [
-    "photos"
-  ],
-  "ghostface": [
-    "photos"
-  ],
-  "ghostface-ai": [
-    "photos"
-  ],
-  "giffaceswap": [
-    "photos"
-  ],
-  "graficai": [
-    "photos"
-  ],
-  "green-screen-ai": [
-    "photos"
-  ],
-  "hairstyle": [
-    "photos"
-  ],
-  "hairstyle-2": [
-    "photos"
-  ],
-  "hama": [
-    "photos"
-  ],
-  "headshot-photo": [
-    "photos"
-  ],
-  "image-enlarger": [
-    "photos"
-  ],
-  "image-optimizer": [
-    "photos"
-  ],
-  "image-text-editor": [
-    "photos"
-  ],
-  "imggen-ai": [
-    "photos"
-  ],
-  "imggood": [
-    "photos"
-  ],
-  "lets-enhance": [
-    "photos"
-  ],
-  "magic-ai-avatars": [
-    "photos"
-  ],
-  "magic-eraser": [
-    "photos"
-  ],
-  "magnific": [
-    "photos"
-  ],
-  "mimicphoto": [
-    "photos"
-  ],
-  "mirror-ai": [
-    "photos"
-  ],
-  "muapi": [
-    "photos"
-  ],
-  "mypicnow": [
-    "photos"
-  ],
-  "nano-banana-pro-1": [
-    "photos"
-  ],
-  "nanopic": [
-    "photos"
-  ],
-  "nostalgia-photo": [
-    "photos"
-  ],
-  "palette": [
-    "photos"
-  ],
-  "pebblely": [
-    "photos"
-  ],
-  "pfpmaker": [
-    "photos"
-  ],
-  "photify": [
-    "photos"
-  ],
-  "photo": [
-    "photos"
-  ],
-  "photo-editor": [
-    "photos"
-  ],
-  "photo-style": [
-    "photos"
-  ],
-  "photoleap": [
-    "photos"
-  ],
-  "photoroom": [
-    "photos"
-  ],
-  "picsart": [
-    "photos"
-  ],
-  "pixelfox-objects-remover": [
-    "photos"
-  ],
-  "portraitart": [
-    "photos"
-  ],
-  "preset-generator": [
-    "photos"
-  ],
-  "profile-picture-ai": [
-    "photos"
-  ],
-  "promptwall": [
-    "photos"
-  ],
-  "ps-nano-banana": [
-    "photos"
-  ],
-  "quitarfondo": [
-    "photos"
-  ],
-  "random-image-generator": [
-    "photos"
-  ],
-  "remove-background-by-picsart": [
-    "photos"
-  ],
-  "removebg": [
-    "photos"
-  ],
-  "restore-photos": [
-    "photos"
-  ],
-  "sceneyouart": [
-    "photos"
-  ],
-  "sellerpic": [
-    "photos"
-  ],
-  "silhouette-generator": [
-    "photos"
-  ],
-  "topaz-labs": [
-    "photos"
-  ],
-  "topaz-photo-ai": [
-    "photos"
-  ],
-  "travel-photos": [
-    "photos"
-  ],
-  "whatbreedismycat": [
-    "photos"
-  ],
-  "wishhush": [
-    "photos"
-  ],
-  "ada": [
-    "productivity"
-  ],
-  "agentsea": [
-    "productivity"
-  ],
-  "autoppt": [
-    "productivity"
-  ],
-  "autotab": [
-    "productivity"
-  ],
-  "beforesunset": [
-    "productivity"
-  ],
-  "blocks": [
-    "productivity"
-  ],
-  "caesr-ai": [
-    "productivity"
-  ],
-  "callzero": [
-    "productivity"
-  ],
-  "chatgpt-writer": [
-    "productivity"
-  ],
-  "chatize": [
-    "productivity"
-  ],
-  "cloudairy": [
-    "productivity"
-  ],
-  "cognosysai": [
-    "productivity"
-  ],
-  "computerx": [
-    "productivity"
-  ],
-  "concierge": [
-    "productivity"
-  ],
-  "context": [
-    "productivity"
-  ],
-  "cvbeeai": [
-    "productivity"
-  ],
-  "dart": [
-    "productivity"
-  ],
-  "dashform": [
-    "productivity"
-  ],
-  "decktopus": [
-    "productivity"
-  ],
-  "disclaimr": [
-    "productivity"
-  ],
-  "doculator": [
-    "productivity"
-  ],
-  "dola-calendar-assistant": [
-    "productivity"
-  ],
-  "eloovor-career-coach": [
-    "productivity"
-  ],
-  "everyday": [
-    "productivity"
-  ],
-  "fireflies": [
-    "productivity"
-  ],
-  "floworks": [
-    "productivity"
-  ],
-  "focusflowai": [
-    "productivity"
-  ],
-  "forage-mail": [
-    "productivity"
-  ],
-  "genppt": [
-    "productivity"
-  ],
-  "glitter": [
-    "productivity"
-  ],
-  "google-translate": [
-    "productivity"
-  ],
-  "groupthink": [
-    "productivity"
-  ],
-  "hero": [
-    "productivity"
-  ],
-  "hipocap": [
-    "productivity"
-  ],
-  "humanize-ai-text": [
-    "productivity"
-  ],
-  "humata": [
-    "productivity"
-  ],
-  "hyperfeed": [
-    "productivity"
-  ],
-  "hyperpresent": [
-    "productivity"
-  ],
-  "intellibar": [
-    "productivity"
-  ],
-  "jigso": [
-    "productivity"
-  ],
-  "jobbuddy": [
-    "productivity"
-  ],
-  "jobgpt": [
-    "productivity"
-  ],
-  "jobwinner": [
-    "productivity"
-  ],
-  "koncile": [
-    "productivity"
-  ],
-  "kortix-suna": [
-    "productivity"
-  ],
-  "krisp": [
-    "productivity"
-  ],
-  "lazy-20": [
-    "productivity"
-  ],
-  "linnkai": [
-    "productivity"
-  ],
-  "lock-in": [
-    "productivity"
-  ],
-  "lyra": [
-    "productivity"
-  ],
-  "magictrips": [
-    "productivity"
-  ],
-  "mavexai": [
-    "productivity"
-  ],
-  "meet-ting": [
-    "productivity"
-  ],
-  "mem": [
-    "productivity"
-  ],
-  "mindmap-extension": [
-    "productivity"
-  ],
-  "mnemosphere": [
-    "productivity"
-  ],
-  "multion": [
-    "productivity"
-  ],
-  "mydeviceai-v2": [
-    "productivity"
-  ],
-  "nimo": [
-    "productivity"
-  ],
-  "noiz": [
-    "productivity"
-  ],
-  "notion": [
-    "productivity"
-  ],
-  "noty": [
-    "productivity"
-  ],
-  "nurturally": [
-    "productivity"
-  ],
-  "ocrmd": [
-    "productivity"
-  ],
-  "orchestra": [
-    "productivity"
-  ],
-  "otter": [
-    "productivity"
-  ],
-  "pally-ai": [
-    "productivity"
-  ],
-  "pdfconvo": [
-    "productivity"
-  ],
-  "peerfect": [
-    "productivity"
-  ],
-  "personal": [
-    "productivity"
-  ],
-  "pitch": [
-    "productivity"
-  ],
-  "pixiebrix": [
-    "productivity"
-  ],
-  "plus-docs": [
-    "productivity"
-  ],
-  "plzai-directory": [
-    "productivity"
-  ],
-  "pointer": [
-    "productivity"
-  ],
-  "powered-template": [
-    "productivity"
-  ],
-  "reclaim-ai": [
-    "productivity"
-  ],
-  "remio-note-taker": [
-    "productivity"
-  ],
-  "rewind-ai": [
-    "productivity"
-  ],
-  "reztune": [
-    "productivity"
-  ],
-  "riley-parenting": [
-    "productivity"
-  ],
-  "runbear": [
-    "productivity"
-  ],
-  "runner-h-ai": [
-    "productivity"
-  ],
-  "sara-interviewer": [
-    "productivity"
-  ],
-  "semantic-email": [
-    "productivity"
-  ],
-  "shortcutai": [
-    "productivity"
-  ],
-  "sidekick": [
-    "productivity"
-  ],
-  "sider": [
-    "productivity"
-  ],
-  "skywork": [
-    "productivity"
-  ],
-  "slidesai": [
-    "productivity"
-  ],
-  "supernormal": [
-    "productivity"
-  ],
-  "syft": [
-    "productivity"
-  ],
-  "taskade": [
-    "productivity"
-  ],
-  "thinkfill": [
-    "productivity"
-  ],
-  "timeos": [
-    "productivity"
-  ],
-  "tldv": [
-    "productivity"
-  ],
-  "ultra": [
-    "productivity"
-  ],
-  "uniquenamesnet": [
-    "productivity"
-  ],
-  "upscaler": [
-    "productivity"
-  ],
-  "vocalscribe": [
-    "productivity"
-  ],
-  "walles": [
-    "productivity"
-  ],
-  "wave": [
-    "productivity"
-  ],
-  "wiseone": [
-    "productivity"
-  ],
-  "wudpecker": [
-    "productivity"
-  ],
-  "xmind": [
-    "productivity"
-  ],
-  "you": [
-    "productivity"
-  ],
-  "youtube-transcripts": [
-    "productivity"
-  ],
-  "zookish": [
-    "productivity"
-  ],
-  "zyler-ai": [
-    "productivity"
-  ],
-  "banana-prompts": [
-    "prompts"
-  ],
-  "dallelist": [
-    "prompts"
-  ],
-  "diligence-check": [
-    "prompts"
-  ],
-  "eye-for-ai": [
-    "prompts"
-  ],
-  "flowgpt": [
-    "prompts"
-  ],
-  "gemini-photo-prompt": [
-    "prompts"
-  ],
-  "goodprompts": [
-    "prompts"
-  ],
-  "gpt-prompts": [
-    "prompts"
-  ],
-  "img2prompt": [
-    "prompts"
-  ],
-  "midlearning": [
-    "prompts"
-  ],
-  "openart": [
-    "prompts"
-  ],
-  "prompt-generator": [
-    "prompts"
-  ],
-  "prompt-library": [
-    "prompts"
-  ],
-  "promptbase": [
-    "prompts"
-  ],
-  "promptbox": [
-    "prompts"
-  ],
-  "promptforge": [
-    "prompts"
-  ],
-  "prompthero": [
-    "prompts"
-  ],
-  "promptlayer": [
-    "prompts"
-  ],
-  "promptvibe": [
-    "prompts"
-  ],
-  "smartgpt": [
-    "prompts"
-  ],
-  "srefhunter": [
-    "prompts"
-  ],
-  "xprompts": [
-    "prompts"
-  ],
-  "alphaxiv": [
-    "research"
-  ],
-  "bagel": [
-    "research"
-  ],
-  "biznest": [
-    "research"
-  ],
-  "capgo-ai": [
-    "research"
-  ],
-  "chat4data": [
-    "research"
-  ],
-  "consensus": [
-    "research"
-  ],
-  "datviz": [
-    "research"
-  ],
-  "domain-name-generator": [
-    "research"
-  ],
-  "gaabstract": [
-    "research"
-  ],
-  "heronai": [
-    "research"
-  ],
-  "isaac": [
-    "research"
-  ],
-  "julius-ai": [
-    "research"
-  ],
-  "marketalertsai": [
-    "research"
-  ],
-  "merlin": [
-    "research"
-  ],
-  "morphikai": [
-    "research"
-  ],
-  "ontosightai": [
-    "research"
-  ],
-  "osum": [
-    "research"
-  ],
-  "papers": [
-    "research"
-  ],
-  "resea-ai": [
-    "research"
-  ],
-  "research": [
-    "research"
-  ],
-  "rivalout": [
-    "research"
-  ],
-  "sagehood": [
-    "research"
-  ],
-  "scite": [
-    "research"
-  ],
-  "silatus": [
-    "research"
-  ],
-  "sobrief": [
-    "research"
-  ],
-  "storm": [
-    "research"
-  ],
-  "synthetic-users": [
-    "research"
-  ],
-  "wokelo": [
-    "research"
-  ],
-  "ai-visibility": [
-    "seo"
-  ],
-  "aitdk": [
-    "seo"
-  ],
-  "blawgy": [
-    "seo"
-  ],
-  "blogseo": [
-    "seo"
-  ],
-  "coframe": [
-    "seo"
-  ],
-  "dr-checker": [
-    "seo"
-  ],
-  "fast-seo-fix": [
-    "seo"
-  ],
-  "keywordsearch": [
-    "seo"
-  ],
-  "meroid": [
-    "seo"
-  ],
-  "nimtai": [
-    "seo"
-  ],
-  "prompt-tracker": [
-    "seo"
-  ],
-  "promptwatch": [
-    "seo"
-  ],
-  "rankyak": [
-    "seo"
-  ],
-  "scribli": [
-    "seo"
-  ],
-  "seoaibot": [
-    "seo"
-  ],
-  "seobot": [
-    "seo"
-  ],
-  "seojuice": [
-    "seo"
-  ],
-  "snoika": [
-    "seo"
-  ],
-  "writerzen": [
-    "seo"
-  ],
-  "writetext-shopify": [
-    "seo"
-  ],
-  "assembo": [
-    "social"
-  ],
-  "authorscale": [
-    "social"
-  ],
-  "bestever": [
-    "social"
-  ],
-  "cloutsim-influencer-simulator": [
-    "social"
-  ],
-  "currents": [
-    "social"
-  ],
-  "docsfold": [
-    "social"
-  ],
-  "highperformr": [
-    "social"
-  ],
-  "instaclip": [
-    "social"
-  ],
-  "instainfluencer": [
-    "social"
-  ],
-  "liseller": [
-    "social"
-  ],
-  "ocoya": [
-    "social"
-  ],
-  "postli": [
-    "social"
-  ],
-  "quickads": [
-    "social"
-  ],
-  "repixify": [
-    "social"
-  ],
-  "replymind": [
-    "social"
-  ],
-  "rizz-ai": [
-    "social"
-  ],
-  "rizz-app-ai": [
-    "social"
-  ],
-  "rizz-line-generator": [
-    "social"
-  ],
-  "rizz-lines": [
-    "social"
-  ],
-  "schedpilot": [
-    "social"
-  ],
-  "sivi": [
-    "social"
-  ],
-  "skyblaze": [
-    "social"
-  ],
-  "social-hub": [
-    "social"
-  ],
-  "surudo-search": [
-    "social"
-  ],
-  "taplio": [
-    "social"
-  ],
-  "timetotok": [
-    "social"
-  ],
-  "tweet-fast": [
-    "social"
-  ],
-  "uplodio": [
-    "social"
-  ],
-  "videolulu": [
-    "social"
-  ],
-  "animant": [
-    "video"
-  ],
-  "autopilot-shorts": [
-    "video"
-  ],
-  "baby-dance": [
-    "video"
-  ],
-  "capcut": [
-    "video"
-  ],
-  "cqtai": [
-    "video"
-  ],
-  "create-video": [
-    "video"
-  ],
-  "createnew": [
-    "video"
-  ],
-  "creatify": [
-    "video"
-  ],
-  "d-id": [
-    "video"
-  ],
-  "dadan": [
-    "video"
-  ],
-  "davinci-resolve": [
-    "video"
-  ],
-  "decohere": [
-    "video"
-  ],
-  "deforum": [
-    "video"
-  ],
-  "dreamcut": [
-    "video"
-  ],
-  "dubbah": [
-    "video"
-  ],
-  "elaiio": [
-    "video"
-  ],
-  "flask": [
-    "video"
-  ],
-  "fliki": [
-    "video"
-  ],
-  "freebeat": [
-    "video"
-  ],
-  "funy-video-image": [
-    "video"
-  ],
-  "genmo": [
-    "video"
-  ],
-  "google-veo": [
-    "video"
-  ],
-  "grok-video-generator": [
-    "video"
-  ],
-  "hailuoai": [
-    "video"
-  ],
-  "heygen": [
-    "video"
-  ],
-  "hoox": [
-    "video"
-  ],
-  "image-to-video": [
-    "video"
-  ],
-  "image2video": [
-    "video"
-  ],
-  "img2video": [
-    "video"
-  ],
-  "invideo-ai": [
-    "video"
-  ],
-  "kaiber": [
-    "video"
-  ],
-  "kite": [
-    "video"
-  ],
-  "kling-ai": [
-    "video"
-  ],
-  "kungfu": [
-    "video"
-  ],
-  "libretto": [
-    "video"
-  ],
-  "ltx2": [
-    "video"
-  ],
-  "lumen5": [
-    "video"
-  ],
-  "lyric-video-studio": [
-    "video"
-  ],
-  "magic-hour": [
-    "video"
-  ],
-  "magic-shorts": [
-    "video"
-  ],
-  "magiclight-ai": [
-    "video"
-  ],
-  "moonvalley": [
-    "video"
-  ],
-  "morph-studio": [
-    "video"
-  ],
-  "motion-control": [
-    "video"
-  ],
-  "neural-frames": [
-    "video"
-  ],
-  "noeffort": [
-    "video"
-  ],
-  "omagic-ai": [
-    "video"
-  ],
-  "opusclip": [
-    "video"
-  ],
-  "photo-to-video-ai": [
-    "video"
-  ],
-  "phototo-video": [
-    "video"
-  ],
-  "picloft": [
-    "video"
-  ],
-  "pictory": [
-    "video"
-  ],
-  "pika": [
-    "video"
-  ],
-  "pixverse": [
-    "video"
-  ],
-  "powerdirector": [
-    "video"
-  ],
-  "qudemo": [
-    "video"
-  ],
-  "rask-ai": [
-    "video"
-  ],
-  "rewinai": [
-    "video"
-  ],
-  "rizzle": [
-    "video"
-  ],
-  "scriptmagic": [
-    "video"
-  ],
-  "seedance": [
-    "video"
-  ],
-  "seedance-2-ai-video-generator": [
-    "video"
-  ],
-  "seedance-2-video": [
-    "video"
-  ],
-  "seedances": [
-    "video"
-  ],
-  "shorts-generator": [
-    "video"
-  ],
-  "shortsfarm": [
-    "video"
-  ],
-  "soda-video-ai": [
-    "video"
-  ],
-  "sora-2": [
-    "video"
-  ],
-  "step-video-t2v": [
-    "video"
-  ],
-  "summarize": [
-    "video"
-  ],
-  "supermaker": [
-    "video"
-  ],
-  "tailored-labs": [
-    "video"
-  ],
-  "textideo": [
-    "video"
-  ],
-  "tryveo3": [
-    "video"
-  ],
-  "veo-3-by-kie": [
-    "video"
-  ],
-  "veo-4": [
-    "video"
-  ],
-  "veo-video": [
-    "video"
-  ],
-  "veo3-video-generator": [
-    "video"
-  ],
-  "veo3bot": [
-    "video"
-  ],
-  "vidduo-agent": [
-    "video"
-  ],
-  "video-marketer": [
-    "video"
-  ],
-  "videomaker": [
-    "video"
-  ],
-  "videoswapface": [
-    "video"
-  ],
-  "vidmix": [
-    "video"
-  ],
-  "vidu-studio": [
-    "video"
-  ],
-  "viralrot": [
-    "video"
-  ],
-  "vivago": [
-    "video"
   ],
-  "vivagoaivideo": [
-    "video"
+  "address-activity-scanner": [
+    "crosschain"
   ],
-  "vmeg-clips-to-videos": [
-    "video"
+  "bridge-transaction-monitor": [
+    "crosschain"
   ],
-  "voe-ai": [
-    "video"
+  "chain-comparison-tool": [
+    "crosschain"
   ],
-  "wan-22": [
-    "video"
+  "cross-chain-address-lookup": [
+    "crosschain"
   ],
-  "wan-22-ai": [
-    "video"
+  "multichain-portfolio": [
+    "crosschain"
   ],
-  "wan-26": [
-    "video"
+  "erc20-transfer-history": [
+    "token"
   ],
-  "watermark-remover": [
-    "video"
+  "spot-price-ticker": [
+    "token"
   ],
-  "wondershare-filmora": [
-    "video"
+  "token-approval-scanner": [
+    "token"
   ],
-  "acidtools": [
-    "xtras"
+  "token-holder-list": [
+    "token"
   ],
-  "agent-hub": [
-    "xtras"
+  "token-metadata-api": [
+    "token"
   ],
-  "agents-directory": [
-    "xtras"
+  "token-transfer-stream": [
+    "token"
   ],
-  "aide": [
-    "xtras"
+  "ens-resolver": [
+    "identity"
   ],
-  "aify": [
-    "xtras"
+  "nft-gate": [
+    "identity"
   ],
-  "artificial-analysis": [
-    "xtras"
+  "proof-of-onchain-activity": [
+    "identity"
   ],
-  "astrocarto": [
-    "xtras"
+  "wallet-identity-graph": [
+    "identity"
   ],
-  "attractive-analyzer": [
-    "xtras"
+  "approval-auditor": [
+    "security"
   ],
-  "audio-notes": [
-    "xtras"
+  "contract-interaction-history": [
+    "security"
   ],
-  "bargpt": [
-    "xtras"
+  "mev-monitor": [
+    "security"
   ],
-  "chinese-names-generator": [
-    "xtras"
+  "phishing-address-checker": [
+    "security"
   ],
-  "compare-heights": [
-    "xtras"
+  "token-risk-analyzer": [
+    "security"
   ],
-  "conference-sponsor": [
-    "xtras"
+  "stablecoin-dominance-tracker": [
+    "defi"
   ],
-  "crumb": [
-    "xtras"
+  "rwa-tokenized-treasury-tracker": [
+    "defi"
   ],
-  "deepseek-v31": [
-    "xtras"
+  "rwa-real-estate-portfolio": [
+    "defi"
   ],
-  "elements-by-vercel": [
-    "xtras"
+  "defi-bad-debt-monitor": [
+    "defi"
   ],
-  "finder-plus": [
-    "xtras"
+  "cross-chain-liquidity-map": [
+    "defi"
   ],
-  "fluent-app": [
-    "xtras"
+  "chain-health-scorecard": [
+    "analytics"
   ],
-  "fluxaicreate": [
-    "xtras"
+  "onchain-credit-score": [
+    "analytics"
   ],
-  "freenav": [
-    "xtras"
+  "developer-wallet-classifier": [
+    "analytics"
   ],
-  "generators": [
-    "xtras"
+  "treasury-management-intelligence": [
+    "analytics"
   ],
-  "gmapsextrator": [
-    "xtras"
+  "institutional-wallet-tracker": [
+    "analytics"
   ],
-  "goodsfox": [
-    "xtras"
+  "hyperliquid-intelligence": [
+    "analytics"
   ],
-  "grok-ani": [
-    "xtras"
+  "berachain-intelligence": [
+    "analytics"
   ],
-  "hammer": [
-    "xtras"
+  "scroll-and-linea-intelligence": [
+    "analytics"
   ],
-  "harry-potter-house-quiz": [
-    "xtras"
+  "dao-voter-intelligence": [
+    "analytics"
   ],
-  "hoody": [
-    "xtras"
+  "macro-onchain-sentiment": [
+    "analytics"
   ],
-  "ig-follower-export": [
-    "xtras"
+  "carbon-credit-regen-tracker": [
+    "analytics"
   ],
-  "imagebyqwen": [
-    "xtras"
+  "protocol-acquisition-intelligence": [
+    "analytics"
   ],
-  "jobbuddy-2": [
-    "xtras"
+  "cross-border-payment-analytics": [
+    "analytics"
   ],
-  "jpg-to-excel-converter": [
-    "xtras"
+  "fund-flow-intelligence": [
+    "analytics"
   ],
-  "keys-and-caches": [
-    "xtras"
+  "tron-ecosystem-monitor": [
+    "analytics"
   ],
-  "kraterai": [
-    "xtras"
+  "ethereum-validator-intelligence": [
+    "analytics"
   ],
-  "largemi": [
-    "xtras"
+  "solana-program-analytics": [
+    "analytics"
   ],
-  "love-mbti": [
-    "xtras"
+  "near-protocol-intelligence": [
+    "analytics"
   ],
-  "madespace": [
-    "xtras"
+  "sui-and-aptos-intelligence": [
+    "analytics"
   ],
-  "make-for-india": [
-    "xtras"
+  "starknet-intelligence": [
+    "analytics"
   ],
-  "manus": [
-    "xtras"
+  "polkadot-parachain-intelligence": [
+    "analytics"
   ],
-  "nano-bananaai": [
-    "xtras"
+  "ton-blockchain-intelligence": [
+    "analytics"
   ],
-  "navitool": [
-    "xtras"
+  "cosmos-ecosystem": [
+    "analytics"
   ],
-  "nectar-ai": [
-    "xtras"
+  "agent-risk-circuit-breaker": [
+    "agents"
   ],
-  "oc-maker-2": [
-    "xtras"
+  "agent-reputation-builder": [
+    "agents"
   ],
-  "omnara": [
-    "xtras"
+  "agent-discovery-protocol": [
+    "agents"
   ],
-  "onlook-for-web": [
-    "xtras"
+  "agent-cross-chain-coordinator": [
+    "agents"
   ],
-  "penny": [
-    "xtras"
+  "agent-alpha-signal-extractor": [
+    "agents"
   ],
-  "profilespider": [
-    "xtras"
+  "agent-counterparty-verification": [
+    "agents"
   ],
-  "prompt-pro": [
-    "xtras"
+  "agent-payment-optimizer": [
+    "agents"
   ],
-  "pxzai": [
-    "xtras"
+  "agent-onchain-news-aggregator": [
+    "agents"
   ],
-  "qoder": [
-    "xtras"
+  "agent-market-surveillance": [
+    "agents"
   ],
-  "rainbow": [
-    "xtras"
+  "agent-fleet-monitor": [
+    "agents"
   ],
-  "reachllm": [
-    "xtras"
+  "agent-data-budget-manager": [
+    "agents"
   ],
-  "recast": [
-    "xtras"
+  "agent-yield-harvester": [
+    "agents"
   ],
-  "righthair": [
-    "xtras"
+  "sybil-resistance-scorer": [
+    "identity"
   ],
-  "seedream": [
-    "xtras"
+  "onchain-social-graph": [
+    "identity"
   ],
-  "shipsquad": [
-    "xtras"
+  "reputation-score-aggregator": [
+    "identity"
   ],
-  "sms-launcher": [
-    "xtras"
+  "nft-wash-trading-detector": [
+    "nft"
   ],
-  "speedvitals-rum": [
-    "xtras"
+  "nft-liquidity-scorer": [
+    "nft"
   ],
-  "stamp-generator": [
-    "xtras"
+  "nft-royalty-tracking": [
+    "nft"
   ],
-  "storybox": [
-    "xtras"
+  "smart-contract-interaction-risk": [
+    "security"
   ],
-  "sumreads": [
-    "xtras"
+  "oracle-manipulation-detector": [
+    "security"
   ],
-  "tap4-ai": [
-    "xtras"
+  "exploit-early-warning-system": [
+    "security"
   ],
-  "thatsmy": [
-    "xtras"
+  "mev-exposure-analyzer": [
+    "security"
   ],
-  "the-tech-info": [
-    "xtras"
+  "bridge-security-monitor": [
+    "security"
   ],
-  "trace": [
-    "xtras"
+  "rugpull-pattern-detector": [
+    "security"
   ],
-  "traceroot": [
-    "xtras"
+  "phishing-wallet-database": [
+    "security"
   ],
-  "track-3iatlas": [
-    "xtras"
+  "compliance-transaction-screening": [
+    "security"
   ],
-  "tradinglens": [
-    "xtras"
+  "token-exchange-flow-tracker": [
+    "token"
   ],
-  "tripnotes": [
-    "xtras"
+  "token-memecoin-risk-scorer": [
+    "token"
   ],
-  "vibeflow": [
-    "xtras"
+  "token-fee-revenue-correlation": [
+    "token"
   ]
 }

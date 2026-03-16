@@ -1,0 +1,9 @@
+{
+  "title": "Real-time Wallet Stream",
+  "description": "Subscribe to live wallet activity events via WebSocket — zero polling, instant updates.",
+  "category": "agents",
+  "url": "https://goldrush.dev",
+  "tag": "Beta",
+  "date-added": "2026-03-12",
+  "slug": "realtime-wallet-stream"
+}

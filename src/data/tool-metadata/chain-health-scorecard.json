@@ -1,0 +1,40 @@
+{
+  "title": "Chain Health Scorecard",
+  "description": "Score any EVM chain on activity, growth, and decentralisation metrics in real time.",
+  "category": "analytics",
+  "url": "https://goldrush.dev",
+  "tag": "Beta",
+  "date-added": "2026-03-16",
+  "slug": "chain-health-scorecard",
+  "snippet": "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY);\n\nasync function getChainHealthScore(chainName) {\n  const [activity, gas] = await Promise.all([\n    client.BaseService.getAllChains(),\n    client.BaseService.getGasPrices(chainName, \"eip1559\"),\n  ]);\n  const chain = activity.data?.items?.find(c => c.name === chainName);\n  return {\n    chainName,\n    blockHeight: chain?.block_signed_at,\n    gasPrice: gas.data?.items?.[0]?.gas_price,\n  };\n}",
+  "endpoints": [
+    "BaseService.getAllChains",
+    "BaseService.getGasPrices"
+  ],
+  "chains": [
+    "eth-mainnet",
+    "matic-mainnet",
+    "bsc-mainnet",
+    "arbitrum-mainnet"
+  ],
+  "complexity": "intermediate",
+  "useCase": "Chain due diligence, ecosystem health tracking, developer portal dashboards.",
+  "buildsWith": [
+    "@covalenthq/client-sdk"
+  ],
+  "creditCost": "1 credit per chain",
+  "keyParams": [
+    {
+      "name": "chainName",
+      "type": "ChainName",
+      "description": "Chain to score"
+    }
+  ],
+  "responseFields": [
+    "score",
+    "blockHeight",
+    "gasPrice",
+    "activeAddresses",
+    "txCount"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "title": "DEX Trade History",
+  "description": "Pull all DEX swap events and volume for any wallet address or token pair.",
+  "category": "defi",
+  "url": "https://goldrush.dev",
+  "tag": "Free Tier",
+  "date-added": "2026-03-12",
+  "slug": "dex-trade-history"
+}

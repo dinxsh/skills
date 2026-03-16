@@ -1,0 +1,9 @@
+{
+  "title": "Proof of Onchain Activity",
+  "description": "Verify wallet activity depth and onchain history as a proof of genuine use.",
+  "category": "identity",
+  "url": "https://goldrush.dev",
+  "tag": "Beta",
+  "date-added": "2026-03-12",
+  "slug": "proof-of-onchain-activity"
+}

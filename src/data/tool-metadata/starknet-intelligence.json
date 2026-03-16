@@ -1,0 +1,36 @@
+{
+  "title": "StarkNet Intelligence",
+  "description": "Analytics for StarkNet wallets — Cairo contract interactions, token balances, and gas usage.",
+  "category": "analytics",
+  "url": "https://goldrush.dev",
+  "tag": "Beta",
+  "date-added": "2026-03-16",
+  "slug": "starknet-intelligence",
+  "snippet": "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY);\n\nasync function getStarkNetIntelligence(walletAddress) {\n  const [balances, txns] = await Promise.all([\n    client.BalanceService.getTokenBalancesForWalletAddress(\"starknet-mainnet\", walletAddress),\n    client.TransactionService.getTransactionsForAddressV3(\"starknet-mainnet\", walletAddress),\n  ]);\n  return { balances: balances.data?.items, txns: txns.data?.items };\n}",
+  "endpoints": [
+    "BalanceService.getTokenBalancesForWalletAddress",
+    "TransactionService.getTransactionsForAddressV3"
+  ],
+  "chains": [
+    "starknet-mainnet"
+  ],
+  "complexity": "intermediate",
+  "useCase": "StarkNet ecosystem analytics, Cairo contract auditing, ZK proof verification dashboards.",
+  "buildsWith": [
+    "@covalenthq/client-sdk"
+  ],
+  "creditCost": "2 credits per wallet",
+  "keyParams": [
+    {
+      "name": "walletAddress",
+      "type": "string",
+      "description": "StarkNet wallet address"
+    }
+  ],
+  "responseFields": [
+    "strkBalance",
+    "ethBalance",
+    "contractCalls",
+    "gasUsed"
+  ]
+}

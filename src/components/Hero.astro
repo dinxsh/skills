@@ -1,6 +1,5 @@
 ---
 import SearchInput from "./SearchInput";
-import ParticleBackground from "./ParticleBackground";
 
 interface Props {
     title: string;
@@ -13,43 +12,116 @@ const {
     title,
     tagline,
     showSearch = false,
-    searchPlaceholder = "Search by name, category, or feature...",
+    searchPlaceholder = "Search skills by name, chain, or use case...",
 } = Astro.props;
 ---
 
 <div class="hero">
-    <ParticleBackground client:load />
-    <div class="container">
-        <h1 class="nu-c-h5 nu-u-text--primary nu-u-mt-0 nu-u-mb-s title">
-            {title}
-        </h1>
-        <p class="nu-c-fs-small nu-u-text--secondary description-text">
-            {tagline}
-        </p>
-        {
-            showSearch && (
+    <div class="hero-inner">
+        <div class="hero-meta">
+            <span class="eyebrow">goldrush.dev</span>
+            <span class="eyebrow-sep">/</span>
+            <span class="eyebrow-label">skills</span>
+        </div>
+        <h1 class="hero-title">{title}</h1>
+        <p class="hero-tagline">{tagline}</p>
+        <div class="stat-row">
+            <span class="stat"><span class="stat-num">55</span> skills</span>
+            <span class="stat"><span class="stat-num">10</span> categories</span>
+            <span class="stat"><span class="stat-num">100+</span> chains</span>
+        </div>
+        {showSearch && (
+            <div class="search-wrap">
                 <SearchInput client:load placeholder={searchPlaceholder} />
-            )
-        }
+            </div>
+        )}
     </div>
 </div>
 
 <style>
     .hero {
-        margin-bottom: var(--spacing-10);
-        margin-top: var(--spacing-10);
-        text-align: center;
-        position: relative;
-        overflow: hidden;
+        border-bottom: 0.5px solid var(--border-muted);
+        padding: var(--spacing-10) var(--spacing-09) var(--spacing-08);
     }
 
-    .container {
-        position: relative;
-        z-index: 1;
+    .hero-inner {
+        max-width: 52rem;
     }
 
-    .hero :global(.search-container) {
+    .hero-meta {
         display: flex;
-        justify-content: center;
+        align-items: center;
+        gap: var(--spacing-02);
+        margin-bottom: var(--spacing-05);
+    }
+
+    .eyebrow {
+        font-size: var(--desktop-caption);
+        font-family: var(--monospace);
+        color: DarkOrange;
+        letter-spacing: 0.06em;
+    }
+
+    .eyebrow-sep {
+        font-size: var(--desktop-caption);
+        font-family: var(--monospace);
+        color: var(--border-muted);
+    }
+
+    .eyebrow-label {
+        font-size: var(--desktop-caption);
+        font-family: var(--monospace);
+        color: var(--content-secondary-alt);
+        letter-spacing: 0.06em;
+    }
+
+    .hero-title {
+        margin: 0 0 var(--spacing-03) 0;
+        font-size: var(--desktop-heading-04);
+        line-height: 1.15;
+        font-family: "ROM-Bold", var(--system-ui);
+        font-weight: 600;
+        color: var(--content-primary);
+        letter-spacing: -0.01em;
+    }
+
+    .hero-tagline {
+        margin: 0 0 var(--spacing-06) 0;
+        font-size: var(--desktop-body);
+        color: var(--content-secondary);
+        line-height: var(--lh-desktop-body);
+        max-width: 40rem;
+    }
+
+    .stat-row {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-03);
+        margin-bottom: var(--spacing-06);
+        flex-wrap: wrap;
+    }
+
+    .stat {
+        font-size: var(--desktop-caption);
+        font-family: var(--monospace);
+        color: var(--content-secondary-alt);
+        padding: var(--spacing-01) var(--spacing-03);
+        border: 0.5px solid var(--border-muted);
+        background-color: var(--background-secondary);
+        white-space: nowrap;
+    }
+
+    .stat-num {
+        color: var(--content-secondary);
+    }
+
+    .search-wrap :global(.search-container) {
+        justify-content: flex-start;
+    }
+
+    @media (max-width: 48rem) {
+        .hero {
+            padding: var(--spacing-08) var(--spacing-06) var(--spacing-06);
+        }
     }
 </style>

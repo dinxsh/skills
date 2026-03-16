@@ -1,0 +1,9 @@
+{
+  "title": "Cross-chain Address Lookup",
+  "description": "Resolve and look up the same address across all supported EVM chains at once.",
+  "category": "crosschain",
+  "url": "https://goldrush.dev",
+  "tag": "Free Tier",
+  "date-added": "2026-03-12",
+  "slug": "cross-chain-address-lookup"
+}

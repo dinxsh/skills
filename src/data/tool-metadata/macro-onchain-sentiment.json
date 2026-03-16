@@ -1,0 +1,38 @@
+{
+  "title": "Macro Onchain Sentiment",
+  "description": "Aggregate stablecoin flows, whale movements, and DEX volume as a macro sentiment index.",
+  "category": "analytics",
+  "url": "https://goldrush.dev",
+  "tag": "Beta",
+  "date-added": "2026-03-16",
+  "slug": "macro-onchain-sentiment",
+  "snippet": "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY);\n\nasync function getMacroSentiment(chainName) {\n  const chains = await client.BaseService.getAllChains();\n  const chain = chains.data?.items?.find(c => c.name === chainName);\n  return { chainName, latestBlock: chain?.block_signed_at };\n}",
+  "endpoints": [
+    "BaseService.getAllChains",
+    "PricingService.getTokenPrices"
+  ],
+  "chains": [
+    "eth-mainnet",
+    "matic-mainnet",
+    "arbitrum-mainnet"
+  ],
+  "complexity": "advanced",
+  "useCase": "Macro trading signals, DeFi index products, portfolio risk management.",
+  "buildsWith": [
+    "@covalenthq/client-sdk"
+  ],
+  "creditCost": "1 credit per request",
+  "keyParams": [
+    {
+      "name": "chainName",
+      "type": "ChainName",
+      "description": "Primary chain for sentiment data"
+    }
+  ],
+  "responseFields": [
+    "sentimentScore",
+    "stablecoinNetFlow",
+    "whaleActivityIndex",
+    "dexVolumeChange"
+  ]
+}

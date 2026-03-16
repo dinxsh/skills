@@ -15,7 +15,7 @@ interface NavItem {
 
 export default function CategoryNav({ filter }: CategoryNavProps) {
     const navItems: NavItem[] = [
-        { title: 'All Tools', category: 'all' },
+        { title: 'All Skills', category: 'all' },
         ...(data.tools as Category[]).map(cat => ({
             title: cat.title,
             category: cat.category,

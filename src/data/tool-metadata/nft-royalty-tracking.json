@@ -1,0 +1,43 @@
+{
+  "title": "NFT Royalty Tracking",
+  "description": "Track NFT royalty payments, enforced vs bypassed transfers, and creator revenue over time.",
+  "category": "nft",
+  "url": "https://goldrush.dev",
+  "tag": "API Key Required",
+  "date-added": "2026-03-16",
+  "slug": "nft-royalty-tracking",
+  "snippet": "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY);\n\nasync function trackNFTRoyalties(chainName, creatorAddress) {\n  const txns = await client.TransactionService.getTransactionsForAddressV3(\n    chainName, creatorAddress\n  );\n  // Filter royalty-like incoming transfers from known NFT marketplaces\n  const royalties = (txns.data?.items ?? []).filter(tx =>\n    tx.to_address === creatorAddress && (tx.value_quote ?? 0) > 0\n  );\n  const totalEarned = royalties.reduce((s, tx) => s + (tx.value_quote ?? 0), 0);\n  return { creatorAddress, totalEarned, royaltyPayments: royalties.length };\n}",
+  "endpoints": [
+    "TransactionService.getTransactionsForAddressV3",
+    "NftService.getNftTransactionsForContractTokenId"
+  ],
+  "chains": [
+    "eth-mainnet",
+    "matic-mainnet",
+    "base-mainnet"
+  ],
+  "complexity": "intermediate",
+  "useCase": "Creator royalty dashboards, marketplace analytics, NFT income tracking.",
+  "buildsWith": [
+    "@covalenthq/client-sdk"
+  ],
+  "creditCost": "1 credit per request",
+  "keyParams": [
+    {
+      "name": "chainName",
+      "type": "ChainName",
+      "description": "Chain of the collection"
+    },
+    {
+      "name": "creatorAddress",
+      "type": "string",
+      "description": "NFT creator wallet address"
+    }
+  ],
+  "responseFields": [
+    "totalEarned",
+    "royaltyPayments",
+    "bypassedCount",
+    "marketplaceBreakdown"
+  ]
+}

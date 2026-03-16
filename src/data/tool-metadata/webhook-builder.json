@@ -1,0 +1,9 @@
+{
+  "title": "Webhook Builder",
+  "description": "Configure real-time webhooks for wallet events, transfers, and contract interactions.",
+  "category": "developer",
+  "url": "https://goldrush.dev",
+  "tag": "API Key Required",
+  "date-added": "2026-03-12",
+  "slug": "webhook-builder"
+}
