@@ -119,6 +119,7 @@ const {
         <div class="floating-nav" aria-label="main navigation">
             <div class="left-group">
                 <a href="/" class="logo-link" aria-label="GoldRush Skills home">
+                    <span class="logo-dot" aria-hidden="true"></span>
                     <span class="logo-text">GoldRush Skills</span>
                 </a>
             </div>
@@ -129,11 +130,12 @@ const {
                 <button
                     class="new-filter-toggle"
                     id="new-filter-toggle"
-                    title="Recently added skills"
+                    title="Show recently added skills"
                     aria-label="Filter new skills"
                     aria-pressed="false"
                 >
-                    <span class="fire-emoji">🔥</span>
+                    <span class="new-dot" aria-hidden="true"></span>
+                    <span class="new-label">New</span>
                 </button>
                 <a
                     href="/saved"
@@ -318,6 +320,8 @@ const {
         align-items: center;
         z-index: 9999999;
         background-color: var(--background-high-contrast);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
         border-bottom: 0.5px solid var(--border-muted);
     }
     .nav-search-wrap {
@@ -379,6 +383,15 @@ const {
     .logo-link svg {
         flex-shrink: 0;
     }
+    .logo-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background-color: DarkOrange;
+        flex-shrink: 0;
+        opacity: 0.9;
+    }
+
     .logo-text {
         font-family: var(--monospace);
         font-size: var(--desktop-body-sm);
@@ -394,40 +407,60 @@ const {
 
     .new-filter-toggle {
         z-index: 999;
-        width: var(--spacing-08);
-        height: var(--spacing-08);
         background: none;
-        border: none;
-        padding: var(--spacing-00);
+        border: 0.5px solid var(--border-muted);
+        padding: var(--spacing-01) var(--spacing-03);
         cursor: var(--c-pointer);
         touch-action: manipulation;
         -webkit-tap-highlight-color: transparent;
         display: flex;
-        justify-content: center;
         align-items: center;
+        gap: 5px;
         border-radius: var(--spacing-00);
-        transition: transform 0.1s ease;
+        transition: border-color 0.15s ease, opacity 0.15s ease;
         position: relative;
-        margin-right: var(--spacing-03);
     }
 
-    .new-filter-toggle .fire-emoji {
-        font-size: 1.25rem;
-        transition:
-            transform 0.2s ease,
-            filter 0.2s ease;
-        filter: grayscale(100%);
+    .new-dot {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background-color: var(--content-secondary-alt);
+        flex-shrink: 0;
+        opacity: 0.4;
+        transition: background-color 0.15s ease, opacity 0.15s ease;
+    }
+
+    .new-label {
+        font-family: var(--monospace);
+        font-size: var(--desktop-caption);
+        color: var(--content-secondary-alt);
         opacity: 0.6;
+        letter-spacing: 0.04em;
+        transition: color 0.15s ease, opacity 0.15s ease;
+        white-space: nowrap;
     }
 
-    .new-filter-toggle:hover .fire-emoji {
-        transform: scale(1.1);
-        filter: grayscale(0%);
+    .new-filter-toggle:hover {
+        border-color: var(--border);
+    }
+
+    .new-filter-toggle:hover .new-label,
+    .new-filter-toggle:hover .new-dot {
         opacity: 1;
     }
 
-    .new-filter-toggle[aria-pressed="true"] .fire-emoji {
-        filter: grayscale(0%);
+    .new-filter-toggle[aria-pressed="true"] {
+        border-color: DarkOrange;
+    }
+
+    .new-filter-toggle[aria-pressed="true"] .new-dot {
+        background-color: DarkOrange;
+        opacity: 1;
+    }
+
+    .new-filter-toggle[aria-pressed="true"] .new-label {
+        color: DarkOrange;
         opacity: 1;
     }
 

@@ -3,25 +3,55 @@
 ---
 
 <div class="hero-strip">
-    <span class="hero-line">
-        Multichain data APIs for builders, traders, and agents.
-    </span>
-    <a
-        href="https://goldrush.dev"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="hero-cta"
-    >Start building →</a>
+    <div class="hero-left">
+        <span class="hero-badge">v3</span>
+        <span class="hero-line">
+            Onchain data skills for builders, traders, and AI agents.
+        </span>
+        <a
+            href="https://goldrush.dev"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hero-cta"
+        >Start building →</a>
+    </div>
+    <div class="hero-stats">
+        <span class="hero-stat">138 skills</span>
+        <span class="hero-sep">·</span>
+        <span class="hero-stat">10 categories</span>
+        <span class="hero-sep">·</span>
+        <span class="hero-stat">200+ chains</span>
+    </div>
 </div>
 
 <style>
     .hero-strip {
         display: flex;
         align-items: center;
+        justify-content: space-between;
         gap: var(--spacing-04);
-        padding: var(--spacing-04) var(--spacing-09);
+        padding: var(--spacing-03) var(--spacing-09);
         border-bottom: 0.5px solid var(--border-muted);
         flex-wrap: wrap;
+    }
+
+    .hero-left {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-03);
+        flex-wrap: wrap;
+    }
+
+    .hero-badge {
+        font-size: 10px;
+        font-family: var(--monospace);
+        font-weight: 600;
+        color: DarkOrange;
+        border: 0.5px solid DarkOrange;
+        padding: 1px 5px;
+        letter-spacing: 0.08em;
+        opacity: 0.85;
+        flex-shrink: 0;
     }
 
     .hero-line {
@@ -42,13 +72,40 @@
     }
 
     .hero-cta:hover {
-        opacity: 0.8;
+        opacity: 0.75;
+    }
+
+    .hero-stats {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-02);
+        flex-shrink: 0;
+    }
+
+    .hero-stat {
+        font-size: var(--desktop-caption);
+        font-family: var(--monospace);
+        color: var(--content-secondary-alt);
+        opacity: 0.55;
+        letter-spacing: 0.02em;
+    }
+
+    .hero-sep {
+        font-size: var(--desktop-caption);
+        font-family: var(--monospace);
+        color: var(--content-secondary-alt);
+        opacity: 0.3;
+    }
+
+    @media (max-width: 64rem) {
+        .hero-stats { display: none; }
     }
 
     @media (max-width: 48rem) {
         .hero-strip {
             padding: var(--spacing-03) var(--spacing-06);
-            gap: var(--spacing-03);
+            gap: var(--spacing-02);
         }
+        .hero-badge { display: none; }
     }
 </style>
