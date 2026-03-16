@@ -1,4 +1,13 @@
 {
+  "wallet-erc20-transfers": [
+    "wallet"
+  ],
+  "historical-portfolio-value": [
+    "wallet"
+  ],
+  "native-token-balance": [
+    "wallet"
+  ],
   "net-worth-calculator": [
     "wallet"
   ],
@@ -12,6 +21,9 @@
     "wallet"
   ],
   "wallet-activity-feed": [
+    "wallet"
+  ],
+  "wallet-age-summary": [
     "wallet"
   ],
   "wallet-attestations": [
@@ -53,6 +65,12 @@
   "collection-floor-monitor": [
     "nft"
   ],
+  "nft-collection-browser": [
+    "nft"
+  ],
+  "nft-gallery-viewer": [
+    "nft"
+  ],
   "nft-liquidity-scorer": [
     "nft"
   ],
@@ -63,6 +81,12 @@
     "nft"
   ],
   "nft-royalty-tracking": [
+    "nft"
+  ],
+  "nft-sale-history": [
+    "nft"
+  ],
+  "nft-traits-explorer": [
     "nft"
   ],
   "nft-transfer-tracker": [
@@ -77,6 +101,9 @@
   "berachain-intelligence": [
     "analytics"
   ],
+  "block-explorer-toolkit": [
+    "analytics"
+  ],
   "carbon-credit-regen-tracker": [
     "analytics"
   ],
@@ -86,10 +113,16 @@
   "chain-health-scorecard": [
     "analytics"
   ],
+  "contract-event-log-monitor": [
+    "analytics"
+  ],
   "cosmos-ecosystem": [
     "analytics"
   ],
   "cross-border-payment-analytics": [
+    "analytics"
+  ],
+  "cross-contract-event-scanner": [
     "analytics"
   ],
   "dao-voter-intelligence": [
@@ -158,6 +191,9 @@
   "tron-ecosystem-monitor": [
     "analytics"
   ],
+  "wallet-activity-heatmap": [
+    "analytics"
+  ],
   "agent-alpha-signal-extractor": [
     "agents"
   ],
@@ -215,7 +251,19 @@
   "realtime-wallet-stream": [
     "agents"
   ],
+  "all-chains-status": [
+    "developer"
+  ],
   "api-reference": [
+    "developer"
+  ],
+  "goldrush-kit-approvals": [
+    "developer"
+  ],
+  "goldrush-kit-token-balances": [
+    "developer"
+  ],
+  "goldrush-kit-tx-feed": [
     "developer"
   ],
   "goldrush-playground": [
@@ -245,6 +293,15 @@
   "cross-chain-address-lookup": [
     "crosschain"
   ],
+  "cross-chain-transaction-history": [
+    "crosschain"
+  ],
+  "multichain-activity-discovery": [
+    "crosschain"
+  ],
+  "multichain-token-aggregator": [
+    "crosschain"
+  ],
   "multichain-portfolio": [
     "crosschain"
   ],
@@ -266,10 +323,19 @@
   "token-holder-list": [
     "token"
   ],
+  "token-holders-snapshot": [
+    "token"
+  ],
   "token-memecoin-risk-scorer": [
     "token"
   ],
   "token-metadata-api": [
+    "token"
+  ],
+  "token-price-chart": [
+    "token"
+  ],
+  "token-supply-metadata": [
     "token"
   ],
   "token-transfer-stream": [
@@ -278,7 +344,13 @@
   "ens-resolver": [
     "identity"
   ],
+  "governance-token-snapshot": [
+    "identity"
+  ],
   "nft-gate": [
+    "identity"
+  ],
+  "onchain-activity-verifier": [
     "identity"
   ],
   "onchain-social-graph": [
@@ -332,7 +404,13 @@
   "smart-contract-interaction-risk": [
     "security"
   ],
+  "token-approval-risk-scanner": [
+    "security"
+  ],
   "token-risk-analyzer": [
+    "security"
+  ],
+  "transaction-decoded-receipt": [
     "security"
   ]
 }

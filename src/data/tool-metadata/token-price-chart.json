@@ -1,0 +1,9 @@
+{
+  "title": "Token Price History",
+  "description": "Historical USD price for one or more token contracts on any chain. Powers price charts, backtesting, P&L calculation, and DeFi analytics.",
+  "category": "token",
+  "url": "https://goldrush.dev",
+  "tag": "API Key Required",
+  "date-added": "2026-03-16",
+  "slug": "token-price-chart"
+}

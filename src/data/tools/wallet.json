@@ -1,5 +1,29 @@
 [
   {
+    "title": "ERC-20 Transfer History",
+    "body": "Fetch full ERC-20 transfer history for any wallet, optionally filtered by token contract.",
+    "tag": "Free Tier",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-16",
+    "slug": "wallet-erc20-transfers"
+  },
+  {
+    "title": "Historical Portfolio Value",
+    "body": "30-day rolling historical portfolio value with open/close/high/low per token per day — build P&L charts, portfolio performance dashboards, and DeFi fund trackers.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-16",
+    "slug": "historical-portfolio-value"
+  },
+  {
+    "title": "Native Token Balance",
+    "body": "Lightweight check for the native token balance (ETH, MATIC, BNB, etc.) of any wallet across any chain.",
+    "tag": "Free Tier",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-16",
+    "slug": "native-token-balance"
+  },
+  {
     "title": "Net Worth Calculator",
     "body": "Calculate total wallet net worth across all EVM and non-EVM chains instantly.",
     "tag": "Free Tier",
@@ -38,6 +62,14 @@
     "url": "https://goldrush.dev",
     "date-added": "2026-03-12",
     "slug": "wallet-activity-feed"
+  },
+  {
+    "title": "Wallet Age & Summary",
+    "body": "Get first and last transaction date, total transaction count, and gas spent for any wallet — the foundation for wallet age verification and on-chain identity.",
+    "tag": "Free Tier",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-16",
+    "slug": "wallet-age-summary"
   },
   {
     "title": "Wallet Attestations",

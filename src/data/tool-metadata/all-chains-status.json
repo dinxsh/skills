@@ -1,0 +1,9 @@
+{
+  "title": "All Chains Status Monitor",
+  "description": "Fetch the real-time sync status of all 200+ GoldRush-supported chains — latest indexed block, sync lag, and chain metadata. Ideal for multi-chain app health checks.",
+  "category": "developer",
+  "url": "https://goldrush.dev",
+  "tag": "Free Tier",
+  "date-added": "2026-03-16",
+  "slug": "all-chains-status"
+}

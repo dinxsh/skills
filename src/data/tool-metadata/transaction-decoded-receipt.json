@@ -1,0 +1,9 @@
+{
+  "title": "Transaction Decoded Receipt",
+  "description": "Fetch a fully decoded transaction receipt including internal transfers, decoded log events, ERC-20/NFT movements, and gas analytics — the core of any transaction detail page.",
+  "category": "security",
+  "url": "https://goldrush.dev",
+  "tag": "Free Tier",
+  "date-added": "2026-03-16",
+  "slug": "transaction-decoded-receipt"
+}

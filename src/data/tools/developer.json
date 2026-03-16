@@ -1,11 +1,43 @@
 [
   {
+    "title": "All Chains Status Monitor",
+    "body": "Fetch the real-time sync status of all 200+ GoldRush-supported chains — latest indexed block, sync lag, and chain metadata. Ideal for multi-chain app health checks.",
+    "tag": "Free Tier",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-16",
+    "slug": "all-chains-status"
+  },
+  {
     "title": "API Reference",
     "body": "Interactive API explorer and full reference docs for all GoldRush endpoints.",
     "tag": "Free",
     "url": "https://goldrush.dev",
     "date-added": "2026-03-12",
     "slug": "api-reference"
+  },
+  {
+    "title": "GoldRush Kit Approval Manager",
+    "body": "Drop-in React component that shows all active ERC-20 and NFT approvals for a wallet using ApprovalsListView — with built-in revoke functionality.",
+    "tag": "Open Source",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-16",
+    "slug": "goldrush-kit-approvals"
+  },
+  {
+    "title": "GoldRush Kit Token Balances",
+    "body": "Drop-in React component for a full token balances table — ERC-20 + native — using GoldRush Kit's TokenBalancesListView. Ships with sorting, USD values, logos, and spam filtering.",
+    "tag": "Open Source",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-16",
+    "slug": "goldrush-kit-token-balances"
+  },
+  {
+    "title": "GoldRush Kit Transaction Feed",
+    "body": "Drop-in React component rendering a paginated, decoded transaction activity feed for any wallet using WalletActivityListView.",
+    "tag": "Open Source",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-16",
+    "slug": "goldrush-kit-tx-feed"
   },
   {
     "title": "GoldRush Playground",

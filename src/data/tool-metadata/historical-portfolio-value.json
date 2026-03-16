@@ -1,0 +1,9 @@
+{
+  "title": "Historical Portfolio Value",
+  "description": "30-day rolling historical portfolio value with open/close/high/low per token per day — build P&L charts, portfolio performance dashboards, and DeFi fund trackers.",
+  "category": "wallet",
+  "url": "https://goldrush.dev",
+  "tag": "API Key Required",
+  "date-added": "2026-03-16",
+  "slug": "historical-portfolio-value"
+}

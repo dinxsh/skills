@@ -1,0 +1,9 @@
+{
+  "title": "GoldRush Kit Approval Manager",
+  "description": "Drop-in React component that shows all active ERC-20 and NFT approvals for a wallet using ApprovalsListView — with built-in revoke functionality.",
+  "category": "developer",
+  "url": "https://goldrush.dev",
+  "tag": "Open Source",
+  "date-added": "2026-03-16",
+  "slug": "goldrush-kit-approvals"
+}

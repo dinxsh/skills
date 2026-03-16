@@ -1,0 +1,9 @@
+{
+  "title": "Multi-Chain Token Aggregator",
+  "description": "Aggregate all token balances across every chain a wallet is active on — auto-discovers chains then fetches balances in parallel. One function call for a complete cross-chain portfolio.",
+  "category": "crosschain",
+  "url": "https://goldrush.dev",
+  "tag": "API Key Required",
+  "date-added": "2026-03-16",
+  "slug": "multichain-token-aggregator"
+}

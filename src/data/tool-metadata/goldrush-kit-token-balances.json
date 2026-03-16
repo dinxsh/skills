@@ -1,0 +1,9 @@
+{
+  "title": "GoldRush Kit Token Balances",
+  "description": "Drop-in React component for a full token balances table — ERC-20 + native — using GoldRush Kit's TokenBalancesListView. Ships with sorting, USD values, logos, and spam filtering.",
+  "category": "developer",
+  "url": "https://goldrush.dev",
+  "tag": "Open Source",
+  "date-added": "2026-03-16",
+  "slug": "goldrush-kit-token-balances"
+}

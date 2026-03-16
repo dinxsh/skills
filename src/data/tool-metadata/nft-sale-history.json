@@ -1,0 +1,9 @@
+{
+  "title": "NFT Token Sale History",
+  "description": "Full transfer and sale history for a single NFT token ID — who owned it, when it sold, and for how much. Powers provenance viewers and NFT detail pages.",
+  "category": "nft",
+  "url": "https://goldrush.dev",
+  "tag": "API Key Required",
+  "date-added": "2026-03-16",
+  "slug": "nft-sale-history"
+}

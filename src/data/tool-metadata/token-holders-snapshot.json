@@ -1,0 +1,9 @@
+{
+  "title": "Token Holders Snapshot",
+  "description": "Paginated list of every holder of an ERC-20 token with balance, percentage of supply, and address. Essential for airdrops, governance snapshots, and holder analytics.",
+  "category": "token",
+  "url": "https://goldrush.dev",
+  "tag": "API Key Required",
+  "date-added": "2026-03-16",
+  "slug": "token-holders-snapshot"
+}

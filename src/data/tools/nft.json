@@ -8,6 +8,22 @@
     "slug": "collection-floor-monitor"
   },
   {
+    "title": "NFT Collection Browser",
+    "body": "Browse all indexed NFT collections on a chain with floor price, volume, and holder stats. Build NFT marketplaces, discovery pages, and trending collection feeds.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-16",
+    "slug": "nft-collection-browser"
+  },
+  {
+    "title": "NFT Gallery Viewer",
+    "body": "Drop-in React component that renders a full NFT gallery for any wallet using GoldRush Kit's NFTWalletCollectionView — zero custom UI needed.",
+    "tag": "Open Source",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-16",
+    "slug": "nft-gallery-viewer"
+  },
+  {
     "title": "NFT Liquidity Scorer",
     "body": "Score NFT collections and individual tokens by their trading liquidity and velocity.",
     "tag": "Beta",
@@ -38,6 +54,22 @@
     "url": "https://goldrush.dev",
     "date-added": "2026-03-16",
     "slug": "nft-royalty-tracking"
+  },
+  {
+    "title": "NFT Token Sale History",
+    "body": "Full transfer and sale history for a single NFT token ID — who owned it, when it sold, and for how much. Powers provenance viewers and NFT detail pages.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-16",
+    "slug": "nft-sale-history"
+  },
+  {
+    "title": "NFT Traits Explorer",
+    "body": "Fetch all trait types and their value distributions for an NFT collection. Essential for rarity calculators, collection analytics, and trait-based filtering UIs.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-16",
+    "slug": "nft-traits-explorer"
   },
   {
     "title": "NFT Transfer Tracker",

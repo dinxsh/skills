@@ -8,12 +8,28 @@
     "slug": "ens-resolver"
   },
   {
+    "title": "Governance Token Snapshot",
+    "body": "Snapshot all holders of a governance token at a specific block height for voting power calculation, airdrop distribution, or DAO membership verification.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-16",
+    "slug": "governance-token-snapshot"
+  },
+  {
     "title": "NFT Gate",
     "body": "Gate content or app features based on NFT ownership verified through GoldRush.",
     "tag": "Open Source",
     "url": "https://goldrush.dev",
     "date-added": "2026-03-12",
     "slug": "nft-gate"
+  },
+  {
+    "title": "Onchain Activity Verifier",
+    "body": "Verify on-chain activity depth with transaction count, wallet age, chains used, and token diversity — build KYC-lite gates, Sybil filters, and proof-of-personhood checks.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-16",
+    "slug": "onchain-activity-verifier"
   },
   {
     "title": "Onchain Social Graph",

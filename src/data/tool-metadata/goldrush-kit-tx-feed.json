@@ -1,0 +1,9 @@
+{
+  "title": "GoldRush Kit Transaction Feed",
+  "description": "Drop-in React component rendering a paginated, decoded transaction activity feed for any wallet using WalletActivityListView.",
+  "category": "developer",
+  "url": "https://goldrush.dev",
+  "tag": "Open Source",
+  "date-added": "2026-03-16",
+  "slug": "goldrush-kit-tx-feed"
+}

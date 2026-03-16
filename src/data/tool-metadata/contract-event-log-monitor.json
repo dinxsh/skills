@@ -1,0 +1,9 @@
+{
+  "title": "Contract Event Log Monitor",
+  "description": "Stream all decoded event logs emitted by any smart contract — filter by topic hash, date, or block range. The foundation for DEX analytics, protocol dashboards, and real-time monitoring.",
+  "category": "analytics",
+  "url": "https://goldrush.dev",
+  "tag": "API Key Required",
+  "date-added": "2026-03-16",
+  "slug": "contract-event-log-monitor"
+}

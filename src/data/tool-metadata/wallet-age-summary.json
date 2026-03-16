@@ -1,0 +1,9 @@
+{
+  "title": "Wallet Age & Summary",
+  "description": "Get first and last transaction date, total transaction count, and gas spent for any wallet — the foundation for wallet age verification and on-chain identity.",
+  "category": "wallet",
+  "url": "https://goldrush.dev",
+  "tag": "Free Tier",
+  "date-added": "2026-03-16",
+  "slug": "wallet-age-summary"
+}

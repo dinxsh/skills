@@ -1,0 +1,9 @@
+{
+  "title": "Token Approval Risk Scanner",
+  "description": "Scan all active ERC-20 and NFT approvals for a wallet and score each by risk level — identify dangerous unlimited approvals, deprecated protocols, and known exploited contracts.",
+  "category": "security",
+  "url": "https://goldrush.dev",
+  "tag": "API Key Required",
+  "date-added": "2026-03-16",
+  "slug": "token-approval-risk-scanner"
+}

@@ -1,0 +1,9 @@
+{
+  "title": "Token Supply & Metadata",
+  "description": "Fetch token contract metadata including name, symbol, decimals, total supply, logo, and current USD price from a single endpoint.",
+  "category": "token",
+  "url": "https://goldrush.dev",
+  "tag": "Free Tier",
+  "date-added": "2026-03-16",
+  "slug": "token-supply-metadata"
+}

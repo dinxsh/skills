@@ -32,6 +32,30 @@
     "slug": "cross-chain-address-lookup"
   },
   {
+    "title": "Cross-Chain Transaction History",
+    "body": "Fetch and merge transaction history across multiple chains for a single wallet — great for multichain explorers, unified activity timelines, and tax reporting tools.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-16",
+    "slug": "cross-chain-transaction-history"
+  },
+  {
+    "title": "Multi-Chain Activity Discovery",
+    "body": "Scan every supported chain simultaneously to discover which networks a wallet has been active on — single call, 200+ chains. The must-have entry point for any cross-chain app.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-16",
+    "slug": "multichain-activity-discovery"
+  },
+  {
+    "title": "Multi-Chain Token Aggregator",
+    "body": "Aggregate all token balances across every chain a wallet is active on — auto-discovers chains then fetches balances in parallel. One function call for a complete cross-chain portfolio.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-16",
+    "slug": "multichain-token-aggregator"
+  },
+  {
     "title": "Multichain Portfolio",
     "body": "Unified portfolio view aggregating assets across every GoldRush-supported chain.",
     "tag": "API Key Required",

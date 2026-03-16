@@ -1,0 +1,9 @@
+{
+  "title": "ERC-20 Transfer History",
+  "description": "Fetch full ERC-20 transfer history for any wallet, optionally filtered by token contract.",
+  "category": "wallet",
+  "url": "https://goldrush.dev",
+  "tag": "Free Tier",
+  "date-added": "2026-03-16",
+  "slug": "wallet-erc20-transfers"
+}

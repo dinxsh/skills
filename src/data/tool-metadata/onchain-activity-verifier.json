@@ -1,0 +1,9 @@
+{
+  "title": "Onchain Activity Verifier",
+  "description": "Verify on-chain activity depth with transaction count, wallet age, chains used, and token diversity — build KYC-lite gates, Sybil filters, and proof-of-personhood checks.",
+  "category": "identity",
+  "url": "https://goldrush.dev",
+  "tag": "API Key Required",
+  "date-added": "2026-03-16",
+  "slug": "onchain-activity-verifier"
+}

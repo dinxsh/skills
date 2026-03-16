@@ -8,6 +8,14 @@
     "slug": "berachain-intelligence"
   },
   {
+    "title": "Block Explorer Toolkit",
+    "body": "Fetch block details, all transactions in a block, and decode individual transactions — all the building blocks for a custom block explorer.",
+    "tag": "Free Tier",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-16",
+    "slug": "block-explorer-toolkit"
+  },
+  {
     "title": "Carbon Credit and Regen Tracker",
     "body": "Track tokenized carbon credits, retirements, and regenerative finance flows onchain.",
     "tag": "Beta",
@@ -32,6 +40,14 @@
     "slug": "chain-health-scorecard"
   },
   {
+    "title": "Contract Event Log Monitor",
+    "body": "Stream all decoded event logs emitted by any smart contract — filter by topic hash, date, or block range. The foundation for DEX analytics, protocol dashboards, and real-time monitoring.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-16",
+    "slug": "contract-event-log-monitor"
+  },
+  {
     "title": "Cosmos Ecosystem (Unified)",
     "body": "Unified analytics across IBC-connected Cosmos chains — balances, staking, and governance.",
     "tag": "Beta",
@@ -46,6 +62,14 @@
     "url": "https://goldrush.dev",
     "date-added": "2026-03-16",
     "slug": "cross-border-payment-analytics"
+  },
+  {
+    "title": "Cross-Contract Event Scanner",
+    "body": "Scan ALL contracts on a chain for a specific event by topic hash — e.g. find every ERC-20 Transfer or every Uniswap Swap across the entire chain.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-16",
+    "slug": "cross-contract-event-scanner"
   },
   {
     "title": "DAO Voter Intelligence",
@@ -222,5 +246,13 @@
     "url": "https://goldrush.dev",
     "date-added": "2026-03-16",
     "slug": "tron-ecosystem-monitor"
+  },
+  {
+    "title": "Wallet Activity Heatmap",
+    "body": "Generate a GitHub-style activity heatmap showing daily transaction counts for any wallet — visualize on-chain behaviour patterns.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-16",
+    "slug": "wallet-activity-heatmap"
   }
 ]

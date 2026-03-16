@@ -1,0 +1,9 @@
+{
+  "title": "Wallet Activity Heatmap",
+  "description": "Generate a GitHub-style activity heatmap showing daily transaction counts for any wallet — visualize on-chain behaviour patterns.",
+  "category": "analytics",
+  "url": "https://goldrush.dev",
+  "tag": "API Key Required",
+  "date-added": "2026-03-16",
+  "slug": "wallet-activity-heatmap"
+}

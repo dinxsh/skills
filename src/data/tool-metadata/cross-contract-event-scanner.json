@@ -1,0 +1,9 @@
+{
+  "title": "Cross-Contract Event Scanner",
+  "description": "Scan ALL contracts on a chain for a specific event by topic hash — e.g. find every ERC-20 Transfer or every Uniswap Swap across the entire chain.",
+  "category": "analytics",
+  "url": "https://goldrush.dev",
+  "tag": "API Key Required",
+  "date-added": "2026-03-16",
+  "slug": "cross-contract-event-scanner"
+}

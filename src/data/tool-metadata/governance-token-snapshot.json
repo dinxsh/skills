@@ -1,0 +1,9 @@
+{
+  "title": "Governance Token Snapshot",
+  "description": "Snapshot all holders of a governance token at a specific block height for voting power calculation, airdrop distribution, or DAO membership verification.",
+  "category": "identity",
+  "url": "https://goldrush.dev",
+  "tag": "API Key Required",
+  "date-added": "2026-03-16",
+  "slug": "governance-token-snapshot"
+}
