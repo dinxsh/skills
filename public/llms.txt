@@ -1,31 +1,216 @@
-# Rise of Machine
-1000+ AI tools curated by agents for founders and SMBs 
+# GoldRush Skills
+> 138 copy-paste code skills for building onchain products with the GoldRush API (by Covalent).
 
-## Categories
+GoldRush Skills is a developer resource directory for the GoldRush multichain data API.
+Each skill is a focused, production-ready code snippet using the @covalenthq/client-sdk
+or @covalenthq/goldrush-kit that solves a specific onchain data problem.
 
-- [Art](https://riseofmachine.com/art)
-- [Audio](https://riseofmachine.com/audio)
-- [Code](https://riseofmachine.com/code)
-- [Copywriting](https://riseofmachine.com/copywriting)
-- [Design](https://riseofmachine.com/design)
-- [Developer](https://riseofmachine.com/developer)
-- [Education](https://riseofmachine.com/education)
-- [Enterprise](https://riseofmachine.com/enterprise)
-- [Fashion](https://riseofmachine.com/fashion)
-- [Gaming](https://riseofmachine.com/gaming)
-- [Health](https://riseofmachine.com/health)
-- [Legal](https://riseofmachine.com/legal)
-- [LLM](https://riseofmachine.com/llm)
-- [Music](https://riseofmachine.com/music)
-- [NoCode](https://riseofmachine.com/nocode)
-- [Photos](https://riseofmachine.com/photos)
-- [Productivity](https://riseofmachine.com/productivity)
-- [Prompts](https://riseofmachine.com/prompts)
-- [Research](https://riseofmachine.com/research)
-- [SEO](https://riseofmachine.com/seo)
-- [Social](https://riseofmachine.com/social)
-- [Video](https://riseofmachine.com/video)
-- [Xtras](https://riseofmachine.com/xtras)
+## What is GoldRush?
+GoldRush (by Covalent) is a unified blockchain data API supporting 200+ EVM and non-EVM chains.
+SDK: @covalenthq/client-sdk
+UI Kit: @covalenthq/goldrush-kit
+Docs: https://goldrush.dev/docs
+API Key: https://goldrush.dev
 
+## Core Services
+- BalanceService — token balances, ERC-20 transfers, historical portfolio, NFT holdings
+- TransactionService — transaction history, summaries, decoded receipts, block transactions
+- NftService — NFT metadata, collection traits, rarity, transfer history, chain collections
+- PricingService — historical token prices, spot prices, market cap
+- SecurityService — wallet approvals (ERC-20 + NFT), risk scoring
+- BaseService — event logs, blocks, chain status, multi-chain activity scan
+- AllChainsService — cross-chain wallet discovery, portfolio aggregation
 
+## Supported Chains (sample)
+eth-mainnet, base-mainnet, matic-mainnet, arbitrum-mainnet, optimism-mainnet,
+bsc-mainnet, avalanche-mainnet, linea-mainnet, scroll-mainnet, zksync-mainnet,
+blast-mainnet, mantle-mainnet, fantom-mainnet, gnosis-mainnet, celo-mainnet,
+moonbeam-mainnet, zora-mainnet, solana-mainnet, btc-mainnet, aptos-mainnet,
+sui-mainnet, cosmos-mainnet, osmosis-mainnet, aurora-mainnet, tron-mainnet,
+and 200+ more.
 
+## Skill Categories
+
+### Wallet (11 skills)
+- net-worth-calculator — total USD net worth across tokens on any chain
+- portfolio-tracker — full token balances with USD values and logos
+- portfolio-history — 30-day rolling historical portfolio value
+- historical-portfolio-value — P&L chart data (open/close/high/low per token/day)
+- wallet-erc20-transfers — full ERC-20 transfer history, filterable by token
+- native-token-balance — lightweight native token balance check (ETH, MATIC, BNB…)
+- wallet-age-summary — first tx date, total tx count, wallet age in days
+- transaction-history — paginated full transaction feed
+- wallet-activity-feed — decoded activity timeline
+- wallet-balances-skill — balances with spam filter
+- wallet-attestations — on-chain attestations and identity signals
+
+### DeFi (10 skills)
+- defi-position-tracker — active DeFi positions across protocols
+- dex-trade-history — DEX swap history for a wallet
+- liquidity-pool-monitor — LP position monitoring
+- yield-dashboard — yield positions and claimable rewards
+- protocol-revenue-feed — protocol fee revenue via event logs
+- cross-chain-liquidity-map — liquidity distribution across chains
+- defi-bad-debt-monitor — lending protocol liquidation tracking
+- stablecoin-dominance-tracker — stablecoin supply and peg monitoring
+- rwa-real-estate-portfolio — tokenised real estate (RealT, etc.)
+- rwa-tokenized-treasury-tracker — tokenised treasuries (BUIDL, OUSG)
+
+### NFT (12 skills)
+- nft-portfolio-valuation — wallet NFT holdings with floor prices
+- nft-metadata-fetcher — single NFT metadata, traits, image
+- nft-transfer-tracker — NFT transfer history
+- collection-floor-monitor — collection floor price tracking
+- rarity-analyzer — trait rarity scoring
+- nft-collection-browser — browse all collections on a chain with volume/floor
+- nft-traits-explorer — all trait types and value distributions for a collection
+- nft-gallery-viewer — drop-in GoldRush Kit NFT gallery component
+- nft-sale-history — full sale/transfer history for a single token
+- nft-liquidity-scorer — liquidity score based on sale frequency
+- nft-royalty-tracking — creator royalty income tracking
+- nft-wash-trading-detector — wash trading pattern detection
+
+### Analytics (32 skills)
+- chain-activity-dashboard — chain-level activity metrics
+- gas-analytics — gas price and usage analytics
+- event-log-decoder — decode smart contract event logs
+- token-price-history — historical prices for any token
+- onchain-data-query — arbitrary on-chain data queries
+- contract-event-log-monitor — monitor any contract for specific events (getLogs)
+- cross-contract-event-scanner — scan entire chain for event by topic hash
+- block-explorer-toolkit — block details + all transactions in a block
+- wallet-activity-heatmap — daily transaction count heatmap
+- dao-voter-intelligence — governance participation and voting patterns
+- institutional-wallet-tracker — track known institutional/VC wallets
+- fund-flow-intelligence — multi-hop fund flow tracing
+- stablecoin-dominance-tracker — stablecoin market analytics
+- onchain-credit-score — composite credit scoring from on-chain signals
+- developer-wallet-classifier — classify wallets by type (developer/retail/whale)
+- chain-health-scorecard — real-time sync status for all supported chains
+- treasury-management-intelligence — DAO treasury portfolio analysis
+- macro-onchain-sentiment — macro on-chain activity signals
+- berachain-intelligence — Berachain-specific wallet and DeFi data
+- scroll-and-linea-intelligence — zkEVM portfolio and activity data
+- starknet-intelligence — StarkNet bridge and bridged asset tracking
+- solana-program-analytics — Solana wallet balances and SPL tokens
+- sui-and-aptos-intelligence — Move VM (Aptos, Sui) portfolio data
+- cosmos-ecosystem — Cosmos/Osmosis IBC token balances
+- near-protocol-intelligence — NEAR Aurora EVM data
+- ton-blockchain-intelligence — TON bridge activity on Ethereum
+- tron-ecosystem-monitor — TRON/TRC-20 portfolio data
+- polkadot-parachain-intelligence — Moonbeam/Moonriver/Astar portfolios
+- hyperliquid-intelligence — Hyperliquid USDC bridge tracking
+- ethereum-validator-intelligence — ETH staking deposit tracking
+- carbon-credit-regen-tracker — Toucan BCT/MCO2 carbon credit portfolios
+- cross-border-payment-analytics — stablecoin remittance flow analysis
+
+### AI Agents (19 skills)
+- agent-wallet-skill — give AI agents read access to wallet state
+- autonomous-defi-agent — autonomous DeFi position management
+- claude-goldrush-skill — Claude + GoldRush SDK integration
+- goldrush-mcp-server — Model Context Protocol server for GoldRush
+- onchain-memory-store — on-chain persistent memory for agents
+- onchain-research-agent — autonomous on-chain research agent
+- realtime-wallet-stream — real-time wallet event streaming
+- agent-alpha-signal-extractor — extract alpha signals from smart-money wallets
+- agent-counterparty-verification — verify counterparty wallets before agent txns
+- agent-cross-chain-coordinator — coordinate agent actions across chains
+- agent-data-budget-manager — track and optimise API credit usage
+- agent-discovery-protocol — discover other on-chain agents
+- agent-fleet-monitor — monitor health of multiple agent wallets
+- agent-market-surveillance — real-time DEX/market surveillance for agents
+- agent-onchain-news-aggregator — on-chain event feed for LLM context
+- agent-payment-optimizer — optimal chain/route for agent payments
+- agent-reputation-builder — build verifiable on-chain agent reputation
+- agent-risk-circuit-breaker — automatic safety rails for agent wallets
+- agent-yield-harvester — autonomous yield monitoring and harvesting
+
+### Developer (10 skills)
+- goldrush-typescript-sdk — @covalenthq/client-sdk setup and usage
+- goldrush-react-hooks — React hooks for GoldRush data
+- goldrush-playground — interactive API playground
+- api-reference — full endpoint reference
+- quickstart-templates — copy-paste starter templates
+- webhook-builder — event-driven webhook setup
+- goldrush-kit-token-balances — TokenBalancesListView React component
+- goldrush-kit-approvals — ApprovalsListView React component with revoke
+- goldrush-kit-tx-feed — WalletActivityListView React component
+- all-chains-status — getAllChains + getAllChainStatuses monitor
+
+### Cross-chain (8 skills)
+- multichain-portfolio — unified portfolio across all chains
+- address-activity-scanner — discover active chains for any wallet
+- bridge-transaction-monitor — cross-chain bridge tracking
+- chain-comparison-tool — compare chain metrics side by side
+- cross-chain-address-lookup — same address across all EVM chains
+- multichain-activity-discovery — getMultiChainActivity — scan 200+ chains
+- multichain-token-aggregator — aggregate all token balances cross-chain
+- cross-chain-transaction-history — merged tx history across multiple chains
+
+### Tokens (12 skills)
+- spot-price-ticker — current token price
+- token-metadata-api — name/symbol/decimals/logo/supply
+- token-holder-list — all holders of any ERC-20 token
+- erc20-transfer-history — ERC-20 transfer history for a contract
+- token-transfer-stream — real-time token transfer feed
+- token-approval-scanner — active approval scanner
+- token-price-history — historical price chart data (PricingService)
+- token-holders-snapshot — paginated holder snapshot for airdrops/governance
+- token-supply-metadata — supply, logo, decimals via PricingService
+- token-exchange-flow-tracker — CEX inflow/outflow monitoring
+- token-fee-revenue-correlation — protocol fee vs token price correlation
+- token-memecoin-risk-scorer — memecoin concentration and risk scoring
+
+### Identity (9 skills)
+- ens-resolver — resolve ENS names and reverse lookups
+- nft-gate — NFT ownership gating
+- proof-of-onchain-activity — verify genuine on-chain history
+- wallet-identity-graph — aggregate identity signals for a wallet
+- onchain-social-graph — map wallet interaction graphs
+- sybil-resistance-scorer — Sybil detection scoring
+- reputation-score-aggregator — unified reputation score
+- governance-token-snapshot — holder snapshot at block height for voting
+- onchain-activity-verifier — verify activity depth for KYC-lite gates
+
+### Security (15 skills)
+- approval-auditor — full approval audit with risk levels
+- mev-monitor — MEV exposure detection
+- phishing-address-checker — known phishing address lookup
+- token-risk-analyzer — token risk scoring
+- contract-interaction-history — contract interaction history
+- bridge-security-monitor — bridge TVL and large withdrawal alerts
+- compliance-transaction-screening — AML/KYC transaction screening
+- exploit-early-warning-system — volume anomaly detection for exploits
+- mev-exposure-analyzer — MEV sandwich attack detection
+- oracle-manipulation-detector — Chainlink oracle anomaly detection
+- phishing-wallet-database — phishing wallet exposure check
+- rugpull-pattern-detector — rug pull risk scoring
+- smart-contract-interaction-risk — pre-interaction risk assessment
+- token-approval-risk-scanner — unlimited approval risk scanner
+- transaction-decoded-receipt — fully decoded transaction receipt
+
+## How to use these skills
+Each skill page at https://skills.goldrush.dev/tools/{slug} contains:
+- A working TypeScript/JavaScript code snippet using @covalenthq/client-sdk
+- The GoldRush API endpoint(s) used
+- Supported chains
+- Complexity level (beginner / intermediate / advanced)
+- Use case description
+- Key parameters and response fields
+- Credit cost estimate
+
+## Quick start
+```typescript
+import { GoldRushClient } from "@covalenthq/client-sdk";
+const client = new GoldRushClient("YOUR_API_KEY");
+
+// Get all token balances for a wallet
+const resp = await client.BalanceService.getTokenBalancesForWalletAddress(
+  "eth-mainnet",
+  "0xwalletAddress"
+);
+```
+
+Get a free API key: https://goldrush.dev
+Full SDK docs: https://goldrush.dev/docs/unified-api/sdk/
+GoldRush Kit (React components): https://goldrush.dev/docs/goldrush-kit/

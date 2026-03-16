@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1a1a1a" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#0d0d0d"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <!-- Orange accent bar left -->
+  <rect x="0" y="0" width="4" height="630" fill="#FF8C00"/>
+
+  <!-- Orange dot -->
+  <circle cx="80" cy="80" r="6" fill="#FF8C00" opacity="0.9"/>
+
+  <!-- Brand name -->
+  <text x="100" y="92" font-family="monospace, 'Courier New'" font-size="18" font-weight="700" fill="#FF8C00" letter-spacing="2" opacity="0.9">GOLDRUSH SKILLS</text>
+
+  <!-- Main headline -->
+  <text x="80" y="260" font-family="monospace, 'Courier New'" font-size="68" font-weight="700" fill="#ffffff" letter-spacing="-1">Build anything</text>
+  <text x="80" y="340" font-family="monospace, 'Courier New'" font-size="68" font-weight="700" fill="#ffffff" letter-spacing="-1">onchain.</text>
+
+  <!-- Subline -->
+  <text x="82" y="400" font-family="monospace, 'Courier New'" font-size="22" fill="#888888" letter-spacing="0.5">Multichain data skills for wallets, DeFi, NFTs, agents, and more.</text>
+
+  <!-- Stats row -->
+  <rect x="80" y="460" width="160" height="1" fill="#333333"/>
+  <rect x="280" y="460" width="160" height="1" fill="#333333"/>
+  <rect x="480" y="460" width="160" height="1" fill="#333333"/>
+
+  <text x="80" y="495" font-family="monospace, 'Courier New'" font-size="32" font-weight="700" fill="#FF8C00">138</text>
+  <text x="80" y="522" font-family="monospace, 'Courier New'" font-size="13" fill="#555555" letter-spacing="1.5">SKILLS</text>
+
+  <text x="280" y="495" font-family="monospace, 'Courier New'" font-size="32" font-weight="700" fill="#FF8C00">200+</text>
+  <text x="280" y="522" font-family="monospace, 'Courier New'" font-size="13" fill="#555555" letter-spacing="1.5">CHAINS</text>
+
+  <text x="480" y="495" font-family="monospace, 'Courier New'" font-size="32" font-weight="700" fill="#FF8C00">10</text>
+  <text x="480" y="522" font-family="monospace, 'Courier New'" font-size="13" fill="#555555" letter-spacing="1.5">CATEGORIES</text>
+
+  <!-- Bottom right -->
+  <text x="1120" y="590" font-family="monospace, 'Courier New'" font-size="16" fill="#444444" text-anchor="end" letter-spacing="1">goldrush.dev</text>
+
+  <!-- Decorative right element -->
+  <rect x="980" y="180" width="160" height="0.5" fill="#222222"/>
+  <rect x="980" y="220" width="120" height="0.5" fill="#1a1a1a"/>
+  <rect x="980" y="260" width="140" height="0.5" fill="#1e1e1e"/>
+  <rect x="980" y="300" width="100" height="0.5" fill="#1a1a1a"/>
+  <rect x="980" y="340" width="160" height="0.5" fill="#222222"/>
+  <rect x="980" y="380" width="80" height="0.5" fill="#1a1a1a"/>
+
+  <circle cx="1100" cy="310" r="80" fill="none" stroke="#1e1e1e" stroke-width="1"/>
+  <circle cx="1100" cy="310" r="50" fill="none" stroke="#FF8C00" stroke-width="0.5" opacity="0.3"/>
+  <circle cx="1100" cy="310" r="8" fill="#FF8C00" opacity="0.15"/>
+</svg>

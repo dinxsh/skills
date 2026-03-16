@@ -5,7 +5,7 @@ import partytown from "@astrojs/partytown";
 import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
-  site: 'https://riseofmachine.com',
+  site: 'https://skills.goldrush.dev',
   integrations: [react(), partytown(
     {
       config: {

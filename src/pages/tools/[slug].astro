@@ -59,7 +59,7 @@ const formatDate = (dateStr: string) => {
 
 const domain = extractDomain(tool.url || "");
 const formattedDate = formatDate(tool["date-added"]);
-const canonicalUrl = `https://goldrush.dev/skills/${tool.slug}`;
+const canonicalUrl = `https://skills.goldrush.dev/tools/${tool.slug}`;
 const faviconUrl = `/favicons/${slug}.png`;
 const fallbackPath = category === "all" ? "/" : `/${category}`;
 
@@ -71,7 +71,7 @@ try {
 
 const seoTitle = meta.title || tool.title;
 const seoDescription = meta.description || tool.body;
-const seoOgImage = faviconUrl;
+const seoOgImage = "https://skills.goldrush.dev/og.svg";
 const seoOgType = "website";
 
 // Rich skill metadata
@@ -198,7 +198,7 @@ const breadcrumbs = [
   ogImage={seoOgImage}
   ogType={seoOgType}
   ogSiteName={seoOgSiteName}
-  twitterCard="summary"
+  twitterCard="summary_large_image"
   twitterTitle={seoTitle}
   twitterDescription={seoDescription}
   twitterImage={seoOgImage}

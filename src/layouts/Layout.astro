@@ -68,32 +68,50 @@ const {
                     : `${site} — Skills to build anything onchain with GoldRush.`
             }
         </title>
-        <meta name="author" content="@covalenthq" />
+        <meta name="author" content="Covalent / GoldRush" />
+        <meta name="robots" content="index, follow" />
+        <meta name="theme-color" content="#FF8C00" />
+
+        <!-- Primary description -->
         <meta
             name="description"
             content={pageDescription ||
-                "Discover skills to build onchain apps with GoldRush — blockchain data APIs for wallets, DeFi, NFTs, and more across 100+ chains."}
+                "138 copy-paste code skills for building onchain apps with GoldRush — blockchain data APIs for wallets, DeFi, NFTs, AI agents, and more across 200+ chains."}
         />
+
+        <!-- Keywords for search engines -->
+        <meta name="keywords" content="GoldRush, Covalent, blockchain API, onchain data, Web3 SDK, wallet API, DeFi API, NFT API, multichain, EVM, Ethereum, Base, Polygon, Arbitrum, token balances, transaction history, crypto developer tools" />
+
+        <!-- Canonical -->
         <link rel="sitemap" href="/sitemap-index.xml" />
-        {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
-        {ogTitle && <meta property="og:title" content={ogTitle} />}
-        {ogType && <meta property="og:type" content={ogType} />}
-        {
-            ogDescription && (
-                <meta property="og:description" content={ogDescription} />
-            )
+        {canonicalUrl
+            ? <link rel="canonical" href={canonicalUrl} />
+            : <link rel="canonical" href={`https://skills.goldrush.dev${Astro.url.pathname}`} />
         }
-        {ogImage && <meta property="og:image" content={ogImage} />}
-        {ogUrl && <meta property="og:url" content={ogUrl} />}
-        {ogSiteName && <meta property="og:site_name" content={ogSiteName} />}
-        {twitterCard && <meta name="twitter:card" content={twitterCard} />}
-        {twitterTitle && <meta name="twitter:title" content={twitterTitle} />}
-        {
-            twitterDescription && (
-                <meta name="twitter:description" content={twitterDescription} />
-            )
-        }
-        {twitterImage && <meta name="twitter:image" content={twitterImage} />}
+
+        <!-- Open Graph (social sharing — Slack, LinkedIn, Discord, etc.) -->
+        <meta property="og:site_name" content={ogSiteName || "GoldRush Skills"} />
+        <meta property="og:type" content={ogType || "website"} />
+        <meta property="og:title" content={ogTitle || (pageTitle ? `${pageTitle} | GoldRush Skills` : "GoldRush Skills — Build anything onchain")} />
+        <meta property="og:description" content={ogDescription || pageDescription || "138 copy-paste code skills for building onchain products with GoldRush. Wallets, DeFi, NFTs, AI agents — across 200+ chains."} />
+        <meta property="og:url" content={ogUrl || `https://skills.goldrush.dev${Astro.url.pathname}`} />
+        <meta property="og:image" content={ogImage || "https://skills.goldrush.dev/og.svg"} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="GoldRush Skills — 138 onchain data skills across 200+ chains" />
+        <meta property="og:locale" content="en_US" />
+
+        <!-- Twitter / X card -->
+        <meta name="twitter:card" content={twitterCard || "summary_large_image"} />
+        <meta name="twitter:site" content="@covalenthq" />
+        <meta name="twitter:creator" content="@covalenthq" />
+        <meta name="twitter:title" content={twitterTitle || ogTitle || (pageTitle ? `${pageTitle} | GoldRush Skills` : "GoldRush Skills — Build anything onchain")} />
+        <meta name="twitter:description" content={twitterDescription || ogDescription || "138 copy-paste code skills for building onchain products with GoldRush. Wallets, DeFi, NFTs, AI agents — across 200+ chains."} />
+        <meta name="twitter:image" content={twitterImage || ogImage || "https://skills.goldrush.dev/og.svg"} />
+        <meta name="twitter:image:alt" content="GoldRush Skills — 138 onchain data skills" />
+
+        <!-- LLM / AI crawler hints -->
+        <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-readable site index" />
 
         <!-- Google tag (gtag.js) -->
         <script

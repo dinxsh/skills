@@ -1,3 +1,17 @@
 User-agent: *
 Allow: /
-Sitemap: https://riseofmachine.com/sitemap-index.xml
+
+# LLM crawlers — welcome
+User-agent: GPTBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+Sitemap: https://skills.goldrush.dev/sitemap-index.xml
