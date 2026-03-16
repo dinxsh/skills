@@ -1,127 +1,54 @@
 ---
-import SearchInput from "./SearchInput";
-
-interface Props {
-    title: string;
-    tagline: string;
-    showSearch?: boolean;
-    searchPlaceholder?: string;
-}
-
-const {
-    title,
-    tagline,
-    showSearch = false,
-    searchPlaceholder = "Search skills by name, chain, or use case...",
-} = Astro.props;
+// Minimal hero — one-liner CTA strip linking to goldrush.dev
 ---
 
-<div class="hero">
-    <div class="hero-inner">
-        <div class="hero-meta">
-            <span class="eyebrow">goldrush.dev</span>
-            <span class="eyebrow-sep">/</span>
-            <span class="eyebrow-label">skills</span>
-        </div>
-        <h1 class="hero-title">{title}</h1>
-        <p class="hero-tagline">{tagline}</p>
-        <div class="stat-row">
-            <span class="stat"><span class="stat-num">55</span> skills</span>
-            <span class="stat"><span class="stat-num">10</span> categories</span>
-            <span class="stat"><span class="stat-num">100+</span> chains</span>
-        </div>
-        {showSearch && (
-            <div class="search-wrap">
-                <SearchInput client:load placeholder={searchPlaceholder} />
-            </div>
-        )}
-    </div>
+<div class="hero-strip">
+    <span class="hero-line">
+        Multichain data APIs for builders, traders, and agents.
+    </span>
+    <a
+        href="https://goldrush.dev"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hero-cta"
+    >Start building →</a>
 </div>
 
 <style>
-    .hero {
+    .hero-strip {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-04);
+        padding: var(--spacing-04) var(--spacing-09);
         border-bottom: 0.5px solid var(--border-muted);
-        padding: var(--spacing-10) var(--spacing-09) var(--spacing-08);
-    }
-
-    .hero-inner {
-        max-width: 52rem;
-    }
-
-    .hero-meta {
-        display: flex;
-        align-items: center;
-        gap: var(--spacing-02);
-        margin-bottom: var(--spacing-05);
-    }
-
-    .eyebrow {
-        font-size: var(--desktop-caption);
-        font-family: var(--monospace);
-        color: DarkOrange;
-        letter-spacing: 0.06em;
-    }
-
-    .eyebrow-sep {
-        font-size: var(--desktop-caption);
-        font-family: var(--monospace);
-        color: var(--border-muted);
-    }
-
-    .eyebrow-label {
-        font-size: var(--desktop-caption);
-        font-family: var(--monospace);
-        color: var(--content-secondary-alt);
-        letter-spacing: 0.06em;
-    }
-
-    .hero-title {
-        margin: 0 0 var(--spacing-03) 0;
-        font-size: var(--desktop-heading-04);
-        line-height: 1.15;
-        font-family: "ROM-Bold", var(--system-ui);
-        font-weight: 600;
-        color: var(--content-primary);
-        letter-spacing: -0.01em;
-    }
-
-    .hero-tagline {
-        margin: 0 0 var(--spacing-06) 0;
-        font-size: var(--desktop-body);
-        color: var(--content-secondary);
-        line-height: var(--lh-desktop-body);
-        max-width: 40rem;
-    }
-
-    .stat-row {
-        display: flex;
-        align-items: center;
-        gap: var(--spacing-03);
-        margin-bottom: var(--spacing-06);
         flex-wrap: wrap;
     }
 
-    .stat {
-        font-size: var(--desktop-caption);
+    .hero-line {
+        font-size: var(--desktop-body-sm);
         font-family: var(--monospace);
         color: var(--content-secondary-alt);
-        padding: var(--spacing-01) var(--spacing-03);
-        border: 0.5px solid var(--border-muted);
-        background-color: var(--background-secondary);
+        letter-spacing: 0.01em;
+    }
+
+    .hero-cta {
+        font-size: var(--desktop-body-sm);
+        font-family: var(--monospace);
+        color: DarkOrange;
+        text-decoration: none;
+        letter-spacing: 0.01em;
         white-space: nowrap;
+        transition: opacity 0.15s ease;
     }
 
-    .stat-num {
-        color: var(--content-secondary);
-    }
-
-    .search-wrap :global(.search-container) {
-        justify-content: flex-start;
+    .hero-cta:hover {
+        opacity: 0.8;
     }
 
     @media (max-width: 48rem) {
-        .hero {
-            padding: var(--spacing-08) var(--spacing-06) var(--spacing-06);
+        .hero-strip {
+            padding: var(--spacing-03) var(--spacing-06);
+            gap: var(--spacing-03);
         }
     }
 </style>
