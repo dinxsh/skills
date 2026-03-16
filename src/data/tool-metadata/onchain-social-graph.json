@@ -5,38 +5,5 @@
   "url": "https://goldrush.dev",
   "tag": "Beta",
   "date-added": "2026-03-16",
-  "slug": "onchain-social-graph",
-  "snippet": "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY);\n\nasync function buildSocialGraph(walletAddress, chainName) {\n  const txns = await client.TransactionService.getTransactionsForAddressV3(\n    chainName, walletAddress, { pageSize: 100 }\n  );\n  const counterparties = [...new Set(\n    (txns.data?.items ?? []).map(tx =>\n      tx.from_address === walletAddress ? tx.to_address : tx.from_address\n    ).filter(Boolean)\n  )];\n  return { walletAddress, counterparties, edgeCount: counterparties.length };\n}",
-  "endpoints": [
-    "TransactionService.getTransactionsForAddressV3"
-  ],
-  "chains": [
-    "eth-mainnet",
-    "matic-mainnet",
-    "base-mainnet"
-  ],
-  "complexity": "advanced",
-  "useCase": "Social graph analytics, community detection, influencer mapping for Web3 apps.",
-  "buildsWith": [
-    "@covalenthq/client-sdk"
-  ],
-  "creditCost": "1 credit per wallet",
-  "keyParams": [
-    {
-      "name": "walletAddress",
-      "type": "string",
-      "description": "Wallet to map"
-    },
-    {
-      "name": "chainName",
-      "type": "ChainName",
-      "description": "Chain to analyse"
-    }
-  ],
-  "responseFields": [
-    "counterparties",
-    "edgeCount",
-    "clusterLabel",
-    "influenceScore"
-  ]
+  "slug": "onchain-social-graph"
 }

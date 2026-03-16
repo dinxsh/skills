@@ -8,52 +8,28 @@
     "slug": "approval-auditor"
   },
   {
+    "title": "Bridge Security Monitor",
+    "body": "Monitor bridge contracts for unusual outflows, signature reuse, and validator anomalies.",
+    "tag": "Beta",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-16",
+    "slug": "bridge-security-monitor"
+  },
+  {
+    "title": "Compliance Transaction Screening",
+    "body": "Screen transactions and wallets for OFAC, sanctions, and AML compliance requirements.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-16",
+    "slug": "compliance-transaction-screening"
+  },
+  {
     "title": "Contract Interaction History",
     "body": "Full history of contract interactions for security forensics and incident response.",
     "tag": "API Key Required",
     "url": "https://goldrush.dev",
     "date-added": "2026-03-12",
     "slug": "contract-interaction-history"
-  },
-  {
-    "title": "MEV Monitor",
-    "body": "Detect sandwich attacks, front-running, and MEV bot activity in real time.",
-    "tag": "Beta",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-12",
-    "slug": "mev-monitor"
-  },
-  {
-    "title": "Phishing Address Checker",
-    "body": "Check addresses against known phishing, scam, and exploit databases onchain.",
-    "tag": "Free Tier",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-12",
-    "slug": "phishing-address-checker"
-  },
-  {
-    "title": "Token Risk Analyzer",
-    "body": "Score tokens for rug-pull signals, ownership concentration, and LP lock status.",
-    "tag": "API Key Required",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-12",
-    "slug": "token-risk-analyzer"
-  },
-  {
-    "title": "Smart Contract Interaction Risk",
-    "body": "Score the risk of interacting with any smart contract based on its onchain history and approvals.",
-    "tag": "API Key Required",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-16",
-    "slug": "smart-contract-interaction-risk"
-  },
-  {
-    "title": "Oracle Manipulation Detector",
-    "body": "Detect oracle price manipulation attempts via flash-loan patterns and block-level price deviations.",
-    "tag": "Beta",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-16",
-    "slug": "oracle-manipulation-detector"
   },
   {
     "title": "Exploit Early Warning System",
@@ -72,20 +48,28 @@
     "slug": "mev-exposure-analyzer"
   },
   {
-    "title": "Bridge Security Monitor",
-    "body": "Monitor bridge contracts for unusual outflows, signature reuse, and validator anomalies.",
+    "title": "MEV Monitor",
+    "body": "Detect sandwich attacks, front-running, and MEV bot activity in real time.",
     "tag": "Beta",
     "url": "https://goldrush.dev",
-    "date-added": "2026-03-16",
-    "slug": "bridge-security-monitor"
+    "date-added": "2026-03-12",
+    "slug": "mev-monitor"
   },
   {
-    "title": "Rugpull Pattern Detector",
-    "body": "Identify rugpull signals — LP removal, ownership renounce reversals, and concentrated exits.",
+    "title": "Oracle Manipulation Detector",
+    "body": "Detect oracle price manipulation attempts via flash-loan patterns and block-level price deviations.",
     "tag": "Beta",
     "url": "https://goldrush.dev",
     "date-added": "2026-03-16",
-    "slug": "rugpull-pattern-detector"
+    "slug": "oracle-manipulation-detector"
+  },
+  {
+    "title": "Phishing Address Checker",
+    "body": "Check addresses against known phishing, scam, and exploit databases onchain.",
+    "tag": "Free Tier",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-12",
+    "slug": "phishing-address-checker"
   },
   {
     "title": "Phishing Wallet Database",
@@ -96,11 +80,27 @@
     "slug": "phishing-wallet-database"
   },
   {
-    "title": "Compliance Transaction Screening",
-    "body": "Screen transactions and wallets for OFAC, sanctions, and AML compliance requirements.",
+    "title": "Rugpull Pattern Detector",
+    "body": "Identify rugpull signals — LP removal, ownership renounce reversals, and concentrated exits.",
+    "tag": "Beta",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-16",
+    "slug": "rugpull-pattern-detector"
+  },
+  {
+    "title": "Smart Contract Interaction Risk",
+    "body": "Score the risk of interacting with any smart contract based on its onchain history and approvals.",
     "tag": "API Key Required",
     "url": "https://goldrush.dev",
     "date-added": "2026-03-16",
-    "slug": "compliance-transaction-screening"
+    "slug": "smart-contract-interaction-risk"
+  },
+  {
+    "title": "Token Risk Analyzer",
+    "body": "Score tokens for rug-pull signals, ownership concentration, and LP lock status.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-12",
+    "slug": "token-risk-analyzer"
   }
 ]

@@ -5,34 +5,5 @@
   "url": "https://goldrush.dev",
   "tag": "Beta",
   "date-added": "2026-03-16",
-  "slug": "reputation-score-aggregator",
-  "snippet": "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY);\n\nasync function aggregateReputation(walletAddress) {\n  const [nfts, activity, balances] = await Promise.all([\n    client.NftService.getNftsForAddress(\"eth-mainnet\", walletAddress),\n    client.AllChainsService.getAddressActivity(walletAddress),\n    client.BalanceService.getTokenBalancesForWalletAddress(\"eth-mainnet\", walletAddress),\n  ]);\n  const badgeCount = nfts.data?.items?.filter(n => n.type === \"ERC-721\")?.length ?? 0;\n  const chainCount = activity.data?.items?.length ?? 0;\n  return { walletAddress, reputationScore: badgeCount * 10 + chainCount * 15, badgeCount, chainCount };\n}",
-  "endpoints": [
-    "NftService.getNftsForAddress",
-    "AllChainsService.getAddressActivity",
-    "BalanceService.getTokenBalancesForWalletAddress"
-  ],
-  "chains": [
-    "eth-mainnet"
-  ],
-  "complexity": "intermediate",
-  "useCase": "Web3 social platforms, identity aggregators, reputation-gated access.",
-  "buildsWith": [
-    "@covalenthq/client-sdk"
-  ],
-  "creditCost": "3 credits per wallet (1 per service)",
-  "keyParams": [
-    {
-      "name": "walletAddress",
-      "type": "string",
-      "description": "Wallet to score"
-    }
-  ],
-  "responseFields": [
-    "reputationScore",
-    "badgeCount",
-    "chainCount",
-    "ensName",
-    "attestations"
-  ]
+  "slug": "reputation-score-aggregator"
 }

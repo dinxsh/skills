@@ -5,43 +5,5 @@
   "url": "https://goldrush.dev",
   "tag": "API Key Required",
   "date-added": "2026-03-16",
-  "slug": "fund-flow-intelligence",
-  "snippet": "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY);\n\nasync function traceFundFlow(chainName, seedAddress, depth = 2) {\n  const txns = await client.TransactionService.getTransactionsForAddressV3(\n    chainName, seedAddress, { pageSize: 50 }\n  );\n  const hops = (txns.data?.items ?? []).map(tx => ({\n    from: tx.from_address,\n    to: tx.to_address,\n    value: tx.value_quote,\n  }));\n  return { seedAddress, depth, hops };\n}",
-  "endpoints": [
-    "TransactionService.getTransactionsForAddressV3"
-  ],
-  "chains": [
-    "eth-mainnet",
-    "matic-mainnet",
-    "bsc-mainnet"
-  ],
-  "complexity": "advanced",
-  "useCase": "AML/CFT investigations, forensic accounting, exchange compliance tooling.",
-  "buildsWith": [
-    "@covalenthq/client-sdk"
-  ],
-  "creditCost": "1 credit per hop",
-  "keyParams": [
-    {
-      "name": "chainName",
-      "type": "ChainName",
-      "description": "Chain to trace"
-    },
-    {
-      "name": "seedAddress",
-      "type": "string",
-      "description": "Starting wallet address"
-    },
-    {
-      "name": "depth",
-      "type": "number",
-      "description": "Number of hops to trace"
-    }
-  ],
-  "responseFields": [
-    "hops",
-    "clusters",
-    "totalValueMoved",
-    "suspiciousFlags"
-  ]
+  "slug": "fund-flow-intelligence"
 }

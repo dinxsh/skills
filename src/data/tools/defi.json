@@ -1,5 +1,21 @@
 [
   {
+    "title": "Cross-Chain Liquidity Map",
+    "body": "Visualise liquidity distribution across pools and chains for any token pair.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-16",
+    "slug": "cross-chain-liquidity-map"
+  },
+  {
+    "title": "DeFi Bad Debt Monitor",
+    "body": "Identify and track under-collateralised positions and bad debt accumulation in lending protocols.",
+    "tag": "Beta",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-16",
+    "slug": "defi-bad-debt-monitor"
+  },
+  {
     "title": "DeFi Position Tracker",
     "body": "Track LP positions, lending supply, borrow exposure, and yield across DeFi protocols.",
     "tag": "API Key Required",
@@ -32,20 +48,12 @@
     "slug": "protocol-revenue-feed"
   },
   {
-    "title": "Yield Dashboard",
-    "body": "Compare DeFi yields across lending and liquidity protocols onchain.",
-    "tag": "Open Source",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-12",
-    "slug": "yield-dashboard"
-  },
-  {
-    "title": "Stablecoin Dominance Tracker",
-    "body": "Track stablecoin supply share, peg deviation, and flow dominance across chains.",
-    "tag": "API Key Required",
+    "title": "RWA Real Estate Portfolio",
+    "body": "Aggregate and value tokenized real estate assets held in any wallet across chains.",
+    "tag": "Beta",
     "url": "https://goldrush.dev",
     "date-added": "2026-03-16",
-    "slug": "stablecoin-dominance-tracker"
+    "slug": "rwa-real-estate-portfolio"
   },
   {
     "title": "RWA Tokenized Treasury Tracker",
@@ -56,27 +64,19 @@
     "slug": "rwa-tokenized-treasury-tracker"
   },
   {
-    "title": "RWA Real Estate Portfolio",
-    "body": "Aggregate and value tokenized real estate assets held in any wallet across chains.",
-    "tag": "Beta",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-16",
-    "slug": "rwa-real-estate-portfolio"
-  },
-  {
-    "title": "DeFi Bad Debt Monitor",
-    "body": "Identify and track under-collateralised positions and bad debt accumulation in lending protocols.",
-    "tag": "Beta",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-16",
-    "slug": "defi-bad-debt-monitor"
-  },
-  {
-    "title": "Cross-Chain Liquidity Map",
-    "body": "Visualise liquidity distribution across pools and chains for any token pair.",
+    "title": "Stablecoin Dominance Tracker",
+    "body": "Track stablecoin supply share, peg deviation, and flow dominance across chains.",
     "tag": "API Key Required",
     "url": "https://goldrush.dev",
     "date-added": "2026-03-16",
-    "slug": "cross-chain-liquidity-map"
+    "slug": "stablecoin-dominance-tracker"
+  },
+  {
+    "title": "Yield Dashboard",
+    "body": "Compare DeFi yields across lending and liquidity protocols onchain.",
+    "tag": "Open Source",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-12",
+    "slug": "yield-dashboard"
   }
 ]

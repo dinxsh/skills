@@ -5,35 +5,5 @@
   "url": "https://goldrush.dev",
   "tag": "Beta",
   "date-added": "2026-03-16",
-  "slug": "agent-cross-chain-coordinator",
-  "snippet": "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY);\n\nasync function getAgentCrossChainState(agentAddress) {\n  const activity = await client.AllChainsService.getAddressActivity(agentAddress);\n  const activeChains = activity.data?.items?.map(c => c.name) ?? [];\n  const balances = await Promise.all(\n    activeChains.map(chain =>\n      client.BalanceService.getTokenBalancesForWalletAddress(chain, agentAddress)\n    )\n  );\n  return activeChains.map((chain, i) => ({ chain, items: balances[i].data?.items }));\n}",
-  "endpoints": [
-    "AllChainsService.getAddressActivity",
-    "BalanceService.getTokenBalancesForWalletAddress"
-  ],
-  "chains": [
-    "eth-mainnet",
-    "arbitrum-mainnet",
-    "base-mainnet",
-    "matic-mainnet"
-  ],
-  "complexity": "advanced",
-  "useCase": "Multi-chain agent orchestration, cross-chain arbitrage bots, DeFi automation.",
-  "buildsWith": [
-    "@covalenthq/client-sdk"
-  ],
-  "creditCost": "1 + N credits (N = active chains)",
-  "keyParams": [
-    {
-      "name": "agentAddress",
-      "type": "string",
-      "description": "Agent wallet address"
-    }
-  ],
-  "responseFields": [
-    "activeChains",
-    "balancesByChain",
-    "pendingActions",
-    "bridgeStatus"
-  ]
+  "slug": "agent-cross-chain-coordinator"
 }

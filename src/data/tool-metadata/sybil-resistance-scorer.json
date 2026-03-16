@@ -5,36 +5,5 @@
   "url": "https://goldrush.dev",
   "tag": "Beta",
   "date-added": "2026-03-16",
-  "slug": "sybil-resistance-scorer",
-  "snippet": "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY);\n\nasync function scoreSybilResistance(walletAddress) {\n  const [txns, activity, balances] = await Promise.all([\n    client.TransactionService.getTransactionsForAddressV3(\"eth-mainnet\", walletAddress),\n    client.AllChainsService.getAddressActivity(walletAddress),\n    client.BalanceService.getTokenBalancesForWalletAddress(\"eth-mainnet\", walletAddress),\n  ]);\n  const age = txns.data?.items?.slice(-1)?.[0]?.block_signed_at;\n  const chainCount = activity.data?.items?.length ?? 0;\n  const assetCount = balances.data?.items?.length ?? 0;\n  const score = Math.min(100, chainCount * 15 + assetCount * 3 + (age ? 20 : 0));\n  return { walletAddress, score, chainCount, assetCount, isSybil: score < 30 };\n}",
-  "endpoints": [
-    "TransactionService.getTransactionsForAddressV3",
-    "AllChainsService.getAddressActivity",
-    "BalanceService.getTokenBalancesForWalletAddress"
-  ],
-  "chains": [
-    "eth-mainnet",
-    "matic-mainnet",
-    "arbitrum-mainnet"
-  ],
-  "complexity": "intermediate",
-  "useCase": "Airdrop sybil filtering, DAO membership verification, reputation-based access.",
-  "buildsWith": [
-    "@covalenthq/client-sdk"
-  ],
-  "creditCost": "3 credits per wallet (1 per service)",
-  "keyParams": [
-    {
-      "name": "walletAddress",
-      "type": "string",
-      "description": "Wallet to score"
-    }
-  ],
-  "responseFields": [
-    "score",
-    "chainCount",
-    "assetCount",
-    "isSybil",
-    "confidence"
-  ]
+  "slug": "sybil-resistance-scorer"
 }

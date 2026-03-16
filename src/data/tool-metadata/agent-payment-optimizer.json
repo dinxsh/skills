@@ -5,41 +5,5 @@
   "url": "https://goldrush.dev",
   "tag": "Beta",
   "date-added": "2026-03-16",
-  "slug": "agent-payment-optimizer",
-  "snippet": "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY);\n\nasync function optimizePaymentRoute(amount, tokenSymbol) {\n  const chains = [\"eth-mainnet\", \"arbitrum-mainnet\", \"base-mainnet\", \"matic-mainnet\"];\n  const gasPrices = await Promise.all(\n    chains.map(c => client.BaseService.getGasPrices(c, \"eip1559\"))\n  );\n  return chains.map((chain, i) => ({\n    chain,\n    gasPrice: gasPrices[i].data?.items?.[0]?.gas_price ?? null,\n  })).sort((a, b) => (a.gasPrice ?? 0) - (b.gasPrice ?? 0));\n}",
-  "endpoints": [
-    "BaseService.getGasPrices",
-    "PricingService.getTokenPrices"
-  ],
-  "chains": [
-    "eth-mainnet",
-    "arbitrum-mainnet",
-    "base-mainnet",
-    "matic-mainnet"
-  ],
-  "complexity": "intermediate",
-  "useCase": "Autonomous agent payments, gas-efficient routing, multi-chain payment bots.",
-  "buildsWith": [
-    "@covalenthq/client-sdk"
-  ],
-  "creditCost": "1 credit per chain checked",
-  "keyParams": [
-    {
-      "name": "amount",
-      "type": "number",
-      "description": "Payment amount in USD"
-    },
-    {
-      "name": "tokenSymbol",
-      "type": "string",
-      "description": "Token to use for payment"
-    }
-  ],
-  "responseFields": [
-    "chain",
-    "gasPrice",
-    "estimatedFee",
-    "settlementTime",
-    "recommendation"
-  ]
+  "slug": "agent-payment-optimizer"
 }

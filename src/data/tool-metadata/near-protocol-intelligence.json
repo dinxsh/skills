@@ -5,32 +5,5 @@
   "url": "https://goldrush.dev",
   "tag": "Beta",
   "date-added": "2026-03-16",
-  "slug": "near-protocol-intelligence",
-  "snippet": "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY);\n\nasync function getNearIntelligence(walletAddress) {\n  const [balances, txns] = await Promise.all([\n    client.BalanceService.getTokenBalancesForWalletAddress(\"near-mainnet\", walletAddress),\n    client.TransactionService.getTransactionsForAddressV3(\"near-mainnet\", walletAddress),\n  ]);\n  return { balances: balances.data?.items, txns: txns.data?.items };\n}",
-  "endpoints": [
-    "BalanceService.getTokenBalancesForWalletAddress",
-    "TransactionService.getTransactionsForAddressV3"
-  ],
-  "chains": [
-    "near-mainnet"
-  ],
-  "complexity": "intermediate",
-  "useCase": "NEAR ecosystem dashboards, dApp analytics, staking reward tracking.",
-  "buildsWith": [
-    "@covalenthq/client-sdk"
-  ],
-  "creditCost": "2 credits per wallet",
-  "keyParams": [
-    {
-      "name": "walletAddress",
-      "type": "string",
-      "description": "NEAR account ID or address"
-    }
-  ],
-  "responseFields": [
-    "nearBalance",
-    "stakedBalance",
-    "ftHoldings",
-    "contractCalls"
-  ]
+  "slug": "near-protocol-intelligence"
 }

@@ -8,6 +8,14 @@
     "slug": "collection-floor-monitor"
   },
   {
+    "title": "NFT Liquidity Scorer",
+    "body": "Score NFT collections and individual tokens by their trading liquidity and velocity.",
+    "tag": "Beta",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-16",
+    "slug": "nft-liquidity-scorer"
+  },
+  {
     "title": "NFT Metadata Fetcher",
     "body": "Retrieve full NFT metadata, traits, and ownership history for any token onchain.",
     "tag": "Free Tier",
@@ -24,20 +32,20 @@
     "slug": "nft-portfolio-valuation"
   },
   {
+    "title": "NFT Royalty Tracking",
+    "body": "Track NFT royalty payments, enforced vs bypassed transfers, and creator revenue over time.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-16",
+    "slug": "nft-royalty-tracking"
+  },
+  {
     "title": "NFT Transfer Tracker",
     "body": "Monitor NFT mints, transfers, and burns as they happen onchain.",
     "tag": "Free Tier",
     "url": "https://goldrush.dev",
     "date-added": "2026-03-12",
     "slug": "nft-transfer-tracker"
-  },
-  {
-    "title": "Rarity Analyzer",
-    "body": "Compute rarity scores and rank NFTs within a collection by trait frequency.",
-    "tag": "Beta",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-12",
-    "slug": "rarity-analyzer"
   },
   {
     "title": "NFT Wash Trading Detector",
@@ -48,19 +56,11 @@
     "slug": "nft-wash-trading-detector"
   },
   {
-    "title": "NFT Liquidity Scorer",
-    "body": "Score NFT collections and individual tokens by their trading liquidity and velocity.",
+    "title": "Rarity Analyzer",
+    "body": "Compute rarity scores and rank NFTs within a collection by trait frequency.",
     "tag": "Beta",
     "url": "https://goldrush.dev",
-    "date-added": "2026-03-16",
-    "slug": "nft-liquidity-scorer"
-  },
-  {
-    "title": "NFT Royalty Tracking",
-    "body": "Track NFT royalty payments, enforced vs bypassed transfers, and creator revenue over time.",
-    "tag": "API Key Required",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-16",
-    "slug": "nft-royalty-tracking"
+    "date-added": "2026-03-12",
+    "slug": "rarity-analyzer"
   }
 ]

@@ -5,32 +5,5 @@
   "url": "https://goldrush.dev",
   "tag": "Beta",
   "date-added": "2026-03-16",
-  "slug": "solana-program-analytics",
-  "snippet": "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY);\n\nasync function getSolanaProgramData(walletAddress) {\n  const txns = await client.TransactionService.getTransactionsForAddressV3(\n    \"solana-mainnet\", walletAddress\n  );\n  return txns.data?.items ?? [];\n}",
-  "endpoints": [
-    "TransactionService.getTransactionsForAddressV3",
-    "BalanceService.getTokenBalancesForWalletAddress"
-  ],
-  "chains": [
-    "solana-mainnet"
-  ],
-  "complexity": "intermediate",
-  "useCase": "Solana dApp analytics, program usage tracking, ecosystem developer tools.",
-  "buildsWith": [
-    "@covalenthq/client-sdk"
-  ],
-  "creditCost": "1 credit per request",
-  "keyParams": [
-    {
-      "name": "walletAddress",
-      "type": "string",
-      "description": "Solana wallet address"
-    }
-  ],
-  "responseFields": [
-    "programIds",
-    "txCount",
-    "fees",
-    "tokenAccounts"
-  ]
+  "slug": "solana-program-analytics"
 }

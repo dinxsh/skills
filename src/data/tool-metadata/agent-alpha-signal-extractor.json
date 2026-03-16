@@ -5,40 +5,5 @@
   "url": "https://goldrush.dev",
   "tag": "Beta",
   "date-added": "2026-03-16",
-  "slug": "agent-alpha-signal-extractor",
-  "snippet": "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY);\n\nasync function extractAlphaSignals(chainName, watchlist) {\n  const signals = await Promise.all(\n    watchlist.map(wallet =>\n      client.TransactionService.getTransactionsForAddressV3(chainName, wallet, { pageSize: 10 })\n    )\n  );\n  return signals.flatMap((s, i) =>\n    (s.data?.items ?? []).map(tx => ({ wallet: watchlist[i], tx }))\n  );\n}",
-  "endpoints": [
-    "TransactionService.getTransactionsForAddressV3",
-    "PricingService.getTokenPrices"
-  ],
-  "chains": [
-    "eth-mainnet",
-    "arbitrum-mainnet",
-    "base-mainnet"
-  ],
-  "complexity": "advanced",
-  "useCase": "Algorithmic trading, copy-trade bots, smart-money signal extraction.",
-  "buildsWith": [
-    "@covalenthq/client-sdk"
-  ],
-  "creditCost": "1 credit per wallet per request",
-  "keyParams": [
-    {
-      "name": "chainName",
-      "type": "ChainName",
-      "description": "Chain to monitor"
-    },
-    {
-      "name": "watchlist",
-      "type": "string[]",
-      "description": "Whale wallet addresses to track"
-    }
-  ],
-  "responseFields": [
-    "signals",
-    "tokenSymbol",
-    "direction",
-    "walletLabel",
-    "confidence"
-  ]
+  "slug": "agent-alpha-signal-extractor"
 }

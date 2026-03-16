@@ -5,39 +5,5 @@
   "url": "https://goldrush.dev",
   "tag": "Beta",
   "date-added": "2026-03-16",
-  "slug": "nft-liquidity-scorer",
-  "snippet": "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY);\n\nasync function scoreNFTLiquidity(chainName, collectionAddress) {\n  const resp = await client.NftService.getNftTransactionsForContractTokenId(\n    chainName, collectionAddress, \"1\"\n  );\n  const txns = resp.data?.items ?? [];\n  const salesLast30d = txns.filter(tx => {\n    const age = Date.now() - new Date(tx.block_signed_at).getTime();\n    return age < 30 * 24 * 60 * 60 * 1000;\n  });\n  const liquidityScore = Math.min(100, salesLast30d.length * 10);\n  return { collectionAddress, liquidityScore, salesLast30d: salesLast30d.length };\n}",
-  "endpoints": [
-    "NftService.getNftTransactionsForContractTokenId",
-    "NftService.getNftsForAddress"
-  ],
-  "chains": [
-    "eth-mainnet",
-    "matic-mainnet",
-    "base-mainnet"
-  ],
-  "complexity": "intermediate",
-  "useCase": "NFT lending protocols, collection discovery, NFT index fund rebalancing.",
-  "buildsWith": [
-    "@covalenthq/client-sdk"
-  ],
-  "creditCost": "1 credit per collection",
-  "keyParams": [
-    {
-      "name": "chainName",
-      "type": "ChainName",
-      "description": "Chain of the collection"
-    },
-    {
-      "name": "collectionAddress",
-      "type": "string",
-      "description": "NFT contract address"
-    }
-  ],
-  "responseFields": [
-    "liquidityScore",
-    "salesLast30d",
-    "avgHoldTime",
-    "uniqueBuyers"
-  ]
+  "slug": "nft-liquidity-scorer"
 }

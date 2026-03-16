@@ -5,36 +5,5 @@
   "url": "https://goldrush.dev",
   "tag": "Beta",
   "date-added": "2026-03-16",
-  "slug": "onchain-credit-score",
-  "snippet": "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY);\n\nasync function getCreditScore(walletAddress) {\n  const [txns, balances, activity] = await Promise.all([\n    client.TransactionService.getTransactionsForAddressV3(\"eth-mainnet\", walletAddress),\n    client.BalanceService.getTokenBalancesForWalletAddress(\"eth-mainnet\", walletAddress),\n    client.AllChainsService.getAddressActivity(walletAddress),\n  ]);\n  const txCount = txns.data?.items?.length ?? 0;\n  const netWorth = balances.data?.items?.reduce((s, i) => s + (i.quote ?? 0), 0) ?? 0;\n  const chainsActive = activity.data?.items?.length ?? 0;\n  const score = Math.min(100, txCount * 0.5 + netWorth * 0.001 + chainsActive * 5);\n  return { walletAddress, score: Math.round(score), txCount, netWorth, chainsActive };\n}",
-  "endpoints": [
-    "TransactionService.getTransactionsForAddressV3",
-    "BalanceService.getTokenBalancesForWalletAddress",
-    "AllChainsService.getAddressActivity"
-  ],
-  "chains": [
-    "eth-mainnet",
-    "matic-mainnet",
-    "arbitrum-mainnet"
-  ],
-  "complexity": "advanced",
-  "useCase": "DeFi lending underwriting, KYC-free credit, undercollateralised loan products.",
-  "buildsWith": [
-    "@covalenthq/client-sdk"
-  ],
-  "creditCost": "3 credits per score (1 per service)",
-  "keyParams": [
-    {
-      "name": "walletAddress",
-      "type": "string",
-      "description": "Wallet to score"
-    }
-  ],
-  "responseFields": [
-    "score",
-    "txCount",
-    "netWorth",
-    "chainsActive",
-    "riskBand"
-  ]
+  "slug": "onchain-credit-score"
 }

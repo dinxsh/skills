@@ -5,40 +5,5 @@
   "url": "https://goldrush.dev",
   "tag": "API Key Required",
   "date-added": "2026-03-16",
-  "slug": "cross-border-payment-analytics",
-  "snippet": "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY);\n\nasync function getCrosssBorderFlows(chainName, stablecoinAddress) {\n  const resp = await client.TransactionService.getTransactionsForAddressV3(\n    chainName, stablecoinAddress, { pageSize: 100 }\n  );\n  return resp.data?.items ?? [];\n}",
-  "endpoints": [
-    "TransactionService.getTransactionsForAddressV3",
-    "BalanceService.getTokenBalancesForWalletAddress"
-  ],
-  "chains": [
-    "eth-mainnet",
-    "matic-mainnet",
-    "stellar-mainnet",
-    "tron-mainnet"
-  ],
-  "complexity": "advanced",
-  "useCase": "Remittance analytics, payment network intelligence, regulatory compliance reporting.",
-  "buildsWith": [
-    "@covalenthq/client-sdk"
-  ],
-  "creditCost": "1 credit per request",
-  "keyParams": [
-    {
-      "name": "chainName",
-      "type": "ChainName",
-      "description": "Payment chain"
-    },
-    {
-      "name": "stablecoinAddress",
-      "type": "string",
-      "description": "Stablecoin contract address"
-    }
-  ],
-  "responseFields": [
-    "volume24h",
-    "uniqueSenders",
-    "uniqueReceivers",
-    "avgTransactionSize"
-  ]
+  "slug": "cross-border-payment-analytics"
 }

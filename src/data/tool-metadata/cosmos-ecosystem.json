@@ -5,34 +5,5 @@
   "url": "https://goldrush.dev",
   "tag": "Beta",
   "date-added": "2026-03-16",
-  "slug": "cosmos-ecosystem",
-  "snippet": "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY);\n\nasync function getCosmosIntelligence(walletAddress) {\n  const chains = [\"cosmos-mainnet\", \"osmosis-mainnet\", \"juno-mainnet\"];\n  const results = await Promise.all(\n    chains.map(chain =>\n      client.BalanceService.getTokenBalancesForWalletAddress(chain, walletAddress)\n    )\n  );\n  return results.map((r, i) => ({ chain: chains[i], items: r.data?.items }));\n}",
-  "endpoints": [
-    "BalanceService.getTokenBalancesForWalletAddress",
-    "TransactionService.getTransactionsForAddressV3"
-  ],
-  "chains": [
-    "cosmos-mainnet",
-    "osmosis-mainnet",
-    "juno-mainnet"
-  ],
-  "complexity": "intermediate",
-  "useCase": "Cosmos IBC portfolio tracking, cross-chain staking analytics, governance dashboards.",
-  "buildsWith": [
-    "@covalenthq/client-sdk"
-  ],
-  "creditCost": "1 credit per chain",
-  "keyParams": [
-    {
-      "name": "walletAddress",
-      "type": "string",
-      "description": "Cosmos Bech32 wallet address"
-    }
-  ],
-  "responseFields": [
-    "atomBalance",
-    "ibcTokens",
-    "stakingRewards",
-    "governanceVotes"
-  ]
+  "slug": "cosmos-ecosystem"
 }

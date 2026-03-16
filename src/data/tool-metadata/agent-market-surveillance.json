@@ -5,40 +5,5 @@
   "url": "https://goldrush.dev",
   "tag": "Beta",
   "date-added": "2026-03-16",
-  "slug": "agent-market-surveillance",
-  "snippet": "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY);\n\nasync function runMarketSurveillance(chainName, tokenAddress) {\n  const prices = await client.PricingService.getTokenPrices(\n    chainName, \"USD\", tokenAddress\n  );\n  const recentPrices = prices.data?.items?.slice(-24) ?? [];\n  const avg = recentPrices.reduce((s, p) => s + (p.price ?? 0), 0) / recentPrices.length;\n  const latest = recentPrices[recentPrices.length - 1]?.price ?? 0;\n  const deviation = Math.abs(latest - avg) / avg;\n  return { tokenAddress, avg, latest, deviation, alert: deviation > 0.1 };\n}",
-  "endpoints": [
-    "PricingService.getTokenPrices",
-    "TransactionService.getTransactionsForAddressV3"
-  ],
-  "chains": [
-    "eth-mainnet",
-    "arbitrum-mainnet",
-    "base-mainnet"
-  ],
-  "complexity": "intermediate",
-  "useCase": "Automated market monitoring, trading bot guards, price anomaly detection.",
-  "buildsWith": [
-    "@covalenthq/client-sdk"
-  ],
-  "creditCost": "1 credit per token per request",
-  "keyParams": [
-    {
-      "name": "chainName",
-      "type": "ChainName",
-      "description": "Chain to monitor"
-    },
-    {
-      "name": "tokenAddress",
-      "type": "string",
-      "description": "Token contract address"
-    }
-  ],
-  "responseFields": [
-    "avg",
-    "latest",
-    "deviation",
-    "alert",
-    "anomalyType"
-  ]
+  "slug": "agent-market-surveillance"
 }

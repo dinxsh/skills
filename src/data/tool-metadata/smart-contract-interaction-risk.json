@@ -5,41 +5,5 @@
   "url": "https://goldrush.dev",
   "tag": "API Key Required",
   "date-added": "2026-03-16",
-  "slug": "smart-contract-interaction-risk",
-  "snippet": "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY);\n\nasync function scoreContractRisk(chainName, contractAddress) {\n  const [events, approvals] = await Promise.all([\n    client.BaseService.getLogEventsByAddress(chainName, contractAddress),\n    client.SecurityService.getApprovals(chainName, contractAddress),\n  ]);\n  const eventCount = events.data?.items?.length ?? 0;\n  const riskyApprovals = (approvals.data?.items ?? []).filter(a => (a.risk_score ?? 0) > 70);\n  const riskLevel = riskyApprovals.length > 5 ? \"HIGH\" : riskyApprovals.length > 1 ? \"MEDIUM\" : \"LOW\";\n  return { contractAddress, riskLevel, eventCount, riskyApprovals: riskyApprovals.length };\n}",
-  "endpoints": [
-    "BaseService.getLogEventsByAddress",
-    "SecurityService.getApprovals"
-  ],
-  "chains": [
-    "eth-mainnet",
-    "matic-mainnet",
-    "bsc-mainnet",
-    "arbitrum-mainnet"
-  ],
-  "complexity": "intermediate",
-  "useCase": "DeFi pre-transaction risk checks, smart wallet guards, security auditing tooling.",
-  "buildsWith": [
-    "@covalenthq/client-sdk"
-  ],
-  "creditCost": "2 credits per contract (1 per service)",
-  "keyParams": [
-    {
-      "name": "chainName",
-      "type": "ChainName",
-      "description": "Chain hosting the contract"
-    },
-    {
-      "name": "contractAddress",
-      "type": "string",
-      "description": "Contract address to score"
-    }
-  ],
-  "responseFields": [
-    "riskLevel",
-    "eventCount",
-    "riskyApprovals",
-    "ownerHistory",
-    "upgradeability"
-  ]
+  "slug": "smart-contract-interaction-risk"
 }

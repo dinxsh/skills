@@ -5,34 +5,5 @@
   "url": "https://goldrush.dev",
   "tag": "Beta",
   "date-added": "2026-03-16",
-  "slug": "agent-reputation-builder",
-  "snippet": "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY);\n\nasync function buildAgentReputation(agentAddress) {\n  const [txns, activity] = await Promise.all([\n    client.TransactionService.getTransactionsForAddressV3(\"eth-mainnet\", agentAddress),\n    client.AllChainsService.getAddressActivity(agentAddress),\n  ]);\n  const successRate = (txns.data?.items ?? []).filter(t => t.successful).length /\n    Math.max(1, txns.data?.items?.length ?? 1);\n  return { agentAddress, successRate, chainsActive: activity.data?.items?.length };\n}",
-  "endpoints": [
-    "TransactionService.getTransactionsForAddressV3",
-    "AllChainsService.getAddressActivity"
-  ],
-  "chains": [
-    "eth-mainnet",
-    "base-mainnet",
-    "arbitrum-mainnet"
-  ],
-  "complexity": "intermediate",
-  "useCase": "Agent marketplaces, trust-based routing, multi-agent coordination protocols.",
-  "buildsWith": [
-    "@covalenthq/client-sdk"
-  ],
-  "creditCost": "2 credits per agent",
-  "keyParams": [
-    {
-      "name": "agentAddress",
-      "type": "string",
-      "description": "AI agent wallet address"
-    }
-  ],
-  "responseFields": [
-    "reputationScore",
-    "successRate",
-    "chainsActive",
-    "totalVolume"
-  ]
+  "slug": "agent-reputation-builder"
 }

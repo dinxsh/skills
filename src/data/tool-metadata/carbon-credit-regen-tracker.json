@@ -5,34 +5,5 @@
   "url": "https://goldrush.dev",
   "tag": "Beta",
   "date-added": "2026-03-16",
-  "slug": "carbon-credit-regen-tracker",
-  "snippet": "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY);\n\nasync function getCarbonCreditData(walletAddress) {\n  const balances = await client.BalanceService.getTokenBalancesForWalletAddress(\n    \"matic-mainnet\", walletAddress\n  );\n  const carbonTokens = (balances.data?.items ?? []).filter(\n    item => item.contract_ticker_symbol?.startsWith(\"TCO2\") ||\n            item.contract_name?.toLowerCase().includes(\"carbon\")\n  );\n  return carbonTokens;\n}",
-  "endpoints": [
-    "BalanceService.getTokenBalancesForWalletAddress",
-    "TransactionService.getTransactionsForAddressV3"
-  ],
-  "chains": [
-    "matic-mainnet",
-    "eth-mainnet",
-    "celo-mainnet"
-  ],
-  "complexity": "intermediate",
-  "useCase": "Carbon accounting, ReFi dashboards, ESG reporting for onchain carbon assets.",
-  "buildsWith": [
-    "@covalenthq/client-sdk"
-  ],
-  "creditCost": "1 credit per wallet",
-  "keyParams": [
-    {
-      "name": "walletAddress",
-      "type": "string",
-      "description": "Wallet holding carbon tokens"
-    }
-  ],
-  "responseFields": [
-    "carbonTokens",
-    "totalTCO2",
-    "retirements",
-    "projectMetadata"
-  ]
+  "slug": "carbon-credit-regen-tracker"
 }

@@ -5,38 +5,5 @@
   "url": "https://goldrush.dev",
   "tag": "Beta",
   "date-added": "2026-03-16",
-  "slug": "nft-wash-trading-detector",
-  "snippet": "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY);\n\nasync function detectNFTWashTrades(chainName, collectionAddress) {\n  const resp = await client.NftService.getNftTransactionsForContractTokenId(\n    chainName, collectionAddress, \"1\"\n  );\n  const txns = resp.data?.items ?? [];\n  // Detect circular trades: wallet sells then re-buys within N blocks\n  const addressMap = {};\n  txns.forEach(tx => {\n    if (!addressMap[tx.from_address]) addressMap[tx.from_address] = [];\n    addressMap[tx.from_address].push(tx.to_address);\n  });\n  const washTrades = Object.entries(addressMap).filter(([from, tos]) =>\n    tos.some(to => addressMap[to]?.includes(from))\n  );\n  return { collectionAddress, washTradeCount: washTrades.length, flaggedAddresses: washTrades.map(([a]) => a) };\n}",
-  "endpoints": [
-    "NftService.getNftTransactionsForContractTokenId",
-    "NftService.getNftsForAddress"
-  ],
-  "chains": [
-    "eth-mainnet",
-    "matic-mainnet"
-  ],
-  "complexity": "advanced",
-  "useCase": "NFT marketplace integrity, wash trade analytics, SEC-style NFT market surveillance.",
-  "buildsWith": [
-    "@covalenthq/client-sdk"
-  ],
-  "creditCost": "1 credit per token ID",
-  "keyParams": [
-    {
-      "name": "chainName",
-      "type": "ChainName",
-      "description": "Chain hosting the NFT collection"
-    },
-    {
-      "name": "collectionAddress",
-      "type": "string",
-      "description": "NFT contract address"
-    }
-  ],
-  "responseFields": [
-    "washTradeCount",
-    "flaggedAddresses",
-    "circularTrades",
-    "suspiciousVolume"
-  ]
+  "slug": "nft-wash-trading-detector"
 }

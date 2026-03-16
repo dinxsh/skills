@@ -5,40 +5,5 @@
   "url": "https://goldrush.dev",
   "tag": "Beta",
   "date-added": "2026-03-16",
-  "slug": "token-memecoin-risk-scorer",
-  "snippet": "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY);\n\nasync function scoreMemeRisk(chainName, tokenAddress) {\n  const [events, approvals] = await Promise.all([\n    client.BaseService.getLogEventsByAddress(chainName, tokenAddress),\n    client.SecurityService.getApprovals(chainName, tokenAddress),\n  ]);\n  const transfers = (events.data?.items ?? []).filter(e => e.decoded?.name === \"Transfer\");\n  const uniqueHolders = new Set(transfers.map(e => e.decoded?.params?.find(p => p.name === \"to\")?.value)).size;\n  const riskScore = uniqueHolders < 50 ? 90 : uniqueHolders < 200 ? 60 : 20;\n  return { tokenAddress, riskScore, uniqueHolders };\n}",
-  "endpoints": [
-    "BaseService.getLogEventsByAddress",
-    "SecurityService.getApprovals"
-  ],
-  "chains": [
-    "eth-mainnet",
-    "bsc-mainnet",
-    "base-mainnet"
-  ],
-  "complexity": "intermediate",
-  "useCase": "Memecoin trading protection, DEX launch scanning, anti-rug tooling.",
-  "buildsWith": [
-    "@covalenthq/client-sdk"
-  ],
-  "creditCost": "2 credits per token",
-  "keyParams": [
-    {
-      "name": "chainName",
-      "type": "ChainName",
-      "description": "Chain of the memecoin"
-    },
-    {
-      "name": "tokenAddress",
-      "type": "string",
-      "description": "Token contract address"
-    }
-  ],
-  "responseFields": [
-    "riskScore",
-    "uniqueHolders",
-    "sniperCount",
-    "devWalletPercent",
-    "bundledBuys"
-  ]
+  "slug": "token-memecoin-risk-scorer"
 }

@@ -5,33 +5,5 @@
   "url": "https://goldrush.dev",
   "tag": "Beta",
   "date-added": "2026-03-16",
-  "slug": "rwa-real-estate-portfolio",
-  "snippet": "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY);\n\nasync function getRealEstatePortfolio(walletAddress) {\n  const resp = await client.BalanceService.getTokenBalancesForWalletAddress(\n    \"eth-mainnet\", walletAddress, { nft: true }\n  );\n  const rwaTokens = (resp.data?.items ?? []).filter(\n    item => item.contract_name?.toLowerCase().includes(\"real\") ||\n            item.contract_name?.toLowerCase().includes(\"estate\")\n  );\n  return rwaTokens;\n}",
-  "endpoints": [
-    "BalanceService.getTokenBalancesForWalletAddress"
-  ],
-  "chains": [
-    "eth-mainnet",
-    "matic-mainnet",
-    "base-mainnet"
-  ],
-  "complexity": "intermediate",
-  "useCase": "RWA portfolio dashboards, institutional asset management, real estate tokenization platforms.",
-  "buildsWith": [
-    "@covalenthq/client-sdk"
-  ],
-  "creditCost": "1 credit per wallet",
-  "keyParams": [
-    {
-      "name": "walletAddress",
-      "type": "string",
-      "description": "Wallet holding RWA tokens"
-    }
-  ],
-  "responseFields": [
-    "contract_name",
-    "contract_address",
-    "balance",
-    "quote"
-  ]
+  "slug": "rwa-real-estate-portfolio"
 }

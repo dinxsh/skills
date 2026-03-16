@@ -5,38 +5,5 @@
   "url": "https://goldrush.dev",
   "tag": "Free Tier",
   "date-added": "2026-03-16",
-  "slug": "phishing-wallet-database",
-  "snippet": "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY);\n\nasync function queryPhishingDatabase(chainName, suspectedAddress) {\n  // Use TransactionService to detect dust-attack patterns (zero-value transfers from unknown)\n  const txns = await client.TransactionService.getTransactionsForAddressV3(\n    chainName, suspectedAddress, { pageSize: 50 }\n  );\n  const zeroValueOutgoing = (txns.data?.items ?? []).filter(\n    tx => tx.from_address === suspectedAddress && (tx.value ?? \"0\") === \"0\"\n  );\n  const isPhishing = zeroValueOutgoing.length > 10;\n  return { suspectedAddress, isPhishing, dustAttacks: zeroValueOutgoing.length };\n}",
-  "endpoints": [
-    "TransactionService.getTransactionsForAddressV3"
-  ],
-  "chains": [
-    "eth-mainnet",
-    "matic-mainnet",
-    "bsc-mainnet"
-  ],
-  "complexity": "beginner",
-  "useCase": "Wallet safety checks, exchange onboarding screening, Web3 browser extension guards.",
-  "buildsWith": [
-    "@covalenthq/client-sdk"
-  ],
-  "creditCost": "1 credit per address",
-  "keyParams": [
-    {
-      "name": "chainName",
-      "type": "ChainName",
-      "description": "Chain to check"
-    },
-    {
-      "name": "suspectedAddress",
-      "type": "string",
-      "description": "Address to check against database"
-    }
-  ],
-  "responseFields": [
-    "isPhishing",
-    "dustAttacks",
-    "reportCount",
-    "firstFlaggedAt"
-  ]
+  "slug": "phishing-wallet-database"
 }

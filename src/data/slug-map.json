@@ -20,6 +20,12 @@
   "wallet-balances-skill": [
     "wallet"
   ],
+  "cross-chain-liquidity-map": [
+    "defi"
+  ],
+  "defi-bad-debt-monitor": [
+    "defi"
+  ],
   "defi-position-tracker": [
     "defi"
   ],
@@ -32,10 +38,22 @@
   "protocol-revenue-feed": [
     "defi"
   ],
+  "rwa-real-estate-portfolio": [
+    "defi"
+  ],
+  "rwa-tokenized-treasury-tracker": [
+    "defi"
+  ],
+  "stablecoin-dominance-tracker": [
+    "defi"
+  ],
   "yield-dashboard": [
     "defi"
   ],
   "collection-floor-monitor": [
+    "nft"
+  ],
+  "nft-liquidity-scorer": [
     "nft"
   ],
   "nft-metadata-fetcher": [
@@ -44,28 +62,139 @@
   "nft-portfolio-valuation": [
     "nft"
   ],
+  "nft-royalty-tracking": [
+    "nft"
+  ],
   "nft-transfer-tracker": [
+    "nft"
+  ],
+  "nft-wash-trading-detector": [
     "nft"
   ],
   "rarity-analyzer": [
     "nft"
   ],
+  "berachain-intelligence": [
+    "analytics"
+  ],
+  "carbon-credit-regen-tracker": [
+    "analytics"
+  ],
   "chain-activity-dashboard": [
+    "analytics"
+  ],
+  "chain-health-scorecard": [
+    "analytics"
+  ],
+  "cosmos-ecosystem": [
+    "analytics"
+  ],
+  "cross-border-payment-analytics": [
+    "analytics"
+  ],
+  "dao-voter-intelligence": [
+    "analytics"
+  ],
+  "developer-wallet-classifier": [
+    "analytics"
+  ],
+  "ethereum-validator-intelligence": [
     "analytics"
   ],
   "event-log-decoder": [
     "analytics"
   ],
+  "fund-flow-intelligence": [
+    "analytics"
+  ],
   "gas-analytics": [
+    "analytics"
+  ],
+  "hyperliquid-intelligence": [
+    "analytics"
+  ],
+  "institutional-wallet-tracker": [
+    "analytics"
+  ],
+  "macro-onchain-sentiment": [
+    "analytics"
+  ],
+  "near-protocol-intelligence": [
+    "analytics"
+  ],
+  "onchain-credit-score": [
     "analytics"
   ],
   "onchain-data-query": [
     "analytics"
   ],
+  "polkadot-parachain-intelligence": [
+    "analytics"
+  ],
+  "protocol-acquisition-intelligence": [
+    "analytics"
+  ],
+  "scroll-and-linea-intelligence": [
+    "analytics"
+  ],
+  "solana-program-analytics": [
+    "analytics"
+  ],
+  "starknet-intelligence": [
+    "analytics"
+  ],
+  "sui-and-aptos-intelligence": [
+    "analytics"
+  ],
   "token-price-history": [
     "analytics"
   ],
+  "ton-blockchain-intelligence": [
+    "analytics"
+  ],
+  "treasury-management-intelligence": [
+    "analytics"
+  ],
+  "tron-ecosystem-monitor": [
+    "analytics"
+  ],
+  "agent-alpha-signal-extractor": [
+    "agents"
+  ],
+  "agent-counterparty-verification": [
+    "agents"
+  ],
+  "agent-cross-chain-coordinator": [
+    "agents"
+  ],
+  "agent-data-budget-manager": [
+    "agents"
+  ],
+  "agent-discovery-protocol": [
+    "agents"
+  ],
+  "agent-fleet-monitor": [
+    "agents"
+  ],
+  "agent-market-surveillance": [
+    "agents"
+  ],
+  "agent-onchain-news-aggregator": [
+    "agents"
+  ],
+  "agent-payment-optimizer": [
+    "agents"
+  ],
+  "agent-reputation-builder": [
+    "agents"
+  ],
+  "agent-risk-circuit-breaker": [
+    "agents"
+  ],
   "agent-wallet-skill": [
+    "agents"
+  ],
+  "agent-yield-harvester": [
     "agents"
   ],
   "autonomous-defi-agent": [
@@ -128,7 +257,16 @@
   "token-approval-scanner": [
     "token"
   ],
+  "token-exchange-flow-tracker": [
+    "token"
+  ],
+  "token-fee-revenue-correlation": [
+    "token"
+  ],
   "token-holder-list": [
+    "token"
+  ],
+  "token-memecoin-risk-scorer": [
     "token"
   ],
   "token-metadata-api": [
@@ -143,7 +281,16 @@
   "nft-gate": [
     "identity"
   ],
+  "onchain-social-graph": [
+    "identity"
+  ],
   "proof-of-onchain-activity": [
+    "identity"
+  ],
+  "reputation-score-aggregator": [
+    "identity"
+  ],
+  "sybil-resistance-scorer": [
     "identity"
   ],
   "wallet-identity-graph": [
@@ -152,160 +299,13 @@
   "approval-auditor": [
     "security"
   ],
+  "bridge-security-monitor": [
+    "security"
+  ],
+  "compliance-transaction-screening": [
+    "security"
+  ],
   "contract-interaction-history": [
-    "security"
-  ],
-  "mev-monitor": [
-    "security"
-  ],
-  "phishing-address-checker": [
-    "security"
-  ],
-  "token-risk-analyzer": [
-    "security"
-  ],
-  "stablecoin-dominance-tracker": [
-    "defi"
-  ],
-  "rwa-tokenized-treasury-tracker": [
-    "defi"
-  ],
-  "rwa-real-estate-portfolio": [
-    "defi"
-  ],
-  "defi-bad-debt-monitor": [
-    "defi"
-  ],
-  "cross-chain-liquidity-map": [
-    "defi"
-  ],
-  "chain-health-scorecard": [
-    "analytics"
-  ],
-  "onchain-credit-score": [
-    "analytics"
-  ],
-  "developer-wallet-classifier": [
-    "analytics"
-  ],
-  "treasury-management-intelligence": [
-    "analytics"
-  ],
-  "institutional-wallet-tracker": [
-    "analytics"
-  ],
-  "hyperliquid-intelligence": [
-    "analytics"
-  ],
-  "berachain-intelligence": [
-    "analytics"
-  ],
-  "scroll-and-linea-intelligence": [
-    "analytics"
-  ],
-  "dao-voter-intelligence": [
-    "analytics"
-  ],
-  "macro-onchain-sentiment": [
-    "analytics"
-  ],
-  "carbon-credit-regen-tracker": [
-    "analytics"
-  ],
-  "protocol-acquisition-intelligence": [
-    "analytics"
-  ],
-  "cross-border-payment-analytics": [
-    "analytics"
-  ],
-  "fund-flow-intelligence": [
-    "analytics"
-  ],
-  "tron-ecosystem-monitor": [
-    "analytics"
-  ],
-  "ethereum-validator-intelligence": [
-    "analytics"
-  ],
-  "solana-program-analytics": [
-    "analytics"
-  ],
-  "near-protocol-intelligence": [
-    "analytics"
-  ],
-  "sui-and-aptos-intelligence": [
-    "analytics"
-  ],
-  "starknet-intelligence": [
-    "analytics"
-  ],
-  "polkadot-parachain-intelligence": [
-    "analytics"
-  ],
-  "ton-blockchain-intelligence": [
-    "analytics"
-  ],
-  "cosmos-ecosystem": [
-    "analytics"
-  ],
-  "agent-risk-circuit-breaker": [
-    "agents"
-  ],
-  "agent-reputation-builder": [
-    "agents"
-  ],
-  "agent-discovery-protocol": [
-    "agents"
-  ],
-  "agent-cross-chain-coordinator": [
-    "agents"
-  ],
-  "agent-alpha-signal-extractor": [
-    "agents"
-  ],
-  "agent-counterparty-verification": [
-    "agents"
-  ],
-  "agent-payment-optimizer": [
-    "agents"
-  ],
-  "agent-onchain-news-aggregator": [
-    "agents"
-  ],
-  "agent-market-surveillance": [
-    "agents"
-  ],
-  "agent-fleet-monitor": [
-    "agents"
-  ],
-  "agent-data-budget-manager": [
-    "agents"
-  ],
-  "agent-yield-harvester": [
-    "agents"
-  ],
-  "sybil-resistance-scorer": [
-    "identity"
-  ],
-  "onchain-social-graph": [
-    "identity"
-  ],
-  "reputation-score-aggregator": [
-    "identity"
-  ],
-  "nft-wash-trading-detector": [
-    "nft"
-  ],
-  "nft-liquidity-scorer": [
-    "nft"
-  ],
-  "nft-royalty-tracking": [
-    "nft"
-  ],
-  "smart-contract-interaction-risk": [
-    "security"
-  ],
-  "oracle-manipulation-detector": [
     "security"
   ],
   "exploit-early-warning-system": [
@@ -314,25 +314,25 @@
   "mev-exposure-analyzer": [
     "security"
   ],
-  "bridge-security-monitor": [
+  "mev-monitor": [
     "security"
   ],
-  "rugpull-pattern-detector": [
+  "oracle-manipulation-detector": [
+    "security"
+  ],
+  "phishing-address-checker": [
     "security"
   ],
   "phishing-wallet-database": [
     "security"
   ],
-  "compliance-transaction-screening": [
+  "rugpull-pattern-detector": [
     "security"
   ],
-  "token-exchange-flow-tracker": [
-    "token"
+  "smart-contract-interaction-risk": [
+    "security"
   ],
-  "token-memecoin-risk-scorer": [
-    "token"
-  ],
-  "token-fee-revenue-correlation": [
-    "token"
+  "token-risk-analyzer": [
+    "security"
   ]
 }

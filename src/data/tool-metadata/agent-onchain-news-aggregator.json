@@ -5,39 +5,5 @@
   "url": "https://goldrush.dev",
   "tag": "Beta",
   "date-added": "2026-03-16",
-  "slug": "agent-onchain-news-aggregator",
-  "snippet": "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY);\n\nasync function getOnchainNews(chainName, contractAddress) {\n  const events = await client.BaseService.getLogEventsByAddress(\n    chainName, contractAddress, { startingBlock: \"latest\" }\n  );\n  return (events.data?.items ?? []).map(e => ({\n    type: e.decoded?.name,\n    blockTime: e.block_signed_at,\n    summary: JSON.stringify(e.decoded?.params),\n  }));\n}",
-  "endpoints": [
-    "BaseService.getLogEventsByAddress",
-    "TransactionService.getTransactionsForAddressV3"
-  ],
-  "chains": [
-    "eth-mainnet",
-    "arbitrum-mainnet",
-    "base-mainnet"
-  ],
-  "complexity": "intermediate",
-  "useCase": "AI agent context enrichment, event-driven agent triggers, onchain news feeds.",
-  "buildsWith": [
-    "@covalenthq/client-sdk"
-  ],
-  "creditCost": "1 credit per request",
-  "keyParams": [
-    {
-      "name": "chainName",
-      "type": "ChainName",
-      "description": "Chain to monitor for events"
-    },
-    {
-      "name": "contractAddress",
-      "type": "string",
-      "description": "Protocol contract address"
-    }
-  ],
-  "responseFields": [
-    "type",
-    "blockTime",
-    "summary",
-    "relevanceScore"
-  ]
+  "slug": "agent-onchain-news-aggregator"
 }

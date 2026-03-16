@@ -5,33 +5,5 @@
   "url": "https://goldrush.dev",
   "tag": "Beta",
   "date-added": "2026-03-16",
-  "slug": "scroll-and-linea-intelligence",
-  "snippet": "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY);\n\nasync function getZkEvmIntelligence(walletAddress) {\n  const [scroll, linea] = await Promise.all([\n    client.BalanceService.getTokenBalancesForWalletAddress(\"scroll-mainnet\", walletAddress),\n    client.BalanceService.getTokenBalancesForWalletAddress(\"linea-mainnet\", walletAddress),\n  ]);\n  return { scroll: scroll.data?.items, linea: linea.data?.items };\n}",
-  "endpoints": [
-    "BalanceService.getTokenBalancesForWalletAddress",
-    "TransactionService.getTransactionsForAddressV3"
-  ],
-  "chains": [
-    "scroll-mainnet",
-    "linea-mainnet"
-  ],
-  "complexity": "intermediate",
-  "useCase": "zkEVM ecosystem dashboards, cross-chain wallet analysis, bridge volume monitoring.",
-  "buildsWith": [
-    "@covalenthq/client-sdk"
-  ],
-  "creditCost": "2 credits per wallet (1 per chain)",
-  "keyParams": [
-    {
-      "name": "walletAddress",
-      "type": "string",
-      "description": "Wallet to analyse"
-    }
-  ],
-  "responseFields": [
-    "scrollBalances",
-    "lineaBalances",
-    "bridgeActivity",
-    "txCount"
-  ]
+  "slug": "scroll-and-linea-intelligence"
 }

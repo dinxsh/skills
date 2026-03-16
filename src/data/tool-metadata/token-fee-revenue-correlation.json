@@ -5,44 +5,5 @@
   "url": "https://goldrush.dev",
   "tag": "Beta",
   "date-added": "2026-03-16",
-  "slug": "token-fee-revenue-correlation",
-  "snippet": "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY);\n\nasync function getFeeRevenueCorrelation(chainName, tokenAddress, feeRecipient) {\n  const [prices, txns] = await Promise.all([\n    client.PricingService.getTokenPrices(chainName, \"USD\", tokenAddress),\n    client.TransactionService.getTransactionsForAddressV3(chainName, feeRecipient),\n  ]);\n  const feeIncome = (txns.data?.items ?? []).reduce((s, t) => s + (t.value_quote ?? 0), 0);\n  const currentPrice = prices.data?.items?.[0]?.price ?? 0;\n  return { tokenAddress, feeIncome, currentPrice, revenuePerDollar: feeIncome / Math.max(1, currentPrice) };\n}",
-  "endpoints": [
-    "PricingService.getTokenPrices",
-    "TransactionService.getTransactionsForAddressV3"
-  ],
-  "chains": [
-    "eth-mainnet",
-    "arbitrum-mainnet",
-    "base-mainnet"
-  ],
-  "complexity": "intermediate",
-  "useCase": "Token valuation models, protocol revenue analytics, DeFi fundamental analysis.",
-  "buildsWith": [
-    "@covalenthq/client-sdk"
-  ],
-  "creditCost": "2 credits per token (1 per service)",
-  "keyParams": [
-    {
-      "name": "chainName",
-      "type": "ChainName",
-      "description": "Chain of the protocol"
-    },
-    {
-      "name": "tokenAddress",
-      "type": "string",
-      "description": "Token contract address"
-    },
-    {
-      "name": "feeRecipient",
-      "type": "string",
-      "description": "Protocol fee collector address"
-    }
-  ],
-  "responseFields": [
-    "feeIncome",
-    "currentPrice",
-    "revenuePerDollar",
-    "priceToFeeRatio"
-  ]
+  "slug": "token-fee-revenue-correlation"
 }

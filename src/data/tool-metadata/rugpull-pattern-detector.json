@@ -5,39 +5,5 @@
   "url": "https://goldrush.dev",
   "tag": "Beta",
   "date-added": "2026-03-16",
-  "slug": "rugpull-pattern-detector",
-  "snippet": "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY);\n\nasync function detectRugpullPatterns(chainName, tokenAddress) {\n  const [events, approvals] = await Promise.all([\n    client.BaseService.getLogEventsByAddress(chainName, tokenAddress),\n    client.SecurityService.getApprovals(chainName, tokenAddress),\n  ]);\n  const lpRemovals = (events.data?.items ?? []).filter(\n    e => e.decoded?.name === \"RemoveLiquidity\" || e.decoded?.name === \"Burn\"\n  );\n  const highRiskApprovals = (approvals.data?.items ?? []).filter(a => (a.risk_score ?? 0) > 80);\n  const rugScore = lpRemovals.length * 20 + highRiskApprovals.length * 15;\n  return { tokenAddress, rugScore: Math.min(100, rugScore), lpRemovals: lpRemovals.length };\n}",
-  "endpoints": [
-    "BaseService.getLogEventsByAddress",
-    "SecurityService.getApprovals"
-  ],
-  "chains": [
-    "eth-mainnet",
-    "bsc-mainnet",
-    "matic-mainnet"
-  ],
-  "complexity": "intermediate",
-  "useCase": "Token due diligence, DeFi safety tools, pre-investment risk screening.",
-  "buildsWith": [
-    "@covalenthq/client-sdk"
-  ],
-  "creditCost": "2 credits per token (1 per service)",
-  "keyParams": [
-    {
-      "name": "chainName",
-      "type": "ChainName",
-      "description": "Chain of the token"
-    },
-    {
-      "name": "tokenAddress",
-      "type": "string",
-      "description": "Token contract address"
-    }
-  ],
-  "responseFields": [
-    "rugScore",
-    "lpRemovals",
-    "concentratedHolders",
-    "ownershipFlags"
-  ]
+  "slug": "rugpull-pattern-detector"
 }

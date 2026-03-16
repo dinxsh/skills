@@ -5,39 +5,5 @@
   "url": "https://goldrush.dev",
   "tag": "Beta",
   "date-added": "2026-03-16",
-  "slug": "mev-exposure-analyzer",
-  "snippet": "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY);\n\nasync function analyzeMEVExposure(chainName, walletAddress) {\n  const txns = await client.TransactionService.getTransactionsForAddressV3(\n    chainName, walletAddress, { pageSize: 100 }\n  );\n  // Identify DEX swaps with unusually high slippage (potential sandwich)\n  const swaps = (txns.data?.items ?? []).filter(tx =>\n    tx.log_events?.some(e => e.decoded?.name === \"Swap\")\n  );\n  return { walletAddress, totalSwaps: swaps.length, exposedSwaps: swaps.length };\n}",
-  "endpoints": [
-    "TransactionService.getTransactionsForAddressV3",
-    "TransactionService.getTransactionsForBlock"
-  ],
-  "chains": [
-    "eth-mainnet",
-    "arbitrum-mainnet",
-    "bsc-mainnet"
-  ],
-  "complexity": "advanced",
-  "useCase": "MEV protection tooling, sandwich attack quantification, trader analytics.",
-  "buildsWith": [
-    "@covalenthq/client-sdk"
-  ],
-  "creditCost": "1 credit per wallet",
-  "keyParams": [
-    {
-      "name": "chainName",
-      "type": "ChainName",
-      "description": "Chain to analyse"
-    },
-    {
-      "name": "walletAddress",
-      "type": "string",
-      "description": "Victim wallet address"
-    }
-  ],
-  "responseFields": [
-    "totalSwaps",
-    "sandwichedCount",
-    "totalValueLost",
-    "topAttackers"
-  ]
+  "slug": "mev-exposure-analyzer"
 }

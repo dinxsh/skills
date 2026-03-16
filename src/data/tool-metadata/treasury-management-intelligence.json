@@ -5,40 +5,5 @@
   "url": "https://goldrush.dev",
   "tag": "API Key Required",
   "date-added": "2026-03-16",
-  "slug": "treasury-management-intelligence",
-  "snippet": "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY);\n\nasync function getTreasuryIntelligence(chainName, treasuryAddress) {\n  const [balances, txns] = await Promise.all([\n    client.BalanceService.getTokenBalancesForWalletAddress(chainName, treasuryAddress),\n    client.TransactionService.getTransactionsForAddressV3(chainName, treasuryAddress),\n  ]);\n  const totalUSD = (balances.data?.items ?? []).reduce((s, i) => s + (i.quote ?? 0), 0);\n  return { totalUSD, assets: balances.data?.items?.length ?? 0, recentTxns: txns.data?.items?.slice(0, 10) };\n}",
-  "endpoints": [
-    "BalanceService.getTokenBalancesForWalletAddress",
-    "TransactionService.getTransactionsForAddressV3"
-  ],
-  "chains": [
-    "eth-mainnet",
-    "arbitrum-mainnet",
-    "optimism-mainnet"
-  ],
-  "complexity": "intermediate",
-  "useCase": "DAO treasury management, protocol financial reporting, multi-sig oversight.",
-  "buildsWith": [
-    "@covalenthq/client-sdk"
-  ],
-  "creditCost": "2 credits per treasury (1 per service)",
-  "keyParams": [
-    {
-      "name": "chainName",
-      "type": "ChainName",
-      "description": "Chain holding the treasury"
-    },
-    {
-      "name": "treasuryAddress",
-      "type": "string",
-      "description": "Treasury or multi-sig address"
-    }
-  ],
-  "responseFields": [
-    "totalUSD",
-    "assets",
-    "stablecoinRatio",
-    "recentTxns",
-    "spendVelocity"
-  ]
+  "slug": "treasury-management-intelligence"
 }

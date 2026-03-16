@@ -5,32 +5,5 @@
   "url": "https://goldrush.dev",
   "tag": "Beta",
   "date-added": "2026-03-16",
-  "slug": "ethereum-validator-intelligence",
-  "snippet": "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY);\n\nasync function getValidatorIntelligence(withdrawalAddress) {\n  const [balances, txns] = await Promise.all([\n    client.BalanceService.getTokenBalancesForWalletAddress(\"eth-mainnet\", withdrawalAddress),\n    client.TransactionService.getTransactionsForAddressV3(\"eth-mainnet\", withdrawalAddress),\n  ]);\n  const withdrawals = (txns.data?.items ?? []).filter(\n    tx => tx.from_address === \"0x00000000219ab540356cBB839Cbe05303d7705Fa\"\n  );\n  return { withdrawalAddress, withdrawals, totalWithdrawn: withdrawals.reduce((s, t) => s + (t.value_quote ?? 0), 0) };\n}",
-  "endpoints": [
-    "BalanceService.getTokenBalancesForWalletAddress",
-    "TransactionService.getTransactionsForAddressV3"
-  ],
-  "chains": [
-    "eth-mainnet"
-  ],
-  "complexity": "advanced",
-  "useCase": "Staking analytics, validator performance monitoring, ETH withdrawal tracking.",
-  "buildsWith": [
-    "@covalenthq/client-sdk"
-  ],
-  "creditCost": "2 credits per validator",
-  "keyParams": [
-    {
-      "name": "withdrawalAddress",
-      "type": "string",
-      "description": "Validator withdrawal address"
-    }
-  ],
-  "responseFields": [
-    "withdrawals",
-    "totalWithdrawn",
-    "slashingEvents",
-    "rewardsEarned"
-  ]
+  "slug": "ethereum-validator-intelligence"
 }

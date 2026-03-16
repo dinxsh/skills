@@ -5,32 +5,5 @@
   "url": "https://goldrush.dev",
   "tag": "Beta",
   "date-added": "2026-03-16",
-  "slug": "tron-ecosystem-monitor",
-  "snippet": "import { GoldRushClient } from \"@covalenthq/client-sdk\";\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY);\n\nasync function getTronEcosystemData(walletAddress) {\n  const [balances, txns] = await Promise.all([\n    client.BalanceService.getTokenBalancesForWalletAddress(\"tron-mainnet\", walletAddress),\n    client.TransactionService.getTransactionsForAddressV3(\"tron-mainnet\", walletAddress),\n  ]);\n  return { balances: balances.data?.items, txns: txns.data?.items };\n}",
-  "endpoints": [
-    "BalanceService.getTokenBalancesForWalletAddress",
-    "TransactionService.getTransactionsForAddressV3"
-  ],
-  "chains": [
-    "tron-mainnet"
-  ],
-  "complexity": "intermediate",
-  "useCase": "Tron USDT flow monitoring, exchange deposit analytics, Tron DeFi dashboards.",
-  "buildsWith": [
-    "@covalenthq/client-sdk"
-  ],
-  "creditCost": "2 credits per request",
-  "keyParams": [
-    {
-      "name": "walletAddress",
-      "type": "string",
-      "description": "Tron wallet address"
-    }
-  ],
-  "responseFields": [
-    "usdtBalance",
-    "trxBalance",
-    "defiPositions",
-    "recentTxns"
-  ]
+  "slug": "tron-ecosystem-monitor"
 }
