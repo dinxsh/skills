@@ -156,11 +156,11 @@ const {
                     <span class="favorites-count" id="favoritesCount"></span>
                 </a>
                 <a
-                    href="https://github.com/covalenthq/goldrush-skills/issues"
+                    href="https://goldrush.dev"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="submit-btn"
-                    tabindex="0"><span class="submit-text">Submit</span></a
+                    class="submit-btn build-now-btn"
+                    tabindex="0">Build now</a
                 >
             </div>
         </div>
@@ -368,38 +368,33 @@ const {
     }
     .submit-btn {
         padding: var(--spacing-02) var(--spacing-05);
-        border: 0.5px solid var(--border-muted);
+        border: none;
         outline: none;
         text-decoration: none;
-        color: inherit;
-        color: var(--content-secondary);
-        background-color: var(--background);
+        background-color: DarkOrange;
+        color: #000;
         border-radius: var(--spacing-00);
         font-size: var(--desktop-body-sm);
+        font-family: var(--monospace);
+        font-weight: 600;
         line-height: var(--lh-desktop-body-sm);
-        transition: transform 0.2s ease;
+        letter-spacing: 0.01em;
+        transition: opacity 0.15s ease, transform 0.15s ease;
+        white-space: nowrap;
 
         &:hover {
-            background-color: var(--background);
-            color: var(--accent);
+            opacity: 0.88;
+            color: #000;
         }
 
         &:active {
-            background-color: var(--background);
-            color: var(--content-secondary);
             transform: scale(0.97);
-        }
-
-        &.disabled {
-            background-color: var(--background);
-            color: var(--content-secondary);
-            pointer-events: none;
+            opacity: 1;
         }
 
         &:focus {
-            background-color: var(--background);
-            outline: 1px solid var(--button-primary);
-            color: var(--content-secondary);
+            outline: 2px solid DarkOrange;
+            outline-offset: 2px;
         }
     }
     .logo-link {
@@ -522,17 +517,12 @@ const {
         .nav-goldrush-link {
             display: none;
         }
-        .favorites-text,
-        .submit-text {
+        .favorites-text {
             display: none;
         }
 
         .favorites-count {
             display: inline;
-        }
-
-        .submit-btn::after {
-            content: "Submit";
         }
     }
 
