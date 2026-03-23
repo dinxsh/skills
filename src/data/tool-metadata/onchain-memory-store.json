@@ -1,9 +1,0 @@
-{
-  "title": "Onchain Memory Store",
-  "description": "Persistent onchain memory layer for AI agents backed by wallet and contract state.",
-  "category": "agents",
-  "url": "https://goldrush.dev",
-  "tag": "Beta",
-  "date-added": "2026-03-12",
-  "slug": "onchain-memory-store"
-}

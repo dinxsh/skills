@@ -1,43 +1,11 @@
 [
   {
-    "title": "Berachain Intelligence",
-    "body": "Analyse Berachain PoL validators, BGT emissions, and liquidity incentive flows.",
-    "tag": "Beta",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-16",
-    "slug": "berachain-intelligence"
-  },
-  {
     "title": "Block Explorer Toolkit",
     "body": "Fetch block details, all transactions in a block, and decode individual transactions — all the building blocks for a custom block explorer.",
     "tag": "Free Tier",
     "url": "https://goldrush.dev",
     "date-added": "2026-03-16",
     "slug": "block-explorer-toolkit"
-  },
-  {
-    "title": "Carbon Credit and Regen Tracker",
-    "body": "Track tokenized carbon credits, retirements, and regenerative finance flows onchain.",
-    "tag": "Beta",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-16",
-    "slug": "carbon-credit-regen-tracker"
-  },
-  {
-    "title": "Chain Activity Dashboard",
-    "body": "Compare transactions, active addresses, and contract deployments across chains.",
-    "tag": "Beta",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-12",
-    "slug": "chain-activity-dashboard"
-  },
-  {
-    "title": "Chain Health Scorecard",
-    "body": "Score any EVM chain on activity, growth, and decentralisation metrics in real time.",
-    "tag": "Beta",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-16",
-    "slug": "chain-health-scorecard"
   },
   {
     "title": "Contract Event Log Monitor",
@@ -48,52 +16,12 @@
     "slug": "contract-event-log-monitor"
   },
   {
-    "title": "Cosmos Ecosystem (Unified)",
-    "body": "Unified analytics across IBC-connected Cosmos chains — balances, staking, and governance.",
-    "tag": "Beta",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-16",
-    "slug": "cosmos-ecosystem"
-  },
-  {
-    "title": "Cross-Border Payment Analytics",
-    "body": "Analyse stablecoin and crypto cross-border payment corridors, volume, and velocity.",
-    "tag": "API Key Required",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-16",
-    "slug": "cross-border-payment-analytics"
-  },
-  {
     "title": "Cross-Contract Event Scanner",
     "body": "Scan ALL contracts on a chain for a specific event by topic hash — e.g. find every ERC-20 Transfer or every Uniswap Swap across the entire chain.",
     "tag": "API Key Required",
     "url": "https://goldrush.dev",
     "date-added": "2026-03-16",
     "slug": "cross-contract-event-scanner"
-  },
-  {
-    "title": "DAO Voter Intelligence",
-    "body": "Analyse governance participation, delegate power, and voting patterns for any DAO.",
-    "tag": "API Key Required",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-16",
-    "slug": "dao-voter-intelligence"
-  },
-  {
-    "title": "Developer Wallet Classifier",
-    "body": "Classify wallets as developer, trader, bot, or retail based on onchain interaction patterns.",
-    "tag": "Beta",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-16",
-    "slug": "developer-wallet-classifier"
-  },
-  {
-    "title": "Ethereum Validator Intelligence",
-    "body": "Track ETH staking validators, rewards, slashing events, and withdrawal activity.",
-    "tag": "Beta",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-16",
-    "slug": "ethereum-validator-intelligence"
   },
   {
     "title": "Event Log Decoder",
@@ -104,28 +32,12 @@
     "slug": "event-log-decoder"
   },
   {
-    "title": "Fund Flow Intelligence",
-    "body": "Trace fund flows, hops, and wallet clusters to map capital movement onchain.",
-    "tag": "API Key Required",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-16",
-    "slug": "fund-flow-intelligence"
-  },
-  {
     "title": "Gas Analytics",
     "body": "Real-time and historical gas price tracking for any EVM-compatible chain.",
     "tag": "Free Tier",
     "url": "https://goldrush.dev",
     "date-added": "2026-03-12",
     "slug": "gas-analytics"
-  },
-  {
-    "title": "Hyperliquid Intelligence",
-    "body": "Deep onchain analytics for Hyperliquid — perp traders, vault flows, and market maker activity.",
-    "tag": "Beta",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-16",
-    "slug": "hyperliquid-intelligence"
   },
   {
     "title": "Institutional Wallet Tracker",
@@ -136,30 +48,6 @@
     "slug": "institutional-wallet-tracker"
   },
   {
-    "title": "Macro Onchain Sentiment",
-    "body": "Aggregate stablecoin flows, whale movements, and DEX volume as a macro sentiment index.",
-    "tag": "Beta",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-16",
-    "slug": "macro-onchain-sentiment"
-  },
-  {
-    "title": "NEAR Protocol Intelligence",
-    "body": "Analytics for NEAR accounts — contract calls, FT/NFT holdings, and staking rewards.",
-    "tag": "Beta",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-16",
-    "slug": "near-protocol-intelligence"
-  },
-  {
-    "title": "Onchain Credit Score",
-    "body": "Generate a credit-risk score for any wallet based on transaction history, assets, and repayment behaviour.",
-    "tag": "Beta",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-16",
-    "slug": "onchain-credit-score"
-  },
-  {
     "title": "Onchain Data Query",
     "body": "Query indexed blockchain data across 100+ chains with a single unified API.",
     "tag": "Free Tier",
@@ -168,84 +56,12 @@
     "slug": "onchain-data-query"
   },
   {
-    "title": "Polkadot Parachain Intelligence",
-    "body": "Analytics across Polkadot parachains — XCM transfers, staking, and cross-chain balances.",
-    "tag": "Beta",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-16",
-    "slug": "polkadot-parachain-intelligence"
-  },
-  {
-    "title": "Protocol Acquisition Intelligence",
-    "body": "Detect early signals of protocol acquisitions via treasury movements, governance changes, and token flows.",
-    "tag": "Beta",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-16",
-    "slug": "protocol-acquisition-intelligence"
-  },
-  {
-    "title": "Scroll and Linea Intelligence",
-    "body": "Unified analytics for Scroll and Linea zkEVM — user growth, bridge flows, and DeFi activity.",
-    "tag": "Beta",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-16",
-    "slug": "scroll-and-linea-intelligence"
-  },
-  {
-    "title": "Solana Program Analytics",
-    "body": "Analyse Solana program interactions, user growth, and transaction volume.",
-    "tag": "Beta",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-16",
-    "slug": "solana-program-analytics"
-  },
-  {
-    "title": "StarkNet Intelligence",
-    "body": "Analytics for StarkNet wallets — Cairo contract interactions, token balances, and gas usage.",
-    "tag": "Beta",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-16",
-    "slug": "starknet-intelligence"
-  },
-  {
-    "title": "Sui and Aptos Intelligence",
-    "body": "Unified analytics for Sui and Aptos Move-based chains — objects, coins, and transactions.",
-    "tag": "Beta",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-16",
-    "slug": "sui-and-aptos-intelligence"
-  },
-  {
     "title": "Token Price History",
     "body": "Fetch historical spot prices and OHLCV data for any ERC-20 token onchain.",
     "tag": "API Key Required",
     "url": "https://goldrush.dev",
     "date-added": "2026-03-12",
     "slug": "token-price-history"
-  },
-  {
-    "title": "TON Blockchain Intelligence",
-    "body": "Analytics for The Open Network — Jetton transfers, NFT activity, and wallet analytics.",
-    "tag": "Beta",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-16",
-    "slug": "ton-blockchain-intelligence"
-  },
-  {
-    "title": "Treasury Management Intelligence",
-    "body": "Analyse DAO or protocol treasury composition, diversification, and spending velocity.",
-    "tag": "API Key Required",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-16",
-    "slug": "treasury-management-intelligence"
-  },
-  {
-    "title": "Tron Ecosystem Monitor",
-    "body": "Monitor USDT flows, DeFi activity, and wallet behaviour on the Tron network.",
-    "tag": "Beta",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-16",
-    "slug": "tron-ecosystem-monitor"
   },
   {
     "title": "Wallet Activity Heatmap",

@@ -1,9 +1,0 @@
-{
-  "title": "Bridge Security Monitor",
-  "description": "Monitor bridge contracts for unusual outflows, signature reuse, and validator anomalies.",
-  "category": "security",
-  "url": "https://goldrush.dev",
-  "tag": "Beta",
-  "date-added": "2026-03-16",
-  "slug": "bridge-security-monitor"
-}

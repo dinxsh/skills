@@ -1,9 +1,0 @@
-{
-  "title": "StarkNet Intelligence",
-  "description": "Analytics for StarkNet wallets — Cairo contract interactions, token balances, and gas usage.",
-  "category": "analytics",
-  "url": "https://goldrush.dev",
-  "tag": "Beta",
-  "date-added": "2026-03-16",
-  "slug": "starknet-intelligence"
-}

@@ -1,9 +1,0 @@
-{
-  "title": "Liquidity Pool Monitor",
-  "description": "Monitor pool reserves, APY, and impermanent loss across major AMMs in real time.",
-  "category": "defi",
-  "url": "https://goldrush.dev",
-  "tag": "API Key Required",
-  "date-added": "2026-03-12",
-  "slug": "liquidity-pool-monitor"
-}

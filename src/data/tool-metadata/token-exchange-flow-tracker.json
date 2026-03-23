@@ -1,9 +1,0 @@
-{
-  "title": "Token Exchange Flow Tracker",
-  "description": "Track net token inflows and outflows to centralised exchange deposit addresses.",
-  "category": "token",
-  "url": "https://goldrush.dev",
-  "tag": "API Key Required",
-  "date-added": "2026-03-16",
-  "slug": "token-exchange-flow-tracker"
-}

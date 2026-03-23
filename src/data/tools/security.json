@@ -8,84 +8,12 @@
     "slug": "approval-auditor"
   },
   {
-    "title": "Bridge Security Monitor",
-    "body": "Monitor bridge contracts for unusual outflows, signature reuse, and validator anomalies.",
-    "tag": "Beta",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-16",
-    "slug": "bridge-security-monitor"
-  },
-  {
-    "title": "Compliance Transaction Screening",
-    "body": "Screen transactions and wallets for OFAC, sanctions, and AML compliance requirements.",
-    "tag": "API Key Required",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-16",
-    "slug": "compliance-transaction-screening"
-  },
-  {
     "title": "Contract Interaction History",
     "body": "Full history of contract interactions for security forensics and incident response.",
     "tag": "API Key Required",
     "url": "https://goldrush.dev",
     "date-added": "2026-03-12",
     "slug": "contract-interaction-history"
-  },
-  {
-    "title": "Exploit Early Warning System",
-    "body": "Real-time detection of exploit patterns — large outflows, drain sequences, and abnormal contract calls.",
-    "tag": "Beta",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-16",
-    "slug": "exploit-early-warning-system"
-  },
-  {
-    "title": "MEV Exposure Analyzer",
-    "body": "Quantify a wallet's exposure to MEV — value extracted via sandwich attacks and front-running.",
-    "tag": "Beta",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-16",
-    "slug": "mev-exposure-analyzer"
-  },
-  {
-    "title": "MEV Monitor",
-    "body": "Detect sandwich attacks, front-running, and MEV bot activity in real time.",
-    "tag": "Beta",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-12",
-    "slug": "mev-monitor"
-  },
-  {
-    "title": "Oracle Manipulation Detector",
-    "body": "Detect oracle price manipulation attempts via flash-loan patterns and block-level price deviations.",
-    "tag": "Beta",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-16",
-    "slug": "oracle-manipulation-detector"
-  },
-  {
-    "title": "Phishing Address Checker",
-    "body": "Check addresses against known phishing, scam, and exploit databases onchain.",
-    "tag": "Free Tier",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-12",
-    "slug": "phishing-address-checker"
-  },
-  {
-    "title": "Phishing Wallet Database",
-    "body": "Query a continuously updated onchain database of phishing and scam wallets.",
-    "tag": "Free Tier",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-16",
-    "slug": "phishing-wallet-database"
-  },
-  {
-    "title": "Rugpull Pattern Detector",
-    "body": "Identify rugpull signals — LP removal, ownership renounce reversals, and concentrated exits.",
-    "tag": "Beta",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-16",
-    "slug": "rugpull-pattern-detector"
   },
   {
     "title": "Smart Contract Interaction Risk",

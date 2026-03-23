@@ -1,9 +1,0 @@
-{
-  "title": "Reputation Score Aggregator",
-  "description": "Aggregate ENS, attestations, NFT badges, and activity into a unified reputation score.",
-  "category": "identity",
-  "url": "https://goldrush.dev",
-  "tag": "Beta",
-  "date-added": "2026-03-16",
-  "slug": "reputation-score-aggregator"
-}

@@ -1,9 +1,0 @@
-{
-  "title": "Rarity Analyzer",
-  "description": "Compute rarity scores and rank NFTs within a collection by trait frequency.",
-  "category": "nft",
-  "url": "https://goldrush.dev",
-  "tag": "Beta",
-  "date-added": "2026-03-12",
-  "slug": "rarity-analyzer"
-}

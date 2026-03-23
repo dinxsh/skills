@@ -72,14 +72,6 @@
     "slug": "wallet-age-summary"
   },
   {
-    "title": "Wallet Attestations",
-    "body": "Surface onchain attestations and reputation signals for any wallet address.",
-    "tag": "Beta",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-12",
-    "slug": "wallet-attestations"
-  },
-  {
     "title": "Wallet Balances Skill",
     "body": "Fetch token balances and portfolio state for any wallet across 100+ chains.",
     "tag": "Free Tier",

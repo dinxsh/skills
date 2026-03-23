@@ -77,14 +77,6 @@
           "slug": "wallet-age-summary"
         },
         {
-          "title": "Wallet Attestations",
-          "body": "Surface onchain attestations and reputation signals for any wallet address.",
-          "tag": "Beta",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-12",
-          "slug": "wallet-attestations"
-        },
-        {
           "title": "Wallet Balances Skill",
           "body": "Fetch token balances and portfolio state for any wallet across 100+ chains.",
           "tag": "Free Tier",
@@ -99,84 +91,12 @@
       "category": "defi",
       "content": [
         {
-          "title": "Cross-Chain Liquidity Map",
-          "body": "Visualise liquidity distribution across pools and chains for any token pair.",
-          "tag": "API Key Required",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-16",
-          "slug": "cross-chain-liquidity-map"
-        },
-        {
-          "title": "DeFi Bad Debt Monitor",
-          "body": "Identify and track under-collateralised positions and bad debt accumulation in lending protocols.",
-          "tag": "Beta",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-16",
-          "slug": "defi-bad-debt-monitor"
-        },
-        {
-          "title": "DeFi Position Tracker",
-          "body": "Track LP positions, lending supply, borrow exposure, and yield across DeFi protocols.",
-          "tag": "API Key Required",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-12",
-          "slug": "defi-position-tracker"
-        },
-        {
           "title": "DEX Trade History",
           "body": "Pull all DEX swap events and volume for any wallet address or token pair.",
           "tag": "Free Tier",
           "url": "https://goldrush.dev",
           "date-added": "2026-03-12",
           "slug": "dex-trade-history"
-        },
-        {
-          "title": "Liquidity Pool Monitor",
-          "body": "Monitor pool reserves, APY, and impermanent loss across major AMMs in real time.",
-          "tag": "API Key Required",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-12",
-          "slug": "liquidity-pool-monitor"
-        },
-        {
-          "title": "Protocol Revenue Feed",
-          "body": "Real-time and historical fee revenue data for leading DeFi protocols onchain.",
-          "tag": "Beta",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-12",
-          "slug": "protocol-revenue-feed"
-        },
-        {
-          "title": "RWA Real Estate Portfolio",
-          "body": "Aggregate and value tokenized real estate assets held in any wallet across chains.",
-          "tag": "Beta",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-16",
-          "slug": "rwa-real-estate-portfolio"
-        },
-        {
-          "title": "RWA Tokenized Treasury Tracker",
-          "body": "Monitor tokenized T-bill and treasury product flows, yields, and on-chain supply.",
-          "tag": "Beta",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-16",
-          "slug": "rwa-tokenized-treasury-tracker"
-        },
-        {
-          "title": "Stablecoin Dominance Tracker",
-          "body": "Track stablecoin supply share, peg deviation, and flow dominance across chains.",
-          "tag": "API Key Required",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-16",
-          "slug": "stablecoin-dominance-tracker"
-        },
-        {
-          "title": "Yield Dashboard",
-          "body": "Compare DeFi yields across lending and liquidity protocols onchain.",
-          "tag": "Open Source",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-12",
-          "slug": "yield-dashboard"
         }
       ]
     },
@@ -185,36 +105,12 @@
       "category": "nft",
       "content": [
         {
-          "title": "Collection Floor Monitor",
-          "body": "Track NFT floor prices, volume, and sales activity for any collection in real time.",
-          "tag": "API Key Required",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-12",
-          "slug": "collection-floor-monitor"
-        },
-        {
-          "title": "NFT Collection Browser",
-          "body": "Browse all indexed NFT collections on a chain with floor price, volume, and holder stats. Build NFT marketplaces, discovery pages, and trending collection feeds.",
-          "tag": "API Key Required",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-16",
-          "slug": "nft-collection-browser"
-        },
-        {
           "title": "NFT Gallery Viewer",
           "body": "Drop-in React component that renders a full NFT gallery for any wallet using GoldRush Kit's NFTWalletCollectionView — zero custom UI needed.",
           "tag": "Open Source",
           "url": "https://goldrush.dev",
           "date-added": "2026-03-16",
           "slug": "nft-gallery-viewer"
-        },
-        {
-          "title": "NFT Liquidity Scorer",
-          "body": "Score NFT collections and individual tokens by their trading liquidity and velocity.",
-          "tag": "Beta",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-16",
-          "slug": "nft-liquidity-scorer"
         },
         {
           "title": "NFT Metadata Fetcher",
@@ -231,14 +127,6 @@
           "url": "https://goldrush.dev",
           "date-added": "2026-03-12",
           "slug": "nft-portfolio-valuation"
-        },
-        {
-          "title": "NFT Royalty Tracking",
-          "body": "Track NFT royalty payments, enforced vs bypassed transfers, and creator revenue over time.",
-          "tag": "API Key Required",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-16",
-          "slug": "nft-royalty-tracking"
         },
         {
           "title": "NFT Token Sale History",
@@ -263,22 +151,6 @@
           "url": "https://goldrush.dev",
           "date-added": "2026-03-12",
           "slug": "nft-transfer-tracker"
-        },
-        {
-          "title": "NFT Wash Trading Detector",
-          "body": "Detect wash trading patterns in NFT collections via circular transfer and self-dealing analysis.",
-          "tag": "Beta",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-16",
-          "slug": "nft-wash-trading-detector"
-        },
-        {
-          "title": "Rarity Analyzer",
-          "body": "Compute rarity scores and rank NFTs within a collection by trait frequency.",
-          "tag": "Beta",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-12",
-          "slug": "rarity-analyzer"
         }
       ]
     },
@@ -287,44 +159,12 @@
       "category": "analytics",
       "content": [
         {
-          "title": "Berachain Intelligence",
-          "body": "Analyse Berachain PoL validators, BGT emissions, and liquidity incentive flows.",
-          "tag": "Beta",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-16",
-          "slug": "berachain-intelligence"
-        },
-        {
           "title": "Block Explorer Toolkit",
           "body": "Fetch block details, all transactions in a block, and decode individual transactions — all the building blocks for a custom block explorer.",
           "tag": "Free Tier",
           "url": "https://goldrush.dev",
           "date-added": "2026-03-16",
           "slug": "block-explorer-toolkit"
-        },
-        {
-          "title": "Carbon Credit and Regen Tracker",
-          "body": "Track tokenized carbon credits, retirements, and regenerative finance flows onchain.",
-          "tag": "Beta",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-16",
-          "slug": "carbon-credit-regen-tracker"
-        },
-        {
-          "title": "Chain Activity Dashboard",
-          "body": "Compare transactions, active addresses, and contract deployments across chains.",
-          "tag": "Beta",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-12",
-          "slug": "chain-activity-dashboard"
-        },
-        {
-          "title": "Chain Health Scorecard",
-          "body": "Score any EVM chain on activity, growth, and decentralisation metrics in real time.",
-          "tag": "Beta",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-16",
-          "slug": "chain-health-scorecard"
         },
         {
           "title": "Contract Event Log Monitor",
@@ -335,52 +175,12 @@
           "slug": "contract-event-log-monitor"
         },
         {
-          "title": "Cosmos Ecosystem (Unified)",
-          "body": "Unified analytics across IBC-connected Cosmos chains — balances, staking, and governance.",
-          "tag": "Beta",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-16",
-          "slug": "cosmos-ecosystem"
-        },
-        {
-          "title": "Cross-Border Payment Analytics",
-          "body": "Analyse stablecoin and crypto cross-border payment corridors, volume, and velocity.",
-          "tag": "API Key Required",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-16",
-          "slug": "cross-border-payment-analytics"
-        },
-        {
           "title": "Cross-Contract Event Scanner",
           "body": "Scan ALL contracts on a chain for a specific event by topic hash — e.g. find every ERC-20 Transfer or every Uniswap Swap across the entire chain.",
           "tag": "API Key Required",
           "url": "https://goldrush.dev",
           "date-added": "2026-03-16",
           "slug": "cross-contract-event-scanner"
-        },
-        {
-          "title": "DAO Voter Intelligence",
-          "body": "Analyse governance participation, delegate power, and voting patterns for any DAO.",
-          "tag": "API Key Required",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-16",
-          "slug": "dao-voter-intelligence"
-        },
-        {
-          "title": "Developer Wallet Classifier",
-          "body": "Classify wallets as developer, trader, bot, or retail based on onchain interaction patterns.",
-          "tag": "Beta",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-16",
-          "slug": "developer-wallet-classifier"
-        },
-        {
-          "title": "Ethereum Validator Intelligence",
-          "body": "Track ETH staking validators, rewards, slashing events, and withdrawal activity.",
-          "tag": "Beta",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-16",
-          "slug": "ethereum-validator-intelligence"
         },
         {
           "title": "Event Log Decoder",
@@ -391,28 +191,12 @@
           "slug": "event-log-decoder"
         },
         {
-          "title": "Fund Flow Intelligence",
-          "body": "Trace fund flows, hops, and wallet clusters to map capital movement onchain.",
-          "tag": "API Key Required",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-16",
-          "slug": "fund-flow-intelligence"
-        },
-        {
           "title": "Gas Analytics",
           "body": "Real-time and historical gas price tracking for any EVM-compatible chain.",
           "tag": "Free Tier",
           "url": "https://goldrush.dev",
           "date-added": "2026-03-12",
           "slug": "gas-analytics"
-        },
-        {
-          "title": "Hyperliquid Intelligence",
-          "body": "Deep onchain analytics for Hyperliquid — perp traders, vault flows, and market maker activity.",
-          "tag": "Beta",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-16",
-          "slug": "hyperliquid-intelligence"
         },
         {
           "title": "Institutional Wallet Tracker",
@@ -423,30 +207,6 @@
           "slug": "institutional-wallet-tracker"
         },
         {
-          "title": "Macro Onchain Sentiment",
-          "body": "Aggregate stablecoin flows, whale movements, and DEX volume as a macro sentiment index.",
-          "tag": "Beta",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-16",
-          "slug": "macro-onchain-sentiment"
-        },
-        {
-          "title": "NEAR Protocol Intelligence",
-          "body": "Analytics for NEAR accounts — contract calls, FT/NFT holdings, and staking rewards.",
-          "tag": "Beta",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-16",
-          "slug": "near-protocol-intelligence"
-        },
-        {
-          "title": "Onchain Credit Score",
-          "body": "Generate a credit-risk score for any wallet based on transaction history, assets, and repayment behaviour.",
-          "tag": "Beta",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-16",
-          "slug": "onchain-credit-score"
-        },
-        {
           "title": "Onchain Data Query",
           "body": "Query indexed blockchain data across 100+ chains with a single unified API.",
           "tag": "Free Tier",
@@ -455,84 +215,12 @@
           "slug": "onchain-data-query"
         },
         {
-          "title": "Polkadot Parachain Intelligence",
-          "body": "Analytics across Polkadot parachains — XCM transfers, staking, and cross-chain balances.",
-          "tag": "Beta",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-16",
-          "slug": "polkadot-parachain-intelligence"
-        },
-        {
-          "title": "Protocol Acquisition Intelligence",
-          "body": "Detect early signals of protocol acquisitions via treasury movements, governance changes, and token flows.",
-          "tag": "Beta",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-16",
-          "slug": "protocol-acquisition-intelligence"
-        },
-        {
-          "title": "Scroll and Linea Intelligence",
-          "body": "Unified analytics for Scroll and Linea zkEVM — user growth, bridge flows, and DeFi activity.",
-          "tag": "Beta",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-16",
-          "slug": "scroll-and-linea-intelligence"
-        },
-        {
-          "title": "Solana Program Analytics",
-          "body": "Analyse Solana program interactions, user growth, and transaction volume.",
-          "tag": "Beta",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-16",
-          "slug": "solana-program-analytics"
-        },
-        {
-          "title": "StarkNet Intelligence",
-          "body": "Analytics for StarkNet wallets — Cairo contract interactions, token balances, and gas usage.",
-          "tag": "Beta",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-16",
-          "slug": "starknet-intelligence"
-        },
-        {
-          "title": "Sui and Aptos Intelligence",
-          "body": "Unified analytics for Sui and Aptos Move-based chains — objects, coins, and transactions.",
-          "tag": "Beta",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-16",
-          "slug": "sui-and-aptos-intelligence"
-        },
-        {
           "title": "Token Price History",
           "body": "Fetch historical spot prices and OHLCV data for any ERC-20 token onchain.",
           "tag": "API Key Required",
           "url": "https://goldrush.dev",
           "date-added": "2026-03-12",
           "slug": "token-price-history"
-        },
-        {
-          "title": "TON Blockchain Intelligence",
-          "body": "Analytics for The Open Network — Jetton transfers, NFT activity, and wallet analytics.",
-          "tag": "Beta",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-16",
-          "slug": "ton-blockchain-intelligence"
-        },
-        {
-          "title": "Treasury Management Intelligence",
-          "body": "Analyse DAO or protocol treasury composition, diversification, and spending velocity.",
-          "tag": "API Key Required",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-16",
-          "slug": "treasury-management-intelligence"
-        },
-        {
-          "title": "Tron Ecosystem Monitor",
-          "body": "Monitor USDT flows, DeFi activity, and wallet behaviour on the Tron network.",
-          "tag": "Beta",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-16",
-          "slug": "tron-ecosystem-monitor"
         },
         {
           "title": "Wallet Activity Heatmap",
@@ -549,28 +237,12 @@
       "category": "agents",
       "content": [
         {
-          "title": "Agent Alpha Signal Extractor",
-          "body": "Extract alpha signals from whale wallets and smart-money flows for AI trading agents.",
-          "tag": "Beta",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-16",
-          "slug": "agent-alpha-signal-extractor"
-        },
-        {
           "title": "Agent Counterparty Verification",
           "body": "Verify counterparty wallets before agent-initiated transactions using risk signals.",
           "tag": "Free Tier",
           "url": "https://goldrush.dev",
           "date-added": "2026-03-16",
           "slug": "agent-counterparty-verification"
-        },
-        {
-          "title": "Agent Cross-Chain Coordinator",
-          "body": "Coordinate AI agent actions across multiple chains with unified state awareness.",
-          "tag": "Beta",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-16",
-          "slug": "agent-cross-chain-coordinator"
         },
         {
           "title": "Agent Data Budget Manager",
@@ -581,14 +253,6 @@
           "slug": "agent-data-budget-manager"
         },
         {
-          "title": "Agent Discovery Protocol",
-          "body": "Discover and verify registered AI agents onchain via their wallet signatures and activity.",
-          "tag": "Beta",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-16",
-          "slug": "agent-discovery-protocol"
-        },
-        {
           "title": "Agent Fleet Monitor",
           "body": "Monitor a fleet of AI agent wallets for health, balances, and activity in one view.",
           "tag": "Beta",
@@ -597,68 +261,12 @@
           "slug": "agent-fleet-monitor"
         },
         {
-          "title": "Agent Market Surveillance",
-          "body": "Continuous market surveillance for AI agents — price anomalies, volume spikes, and wash trading.",
-          "tag": "Beta",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-16",
-          "slug": "agent-market-surveillance"
-        },
-        {
-          "title": "Agent Onchain News Aggregator",
-          "body": "Aggregate significant onchain events as structured news for AI agent context.",
-          "tag": "Beta",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-16",
-          "slug": "agent-onchain-news-aggregator"
-        },
-        {
-          "title": "Agent Payment Optimizer",
-          "body": "Optimise agent payment routing by comparing gas, fees, and settlement times across chains.",
-          "tag": "Beta",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-16",
-          "slug": "agent-payment-optimizer"
-        },
-        {
-          "title": "Agent Reputation Builder",
-          "body": "Build and verify onchain reputation scores for AI agents based on transaction history.",
-          "tag": "Beta",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-16",
-          "slug": "agent-reputation-builder"
-        },
-        {
-          "title": "Agent Risk Circuit Breaker",
-          "body": "Automatically pause agent transactions when onchain risk thresholds are breached.",
-          "tag": "Beta",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-16",
-          "slug": "agent-risk-circuit-breaker"
-        },
-        {
           "title": "Agent Wallet Skill",
           "body": "Give AI agents the ability to read wallet state, balances, and transaction data.",
           "tag": "Open Source",
           "url": "https://goldrush.dev",
           "date-added": "2026-03-12",
           "slug": "agent-wallet-skill"
-        },
-        {
-          "title": "Agent Yield Harvester",
-          "body": "AI agent that monitors yield opportunities and auto-harvests rewards across DeFi protocols.",
-          "tag": "Beta",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-16",
-          "slug": "agent-yield-harvester"
-        },
-        {
-          "title": "Autonomous DeFi Agent",
-          "body": "Autonomous agent that reads and reacts to DeFi state changes via GoldRush webhooks.",
-          "tag": "Beta",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-12",
-          "slug": "autonomous-defi-agent"
         },
         {
           "title": "Claude GoldRush Skill",
@@ -675,22 +283,6 @@
           "url": "https://goldrush.dev",
           "date-added": "2026-03-12",
           "slug": "goldrush-mcp-server"
-        },
-        {
-          "title": "Onchain Memory Store",
-          "body": "Persistent onchain memory layer for AI agents backed by wallet and contract state.",
-          "tag": "Beta",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-12",
-          "slug": "onchain-memory-store"
-        },
-        {
-          "title": "Onchain Research Agent",
-          "body": "AI agent for deep onchain research — traces wallets, maps protocols, and surfaces insights.",
-          "tag": "Beta",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-12",
-          "slug": "onchain-research-agent"
         },
         {
           "title": "Real-time Wallet Stream",
@@ -801,22 +393,6 @@
           "slug": "address-activity-scanner"
         },
         {
-          "title": "Bridge Transaction Monitor",
-          "body": "Track cross-chain bridge activity, finality, and token transfers in real time.",
-          "tag": "Beta",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-12",
-          "slug": "bridge-transaction-monitor"
-        },
-        {
-          "title": "Chain Comparison Tool",
-          "body": "Compare chain metrics — TPS, TVL, active addresses — side by side across networks.",
-          "tag": "Beta",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-12",
-          "slug": "chain-comparison-tool"
-        },
-        {
           "title": "Cross-chain Address Lookup",
           "body": "Resolve and look up the same address across all supported EVM chains at once.",
           "tag": "Free Tier",
@@ -887,22 +463,6 @@
           "slug": "token-approval-scanner"
         },
         {
-          "title": "Token Exchange Flow Tracker",
-          "body": "Track net token inflows and outflows to centralised exchange deposit addresses.",
-          "tag": "API Key Required",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-16",
-          "slug": "token-exchange-flow-tracker"
-        },
-        {
-          "title": "Token Fee / Revenue Correlation",
-          "body": "Correlate token price movements with protocol fee generation and revenue data onchain.",
-          "tag": "Beta",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-16",
-          "slug": "token-fee-revenue-correlation"
-        },
-        {
           "title": "Token Holder List",
           "body": "Retrieve a ranked list of holders for any token contract address across chains.",
           "tag": "API Key Required",
@@ -917,14 +477,6 @@
           "url": "https://goldrush.dev",
           "date-added": "2026-03-16",
           "slug": "token-holders-snapshot"
-        },
-        {
-          "title": "Token Memecoin Risk Scorer",
-          "body": "Score memecoin tokens for launch risk — bundled buys, sniper wallets, and dev wallet size.",
-          "tag": "Beta",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-16",
-          "slug": "token-memecoin-risk-scorer"
         },
         {
           "title": "Token Metadata API",
@@ -997,44 +549,12 @@
           "slug": "onchain-activity-verifier"
         },
         {
-          "title": "Onchain Social Graph",
-          "body": "Map wallet interaction graphs and identify clusters, influencers, and community structures.",
-          "tag": "Beta",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-16",
-          "slug": "onchain-social-graph"
-        },
-        {
           "title": "Proof of Onchain Activity",
           "body": "Verify wallet activity depth and onchain history as a proof of genuine use.",
           "tag": "Beta",
           "url": "https://goldrush.dev",
           "date-added": "2026-03-12",
           "slug": "proof-of-onchain-activity"
-        },
-        {
-          "title": "Reputation Score Aggregator",
-          "body": "Aggregate ENS, attestations, NFT badges, and activity into a unified reputation score.",
-          "tag": "Beta",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-16",
-          "slug": "reputation-score-aggregator"
-        },
-        {
-          "title": "Sybil Resistance Scorer",
-          "body": "Score wallet uniqueness and detect Sybil patterns via onchain behavioural signals.",
-          "tag": "Beta",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-16",
-          "slug": "sybil-resistance-scorer"
-        },
-        {
-          "title": "Wallet Identity Graph",
-          "body": "Map onchain identity signals — ENS, attestations, NFTs — for any wallet address.",
-          "tag": "Beta",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-12",
-          "slug": "wallet-identity-graph"
         }
       ]
     },
@@ -1051,84 +571,12 @@
           "slug": "approval-auditor"
         },
         {
-          "title": "Bridge Security Monitor",
-          "body": "Monitor bridge contracts for unusual outflows, signature reuse, and validator anomalies.",
-          "tag": "Beta",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-16",
-          "slug": "bridge-security-monitor"
-        },
-        {
-          "title": "Compliance Transaction Screening",
-          "body": "Screen transactions and wallets for OFAC, sanctions, and AML compliance requirements.",
-          "tag": "API Key Required",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-16",
-          "slug": "compliance-transaction-screening"
-        },
-        {
           "title": "Contract Interaction History",
           "body": "Full history of contract interactions for security forensics and incident response.",
           "tag": "API Key Required",
           "url": "https://goldrush.dev",
           "date-added": "2026-03-12",
           "slug": "contract-interaction-history"
-        },
-        {
-          "title": "Exploit Early Warning System",
-          "body": "Real-time detection of exploit patterns — large outflows, drain sequences, and abnormal contract calls.",
-          "tag": "Beta",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-16",
-          "slug": "exploit-early-warning-system"
-        },
-        {
-          "title": "MEV Exposure Analyzer",
-          "body": "Quantify a wallet's exposure to MEV — value extracted via sandwich attacks and front-running.",
-          "tag": "Beta",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-16",
-          "slug": "mev-exposure-analyzer"
-        },
-        {
-          "title": "MEV Monitor",
-          "body": "Detect sandwich attacks, front-running, and MEV bot activity in real time.",
-          "tag": "Beta",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-12",
-          "slug": "mev-monitor"
-        },
-        {
-          "title": "Oracle Manipulation Detector",
-          "body": "Detect oracle price manipulation attempts via flash-loan patterns and block-level price deviations.",
-          "tag": "Beta",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-16",
-          "slug": "oracle-manipulation-detector"
-        },
-        {
-          "title": "Phishing Address Checker",
-          "body": "Check addresses against known phishing, scam, and exploit databases onchain.",
-          "tag": "Free Tier",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-12",
-          "slug": "phishing-address-checker"
-        },
-        {
-          "title": "Phishing Wallet Database",
-          "body": "Query a continuously updated onchain database of phishing and scam wallets.",
-          "tag": "Free Tier",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-16",
-          "slug": "phishing-wallet-database"
-        },
-        {
-          "title": "Rugpull Pattern Detector",
-          "body": "Identify rugpull signals — LP removal, ownership renounce reversals, and concentrated exits.",
-          "tag": "Beta",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-16",
-          "slug": "rugpull-pattern-detector"
         },
         {
           "title": "Smart Contract Interaction Risk",

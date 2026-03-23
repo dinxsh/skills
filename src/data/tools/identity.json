@@ -32,43 +32,11 @@
     "slug": "onchain-activity-verifier"
   },
   {
-    "title": "Onchain Social Graph",
-    "body": "Map wallet interaction graphs and identify clusters, influencers, and community structures.",
-    "tag": "Beta",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-16",
-    "slug": "onchain-social-graph"
-  },
-  {
     "title": "Proof of Onchain Activity",
     "body": "Verify wallet activity depth and onchain history as a proof of genuine use.",
     "tag": "Beta",
     "url": "https://goldrush.dev",
     "date-added": "2026-03-12",
     "slug": "proof-of-onchain-activity"
-  },
-  {
-    "title": "Reputation Score Aggregator",
-    "body": "Aggregate ENS, attestations, NFT badges, and activity into a unified reputation score.",
-    "tag": "Beta",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-16",
-    "slug": "reputation-score-aggregator"
-  },
-  {
-    "title": "Sybil Resistance Scorer",
-    "body": "Score wallet uniqueness and detect Sybil patterns via onchain behavioural signals.",
-    "tag": "Beta",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-16",
-    "slug": "sybil-resistance-scorer"
-  },
-  {
-    "title": "Wallet Identity Graph",
-    "body": "Map onchain identity signals — ENS, attestations, NFTs — for any wallet address.",
-    "tag": "Beta",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-12",
-    "slug": "wallet-identity-graph"
   }
 ]

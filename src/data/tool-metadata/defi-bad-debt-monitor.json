@@ -1,9 +1,0 @@
-{
-  "title": "DeFi Bad Debt Monitor",
-  "description": "Identify and track under-collateralised positions and bad debt accumulation in lending protocols.",
-  "category": "defi",
-  "url": "https://goldrush.dev",
-  "tag": "Beta",
-  "date-added": "2026-03-16",
-  "slug": "defi-bad-debt-monitor"
-}

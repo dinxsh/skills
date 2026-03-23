@@ -1,9 +1,0 @@
-{
-  "title": "Bridge Transaction Monitor",
-  "description": "Track cross-chain bridge activity, finality, and token transfers in real time.",
-  "category": "crosschain",
-  "url": "https://goldrush.dev",
-  "tag": "Beta",
-  "date-added": "2026-03-12",
-  "slug": "bridge-transaction-monitor"
-}

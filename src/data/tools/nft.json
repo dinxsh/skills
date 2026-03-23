@@ -1,35 +1,11 @@
 [
   {
-    "title": "Collection Floor Monitor",
-    "body": "Track NFT floor prices, volume, and sales activity for any collection in real time.",
-    "tag": "API Key Required",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-12",
-    "slug": "collection-floor-monitor"
-  },
-  {
-    "title": "NFT Collection Browser",
-    "body": "Browse all indexed NFT collections on a chain with floor price, volume, and holder stats. Build NFT marketplaces, discovery pages, and trending collection feeds.",
-    "tag": "API Key Required",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-16",
-    "slug": "nft-collection-browser"
-  },
-  {
     "title": "NFT Gallery Viewer",
     "body": "Drop-in React component that renders a full NFT gallery for any wallet using GoldRush Kit's NFTWalletCollectionView — zero custom UI needed.",
     "tag": "Open Source",
     "url": "https://goldrush.dev",
     "date-added": "2026-03-16",
     "slug": "nft-gallery-viewer"
-  },
-  {
-    "title": "NFT Liquidity Scorer",
-    "body": "Score NFT collections and individual tokens by their trading liquidity and velocity.",
-    "tag": "Beta",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-16",
-    "slug": "nft-liquidity-scorer"
   },
   {
     "title": "NFT Metadata Fetcher",
@@ -46,14 +22,6 @@
     "url": "https://goldrush.dev",
     "date-added": "2026-03-12",
     "slug": "nft-portfolio-valuation"
-  },
-  {
-    "title": "NFT Royalty Tracking",
-    "body": "Track NFT royalty payments, enforced vs bypassed transfers, and creator revenue over time.",
-    "tag": "API Key Required",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-16",
-    "slug": "nft-royalty-tracking"
   },
   {
     "title": "NFT Token Sale History",
@@ -78,21 +46,5 @@
     "url": "https://goldrush.dev",
     "date-added": "2026-03-12",
     "slug": "nft-transfer-tracker"
-  },
-  {
-    "title": "NFT Wash Trading Detector",
-    "body": "Detect wash trading patterns in NFT collections via circular transfer and self-dealing analysis.",
-    "tag": "Beta",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-16",
-    "slug": "nft-wash-trading-detector"
-  },
-  {
-    "title": "Rarity Analyzer",
-    "body": "Compute rarity scores and rank NFTs within a collection by trait frequency.",
-    "tag": "Beta",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-12",
-    "slug": "rarity-analyzer"
   }
 ]

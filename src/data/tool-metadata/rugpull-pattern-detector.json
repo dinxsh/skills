@@ -1,9 +1,0 @@
-{
-  "title": "Rugpull Pattern Detector",
-  "description": "Identify rugpull signals — LP removal, ownership renounce reversals, and concentrated exits.",
-  "category": "security",
-  "url": "https://goldrush.dev",
-  "tag": "Beta",
-  "date-added": "2026-03-16",
-  "slug": "rugpull-pattern-detector"
-}

@@ -1,9 +1,0 @@
-{
-  "title": "MEV Exposure Analyzer",
-  "description": "Quantify a wallet's exposure to MEV — value extracted via sandwich attacks and front-running.",
-  "category": "security",
-  "url": "https://goldrush.dev",
-  "tag": "Beta",
-  "date-added": "2026-03-16",
-  "slug": "mev-exposure-analyzer"
-}

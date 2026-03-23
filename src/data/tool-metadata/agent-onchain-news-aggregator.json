@@ -1,9 +1,0 @@
-{
-  "title": "Agent Onchain News Aggregator",
-  "description": "Aggregate significant onchain events as structured news for AI agent context.",
-  "category": "agents",
-  "url": "https://goldrush.dev",
-  "tag": "Beta",
-  "date-added": "2026-03-16",
-  "slug": "agent-onchain-news-aggregator"
-}

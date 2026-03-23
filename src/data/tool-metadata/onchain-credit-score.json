@@ -1,9 +1,0 @@
-{
-  "title": "Onchain Credit Score",
-  "description": "Generate a credit-risk score for any wallet based on transaction history, assets, and repayment behaviour.",
-  "category": "analytics",
-  "url": "https://goldrush.dev",
-  "tag": "Beta",
-  "date-added": "2026-03-16",
-  "slug": "onchain-credit-score"
-}

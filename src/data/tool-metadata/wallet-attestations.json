@@ -1,9 +1,0 @@
-{
-  "title": "Wallet Attestations",
-  "description": "Surface onchain attestations and reputation signals for any wallet address.",
-  "category": "wallet",
-  "url": "https://goldrush.dev",
-  "tag": "Beta",
-  "date-added": "2026-03-12",
-  "slug": "wallet-attestations"
-}

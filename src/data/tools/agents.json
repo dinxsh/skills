@@ -1,27 +1,11 @@
 [
   {
-    "title": "Agent Alpha Signal Extractor",
-    "body": "Extract alpha signals from whale wallets and smart-money flows for AI trading agents.",
-    "tag": "Beta",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-16",
-    "slug": "agent-alpha-signal-extractor"
-  },
-  {
     "title": "Agent Counterparty Verification",
     "body": "Verify counterparty wallets before agent-initiated transactions using risk signals.",
     "tag": "Free Tier",
     "url": "https://goldrush.dev",
     "date-added": "2026-03-16",
     "slug": "agent-counterparty-verification"
-  },
-  {
-    "title": "Agent Cross-Chain Coordinator",
-    "body": "Coordinate AI agent actions across multiple chains with unified state awareness.",
-    "tag": "Beta",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-16",
-    "slug": "agent-cross-chain-coordinator"
   },
   {
     "title": "Agent Data Budget Manager",
@@ -32,14 +16,6 @@
     "slug": "agent-data-budget-manager"
   },
   {
-    "title": "Agent Discovery Protocol",
-    "body": "Discover and verify registered AI agents onchain via their wallet signatures and activity.",
-    "tag": "Beta",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-16",
-    "slug": "agent-discovery-protocol"
-  },
-  {
     "title": "Agent Fleet Monitor",
     "body": "Monitor a fleet of AI agent wallets for health, balances, and activity in one view.",
     "tag": "Beta",
@@ -48,68 +24,12 @@
     "slug": "agent-fleet-monitor"
   },
   {
-    "title": "Agent Market Surveillance",
-    "body": "Continuous market surveillance for AI agents — price anomalies, volume spikes, and wash trading.",
-    "tag": "Beta",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-16",
-    "slug": "agent-market-surveillance"
-  },
-  {
-    "title": "Agent Onchain News Aggregator",
-    "body": "Aggregate significant onchain events as structured news for AI agent context.",
-    "tag": "Beta",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-16",
-    "slug": "agent-onchain-news-aggregator"
-  },
-  {
-    "title": "Agent Payment Optimizer",
-    "body": "Optimise agent payment routing by comparing gas, fees, and settlement times across chains.",
-    "tag": "Beta",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-16",
-    "slug": "agent-payment-optimizer"
-  },
-  {
-    "title": "Agent Reputation Builder",
-    "body": "Build and verify onchain reputation scores for AI agents based on transaction history.",
-    "tag": "Beta",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-16",
-    "slug": "agent-reputation-builder"
-  },
-  {
-    "title": "Agent Risk Circuit Breaker",
-    "body": "Automatically pause agent transactions when onchain risk thresholds are breached.",
-    "tag": "Beta",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-16",
-    "slug": "agent-risk-circuit-breaker"
-  },
-  {
     "title": "Agent Wallet Skill",
     "body": "Give AI agents the ability to read wallet state, balances, and transaction data.",
     "tag": "Open Source",
     "url": "https://goldrush.dev",
     "date-added": "2026-03-12",
     "slug": "agent-wallet-skill"
-  },
-  {
-    "title": "Agent Yield Harvester",
-    "body": "AI agent that monitors yield opportunities and auto-harvests rewards across DeFi protocols.",
-    "tag": "Beta",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-16",
-    "slug": "agent-yield-harvester"
-  },
-  {
-    "title": "Autonomous DeFi Agent",
-    "body": "Autonomous agent that reads and reacts to DeFi state changes via GoldRush webhooks.",
-    "tag": "Beta",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-12",
-    "slug": "autonomous-defi-agent"
   },
   {
     "title": "Claude GoldRush Skill",
@@ -126,22 +46,6 @@
     "url": "https://goldrush.dev",
     "date-added": "2026-03-12",
     "slug": "goldrush-mcp-server"
-  },
-  {
-    "title": "Onchain Memory Store",
-    "body": "Persistent onchain memory layer for AI agents backed by wallet and contract state.",
-    "tag": "Beta",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-12",
-    "slug": "onchain-memory-store"
-  },
-  {
-    "title": "Onchain Research Agent",
-    "body": "AI agent for deep onchain research — traces wallets, maps protocols, and surfaces insights.",
-    "tag": "Beta",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-12",
-    "slug": "onchain-research-agent"
   },
   {
     "title": "Real-time Wallet Stream",
