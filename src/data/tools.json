@@ -123,6 +123,30 @@
           "url": "https://goldrush.dev/docs/streaming/",
           "date-added": "2026-03-23",
           "slug": "wallet-pnl-tracker"
+        },
+        {
+          "title": "Crypto Tax Exporter",
+          "body": "Export a complete CSV of all ERC-20 transfers and transactions with USD cost basis for tax reporting — Koinly/CoinTracker compatible.",
+          "tag": "API Key Required",
+          "url": "https://goldrush.dev",
+          "date-added": "2026-03-23",
+          "slug": "crypto-tax-exporter"
+        },
+        {
+          "title": "Multi-Wallet Portfolio Aggregator",
+          "body": "Enter multiple wallet addresses and see combined token balances, total net worth, and unified transaction feed — your whole onchain life in one view.",
+          "tag": "API Key Required",
+          "url": "https://goldrush.dev",
+          "date-added": "2026-03-23",
+          "slug": "multi-wallet-aggregator"
+        },
+        {
+          "title": "Portfolio Performance Report",
+          "body": "30-day rolling P&L report with per-token open/high/low/close — build fund-grade performance dashboards for any wallet on foundational chains.",
+          "tag": "API Key Required",
+          "url": "https://goldrush.dev",
+          "date-added": "2026-03-23",
+          "slug": "portfolio-performance-report"
         }
       ]
     },
@@ -145,6 +169,30 @@
           "url": "https://goldrush.dev/docs/streaming/",
           "date-added": "2026-03-23",
           "slug": "live-dex-pair-stream"
+        },
+        {
+          "title": "Token Launch Screener",
+          "body": "Real-time screener for new DEX token launches — filter by minimum liquidity, chain, and pair token. Build a Dexscreener-style new pairs feed.",
+          "tag": "API Key Required",
+          "url": "https://goldrush.dev",
+          "date-added": "2026-03-23",
+          "slug": "token-launch-screener"
+        },
+        {
+          "title": "DeFi Wallet Dashboard",
+          "body": "Complete DeFi overview for any wallet — current token positions with USD values, 30-day portfolio performance curve, and recent swap activity in one dashboard.",
+          "tag": "API Key Required",
+          "url": "https://goldrush.dev",
+          "date-added": "2026-03-23",
+          "slug": "defi-wallet-dashboard"
+        },
+        {
+          "title": "Base Memecoin Screener",
+          "body": "Live feed of new token launches on Base — subscribes to new Aerodrome/Uniswap pairs, shows real-time price candles and momentum for meme coin hunters.",
+          "tag": "API Key Required",
+          "url": "https://goldrush.dev",
+          "date-added": "2026-03-23",
+          "slug": "base-memecoin-screener"
         }
       ]
     },
@@ -207,6 +255,38 @@
           "url": "https://goldrush.dev/docs/api/nft/get-nfts-for-address/",
           "date-added": "2026-03-23",
           "slug": "ronin-nft-inventory"
+        },
+        {
+          "title": "NFT-Gated App Boilerplate",
+          "body": "Complete Next.js boilerplate with wallet connect, SIWE authentication, and NFT ownership gating — deploy a token-gated product in under an hour.",
+          "tag": "Free Tier",
+          "url": "https://goldrush.dev",
+          "date-added": "2026-03-23",
+          "slug": "nft-gated-app"
+        },
+        {
+          "title": "Multi-Chain NFT Gallery",
+          "body": "Discover and display every NFT a wallet holds across all chains in one gallery — scan with getAddressActivity then fetch NFTs per active chain.",
+          "tag": "API Key Required",
+          "url": "https://goldrush.dev",
+          "date-added": "2026-03-23",
+          "slug": "multichain-nft-gallery"
+        },
+        {
+          "title": "NFT Transfer Monitor",
+          "body": "Real-time feed of NFT mints, sales, and transfers for any collection — subscribe to ERC-721 Transfer events via the wallet activity stream.",
+          "tag": "API Key Required",
+          "url": "https://goldrush.dev",
+          "date-added": "2026-03-23",
+          "slug": "nft-transfer-monitor"
+        },
+        {
+          "title": "NFT Collection Analytics",
+          "body": "Holder count, top holders, transfer velocity, and ownership concentration for any ERC-721 collection — build analytics dashboards without a marketplace API.",
+          "tag": "API Key Required",
+          "url": "https://goldrush.dev",
+          "date-added": "2026-03-23",
+          "slug": "nft-collection-analytics"
         }
       ]
     },
@@ -293,6 +373,38 @@
           "url": "https://goldrush.dev/docs/streaming/",
           "date-added": "2026-03-23",
           "slug": "token-ohlcv-chart"
+        },
+        {
+          "title": "Whale Wallet Watchlist",
+          "body": "Monitor a list of whale wallets in real-time — subscribe to live transaction streams for multiple addresses and alert when they move large amounts.",
+          "tag": "API Key Required",
+          "url": "https://goldrush.dev",
+          "date-added": "2026-03-23",
+          "slug": "whale-wallet-watchlist"
+        },
+        {
+          "title": "Smart Money Copier",
+          "body": "Track known alpha wallets and surface their new token buys the moment they execute — build a copy trading radar using wallet activity streaming.",
+          "tag": "API Key Required",
+          "url": "https://goldrush.dev",
+          "date-added": "2026-03-23",
+          "slug": "smart-money-copier"
+        },
+        {
+          "title": "Wallet Comparison Tool",
+          "body": "Compare two wallet addresses side-by-side — token holdings, transaction count, wallet age, and NFT inventory across the same chain.",
+          "tag": "Free Tier",
+          "url": "https://goldrush.dev",
+          "date-added": "2026-03-23",
+          "slug": "wallet-comparison-tool"
+        },
+        {
+          "title": "Contract Event Dashboard",
+          "body": "Build a real-time event monitor for any smart contract — poll decoded event logs and display a live activity feed for any protocol or token.",
+          "tag": "API Key Required",
+          "url": "https://goldrush.dev",
+          "date-added": "2026-03-23",
+          "slug": "contract-event-dashboard"
         }
       ]
     },
@@ -449,6 +561,22 @@
           "url": "https://goldrush.dev/docs/api/base/get-block-heights/",
           "date-added": "2026-03-23",
           "slug": "block-date-lookup"
+        },
+        {
+          "title": "Block Explorer Lite",
+          "body": "Full-featured mini block explorer for any EVM chain — search by block, transaction hash, or wallet address, with decoded event logs and internal transfers.",
+          "tag": "Free Tier",
+          "url": "https://goldrush.dev",
+          "date-added": "2026-03-23",
+          "slug": "block-explorer-lite"
+        },
+        {
+          "title": "Gas Price Widget",
+          "body": "Embeddable real-time gas tracker with open/fast/instant tiers and USD fee estimates — drop it into any dApp to show live network conditions.",
+          "tag": "Free Tier",
+          "url": "https://goldrush.dev",
+          "date-added": "2026-03-23",
+          "slug": "gas-price-widget"
         }
       ]
     },
@@ -503,6 +631,14 @@
           "url": "https://goldrush.dev",
           "date-added": "2026-03-12",
           "slug": "multichain-portfolio"
+        },
+        {
+          "title": "Cross-Chain Activity Report",
+          "body": "Full cross-chain footprint for any wallet — active chains, combined net worth, unified transaction timeline, and per-chain asset breakdown in one API call.",
+          "tag": "API Key Required",
+          "url": "https://goldrush.dev",
+          "date-added": "2026-03-23",
+          "slug": "cross-chain-activity-report"
         }
       ]
     },
@@ -597,6 +733,30 @@
           "url": "https://goldrush.dev/docs/streaming/",
           "date-added": "2026-03-23",
           "slug": "token-search"
+        },
+        {
+          "title": "Token Holders Leaderboard",
+          "body": "Paginated leaderboard of every token holder with balance, percentage of supply, and rank — build airdrop lists, DAO voter registries, and holder dashboards.",
+          "tag": "API Key Required",
+          "url": "https://goldrush.dev",
+          "date-added": "2026-03-23",
+          "slug": "token-holders-leaderboard"
+        },
+        {
+          "title": "Token Unlock Tracker",
+          "body": "Monitor Transfer events from known vesting/lock contracts to track token unlocks as they happen — build an unlock calendar or alert system.",
+          "tag": "API Key Required",
+          "url": "https://goldrush.dev",
+          "date-added": "2026-03-23",
+          "slug": "token-unlock-tracker"
+        },
+        {
+          "title": "Token Whale Alert",
+          "body": "Detect large ERC-20 transfers for any token in real-time — subscribe to wallet activity and fire alerts when a single transfer exceeds a USD threshold.",
+          "tag": "API Key Required",
+          "url": "https://goldrush.dev",
+          "date-added": "2026-03-23",
+          "slug": "token-whale-alert"
         }
       ]
     },
@@ -643,6 +803,30 @@
           "url": "https://goldrush.dev",
           "date-added": "2026-03-12",
           "slug": "proof-of-onchain-activity"
+        },
+        {
+          "title": "Onchain Resume",
+          "body": "Generate a shareable public profile page for any wallet — wallet age, chain activity, top assets, NFTs, and DeFi history all in one URL.",
+          "tag": "Free Tier",
+          "url": "https://goldrush.dev",
+          "date-added": "2026-03-23",
+          "slug": "onchain-resume"
+        },
+        {
+          "title": "Airdrop Eligibility Checker",
+          "body": "Check whether a wallet meets configurable airdrop criteria — transaction count, wallet age, multi-chain activity, specific protocol interactions, and minimum balance thresholds.",
+          "tag": "API Key Required",
+          "url": "https://goldrush.dev",
+          "date-added": "2026-03-23",
+          "slug": "airdrop-eligibility-checker"
+        },
+        {
+          "title": "Onchain Credit Score Widget",
+          "body": "Embeddable widget that scores any wallet 0–850 based on age, activity depth, asset diversity, and approval hygiene — DeFi's answer to a credit score.",
+          "tag": "Free Tier",
+          "url": "https://goldrush.dev",
+          "date-added": "2026-03-23",
+          "slug": "onchain-credit-widget"
         }
       ]
     },
@@ -697,6 +881,14 @@
           "url": "https://goldrush.dev",
           "date-added": "2026-03-16",
           "slug": "transaction-decoded-receipt"
+        },
+        {
+          "title": "Stale Approval Cleaner",
+          "body": "Surface all active ERC-20 and NFT approvals sorted by risk level — identify unlimited approvals, deprecated protocol spenders, and dead contracts that should be revoked.",
+          "tag": "Free Tier",
+          "url": "https://goldrush.dev",
+          "date-added": "2026-03-23",
+          "slug": "stale-approval-cleaner"
         }
       ]
     }

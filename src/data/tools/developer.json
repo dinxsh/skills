@@ -86,5 +86,21 @@
     "url": "https://goldrush.dev/docs/api/base/get-block-heights/",
     "date-added": "2026-03-23",
     "slug": "block-date-lookup"
+  },
+  {
+    "title": "Block Explorer Lite",
+    "body": "Full-featured mini block explorer for any EVM chain — search by block, transaction hash, or wallet address, with decoded event logs and internal transfers.",
+    "tag": "Free Tier",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-23",
+    "slug": "block-explorer-lite"
+  },
+  {
+    "title": "Gas Price Widget",
+    "body": "Embeddable real-time gas tracker with open/fast/instant tiers and USD fee estimates — drop it into any dApp to show live network conditions.",
+    "tag": "Free Tier",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-23",
+    "slug": "gas-price-widget"
   }
 ]

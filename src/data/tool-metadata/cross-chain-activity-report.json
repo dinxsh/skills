@@ -1,0 +1,32 @@
+{
+  "title": "Cross-Chain Activity Report",
+  "description": "Full cross-chain footprint for any wallet — active chains, combined net worth, unified transaction timeline, and per-chain asset breakdown in one API call.",
+  "category": "crosschain",
+  "url": "https://goldrush.dev/docs/api/base/get-address-activity/",
+  "tag": "API Key Required",
+  "date-added": "2026-03-23",
+  "slug": "cross-chain-activity-report",
+  "complexity": "Intermediate",
+  "useCase": "Build a cross-chain analytics page that shows every chain a wallet has ever been active on, their total net worth across all chains, and a unified activity timeline — like DeBank's portfolio but self-hosted.",
+  "chains": ["ethereum", "base", "bsc", "polygon", "optimism", "arbitrum", "avalanche", "gnosis", "blast", "linea", "scroll", "zkSync", "sonic", "berachain"],
+  "creditCost": "0.5 + 2.5 + 0.25/tx",
+  "endpoints": [
+    "GET /v1/address/{walletAddress}/activity/",
+    "GET /v1/address/{walletAddress}/balances_all_chains/",
+    "GET /v1/transactions/"
+  ],
+  "keyParams": {
+    "walletAddress": "0x wallet address to generate the cross-chain activity report for"
+  },
+  "responseFields": [
+    "activeChains[]",
+    "netWorthByChain{}",
+    "totalNetWorth",
+    "recentTransactions[].chain",
+    "recentTransactions[].txHash",
+    "recentTransactions[].value",
+    "recentTransactions[].date"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function buildCrossChainActivityReport(walletAddress: string) {\n  // 1. Discover all active chains\n  const activityResp = await client.BaseService.getAddressActivity(walletAddress);\n  const activeChains = (activityResp.data?.items ?? [])\n    .filter(c => !c.is_testnet)\n    .map(c => ({ name: c.name!, lastSeen: c.last_seen_at }));\n\n  // 2. Fetch multichain balances and transactions in parallel\n  const [balResp, txResp] = await Promise.all([\n    client.BalanceService.getTokenBalances(walletAddress),\n    client.TransactionService.getTransactions({ walletAddress }),\n  ]);\n\n  // 3. Aggregate net worth per chain\n  const netWorthByChain: Record<string, number> = {};\n  for (const chainData of balResp.data?.items ?? []) {\n    const chain = (chainData as any).chain_name ?? '';\n    const chainWorth = ((chainData as any).items ?? []).reduce(\n      (s: number, t: any) => s + (t.quote ?? 0), 0\n    );\n    netWorthByChain[chain] = (netWorthByChain[chain] ?? 0) + chainWorth;\n  }\n  const totalNetWorth = Object.values(netWorthByChain).reduce((s, v) => s + v, 0);\n\n  // 4. Flatten and sort transactions by date\n  const allTxs = (txResp.data?.items ?? []).flatMap((chainData: any) =>\n    ((chainData as any).items ?? []).map((tx: any) => ({\n      chain: (chainData as any).chain_name,\n      txHash: tx.tx_hash,\n      value: tx.value,\n      date: tx.block_signed_at,\n      from: tx.from_address,\n      to: tx.to_address,\n    }))\n  ).sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime());\n\n  return {\n    walletAddress,\n    activeChains,\n    netWorthByChain,\n    totalNetWorth,\n    recentTransactions: allTxs.slice(0, 100),\n  };\n}",
+  "buildsWith": ["multichain-portfolio", "multichain-activity-discovery", "cross-chain-transaction-history"]
+}

@@ -78,5 +78,37 @@
     "url": "https://goldrush.dev/docs/streaming/",
     "date-added": "2026-03-23",
     "slug": "token-ohlcv-chart"
+  },
+  {
+    "title": "Whale Wallet Watchlist",
+    "body": "Monitor a list of whale wallets in real-time — subscribe to live transaction streams for multiple addresses and alert when they move large amounts.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-23",
+    "slug": "whale-wallet-watchlist"
+  },
+  {
+    "title": "Smart Money Copier",
+    "body": "Track known alpha wallets and surface their new token buys the moment they execute — build a copy trading radar using wallet activity streaming.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-23",
+    "slug": "smart-money-copier"
+  },
+  {
+    "title": "Wallet Comparison Tool",
+    "body": "Compare two wallet addresses side-by-side — token holdings, transaction count, wallet age, and NFT inventory across the same chain.",
+    "tag": "Free Tier",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-23",
+    "slug": "wallet-comparison-tool"
+  },
+  {
+    "title": "Contract Event Dashboard",
+    "body": "Build a real-time event monitor for any smart contract — poll decoded event logs and display a live activity feed for any protocol or token.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-23",
+    "slug": "contract-event-dashboard"
   }
 ]

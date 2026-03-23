@@ -1,0 +1,35 @@
+{
+  "title": "DeFi Wallet Dashboard",
+  "description": "Complete DeFi overview for any wallet — current token positions with USD values, 30-day portfolio performance curve, and recent swap activity in one dashboard.",
+  "category": "defi",
+  "url": "https://goldrush.dev/docs/api/balances/get-token-balances-for-wallet-address/",
+  "tag": "API Key Required",
+  "date-added": "2026-03-23",
+  "slug": "defi-wallet-dashboard",
+  "complexity": "Advanced",
+  "useCase": "Build a full-featured DeFi portfolio dashboard like Zapper that shows token balances, historical portfolio value chart, and recent DEX trades for any wallet.",
+  "chains": ["ethereum", "base", "bsc", "polygon", "optimism", "gnosis"],
+  "creditCost": "1 + 2/item + 0.05/item",
+  "endpoints": [
+    "GET /v1/{chainName}/address/{walletAddress}/balances_v2/",
+    "GET /v1/{chainName}/address/{walletAddress}/portfolio_v2/",
+    "GET /v1/{chainName}/address/{walletAddress}/transfers_v2/"
+  ],
+  "keyParams": {
+    "chainName": "Foundational chain — eth-mainnet, base-mainnet, bsc-mainnet, matic-mainnet, optimism-mainnet, gnosis-mainnet",
+    "walletAddress": "0x wallet address to build the dashboard for"
+  },
+  "responseFields": [
+    "positions[].contract_ticker_symbol",
+    "positions[].balance",
+    "positions[].quote",
+    "portfolioHistory[].contract_name",
+    "portfolioHistory[].holdings[].timestamp",
+    "portfolioHistory[].holdings[].close.quote",
+    "recentSwaps[].transfers[].contract_ticker_symbol",
+    "recentSwaps[].transfers[].delta",
+    "recentSwaps[].transfers[].quote"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function buildDefiDashboard(chainName: string, walletAddress: string) {\n  const [balResp, histResp, txResp] = await Promise.all([\n    client.BalanceService.getTokenBalancesForWalletAddress(chainName, walletAddress),\n    client.BalanceService.getHistoricalPortfolioForWalletAddress(chainName, walletAddress),\n    client.BalanceService.getErc20TransfersForWalletAddress(chainName, walletAddress, { pageNumber: 0 }),\n  ]);\n\n  const positions = (balResp.data?.items ?? [])\n    .filter(t => !t.is_spam && (t.quote ?? 0) > 0)\n    .sort((a, b) => (b.quote ?? 0) - (a.quote ?? 0));\n\n  const portfolioHistory = (histResp.data?.items ?? []).map(item => ({\n    symbol: item.contract_ticker_symbol,\n    name: item.contract_name,\n    curve: (item.holdings ?? []).map(h => ({\n      date: h.timestamp,\n      value: h.close?.quote ?? 0,\n    })),\n  }));\n\n  const recentSwaps = (txResp.data?.items ?? []).flatMap(item =>\n    (item.transfers ?? []).map(t => ({\n      date: t.block_signed_at,\n      symbol: t.contract_ticker_symbol,\n      delta: Number(t.delta) / Math.pow(10, t.contract_decimals ?? 18),\n      usdValue: t.quote ?? 0,\n      txHash: t.tx_hash,\n      direction: t.from_address?.toLowerCase() === walletAddress.toLowerCase() ? 'OUT' : 'IN',\n    }))\n  ).slice(0, 50);\n\n  const netWorth = positions.reduce((s, p) => s + (p.quote ?? 0), 0);\n  return { netWorth, positions, portfolioHistory, recentSwaps };\n}",
+  "buildsWith": ["portfolio-tracker", "historical-portfolio-value", "dex-trade-history", "wallet-pnl-tracker"]
+}

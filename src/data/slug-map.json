@@ -238,5 +238,77 @@
   ],
   "block-date-lookup": [
     "developer"
+  ],
+  "crypto-tax-exporter": [
+    "wallet"
+  ],
+  "multi-wallet-aggregator": [
+    "wallet"
+  ],
+  "portfolio-performance-report": [
+    "wallet"
+  ],
+  "token-launch-screener": [
+    "defi"
+  ],
+  "defi-wallet-dashboard": [
+    "defi"
+  ],
+  "base-memecoin-screener": [
+    "defi"
+  ],
+  "nft-gated-app": [
+    "nft"
+  ],
+  "multichain-nft-gallery": [
+    "nft"
+  ],
+  "nft-transfer-monitor": [
+    "nft"
+  ],
+  "nft-collection-analytics": [
+    "nft"
+  ],
+  "whale-wallet-watchlist": [
+    "analytics"
+  ],
+  "smart-money-copier": [
+    "analytics"
+  ],
+  "wallet-comparison-tool": [
+    "analytics"
+  ],
+  "contract-event-dashboard": [
+    "analytics"
+  ],
+  "token-holders-leaderboard": [
+    "token"
+  ],
+  "token-unlock-tracker": [
+    "token"
+  ],
+  "token-whale-alert": [
+    "token"
+  ],
+  "onchain-resume": [
+    "identity"
+  ],
+  "airdrop-eligibility-checker": [
+    "identity"
+  ],
+  "onchain-credit-widget": [
+    "identity"
+  ],
+  "stale-approval-cleaner": [
+    "security"
+  ],
+  "block-explorer-lite": [
+    "developer"
+  ],
+  "gas-price-widget": [
+    "developer"
+  ],
+  "cross-chain-activity-report": [
+    "crosschain"
   ]
 }

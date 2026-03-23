@@ -1,0 +1,30 @@
+{
+  "title": "Token Holders Leaderboard",
+  "description": "Paginated leaderboard of every token holder with balance, percentage of supply, and rank — build airdrop lists, DAO voter registries, and holder dashboards.",
+  "category": "token",
+  "url": "https://goldrush.dev/docs/api/balances/get-token-holders-v2-for-token-address/",
+  "tag": "API Key Required",
+  "date-added": "2026-03-23",
+  "slug": "token-holders-leaderboard",
+  "complexity": "Beginner",
+  "useCase": "Build a token holders leaderboard page for any ERC-20 showing the top 1000 holders sorted by balance, with % of total supply and wallet labels.",
+  "chains": ["ethereum", "base", "bsc", "polygon", "optimism", "gnosis"],
+  "creditCost": "0.02/holder",
+  "endpoints": [
+    "GET /v1/{chainName}/tokens/{tokenAddress}/token_holders_v2/"
+  ],
+  "keyParams": {
+    "chainName": "Foundational chain only — eth-mainnet, base-mainnet, bsc-mainnet, matic-mainnet, optimism-mainnet, gnosis-mainnet",
+    "tokenAddress": "ERC-20 token contract address",
+    "pageNumber": "0-indexed page number",
+    "pageSize": "Holders per page — max 100"
+  },
+  "responseFields": [
+    "items[].address",
+    "items[].balance",
+    "items[].total_supply",
+    "items[].balance_percent_of_total"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\ninterface HolderRow {\n  rank: number;\n  address: string;\n  balance: string;\n  pctOfSupply: number;\n}\n\nasync function getTokenHoldersLeaderboard(\n  chainName: string,\n  tokenAddress: string,\n  pageNumber = 0,\n  pageSize = 100\n): Promise<{ holders: HolderRow[]; totalSupply: string; hasMore: boolean }> {\n  const resp = await client.BalanceService.getTokenHoldersV2ForTokenAddress(\n    chainName, tokenAddress, { pageNumber, pageSize }\n  );\n\n  const items = resp.data?.items ?? [];\n  const totalSupply = items[0]?.total_supply ?? '0';\n\n  const holders: HolderRow[] = items.map((item, idx) => ({\n    rank: pageNumber * pageSize + idx + 1,\n    address: item.address ?? '',\n    balance: item.balance ?? '0',\n    pctOfSupply: item.balance_percent_of_total ?? 0,\n  }));\n\n  return {\n    holders,\n    totalSupply,\n    hasMore: items.length === pageSize,\n  };\n}\n\n// Fetch top 1000 holders (10 pages)\nasync function getTop1000Holders(chainName: string, tokenAddress: string) {\n  const allHolders: HolderRow[] = [];\n  for (let page = 0; page < 10; page++) {\n    const { holders, hasMore } = await getTokenHoldersLeaderboard(chainName, tokenAddress, page);\n    allHolders.push(...holders);\n    if (!hasMore) break;\n  }\n  return allHolders;\n}",
+  "buildsWith": ["token-holders-snapshot", "governance-token-snapshot", "token-supply-metadata"]
+}

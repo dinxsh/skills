@@ -118,5 +118,29 @@
     "url": "https://goldrush.dev/docs/streaming/",
     "date-added": "2026-03-23",
     "slug": "wallet-pnl-tracker"
+  },
+  {
+    "title": "Crypto Tax Exporter",
+    "body": "Export a complete CSV of all ERC-20 transfers and transactions with USD cost basis for tax reporting — Koinly/CoinTracker compatible.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-23",
+    "slug": "crypto-tax-exporter"
+  },
+  {
+    "title": "Multi-Wallet Portfolio Aggregator",
+    "body": "Enter multiple wallet addresses and see combined token balances, total net worth, and unified transaction feed — your whole onchain life in one view.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-23",
+    "slug": "multi-wallet-aggregator"
+  },
+  {
+    "title": "Portfolio Performance Report",
+    "body": "30-day rolling P&L report with per-token open/high/low/close — build fund-grade performance dashboards for any wallet on foundational chains.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-23",
+    "slug": "portfolio-performance-report"
   }
 ]

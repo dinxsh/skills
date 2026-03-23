@@ -46,5 +46,14 @@
     "url": "https://goldrush.dev",
     "date-added": "2026-03-12",
     "slug": "multichain-portfolio"
+  },
+  {
+    "title": "Cross-Chain Activity Report",
+    "body": "Full cross-chain footprint for any wallet — active chains, combined net worth, unified transaction timeline, and per-chain asset breakdown in one API call.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-23",
+    "slug": "cross-chain-activity-report"
   }
 ]
+

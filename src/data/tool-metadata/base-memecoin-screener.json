@@ -1,0 +1,36 @@
+{
+  "title": "Base Memecoin Screener",
+  "description": "Live feed of new token launches on Base — subscribes to new Aerodrome/Uniswap pairs, shows real-time price candles and momentum for meme coin hunters.",
+  "category": "defi",
+  "url": "https://goldrush.dev/docs/streaming/",
+  "tag": "API Key Required",
+  "date-added": "2026-03-23",
+  "slug": "base-memecoin-screener",
+  "complexity": "Intermediate",
+  "useCase": "Build a Base-specific token launch radar that shows new pairs created in the last 24h with live price candles and initial liquidity — catch early Base memecoins.",
+  "chains": ["base"],
+  "creditCost": "Streaming subscription",
+  "endpoints": [
+    "wss://streaming.goldrushdata.com/graphql — newPairs subscription (filtered to base-mainnet)",
+    "wss://streaming.goldrushdata.com/graphql — ohlcvCandlesForToken subscription"
+  ],
+  "keyParams": {
+    "minLiquidityUsd": "Minimum initial liquidity in USD to include a new pair",
+    "resolution": "Candle resolution — e.g. '1m', '5m', '15m', '1h'"
+  },
+  "responseFields": [
+    "pairAddress",
+    "token0.symbol",
+    "token0.address",
+    "token1.symbol",
+    "liquidityUsd",
+    "candles[].timestamp",
+    "candles[].open",
+    "candles[].high",
+    "candles[].low",
+    "candles[].close",
+    "candles[].volume"
+  ],
+  "snippet": "import { createClient } from 'graphql-ws';\n\nconst wsClient = createClient({\n  url: 'wss://streaming.goldrushdata.com/graphql',\n  connectionParams: { apiKey: process.env.GOLDRUSH_API_KEY },\n});\n\nconst CHAIN = 'base-mainnet';\n\nfunction startBaseMemeScreener(minLiquidityUsd: number, resolution = '1m') {\n  const activePairs = new Map<string, any[]>();\n\n  // Step 1: subscribe to new pairs on Base\n  wsClient.subscribe(\n    {\n      query: `subscription { newPairs { pairAddress chainName liquidityUsd createdAt token0 { symbol address } token1 { symbol address } } }`,\n    },\n    {\n      next: ({ data }: any) => {\n        const pair = data?.newPairs;\n        if (!pair || pair.chainName !== CHAIN) return;\n        if (pair.liquidityUsd < minLiquidityUsd) return;\n\n        console.log(`New Base pair: ${pair.token0.symbol}/${pair.token1.symbol} — $${pair.liquidityUsd.toFixed(0)} liquidity`);\n        const candles: any[] = [];\n        activePairs.set(pair.pairAddress, candles);\n\n        // Step 2: start OHLCV candle stream for this token\n        wsClient.subscribe(\n          {\n            query: `subscription Candles($addr: String!, $chain: String!, $res: String!) {\n              ohlcvCandlesForToken(tokenAddress: $addr, chainName: $chain, resolution: $res) {\n                timestamp open high low close volume\n              }\n            }`,\n            variables: { addr: pair.token0.address, chain: CHAIN, res: resolution },\n          },\n          {\n            next: ({ data }: any) => {\n              const candle = data?.ohlcvCandlesForToken;\n              if (candle) candles.push(candle);\n            },\n            error: console.error,\n            complete: () => {},\n          }\n        );\n      },\n      error: console.error,\n      complete: () => {},\n    }\n  );\n\n  return activePairs;\n}",
+  "buildsWith": ["live-dex-pair-stream", "token-ohlcv-chart", "token-launch-screener"]
+}

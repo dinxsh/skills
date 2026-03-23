@@ -54,5 +54,37 @@
     "url": "https://goldrush.dev/docs/api/nft/get-nfts-for-address/",
     "date-added": "2026-03-23",
     "slug": "ronin-nft-inventory"
+  },
+  {
+    "title": "NFT-Gated App Boilerplate",
+    "body": "Complete Next.js boilerplate with wallet connect, SIWE authentication, and NFT ownership gating — deploy a token-gated product in under an hour.",
+    "tag": "Free Tier",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-23",
+    "slug": "nft-gated-app"
+  },
+  {
+    "title": "Multi-Chain NFT Gallery",
+    "body": "Discover and display every NFT a wallet holds across all chains in one gallery — scan with getAddressActivity then fetch NFTs per active chain.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-23",
+    "slug": "multichain-nft-gallery"
+  },
+  {
+    "title": "NFT Transfer Monitor",
+    "body": "Real-time feed of NFT mints, sales, and transfers for any collection — subscribe to ERC-721 Transfer events via the wallet activity stream.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-23",
+    "slug": "nft-transfer-monitor"
+  },
+  {
+    "title": "NFT Collection Analytics",
+    "body": "Holder count, top holders, transfer velocity, and ownership concentration for any ERC-721 collection — build analytics dashboards without a marketplace API.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-23",
+    "slug": "nft-collection-analytics"
   }
 ]

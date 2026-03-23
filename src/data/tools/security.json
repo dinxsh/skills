@@ -46,5 +46,14 @@
     "url": "https://goldrush.dev",
     "date-added": "2026-03-16",
     "slug": "transaction-decoded-receipt"
+  },
+  {
+    "title": "Stale Approval Cleaner",
+    "body": "Surface all active ERC-20 and NFT approvals sorted by risk level — identify unlimited approvals, deprecated protocol spenders, and dead contracts that should be revoked.",
+    "tag": "Free Tier",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-23",
+    "slug": "stale-approval-cleaner"
   }
 ]
+

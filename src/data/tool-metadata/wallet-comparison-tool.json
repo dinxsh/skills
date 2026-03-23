@@ -1,0 +1,37 @@
+{
+  "title": "Wallet Comparison Tool",
+  "description": "Compare two wallet addresses side-by-side — token holdings, transaction count, wallet age, and NFT inventory across the same chain.",
+  "category": "analytics",
+  "url": "https://goldrush.dev/docs/api/balances/get-token-balances-for-wallet-address/",
+  "tag": "Free Tier",
+  "date-added": "2026-03-23",
+  "slug": "wallet-comparison-tool",
+  "complexity": "Beginner",
+  "useCase": "Build a wallet vs wallet comparison page that shows both addresses' portfolio value, transaction history depth, wallet age, top assets, and NFTs side by side.",
+  "chains": ["ethereum", "base", "bsc", "polygon", "optimism", "arbitrum", "avalanche"],
+  "creditCost": "~4 credits total",
+  "endpoints": [
+    "GET /v1/{chainName}/address/{walletAddress}/balances_v2/",
+    "GET /v1/{chainName}/address/{walletAddress}/transactions_summary/",
+    "GET /v1/{chainName}/address/{walletAddress}/balances_nft/"
+  ],
+  "keyParams": {
+    "chainName": "EVM chain to compare wallets on",
+    "walletA": "First wallet address to compare",
+    "walletB": "Second wallet address to compare"
+  },
+  "responseFields": [
+    "walletA.netWorth",
+    "walletA.txCount",
+    "walletA.nftCount",
+    "walletA.topAssets[]",
+    "walletA.walletAge",
+    "walletB.netWorth",
+    "walletB.txCount",
+    "walletB.nftCount",
+    "walletB.topAssets[]",
+    "walletB.walletAge"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function buildWalletProfile(chainName: string, walletAddress: string) {\n  const [balResp, summaryResp, nftResp] = await Promise.all([\n    client.BalanceService.getTokenBalancesForWalletAddress(chainName, walletAddress),\n    client.TransactionService.getTransactionSummary(chainName, walletAddress),\n    client.NftService.getNftsForAddress(chainName, walletAddress),\n  ]);\n\n  const tokens = (balResp.data?.items ?? []).filter(t => !t.is_spam && (t.quote ?? 0) > 0);\n  const netWorth = tokens.reduce((s, t) => s + (t.quote ?? 0), 0);\n  const summary = summaryResp.data?.items?.[0];\n  const nfts = nftResp.data?.items ?? [];\n  const nftCount = nfts.reduce((s, col) => s + (col.nft_data?.length ?? 0), 0);\n  const firstTx = summary?.earliest_transaction?.block_signed_at;\n  const walletAgeDays = firstTx\n    ? Math.floor((Date.now() - new Date(firstTx).getTime()) / 86_400_000)\n    : null;\n\n  return {\n    address: walletAddress,\n    netWorth,\n    txCount: summary?.total_count ?? 0,\n    nftCount,\n    walletAgeDays,\n    firstTxDate: firstTx,\n    topAssets: tokens.slice(0, 5).map(t => ({\n      symbol: t.contract_ticker_symbol,\n      quote: t.quote,\n    })),\n  };\n}\n\nasync function compareWallets(chainName: string, walletA: string, walletB: string) {\n  const [profileA, profileB] = await Promise.all([\n    buildWalletProfile(chainName, walletA),\n    buildWalletProfile(chainName, walletB),\n  ]);\n  return { walletA: profileA, walletB: profileB };\n}",
+  "buildsWith": ["wallet-balances-skill", "wallet-age-summary", "nft-portfolio-valuation"]
+}

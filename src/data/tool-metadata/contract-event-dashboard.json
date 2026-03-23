@@ -1,0 +1,33 @@
+{
+  "title": "Contract Event Dashboard",
+  "description": "Build a real-time event monitor for any smart contract — poll decoded event logs and display a live activity feed for any protocol or token.",
+  "category": "analytics",
+  "url": "https://goldrush.dev/docs/api/base/get-log-events-by-address/",
+  "tag": "API Key Required",
+  "date-added": "2026-03-23",
+  "slug": "contract-event-dashboard",
+  "complexity": "Intermediate",
+  "useCase": "Build a live protocol dashboard that shows every decoded event emitted by a smart contract — e.g. Swap, Mint, Transfer, Approval — in a real-time activity feed.",
+  "chains": ["ethereum", "base", "bsc", "polygon", "optimism", "arbitrum", "avalanche", "gnosis"],
+  "creditCost": "0.01/event",
+  "endpoints": [
+    "GET /v1/{chainName}/events/address/{contractAddress}/"
+  ],
+  "keyParams": {
+    "chainName": "EVM chain where the contract is deployed",
+    "contractAddress": "Smart contract address to monitor for decoded events",
+    "startingBlock": "Block height to start scanning from",
+    "endingBlock": "Block height to stop scanning at",
+    "pageNumber": "0-indexed page for paginating through events"
+  },
+  "responseFields": [
+    "items[].block_signed_at",
+    "items[].block_height",
+    "items[].tx_hash",
+    "items[].decoded.name",
+    "items[].decoded.params[].name",
+    "items[].decoded.params[].value"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function startContractEventDashboard(\n  chainName: string,\n  contractAddress: string,\n  onEvent: (event: any) => void,\n  intervalMs = 12_000\n) {\n  let lastSeenBlock = 0;\n\n  async function poll() {\n    try {\n      const resp = await client.BaseService.getLogEventsByAddress(\n        chainName, contractAddress,\n        { startingBlock: lastSeenBlock > 0 ? lastSeenBlock + 1 : undefined }\n      );\n      const events = resp.data?.items ?? [];\n\n      for (const event of events) {\n        if ((event.block_height ?? 0) <= lastSeenBlock) continue;\n\n        const decoded = {\n          eventName: event.decoded?.name ?? 'Unknown',\n          params: Object.fromEntries(\n            (event.decoded?.params ?? []).map((p: any) => [p.name, p.value])\n          ),\n          txHash: event.tx_hash,\n          blockHeight: event.block_height,\n          blockTime: event.block_signed_at,\n        };\n\n        onEvent(decoded);\n\n        if ((event.block_height ?? 0) > lastSeenBlock) {\n          lastSeenBlock = event.block_height!;\n        }\n      }\n    } catch (err) {\n      console.error('Poll error:', err);\n    }\n  }\n\n  await poll(); // immediate first fetch\n  return setInterval(poll, intervalMs);\n}",
+  "buildsWith": ["contract-event-log-monitor", "event-log-decoder", "webhook-builder"]
+}

@@ -14,5 +14,29 @@
     "url": "https://goldrush.dev/docs/streaming/",
     "date-added": "2026-03-23",
     "slug": "live-dex-pair-stream"
+  },
+  {
+    "title": "Token Launch Screener",
+    "body": "Real-time screener for new DEX token launches — filter by minimum liquidity, chain, and pair token. Build a Dexscreener-style new pairs feed.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-23",
+    "slug": "token-launch-screener"
+  },
+  {
+    "title": "DeFi Wallet Dashboard",
+    "body": "Complete DeFi overview for any wallet — current token positions with USD values, 30-day portfolio performance curve, and recent swap activity in one dashboard.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-23",
+    "slug": "defi-wallet-dashboard"
+  },
+  {
+    "title": "Base Memecoin Screener",
+    "body": "Live feed of new token launches on Base — subscribes to new Aerodrome/Uniswap pairs, shows real-time price candles and momentum for meme coin hunters.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-23",
+    "slug": "base-memecoin-screener"
   }
 ]

@@ -1,0 +1,37 @@
+{
+  "title": "Block Explorer Lite",
+  "description": "Full-featured mini block explorer for any EVM chain — search by block, transaction hash, or wallet address, with decoded event logs and internal transfers.",
+  "category": "developer",
+  "url": "https://goldrush.dev/docs/api/base/get-block/",
+  "tag": "Free Tier",
+  "date-added": "2026-03-23",
+  "slug": "block-explorer-lite",
+  "complexity": "Advanced",
+  "useCase": "Build a white-label block explorer page for any EVM chain that lets users search transactions by hash, browse blocks, and see decoded event logs — like a chain-specific Etherscan.",
+  "chains": ["ethereum", "base", "bsc", "polygon", "optimism", "arbitrum", "avalanche", "gnosis", "blast", "linea", "scroll", "zkSync"],
+  "creditCost": "1/block + 0.1/tx",
+  "endpoints": [
+    "GET /v1/{chainName}/block_v2/{blockHeight}/",
+    "GET /v1/{chainName}/transaction_v2/{txHash}/",
+    "GET /v1/{chainName}/address/{walletAddress}/transactions_v3/{pageNumber}/"
+  ],
+  "keyParams": {
+    "chainName": "EVM chain name — e.g. eth-mainnet, base-mainnet",
+    "query": "Search input — transaction hash (0x...), block number (integer), or wallet address (0x...)"
+  },
+  "responseFields": [
+    "block.height",
+    "block.signed_at",
+    "block.tx_count",
+    "block.gas_used",
+    "tx.tx_hash",
+    "tx.from_address",
+    "tx.to_address",
+    "tx.value",
+    "tx.fees_paid",
+    "tx.log_events[].decoded.name",
+    "tx.log_events[].decoded.params[]"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nconst TX_HASH_RE = /^0x[0-9a-fA-F]{64}$/;\nconst ADDRESS_RE = /^0x[0-9a-fA-F]{40}$/;\nconst BLOCK_RE = /^\\d+$/;\n\nasync function blockExplorerSearch(chainName: string, query: string) {\n  const q = query.trim();\n\n  if (TX_HASH_RE.test(q)) {\n    // Transaction detail with decoded logs and internal txs\n    const resp = await client.TransactionService.getTransaction(\n      chainName, q,\n      { withDexTrades: true, withInternalTransactions: true }\n    );\n    const tx = resp.data?.items?.[0];\n    if (!tx) throw new Error('Transaction not found');\n    return {\n      type: 'transaction',\n      hash: tx.tx_hash,\n      from: tx.from_address,\n      to: tx.to_address,\n      value: tx.value,\n      feesPaid: tx.fees_paid,\n      blockHeight: (tx as any).block_height,\n      blockTime: tx.block_signed_at,\n      successful: tx.successful,\n      decodedEvents: (tx.log_events ?? []).map(e => ({\n        name: e.decoded?.name,\n        params: e.decoded?.params ?? [],\n      })),\n    };\n  }\n\n  if (BLOCK_RE.test(q)) {\n    // Block overview\n    const resp = await client.BaseService.getBlock(chainName, q);\n    const block = resp.data;\n    return {\n      type: 'block',\n      height: block?.height,\n      signedAt: block?.signed_at,\n      txCount: block?.tx_count,\n      gasUsed: block?.gas_used,\n      gasLimit: block?.gas_limit,\n    };\n  }\n\n  if (ADDRESS_RE.test(q)) {\n    // Wallet transaction list\n    const resp = await client.TransactionService.getTransactionsForAddressV3(chainName, q, 0);\n    return {\n      type: 'address',\n      address: q,\n      transactions: (resp.data?.items ?? []).slice(0, 25).map(tx => ({\n        hash: tx.tx_hash,\n        from: tx.from_address,\n        to: tx.to_address,\n        value: tx.value,\n        blockTime: tx.block_signed_at,\n      })),\n    };\n  }\n\n  throw new Error('Invalid search query — enter a tx hash, block number, or address');\n}",
+  "buildsWith": ["transaction-decoded-receipt", "contract-event-log-monitor", "transaction-history"]
+}

@@ -1,0 +1,35 @@
+{
+  "title": "Crypto Tax Exporter",
+  "description": "Export a complete CSV of all ERC-20 transfers and transactions with USD cost basis for tax reporting — Koinly/CoinTracker compatible.",
+  "category": "wallet",
+  "url": "https://goldrush.dev/docs/api/balances/get-erc20-transfers-for-wallet-address/",
+  "tag": "API Key Required",
+  "date-added": "2026-03-23",
+  "slug": "crypto-tax-exporter",
+  "complexity": "Intermediate",
+  "useCase": "Build a one-click tax report tool that exports every buy, sell, and transfer with USD values at time of transaction for any wallet address.",
+  "chains": ["ethereum", "base", "bsc", "polygon", "optimism", "gnosis"],
+  "creditCost": "0.05/item (transfers) + 1/call (prices)",
+  "endpoints": [
+    "GET /v1/{chainName}/address/{walletAddress}/transfers_v2/",
+    "GET /v1/pricing/historical_by_addresses_v2/{chainName}/{quoteCurrency}/{contractAddress}/"
+  ],
+  "keyParams": {
+    "chainName": "EVM chain name — foundational chains preferred for historical price accuracy",
+    "walletAddress": "0x wallet address to export transfers for",
+    "year": "Tax year filter — only include transfers from this calendar year",
+    "pageNumber": "0-indexed page number for paginating through all transfers"
+  },
+  "responseFields": [
+    "items[].transfers[].block_signed_at",
+    "items[].transfers[].contract_ticker_symbol",
+    "items[].transfers[].delta",
+    "items[].transfers[].quote",
+    "items[].transfers[].tx_hash",
+    "items[].transfers[].from_address",
+    "items[].transfers[].to_address",
+    "items[].transfers[].contract_decimals"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\ninterface TaxRow {\n  date: string; type: string; asset: string;\n  amount: string; usd_value: string; tx_hash: string;\n  from: string; to: string;\n}\n\nasync function exportTaxCSV(chainName: string, walletAddress: string, year: number): Promise<string> {\n  const rows: TaxRow[] = [];\n  let page = 0;\n  let hasMore = true;\n\n  while (hasMore) {\n    const resp = await client.BalanceService.getErc20TransfersForWalletAddress(\n      chainName, walletAddress, { pageNumber: page }\n    );\n    const items = resp.data?.items ?? [];\n    if (items.length === 0) { hasMore = false; break; }\n\n    for (const item of items) {\n      for (const t of item.transfers ?? []) {\n        const txYear = new Date(t.block_signed_at!).getFullYear();\n        if (txYear !== year) continue;\n        const amount = Number(t.delta) / Math.pow(10, t.contract_decimals ?? 18);\n        rows.push({\n          date: new Date(t.block_signed_at!).toISOString(),\n          type: t.from_address?.toLowerCase() === walletAddress.toLowerCase() ? 'SEND' : 'RECEIVE',\n          asset: t.contract_ticker_symbol ?? '',\n          amount: amount.toFixed(8),\n          usd_value: (t.quote ?? 0).toFixed(2),\n          tx_hash: t.tx_hash ?? '',\n          from: t.from_address ?? '',\n          to: t.to_address ?? '',\n        });\n      }\n    }\n    page++;\n    hasMore = items.length >= 100;\n  }\n\n  const header = 'date,type,asset,amount,usd_value,tx_hash,from,to';\n  const csvRows = rows.map(r => Object.values(r).join(','));\n  return [header, ...csvRows].join('\\n');\n}",
+  "buildsWith": ["wallet-erc20-transfers", "transaction-history", "token-price-history"]
+}

@@ -38,5 +38,30 @@
     "url": "https://goldrush.dev",
     "date-added": "2026-03-12",
     "slug": "proof-of-onchain-activity"
+  },
+  {
+    "title": "Onchain Resume",
+    "body": "Generate a shareable public profile page for any wallet — wallet age, chain activity, top assets, NFTs, and DeFi history all in one URL.",
+    "tag": "Free Tier",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-23",
+    "slug": "onchain-resume"
+  },
+  {
+    "title": "Airdrop Eligibility Checker",
+    "body": "Check whether a wallet meets configurable airdrop criteria — transaction count, wallet age, multi-chain activity, specific protocol interactions, and minimum balance thresholds.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-23",
+    "slug": "airdrop-eligibility-checker"
+  },
+  {
+    "title": "Onchain Credit Score Widget",
+    "body": "Embeddable widget that scores any wallet 0–850 based on age, activity depth, asset diversity, and approval hygiene — DeFi's answer to a credit score.",
+    "tag": "Free Tier",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-23",
+    "slug": "onchain-credit-widget"
   }
 ]
+
