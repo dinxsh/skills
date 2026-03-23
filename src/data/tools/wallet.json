@@ -9,7 +9,7 @@
   },
   {
     "title": "Historical Portfolio Value",
-    "body": "30-day rolling historical portfolio value with open/close/high/low per token per day — build P&L charts, portfolio performance dashboards, and DeFi fund trackers.",
+    "body": "30-day rolling historical portfolio value with open/close/high/low per token per day \u00e2\u20ac\u201d build P&L charts, portfolio performance dashboards, and DeFi fund trackers.",
     "tag": "API Key Required",
     "url": "https://goldrush.dev",
     "date-added": "2026-03-16",
@@ -33,7 +33,7 @@
   },
   {
     "title": "Portfolio History",
-    "body": "30-day historical portfolio value over time — asset-by-asset breakdown per day.",
+    "body": "30-day historical portfolio value over time \u00e2\u20ac\u201d asset-by-asset breakdown per day.",
     "tag": "API Key Required",
     "url": "https://goldrush.dev",
     "date-added": "2026-03-12",
@@ -65,7 +65,7 @@
   },
   {
     "title": "Wallet Age & Summary",
-    "body": "Get first and last transaction date, total transaction count, and gas spent for any wallet — the foundation for wallet age verification and on-chain identity.",
+    "body": "Get first and last transaction date, total transaction count, and gas spent for any wallet \u00e2\u20ac\u201d the foundation for wallet age verification and on-chain identity.",
     "tag": "Free Tier",
     "url": "https://goldrush.dev",
     "date-added": "2026-03-16",
@@ -78,5 +78,45 @@
     "url": "https://goldrush.dev",
     "date-added": "2026-03-12",
     "slug": "wallet-balances-skill"
+  },
+  {
+    "title": "Bitcoin Balance Checker",
+    "body": "Fetch confirmed UTXOs, current balance, and USD value for any Bitcoin address.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev/docs/api/balances/get-bitcoin-non-hd-wallet-balances/",
+    "date-added": "2026-03-23",
+    "slug": "bitcoin-balance-checker"
+  },
+  {
+    "title": "Bitcoin HD Wallet Scanner",
+    "body": "Enumerate all derived addresses and balances from a Bitcoin xpub/ypub/zpub HD wallet key.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev/docs/api/balances/get-bitcoin-hd-wallet-balances/",
+    "date-added": "2026-03-23",
+    "slug": "bitcoin-hd-wallet-scanner"
+  },
+  {
+    "title": "Bitcoin Transaction Explorer",
+    "body": "Paginated transaction history for any Bitcoin address \u2014 inputs, outputs, fees, and confirmation status.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev/docs/api/transactions/get-transactions-for-btc-address/",
+    "date-added": "2026-03-23",
+    "slug": "bitcoin-transaction-explorer"
+  },
+  {
+    "title": "Historical Token Holdings",
+    "body": "Snapshot of every ERC-20 token balance and USD value at any past date \u2014 foundational chains only.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev/docs/api/balances/get-historical-token-balances-for-wallet-address/",
+    "date-added": "2026-03-23",
+    "slug": "historical-token-holdings"
+  },
+  {
+    "title": "Wallet P&L Tracker",
+    "body": "Unrealized P&L for every token in a wallet \u2014 shows entry price, current price, and total gain/loss per position.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev/docs/streaming/",
+    "date-added": "2026-03-23",
+    "slug": "wallet-pnl-tracker"
   }
 ]

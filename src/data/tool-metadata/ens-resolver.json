@@ -1,9 +1,31 @@
 {
   "title": "ENS Resolver",
-  "description": "Resolve ENS names and reverse-lookup wallet addresses to human-readable identities.",
+  "description": "Resolve ENS names to wallet addresses and reverse-lookup wallet addresses to ENS names \u2014 powered by GoldRush's getResolvedAddress endpoint on Ethereum mainnet.",
   "category": "identity",
-  "url": "https://goldrush.dev",
+  "url": "https://goldrush.dev/docs/api/base/get-resolved-address/",
   "tag": "Free Tier",
   "date-added": "2026-03-12",
-  "slug": "ens-resolver"
+  "slug": "ens-resolver",
+  "complexity": "Beginner",
+  "useCase": "Add ENS name support to any wallet input \u2014 resolve 'vitalik.eth' to its 0x address before querying balances or transactions, and show ENS names alongside addresses in your UI.",
+  "chains": [
+    "ethereum"
+  ],
+  "creditCost": "0.1 credit/call",
+  "endpoints": [
+    "GET /v1/{chainName}/address/{walletAddress}/resolve_address/"
+  ],
+  "keyParams": {
+    "chainName": "Must be eth-mainnet for ENS resolution",
+    "walletAddress": "ENS name (e.g. vitalik.eth) or 0x address for reverse lookup"
+  },
+  "responseFields": [
+    "data.name"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function resolveEnsName(ensNameOrAddress: string) {\n  const resp = await client.BaseService.getResolvedAddress(\n    'eth-mainnet',\n    ensNameOrAddress\n  );\n\n  if (resp.error) throw new Error(resp.error_message);\n\n  return {\n    input: ensNameOrAddress,\n    resolved: resp.data.name,\n    // If input was ENS, resolved is 0x address; if 0x, resolved is ENS name\n  };\n}\n\n// Resolve ENS to address\nconst result = await resolveEnsName('vitalik.eth');\nconsole.log(result.resolved); // '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045'",
+  "buildsWith": [
+    "wallet-balances-skill",
+    "onchain-activity-verifier",
+    "proof-of-onchain-activity"
+  ]
 }

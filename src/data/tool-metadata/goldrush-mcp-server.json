@@ -1,9 +1,55 @@
 {
   "title": "GoldRush MCP Server",
-  "description": "Model Context Protocol server exposing GoldRush APIs to LLMs and AI agents.",
+  "description": "Model Context Protocol server that exposes GoldRush APIs as MCP tools \u2014 lets any MCP-compatible LLM client (Claude Desktop, Cursor, etc.) query wallet balances, prices, and NFTs natively.",
   "category": "agents",
   "url": "https://goldrush.dev",
   "tag": "Open Source",
   "date-added": "2026-03-12",
-  "slug": "goldrush-mcp-server"
+  "slug": "goldrush-mcp-server",
+  "complexity": "Beginner",
+  "useCase": "Connect Claude Desktop or Cursor to GoldRush so the AI can answer on-chain questions directly \u2014 no custom code needed, just configure the MCP server and start asking questions.",
+  "chains": [
+    "ethereum",
+    "base",
+    "polygon",
+    "bsc",
+    "optimism",
+    "arbitrum",
+    "avalanche",
+    "gnosis",
+    "fantom",
+    "celo",
+    "moonbeam",
+    "blast",
+    "linea",
+    "scroll",
+    "zkSync",
+    "mantle",
+    "sonic",
+    "unichain",
+    "sei"
+  ],
+  "creditCost": "Varies by tool called",
+  "endpoints": [
+    "MCP tool: get_wallet_balances",
+    "MCP tool: get_transaction_history",
+    "MCP tool: get_token_price"
+  ],
+  "keyParams": {
+    "GOLDRUSH_API_KEY": "GoldRush API key configured in MCP server environment",
+    "chainName": "EVM chain to query",
+    "walletAddress": "Target wallet address"
+  },
+  "responseFields": [
+    "items[].contract_ticker_symbol",
+    "items[].balance",
+    "items[].quote",
+    "items[].tx_hash"
+  ],
+  "snippet": "// Install: npx @covalenthq/goldrush-mcp-server\n// Or add to Claude Desktop config:\n// ~/.config/claude/claude_desktop_config.json\n\n// Example MCP config:\nconst mcpConfig = {\n  mcpServers: {\n    goldrush: {\n      command: 'npx',\n      args: ['-y', '@covalenthq/goldrush-mcp-server'],\n      env: {\n        GOLDRUSH_API_KEY: 'your_api_key_here',\n      },\n    },\n  },\n};\n\n// Once configured, Claude Desktop can answer:\n// 'What tokens does 0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045 hold on Ethereum?'\n// 'Show me the last 10 transactions for vitalik.eth'\n// 'What is the current ETH price?'",
+  "buildsWith": [
+    "claude-goldrush-skill",
+    "agent-wallet-skill",
+    "goldrush-typescript-sdk"
+  ]
 }

@@ -1,9 +1,52 @@
 {
   "title": "GoldRush React Hooks",
-  "description": "Drop-in React hooks for balances, NFTs, and token prices — onchain data made simple.",
+  "description": "Drop-in React hooks for balances, NFTs, and token prices \u2014 fetch on-chain data with loading, error, and data state managed automatically, no boilerplate needed.",
   "category": "developer",
-  "url": "https://goldrush.dev",
+  "url": "https://goldrush.dev/docs/goldrush-kit/",
   "tag": "Open Source",
   "date-added": "2026-03-12",
-  "slug": "goldrush-react-hooks"
+  "slug": "goldrush-react-hooks",
+  "complexity": "Beginner",
+  "useCase": "Build React components that fetch on-chain data with a single hook call \u2014 handle loading and error states automatically without writing fetch logic yourself.",
+  "chains": [
+    "ethereum",
+    "base",
+    "polygon",
+    "bsc",
+    "optimism",
+    "arbitrum",
+    "avalanche",
+    "gnosis",
+    "fantom",
+    "celo",
+    "moonbeam",
+    "blast",
+    "linea",
+    "scroll",
+    "zkSync",
+    "mantle",
+    "sonic",
+    "unichain",
+    "sei"
+  ],
+  "creditCost": "1 credit/call",
+  "endpoints": [
+    "GET /v1/{chainName}/address/{walletAddress}/balances_v2/"
+  ],
+  "keyParams": {
+    "address": "0x wallet address to fetch data for",
+    "chain_name": "EVM chain identifier"
+  },
+  "responseFields": [
+    "items[].contract_name",
+    "items[].balance",
+    "items[].quote",
+    "items[].logo_url"
+  ],
+  "snippet": "// Install: npm install @covalenthq/goldrush-kit\nimport { GoldRushProvider } from '@covalenthq/goldrush-kit';\nimport { useGoldRush } from '@covalenthq/goldrush-kit';\n\n// Wrap your app with the provider:\n// <GoldRushProvider apikey={process.env.NEXT_PUBLIC_GOLDRUSH_API_KEY!}>\n\nexport function BalanceSummary({ address }: { address: string }) {\n  // Access GoldRush client via context and call directly\n  const { goldrushClient } = useGoldRush();\n\n  const [totalUsd, setTotalUsd] = React.useState(0);\n\n  React.useEffect(() => {\n    goldrushClient.BalanceService\n      .getTokenBalancesForWalletAddress('eth-mainnet', address)\n      .then(resp => {\n        if (!resp.error) {\n          const total = resp.data.items.reduce((s, t) => s + (t.quote ?? 0), 0);\n          setTotalUsd(total);\n        }\n      });\n  }, [address]);\n\n  return <div>Portfolio: ${totalUsd.toFixed(2)}</div>;\n}",
+  "buildsWith": [
+    "goldrush-kit-token-balances",
+    "goldrush-kit-tx-feed",
+    "goldrush-typescript-sdk"
+  ]
 }

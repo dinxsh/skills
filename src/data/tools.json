@@ -14,7 +14,7 @@
         },
         {
           "title": "Historical Portfolio Value",
-          "body": "30-day rolling historical portfolio value with open/close/high/low per token per day — build P&L charts, portfolio performance dashboards, and DeFi fund trackers.",
+          "body": "30-day rolling historical portfolio value with open/close/high/low per token per day \u00e2\u20ac\u201d build P&L charts, portfolio performance dashboards, and DeFi fund trackers.",
           "tag": "API Key Required",
           "url": "https://goldrush.dev",
           "date-added": "2026-03-16",
@@ -38,7 +38,7 @@
         },
         {
           "title": "Portfolio History",
-          "body": "30-day historical portfolio value over time — asset-by-asset breakdown per day.",
+          "body": "30-day historical portfolio value over time \u00e2\u20ac\u201d asset-by-asset breakdown per day.",
           "tag": "API Key Required",
           "url": "https://goldrush.dev",
           "date-added": "2026-03-12",
@@ -70,7 +70,7 @@
         },
         {
           "title": "Wallet Age & Summary",
-          "body": "Get first and last transaction date, total transaction count, and gas spent for any wallet — the foundation for wallet age verification and on-chain identity.",
+          "body": "Get first and last transaction date, total transaction count, and gas spent for any wallet \u00e2\u20ac\u201d the foundation for wallet age verification and on-chain identity.",
           "tag": "Free Tier",
           "url": "https://goldrush.dev",
           "date-added": "2026-03-16",
@@ -83,6 +83,46 @@
           "url": "https://goldrush.dev",
           "date-added": "2026-03-12",
           "slug": "wallet-balances-skill"
+        },
+        {
+          "title": "Bitcoin Balance Checker",
+          "body": "Fetch confirmed UTXOs, current balance, and USD value for any Bitcoin address.",
+          "tag": "API Key Required",
+          "url": "https://goldrush.dev/docs/api/balances/get-bitcoin-non-hd-wallet-balances/",
+          "date-added": "2026-03-23",
+          "slug": "bitcoin-balance-checker"
+        },
+        {
+          "title": "Bitcoin HD Wallet Scanner",
+          "body": "Enumerate all derived addresses and balances from a Bitcoin xpub/ypub/zpub HD wallet key.",
+          "tag": "API Key Required",
+          "url": "https://goldrush.dev/docs/api/balances/get-bitcoin-hd-wallet-balances/",
+          "date-added": "2026-03-23",
+          "slug": "bitcoin-hd-wallet-scanner"
+        },
+        {
+          "title": "Bitcoin Transaction Explorer",
+          "body": "Paginated transaction history for any Bitcoin address \u2014 inputs, outputs, fees, and confirmation status.",
+          "tag": "API Key Required",
+          "url": "https://goldrush.dev/docs/api/transactions/get-transactions-for-btc-address/",
+          "date-added": "2026-03-23",
+          "slug": "bitcoin-transaction-explorer"
+        },
+        {
+          "title": "Historical Token Holdings",
+          "body": "Snapshot of every ERC-20 token balance and USD value at any past date \u2014 foundational chains only.",
+          "tag": "API Key Required",
+          "url": "https://goldrush.dev/docs/api/balances/get-historical-token-balances-for-wallet-address/",
+          "date-added": "2026-03-23",
+          "slug": "historical-token-holdings"
+        },
+        {
+          "title": "Wallet P&L Tracker",
+          "body": "Unrealized P&L for every token in a wallet \u2014 shows entry price, current price, and total gain/loss per position.",
+          "tag": "API Key Required",
+          "url": "https://goldrush.dev/docs/streaming/",
+          "date-added": "2026-03-23",
+          "slug": "wallet-pnl-tracker"
         }
       ]
     },
@@ -97,6 +137,14 @@
           "url": "https://goldrush.dev",
           "date-added": "2026-03-12",
           "slug": "dex-trade-history"
+        },
+        {
+          "title": "Live DEX Pair Stream",
+          "body": "Subscribe to new DEX pair creations as they happen across chains \u2014 catch launches the moment liquidity is added.",
+          "tag": "API Key Required",
+          "url": "https://goldrush.dev/docs/streaming/",
+          "date-added": "2026-03-23",
+          "slug": "live-dex-pair-stream"
         }
       ]
     },
@@ -106,7 +154,7 @@
       "content": [
         {
           "title": "NFT Gallery Viewer",
-          "body": "Drop-in React component that renders a full NFT gallery for any wallet using GoldRush Kit's NFTWalletCollectionView — zero custom UI needed.",
+          "body": "Drop-in React component that renders a full NFT gallery for any wallet using GoldRush Kit's NFTWalletCollectionView \u00e2\u20ac\u201d zero custom UI needed.",
           "tag": "Open Source",
           "url": "https://goldrush.dev",
           "date-added": "2026-03-16",
@@ -130,7 +178,7 @@
         },
         {
           "title": "NFT Token Sale History",
-          "body": "Full transfer and sale history for a single NFT token ID — who owned it, when it sold, and for how much. Powers provenance viewers and NFT detail pages.",
+          "body": "Full transfer and sale history for a single NFT token ID \u00e2\u20ac\u201d who owned it, when it sold, and for how much. Powers provenance viewers and NFT detail pages.",
           "tag": "API Key Required",
           "url": "https://goldrush.dev",
           "date-added": "2026-03-16",
@@ -151,6 +199,14 @@
           "url": "https://goldrush.dev",
           "date-added": "2026-03-12",
           "slug": "nft-transfer-tracker"
+        },
+        {
+          "title": "Ronin NFT Inventory",
+          "body": "List all NFTs held in a Ronin wallet \u2014 Axie Infinity, Land, and other Sky Mavis NFT collections.",
+          "tag": "API Key Required",
+          "url": "https://goldrush.dev/docs/api/nft/get-nfts-for-address/",
+          "date-added": "2026-03-23",
+          "slug": "ronin-nft-inventory"
         }
       ]
     },
@@ -160,7 +216,7 @@
       "content": [
         {
           "title": "Block Explorer Toolkit",
-          "body": "Fetch block details, all transactions in a block, and decode individual transactions — all the building blocks for a custom block explorer.",
+          "body": "Fetch block details, all transactions in a block, and decode individual transactions \u00e2\u20ac\u201d all the building blocks for a custom block explorer.",
           "tag": "Free Tier",
           "url": "https://goldrush.dev",
           "date-added": "2026-03-16",
@@ -168,7 +224,7 @@
         },
         {
           "title": "Contract Event Log Monitor",
-          "body": "Stream all decoded event logs emitted by any smart contract — filter by topic hash, date, or block range. The foundation for DEX analytics, protocol dashboards, and real-time monitoring.",
+          "body": "Stream all decoded event logs emitted by any smart contract \u00e2\u20ac\u201d filter by topic hash, date, or block range. The foundation for DEX analytics, protocol dashboards, and real-time monitoring.",
           "tag": "API Key Required",
           "url": "https://goldrush.dev",
           "date-added": "2026-03-16",
@@ -176,7 +232,7 @@
         },
         {
           "title": "Cross-Contract Event Scanner",
-          "body": "Scan ALL contracts on a chain for a specific event by topic hash — e.g. find every ERC-20 Transfer or every Uniswap Swap across the entire chain.",
+          "body": "Scan ALL contracts on a chain for a specific event by topic hash \u00e2\u20ac\u201d e.g. find every ERC-20 Transfer or every Uniswap Swap across the entire chain.",
           "tag": "API Key Required",
           "url": "https://goldrush.dev",
           "date-added": "2026-03-16",
@@ -224,11 +280,19 @@
         },
         {
           "title": "Wallet Activity Heatmap",
-          "body": "Generate a GitHub-style activity heatmap showing daily transaction counts for any wallet — visualize on-chain behaviour patterns.",
+          "body": "Generate a GitHub-style activity heatmap showing daily transaction counts for any wallet \u00e2\u20ac\u201d visualize on-chain behaviour patterns.",
           "tag": "API Key Required",
           "url": "https://goldrush.dev",
           "date-added": "2026-03-16",
           "slug": "wallet-activity-heatmap"
+        },
+        {
+          "title": "Token OHLCV Chart",
+          "body": "Real-time OHLCV candlestick data for any token \u2014 stream live candles via WebSocket for TradingView-style charts.",
+          "tag": "API Key Required",
+          "url": "https://goldrush.dev/docs/streaming/",
+          "date-added": "2026-03-23",
+          "slug": "token-ohlcv-chart"
         }
       ]
     },
@@ -270,7 +334,7 @@
         },
         {
           "title": "Claude GoldRush Skill",
-          "body": "Claude agent skill for querying GoldRush APIs — fetch wallet data, prices, and NFTs.",
+          "body": "Claude agent skill for querying GoldRush APIs \u00e2\u20ac\u201d fetch wallet data, prices, and NFTs.",
           "tag": "Open Source",
           "url": "https://goldrush.dev",
           "date-added": "2026-03-12",
@@ -286,7 +350,7 @@
         },
         {
           "title": "Real-time Wallet Stream",
-          "body": "Subscribe to live wallet activity events via WebSocket — zero polling, instant updates.",
+          "body": "Subscribe to live wallet activity events via WebSocket \u00e2\u20ac\u201d zero polling, instant updates.",
           "tag": "Beta",
           "url": "https://goldrush.dev",
           "date-added": "2026-03-12",
@@ -300,7 +364,7 @@
       "content": [
         {
           "title": "All Chains Status Monitor",
-          "body": "Fetch the real-time sync status of all 200+ GoldRush-supported chains — latest indexed block, sync lag, and chain metadata. Ideal for multi-chain app health checks.",
+          "body": "Fetch the real-time sync status of all 200+ GoldRush-supported chains \u00e2\u20ac\u201d latest indexed block, sync lag, and chain metadata. Ideal for multi-chain app health checks.",
           "tag": "Free Tier",
           "url": "https://goldrush.dev",
           "date-added": "2026-03-16",
@@ -316,7 +380,7 @@
         },
         {
           "title": "GoldRush Kit Approval Manager",
-          "body": "Drop-in React component that shows all active ERC-20 and NFT approvals for a wallet using ApprovalsListView — with built-in revoke functionality.",
+          "body": "Drop-in React component that shows all active ERC-20 and NFT approvals for a wallet using ApprovalsListView \u00e2\u20ac\u201d with built-in revoke functionality.",
           "tag": "Open Source",
           "url": "https://goldrush.dev",
           "date-added": "2026-03-16",
@@ -324,7 +388,7 @@
         },
         {
           "title": "GoldRush Kit Token Balances",
-          "body": "Drop-in React component for a full token balances table — ERC-20 + native — using GoldRush Kit's TokenBalancesListView. Ships with sorting, USD values, logos, and spam filtering.",
+          "body": "Drop-in React component for a full token balances table \u00e2\u20ac\u201d ERC-20 + native \u00e2\u20ac\u201d using GoldRush Kit's TokenBalancesListView. Ships with sorting, USD values, logos, and spam filtering.",
           "tag": "Open Source",
           "url": "https://goldrush.dev",
           "date-added": "2026-03-16",
@@ -348,7 +412,7 @@
         },
         {
           "title": "GoldRush React Hooks",
-          "body": "Drop-in React hooks for balances, NFTs, and token prices — onchain data made simple.",
+          "body": "Drop-in React hooks for balances, NFTs, and token prices \u00e2\u20ac\u201d onchain data made simple.",
           "tag": "Open Source",
           "url": "https://goldrush.dev",
           "date-added": "2026-03-12",
@@ -377,6 +441,14 @@
           "url": "https://goldrush.dev",
           "date-added": "2026-03-12",
           "slug": "webhook-builder"
+        },
+        {
+          "title": "Block Date Lookup",
+          "body": "Convert any date range to block numbers on any EVM chain \u2014 essential for historical queries and event log scanning.",
+          "tag": "Free Tier",
+          "url": "https://goldrush.dev/docs/api/base/get-block-heights/",
+          "date-added": "2026-03-23",
+          "slug": "block-date-lookup"
         }
       ]
     },
@@ -402,7 +474,7 @@
         },
         {
           "title": "Cross-Chain Transaction History",
-          "body": "Fetch and merge transaction history across multiple chains for a single wallet — great for multichain explorers, unified activity timelines, and tax reporting tools.",
+          "body": "Fetch and merge transaction history across multiple chains for a single wallet \u00e2\u20ac\u201d great for multichain explorers, unified activity timelines, and tax reporting tools.",
           "tag": "API Key Required",
           "url": "https://goldrush.dev",
           "date-added": "2026-03-16",
@@ -410,7 +482,7 @@
         },
         {
           "title": "Multi-Chain Activity Discovery",
-          "body": "Scan every supported chain simultaneously to discover which networks a wallet has been active on — single call, 200+ chains. The must-have entry point for any cross-chain app.",
+          "body": "Scan every supported chain simultaneously to discover which networks a wallet has been active on \u00e2\u20ac\u201d single call, 200+ chains. The must-have entry point for any cross-chain app.",
           "tag": "API Key Required",
           "url": "https://goldrush.dev",
           "date-added": "2026-03-16",
@@ -418,7 +490,7 @@
         },
         {
           "title": "Multi-Chain Token Aggregator",
-          "body": "Aggregate all token balances across every chain a wallet is active on — auto-discovers chains then fetches balances in parallel. One function call for a complete cross-chain portfolio.",
+          "body": "Aggregate all token balances across every chain a wallet is active on \u00e2\u20ac\u201d auto-discovers chains then fetches balances in parallel. One function call for a complete cross-chain portfolio.",
           "tag": "API Key Required",
           "url": "https://goldrush.dev",
           "date-added": "2026-03-16",
@@ -509,6 +581,22 @@
           "url": "https://goldrush.dev",
           "date-added": "2026-03-12",
           "slug": "token-transfer-stream"
+        },
+        {
+          "title": "DEX Pool Spot Price",
+          "body": "Fetch real-time spot prices and liquidity for any AMM pool \u2014 Uniswap, Aerodrome, PancakeSwap, and more.",
+          "tag": "API Key Required",
+          "url": "https://goldrush.dev/docs/api/pricing/get-pool-spot-prices/",
+          "date-added": "2026-03-23",
+          "slug": "dex-pool-spot-price"
+        },
+        {
+          "title": "Token Search",
+          "body": "Search any token by name or symbol across all indexed chains \u2014 returns address, chain, and logo for instant token lookup UIs.",
+          "tag": "Free Tier",
+          "url": "https://goldrush.dev/docs/streaming/",
+          "date-added": "2026-03-23",
+          "slug": "token-search"
         }
       ]
     },
@@ -542,7 +630,7 @@
         },
         {
           "title": "Onchain Activity Verifier",
-          "body": "Verify on-chain activity depth with transaction count, wallet age, chains used, and token diversity — build KYC-lite gates, Sybil filters, and proof-of-personhood checks.",
+          "body": "Verify on-chain activity depth with transaction count, wallet age, chains used, and token diversity \u00e2\u20ac\u201d build KYC-lite gates, Sybil filters, and proof-of-personhood checks.",
           "tag": "API Key Required",
           "url": "https://goldrush.dev",
           "date-added": "2026-03-16",
@@ -588,7 +676,7 @@
         },
         {
           "title": "Token Approval Risk Scanner",
-          "body": "Scan all active ERC-20 and NFT approvals for a wallet and score each by risk level — identify dangerous unlimited approvals, deprecated protocols, and known exploited contracts.",
+          "body": "Scan all active ERC-20 and NFT approvals for a wallet and score each by risk level \u00e2\u20ac\u201d identify dangerous unlimited approvals, deprecated protocols, and known exploited contracts.",
           "tag": "API Key Required",
           "url": "https://goldrush.dev",
           "date-added": "2026-03-16",
@@ -604,7 +692,7 @@
         },
         {
           "title": "Transaction Decoded Receipt",
-          "body": "Fetch a fully decoded transaction receipt including internal transfers, decoded log events, ERC-20/NFT movements, and gas analytics — the core of any transaction detail page.",
+          "body": "Fetch a fully decoded transaction receipt including internal transfers, decoded log events, ERC-20/NFT movements, and gas analytics \u00e2\u20ac\u201d the core of any transaction detail page.",
           "tag": "Free Tier",
           "url": "https://goldrush.dev",
           "date-added": "2026-03-16",

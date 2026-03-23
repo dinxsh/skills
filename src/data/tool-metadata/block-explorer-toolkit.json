@@ -1,9 +1,61 @@
 {
   "title": "Block Explorer Toolkit",
-  "description": "Fetch block details, all transactions in a block, and decode individual transactions — all the building blocks for a custom block explorer.",
+  "description": "Fetch block details, transaction count, gas used, and decode individual transactions \u2014 all the building blocks for a custom block explorer on any EVM chain.",
   "category": "analytics",
-  "url": "https://goldrush.dev",
+  "url": "https://goldrush.dev/docs/api/base/get-block/",
   "tag": "Free Tier",
   "date-added": "2026-03-16",
-  "slug": "block-explorer-toolkit"
+  "slug": "block-explorer-toolkit",
+  "complexity": "Intermediate",
+  "useCase": "Build a custom block explorer that shows block details, gas utilization, and a decoded transaction list \u2014 replacing Etherscan for your specific chain or dApp.",
+  "chains": [
+    "ethereum",
+    "base",
+    "polygon",
+    "bsc",
+    "optimism",
+    "arbitrum",
+    "avalanche",
+    "gnosis",
+    "fantom",
+    "celo",
+    "moonbeam",
+    "blast",
+    "linea",
+    "scroll",
+    "zkSync",
+    "mantle",
+    "sonic",
+    "unichain",
+    "sei"
+  ],
+  "creditCost": "1 credit/call",
+  "endpoints": [
+    "GET /v1/{chainName}/block_v2/{blockHeight}/",
+    "GET /v1/{chainName}/{txHash}/"
+  ],
+  "keyParams": {
+    "chainName": "EVM chain identifier (e.g. eth-mainnet, base-mainnet)",
+    "blockHeight": "Block number or 'latest'",
+    "txHash": "Transaction hash to decode"
+  },
+  "responseFields": [
+    "data.height",
+    "data.signed_at",
+    "data.tx_count",
+    "data.gas_used",
+    "data.gas_limit",
+    "items[].tx_hash",
+    "items[].from_address",
+    "items[].to_address",
+    "items[].value",
+    "items[].fees_paid",
+    "items[].successful"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function exploreBlock(chainName: string, blockHeight: string) {\n  const blockResp = await client.BaseService.getBlock(chainName, blockHeight);\n\n  if (blockResp.error) throw new Error(blockResp.error_message);\n\n  const block = blockResp.data;\n  return {\n    height: block.height,\n    timestamp: block.signed_at,\n    txCount: block.tx_count,\n    gasUsed: block.gas_used,\n    gasLimit: block.gas_limit,\n    utilization: block.gas_limit\n      ? ((block.gas_used ?? 0) / block.gas_limit * 100).toFixed(1) + '%'\n      : 'N/A',\n  };\n}",
+  "buildsWith": [
+    "transaction-decoded-receipt",
+    "gas-analytics",
+    "cross-contract-event-scanner"
+  ]
 }

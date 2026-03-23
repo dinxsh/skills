@@ -1,7 +1,7 @@
 [
   {
     "title": "Block Explorer Toolkit",
-    "body": "Fetch block details, all transactions in a block, and decode individual transactions — all the building blocks for a custom block explorer.",
+    "body": "Fetch block details, all transactions in a block, and decode individual transactions \u00e2\u20ac\u201d all the building blocks for a custom block explorer.",
     "tag": "Free Tier",
     "url": "https://goldrush.dev",
     "date-added": "2026-03-16",
@@ -9,7 +9,7 @@
   },
   {
     "title": "Contract Event Log Monitor",
-    "body": "Stream all decoded event logs emitted by any smart contract — filter by topic hash, date, or block range. The foundation for DEX analytics, protocol dashboards, and real-time monitoring.",
+    "body": "Stream all decoded event logs emitted by any smart contract \u00e2\u20ac\u201d filter by topic hash, date, or block range. The foundation for DEX analytics, protocol dashboards, and real-time monitoring.",
     "tag": "API Key Required",
     "url": "https://goldrush.dev",
     "date-added": "2026-03-16",
@@ -17,7 +17,7 @@
   },
   {
     "title": "Cross-Contract Event Scanner",
-    "body": "Scan ALL contracts on a chain for a specific event by topic hash — e.g. find every ERC-20 Transfer or every Uniswap Swap across the entire chain.",
+    "body": "Scan ALL contracts on a chain for a specific event by topic hash \u00e2\u20ac\u201d e.g. find every ERC-20 Transfer or every Uniswap Swap across the entire chain.",
     "tag": "API Key Required",
     "url": "https://goldrush.dev",
     "date-added": "2026-03-16",
@@ -65,10 +65,18 @@
   },
   {
     "title": "Wallet Activity Heatmap",
-    "body": "Generate a GitHub-style activity heatmap showing daily transaction counts for any wallet — visualize on-chain behaviour patterns.",
+    "body": "Generate a GitHub-style activity heatmap showing daily transaction counts for any wallet \u00e2\u20ac\u201d visualize on-chain behaviour patterns.",
     "tag": "API Key Required",
     "url": "https://goldrush.dev",
     "date-added": "2026-03-16",
     "slug": "wallet-activity-heatmap"
+  },
+  {
+    "title": "Token OHLCV Chart",
+    "body": "Real-time OHLCV candlestick data for any token \u2014 stream live candles via WebSocket for TradingView-style charts.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev/docs/streaming/",
+    "date-added": "2026-03-23",
+    "slug": "token-ohlcv-chart"
   }
 ]

@@ -1,9 +1,53 @@
 {
   "title": "Wallet Age & Summary",
-  "description": "Get first and last transaction date, total transaction count, and gas spent for any wallet — the foundation for wallet age verification and on-chain identity.",
+  "description": "Get first and last transaction date, total transaction count, and wallet age in days for any address \u2014 the foundation for wallet age verification and on-chain identity scoring.",
   "category": "wallet",
-  "url": "https://goldrush.dev",
+  "url": "https://goldrush.dev/docs/api/transactions/get-transaction-summary/",
   "tag": "Free Tier",
   "date-added": "2026-03-16",
-  "slug": "wallet-age-summary"
+  "slug": "wallet-age-summary",
+  "complexity": "Beginner",
+  "useCase": "Build a wallet age badge for a DeFi app \u2014 show how long a wallet has been active and its total transaction count as a trust and Sybil-resistance signal.",
+  "chains": [
+    "ethereum",
+    "base",
+    "polygon",
+    "bsc",
+    "optimism",
+    "arbitrum",
+    "avalanche",
+    "gnosis",
+    "fantom",
+    "celo",
+    "moonbeam",
+    "blast",
+    "linea",
+    "scroll",
+    "zkSync",
+    "mantle",
+    "sonic",
+    "unichain",
+    "sei"
+  ],
+  "creditCost": "0.1 credit/call",
+  "endpoints": [
+    "GET /v1/{chainName}/address/{walletAddress}/transactions_summary/"
+  ],
+  "keyParams": {
+    "chainName": "EVM chain identifier (e.g. eth-mainnet, base-mainnet)",
+    "walletAddress": "0x wallet address"
+  },
+  "responseFields": [
+    "items[].total_count",
+    "items[].earliest_transaction.block_signed_at",
+    "items[].earliest_transaction.tx_hash",
+    "items[].latest_transaction.block_signed_at",
+    "items[].latest_transaction.tx_hash"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function getWalletAgeSummary(chainName: string, walletAddress: string) {\n  const resp = await client.TransactionService.getTransactionSummary(\n    chainName,\n    walletAddress\n  );\n\n  if (resp.error) throw new Error(resp.error_message);\n\n  const summary = resp.data.items[0];\n  const firstTx = summary.earliest_transaction?.block_signed_at;\n  const ageInDays = firstTx\n    ? Math.floor((Date.now() - new Date(firstTx).getTime()) / 86_400_000)\n    : 0;\n\n  return {\n    totalTransactions: summary.total_count,\n    firstTransaction: firstTx,\n    latestTransaction: summary.latest_transaction?.block_signed_at,\n    walletAgeInDays: ageInDays,\n  };\n}",
+  "buildsWith": [
+    "transaction-history",
+    "onchain-activity-verifier",
+    "proof-of-onchain-activity"
+  ]
 }

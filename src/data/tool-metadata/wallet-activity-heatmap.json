@@ -1,9 +1,54 @@
 {
   "title": "Wallet Activity Heatmap",
-  "description": "Generate a GitHub-style activity heatmap showing daily transaction counts for any wallet — visualize on-chain behaviour patterns.",
+  "description": "Generate a GitHub-style activity heatmap showing daily transaction counts for any wallet \u2014 visualize on-chain behaviour patterns over time.",
   "category": "analytics",
-  "url": "https://goldrush.dev",
+  "url": "https://goldrush.dev/docs/api/transactions/get-transaction-summary/",
   "tag": "API Key Required",
   "date-added": "2026-03-16",
-  "slug": "wallet-activity-heatmap"
+  "slug": "wallet-activity-heatmap",
+  "complexity": "Intermediate",
+  "useCase": "Render a year-long activity heatmap for a wallet address showing which days had the most transactions \u2014 like a GitHub contributions chart but for on-chain activity.",
+  "chains": [
+    "ethereum",
+    "base",
+    "polygon",
+    "bsc",
+    "optimism",
+    "arbitrum",
+    "avalanche",
+    "gnosis",
+    "fantom",
+    "celo",
+    "moonbeam",
+    "blast",
+    "linea",
+    "scroll",
+    "zkSync",
+    "mantle",
+    "sonic",
+    "unichain",
+    "sei"
+  ],
+  "creditCost": "1 credit/call",
+  "endpoints": [
+    "GET /v1/{chainName}/address/{walletAddress}/transactions_summary/",
+    "GET /v1/{chainName}/address/{walletAddress}/transactions_v3/"
+  ],
+  "keyParams": {
+    "chainName": "EVM chain identifier (e.g. eth-mainnet, base-mainnet)",
+    "walletAddress": "0x wallet address",
+    "pageNumber": "Page number for paginating through historical transactions"
+  },
+  "responseFields": [
+    "items[].total_count",
+    "items[].earliest_transaction.block_signed_at",
+    "items[].latest_transaction.block_signed_at",
+    "items[].block_signed_at"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function buildActivityHeatmap(chainName: string, walletAddress: string) {\n  const summaryResp = await client.TransactionService.getTransactionSummary(\n    chainName,\n    walletAddress\n  );\n\n  if (summaryResp.error) throw new Error(summaryResp.error_message);\n\n  // Fetch recent page of txs and bucket by day\n  const txResp = await client.TransactionService.getTransactionsForAddressV3(\n    chainName,\n    walletAddress,\n    0\n  );\n\n  if (txResp.error) throw new Error(txResp.error_message);\n\n  const heatmap: Record<string, number> = {};\n  for (const tx of txResp.data.items) {\n    const day = String(tx.block_signed_at).slice(0, 10);\n    heatmap[day] = (heatmap[day] ?? 0) + 1;\n  }\n\n  return {\n    summary: summaryResp.data.items[0],\n    heatmap,\n  };\n}",
+  "buildsWith": [
+    "wallet-age-summary",
+    "transaction-history",
+    "onchain-activity-verifier"
+  ]
 }

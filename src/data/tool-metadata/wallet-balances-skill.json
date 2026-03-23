@@ -1,9 +1,58 @@
 {
-  "title": "Wallet Balances Skill",
-  "description": "Fetch token balances and portfolio state for any wallet across 100+ chains.",
+  "title": "Wallet Token Balances",
+  "description": "Fetch all ERC-20 and native token balances for any wallet address across 100+ EVM chains \u2014 with USD values, logos, and spam filtering built in.",
   "category": "wallet",
-  "url": "https://goldrush.dev",
+  "url": "https://goldrush.dev/docs/api/balances/get-token-balances-for-wallet-address/",
   "tag": "Free Tier",
   "date-added": "2026-03-12",
-  "slug": "wallet-balances-skill"
+  "slug": "wallet-balances-skill",
+  "complexity": "Beginner",
+  "useCase": "Build a multi-chain token portfolio dashboard that shows every asset a wallet holds with live USD prices.",
+  "chains": [
+    "ethereum",
+    "base",
+    "polygon",
+    "bsc",
+    "optimism",
+    "arbitrum",
+    "avalanche",
+    "gnosis",
+    "fantom",
+    "celo",
+    "moonbeam",
+    "blast",
+    "linea",
+    "scroll",
+    "zkSync",
+    "mantle",
+    "sonic",
+    "unichain",
+    "sei"
+  ],
+  "creditCost": "1 credit/call",
+  "endpoints": [
+    "GET /v1/{chainName}/address/{walletAddress}/balances_v2/"
+  ],
+  "keyParams": {
+    "chainName": "EVM chain identifier (e.g. eth-mainnet, base-mainnet, matic-mainnet)",
+    "walletAddress": "0x wallet address or ENS name"
+  },
+  "responseFields": [
+    "items[].contract_name",
+    "items[].contract_ticker_symbol",
+    "items[].contract_address",
+    "items[].contract_decimals",
+    "items[].balance",
+    "items[].quote",
+    "items[].quote_rate",
+    "items[].logo_url",
+    "items[].is_spam",
+    "items[].type"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function getWalletBalances(chainName: string, walletAddress: string) {\n  const resp = await client.BalanceService.getTokenBalancesForWalletAddress(\n    chainName,\n    walletAddress\n  );\n\n  if (resp.error) throw new Error(resp.error_message);\n\n  return resp.data.items\n    .filter(item => !item.is_spam)\n    .map(item => ({\n      name: item.contract_name,\n      symbol: item.contract_ticker_symbol,\n      balance: Number(item.balance) / 10 ** (item.contract_decimals ?? 18),\n      usdValue: item.quote,\n      logo: item.logo_url,\n    }));\n}",
+  "buildsWith": [
+    "transaction-history",
+    "historical-portfolio-value",
+    "wallet-age-summary"
+  ]
 }

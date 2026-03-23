@@ -1,9 +1,49 @@
 {
   "title": "All Chains Status Monitor",
-  "description": "Fetch the real-time sync status of all 200+ GoldRush-supported chains — latest indexed block, sync lag, and chain metadata. Ideal for multi-chain app health checks.",
+  "description": "Fetch the real-time sync status of all 200+ GoldRush-supported chains \u2014 latest indexed block, sync timestamp, and chain metadata. Ideal for multi-chain app health checks.",
   "category": "developer",
-  "url": "https://goldrush.dev",
+  "url": "https://goldrush.dev/docs/api/base/get-all-chain-statuses/",
   "tag": "Free Tier",
   "date-added": "2026-03-16",
-  "slug": "all-chains-status"
+  "slug": "all-chains-status",
+  "complexity": "Beginner",
+  "useCase": "Build a chain health dashboard that shows the last indexed block and sync lag for every supported chain \u2014 surface stale chains before running queries against them.",
+  "chains": [
+    "ethereum",
+    "base",
+    "polygon",
+    "bsc",
+    "optimism",
+    "arbitrum",
+    "avalanche",
+    "gnosis",
+    "fantom",
+    "celo",
+    "moonbeam",
+    "blast",
+    "linea",
+    "scroll",
+    "zkSync",
+    "mantle",
+    "sonic",
+    "unichain",
+    "sei",
+    "bitcoin"
+  ],
+  "creditCost": "0.1 credit/call",
+  "endpoints": [
+    "GET /v1/chains/status/"
+  ],
+  "keyParams": {},
+  "responseFields": [
+    "items[].name",
+    "items[].synced_block_height",
+    "items[].synced_blocked_signed_at"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function getAllChainStatus() {\n  const resp = await client.BaseService.getAllChainStatus();\n\n  if (resp.error) throw new Error(resp.error_message);\n\n  const now = Date.now();\n  return resp.data.items.map(chain => {\n    const lagMs = chain.synced_blocked_signed_at\n      ? now - new Date(chain.synced_blocked_signed_at).getTime()\n      : null;\n    return {\n      name: chain.name,\n      syncedBlock: chain.synced_block_height,\n      lagSeconds: lagMs != null ? Math.floor(lagMs / 1000) : null,\n      isHealthy: lagMs != null && lagMs < 120_000,\n    };\n  });\n}",
+  "buildsWith": [
+    "agent-data-budget-manager",
+    "address-activity-scanner",
+    "multichain-activity-discovery"
+  ]
 }

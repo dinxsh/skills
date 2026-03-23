@@ -1,9 +1,59 @@
 {
   "title": "Transaction Decoded Receipt",
-  "description": "Fetch a fully decoded transaction receipt including internal transfers, decoded log events, ERC-20/NFT movements, and gas analytics — the core of any transaction detail page.",
+  "description": "Fetch a fully decoded transaction receipt including internal transfers, decoded log events, ERC-20/NFT movements, and gas analytics \u2014 the core of any transaction detail page.",
   "category": "security",
-  "url": "https://goldrush.dev",
+  "url": "https://goldrush.dev/docs/api/transactions/get-a-transaction/",
   "tag": "Free Tier",
   "date-added": "2026-03-16",
-  "slug": "transaction-decoded-receipt"
+  "slug": "transaction-decoded-receipt",
+  "complexity": "Beginner",
+  "useCase": "Build a transaction detail page that shows every token transfer, internal call, and decoded event in a human-readable format \u2014 like Etherscan's transaction view but for your own app.",
+  "chains": [
+    "ethereum",
+    "base",
+    "polygon",
+    "bsc",
+    "optimism",
+    "arbitrum",
+    "avalanche",
+    "gnosis",
+    "fantom",
+    "celo",
+    "moonbeam",
+    "blast",
+    "linea",
+    "scroll",
+    "zkSync",
+    "mantle",
+    "sonic",
+    "unichain",
+    "sei"
+  ],
+  "creditCost": "1 credit/call",
+  "endpoints": [
+    "GET /v1/{chainName}/transaction_v2/{txHash}/"
+  ],
+  "keyParams": {
+    "chainName": "EVM chain identifier (e.g. eth-mainnet, base-mainnet)",
+    "txHash": "Transaction hash to decode",
+    "withDexTrades": "Include decoded DEX trade data (true/false)",
+    "withInternalTransactions": "Include internal ETH transfers (true/false)"
+  },
+  "responseFields": [
+    "items[].tx_hash",
+    "items[].block_signed_at",
+    "items[].from_address",
+    "items[].to_address",
+    "items[].value",
+    "items[].fees_paid",
+    "items[].log_events[].decoded.name",
+    "items[].log_events[].decoded.params[].name",
+    "items[].log_events[].decoded.params[].value"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function getDecodedReceipt(chainName: string, txHash: string) {\n  const resp = await client.TransactionService.getTransaction(\n    chainName,\n    txHash,\n    { withDexTrades: true, withInternalTransactions: true }\n  );\n\n  if (resp.error) throw new Error(resp.error_message);\n\n  const tx = resp.data.items[0];\n  return {\n    hash: tx.tx_hash,\n    timestamp: tx.block_signed_at,\n    from: tx.from_address,\n    to: tx.to_address,\n    valueEth: Number(tx.value) / 1e18,\n    gasFeesEth: Number(tx.fees_paid) / 1e18,\n    events: (tx.log_events ?? []).map(e => ({\n      name: e.decoded?.name,\n      params: Object.fromEntries(\n        (e.decoded?.params ?? []).map(p => [p.name, p.value])\n      ),\n    })),\n  };\n}",
+  "buildsWith": [
+    "transaction-history",
+    "contract-interaction-history",
+    "block-explorer-toolkit"
+  ]
 }

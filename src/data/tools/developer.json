@@ -1,7 +1,7 @@
 [
   {
     "title": "All Chains Status Monitor",
-    "body": "Fetch the real-time sync status of all 200+ GoldRush-supported chains — latest indexed block, sync lag, and chain metadata. Ideal for multi-chain app health checks.",
+    "body": "Fetch the real-time sync status of all 200+ GoldRush-supported chains \u00e2\u20ac\u201d latest indexed block, sync lag, and chain metadata. Ideal for multi-chain app health checks.",
     "tag": "Free Tier",
     "url": "https://goldrush.dev",
     "date-added": "2026-03-16",
@@ -17,7 +17,7 @@
   },
   {
     "title": "GoldRush Kit Approval Manager",
-    "body": "Drop-in React component that shows all active ERC-20 and NFT approvals for a wallet using ApprovalsListView — with built-in revoke functionality.",
+    "body": "Drop-in React component that shows all active ERC-20 and NFT approvals for a wallet using ApprovalsListView \u00e2\u20ac\u201d with built-in revoke functionality.",
     "tag": "Open Source",
     "url": "https://goldrush.dev",
     "date-added": "2026-03-16",
@@ -25,7 +25,7 @@
   },
   {
     "title": "GoldRush Kit Token Balances",
-    "body": "Drop-in React component for a full token balances table — ERC-20 + native — using GoldRush Kit's TokenBalancesListView. Ships with sorting, USD values, logos, and spam filtering.",
+    "body": "Drop-in React component for a full token balances table \u00e2\u20ac\u201d ERC-20 + native \u00e2\u20ac\u201d using GoldRush Kit's TokenBalancesListView. Ships with sorting, USD values, logos, and spam filtering.",
     "tag": "Open Source",
     "url": "https://goldrush.dev",
     "date-added": "2026-03-16",
@@ -49,7 +49,7 @@
   },
   {
     "title": "GoldRush React Hooks",
-    "body": "Drop-in React hooks for balances, NFTs, and token prices — onchain data made simple.",
+    "body": "Drop-in React hooks for balances, NFTs, and token prices \u00e2\u20ac\u201d onchain data made simple.",
     "tag": "Open Source",
     "url": "https://goldrush.dev",
     "date-added": "2026-03-12",
@@ -78,5 +78,13 @@
     "url": "https://goldrush.dev",
     "date-added": "2026-03-12",
     "slug": "webhook-builder"
+  },
+  {
+    "title": "Block Date Lookup",
+    "body": "Convert any date range to block numbers on any EVM chain \u2014 essential for historical queries and event log scanning.",
+    "tag": "Free Tier",
+    "url": "https://goldrush.dev/docs/api/base/get-block-heights/",
+    "date-added": "2026-03-23",
+    "slug": "block-date-lookup"
   }
 ]

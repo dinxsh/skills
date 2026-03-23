@@ -1,9 +1,55 @@
 {
   "title": "Onchain Data Query",
-  "description": "Query indexed blockchain data across 100+ chains with a single unified API.",
+  "description": "Query indexed blockchain data across 100+ chains with a unified API \u2014 combine wallet balances and recent transactions in a single async call for fast onchain data access.",
   "category": "analytics",
-  "url": "https://goldrush.dev",
+  "url": "https://goldrush.dev/docs/api/balances/get-token-balances-for-wallet-address/",
   "tag": "Free Tier",
   "date-added": "2026-03-12",
-  "slug": "onchain-data-query"
+  "slug": "onchain-data-query",
+  "complexity": "Beginner",
+  "useCase": "Build a wallet analytics dashboard that combines token balances and recent transactions into a single unified view \u2014 the entry point for any onchain data product.",
+  "chains": [
+    "ethereum",
+    "base",
+    "polygon",
+    "bsc",
+    "optimism",
+    "arbitrum",
+    "avalanche",
+    "gnosis",
+    "fantom",
+    "celo",
+    "moonbeam",
+    "blast",
+    "linea",
+    "scroll",
+    "zkSync",
+    "mantle",
+    "sonic",
+    "unichain",
+    "sei"
+  ],
+  "creditCost": "1 credit/call",
+  "endpoints": [
+    "GET /v1/{chainName}/address/{walletAddress}/balances_v2/",
+    "GET /v1/{chainName}/address/{walletAddress}/transactions_v3/"
+  ],
+  "keyParams": {
+    "chainName": "EVM chain identifier (e.g. eth-mainnet, base-mainnet)",
+    "walletAddress": "0x wallet address"
+  },
+  "responseFields": [
+    "items[].contract_name",
+    "items[].balance",
+    "items[].quote",
+    "items[].tx_hash",
+    "items[].block_signed_at",
+    "items[].successful"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function queryWalletData(chainName: string, walletAddress: string) {\n  const [balResp, txResp] = await Promise.all([\n    client.BalanceService.getTokenBalancesForWalletAddress(chainName, walletAddress),\n    client.TransactionService.getTransactionsForAddressV3(chainName, walletAddress, 0),\n  ]);\n\n  if (balResp.error) throw new Error(balResp.error_message);\n  if (txResp.error) throw new Error(txResp.error_message);\n\n  return {\n    balances: balResp.data.items.filter(t => !t.is_spam),\n    recentTxs: txResp.data.items.slice(0, 10),\n  };\n}",
+  "buildsWith": [
+    "wallet-balances-skill",
+    "transaction-history",
+    "cross-chain-transaction-history"
+  ]
 }

@@ -1,9 +1,42 @@
 {
   "title": "Historical Portfolio Value",
-  "description": "30-day rolling historical portfolio value with open/close/high/low per token per day — build P&L charts, portfolio performance dashboards, and DeFi fund trackers.",
+  "description": "30-day rolling historical portfolio value with open/close/high/low per token per day. Build P&L charts, portfolio performance dashboards, and DeFi fund trackers. Foundational chains only.",
   "category": "wallet",
-  "url": "https://goldrush.dev",
+  "url": "https://goldrush.dev/docs/api/balances/get-historical-portfolio-for-wallet-address/",
   "tag": "API Key Required",
   "date-added": "2026-03-16",
-  "slug": "historical-portfolio-value"
+  "slug": "historical-portfolio-value",
+  "complexity": "Intermediate",
+  "useCase": "Build a 30-day portfolio performance chart with per-token OHLC data \u2014 show gains, losses, and asset allocation change over time.",
+  "chains": [
+    "ethereum",
+    "base",
+    "bsc",
+    "polygon",
+    "optimism",
+    "gnosis"
+  ],
+  "creditCost": "1 credit/call",
+  "endpoints": [
+    "GET /v1/{chainName}/address/{walletAddress}/portfolio_v2/"
+  ],
+  "keyParams": {
+    "chainName": "Foundational EVM chain only: eth-mainnet, base-mainnet, bsc-mainnet, matic-mainnet, optimism-mainnet, gnosis-mainnet",
+    "walletAddress": "0x wallet address or ENS name"
+  },
+  "responseFields": [
+    "items[].contract_name",
+    "items[].contract_ticker_symbol",
+    "items[].holdings[].timestamp",
+    "items[].holdings[].open.quote",
+    "items[].holdings[].high.quote",
+    "items[].holdings[].low.quote",
+    "items[].holdings[].close.quote"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function getHistoricalPortfolio(chainName: string, walletAddress: string) {\n  const resp = await client.BalanceService.getHistoricalPortfolioForWalletAddress(\n    chainName,\n    walletAddress\n  );\n\n  if (resp.error) throw new Error(resp.error_message);\n\n  return resp.data.items.map(token => ({\n    name: token.contract_name,\n    symbol: token.contract_ticker_symbol,\n    history: (token.holdings ?? []).map(h => ({\n      date: h.timestamp,\n      open: h.open?.quote ?? 0,\n      high: h.high?.quote ?? 0,\n      low: h.low?.quote ?? 0,\n      close: h.close?.quote ?? 0,\n    })),\n  }));\n}",
+  "buildsWith": [
+    "portfolio-history",
+    "portfolio-tracker",
+    "wallet-balances-skill"
+  ]
 }

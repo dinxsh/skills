@@ -1,0 +1,41 @@
+{
+  "title": "Token Search",
+  "description": "Search any token by name or symbol across all indexed chains \u2014 returns address, chain, logo URL, and metadata for instant token lookup in swap UIs, portfolio apps, and token pickers.",
+  "category": "token",
+  "url": "https://goldrush.dev/docs/streaming/",
+  "tag": "Free Tier",
+  "date-added": "2026-03-23",
+  "slug": "token-search",
+  "complexity": "Beginner",
+  "useCase": "Build a token search input that lets users find any token by name or ticker \u2014 returns contract address, chain, and logo for use in swap UIs and token selectors.",
+  "chains": [
+    "ethereum",
+    "base",
+    "bsc",
+    "polygon",
+    "arbitrum",
+    "optimism",
+    "avalanche",
+    "solana"
+  ],
+  "creditCost": "Free",
+  "endpoints": [
+    "wss://streaming.goldrushdata.com/graphql \u2014 searchToken query"
+  ],
+  "keyParams": {
+    "q": "Search query string \u2014 token name or symbol (e.g. 'USDC', 'Uniswap')"
+  },
+  "responseFields": [
+    "name",
+    "symbol",
+    "address",
+    "chainName",
+    "logoUrl"
+  ],
+  "snippet": "import { createClient } from 'graphql-ws';\n\nconst wsClient = createClient({\n  url: 'wss://streaming.goldrushdata.com/graphql',\n  connectionParams: { apiKey: process.env.GOLDRUSH_API_KEY },\n});\n\nasync function searchToken(query: string) {\n  return new Promise<any[]>((resolve, reject) => {\n    wsClient.subscribe(\n      {\n        query: `query SearchToken($q: String!) {\n          searchToken(q: $q) {\n            name symbol address chainName logoUrl\n          }\n        }`,\n        variables: { q: query },\n      },\n      {\n        next: (data) => resolve(data.data?.searchToken ?? []),\n        error: reject,\n        complete: () => {},\n      }\n    );\n  });\n}\n\n// Usage\nconst results = await searchToken('USDC');\nresults.forEach(t => console.log(`${t.symbol} on ${t.chainName}: ${t.address}`));\n",
+  "buildsWith": [
+    "spot-price-ticker",
+    "token-price-chart",
+    "dex-pool-spot-price"
+  ]
+}

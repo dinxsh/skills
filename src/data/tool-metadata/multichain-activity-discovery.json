@@ -1,9 +1,52 @@
 {
   "title": "Multi-Chain Activity Discovery",
-  "description": "Scan every supported chain simultaneously to discover which networks a wallet has been active on — single call, 200+ chains. The must-have entry point for any cross-chain app.",
+  "description": "Scan every supported chain simultaneously to discover which networks a wallet has been active on \u2014 single call, 200+ chains. The must-have entry point for any cross-chain app.",
   "category": "crosschain",
-  "url": "https://goldrush.dev",
+  "url": "https://goldrush.dev/docs/api/base/get-address-activity/",
   "tag": "API Key Required",
   "date-added": "2026-03-16",
-  "slug": "multichain-activity-discovery"
+  "slug": "multichain-activity-discovery",
+  "complexity": "Beginner",
+  "useCase": "Detect all chains a user has ever been active on before loading their portfolio \u2014 use this as the first call in any multi-chain app to skip querying inactive chains.",
+  "chains": [
+    "ethereum",
+    "base",
+    "polygon",
+    "bsc",
+    "optimism",
+    "arbitrum",
+    "avalanche",
+    "gnosis",
+    "fantom",
+    "celo",
+    "moonbeam",
+    "blast",
+    "linea",
+    "scroll",
+    "zkSync",
+    "mantle",
+    "sonic",
+    "unichain",
+    "sei",
+    "bitcoin"
+  ],
+  "creditCost": "0.1 credit/call",
+  "endpoints": [
+    "GET /v1/address/{walletAddress}/activity/"
+  ],
+  "keyParams": {
+    "walletAddress": "0x wallet address to discover chain activity for"
+  },
+  "responseFields": [
+    "items[].name",
+    "items[].chain_id",
+    "items[].is_testnet",
+    "items[].last_seen_at"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function discoverActiveChains(walletAddress: string) {\n  const resp = await client.BaseService.getAddressActivity(walletAddress);\n\n  if (resp.error) throw new Error(resp.error_message);\n\n  const activeChains = resp.data.items\n    .filter(c => !c.is_testnet)\n    .map(c => c.name);\n\n  console.log(`Wallet active on ${activeChains.length} chains:`, activeChains);\n  return activeChains;\n}",
+  "buildsWith": [
+    "multichain-portfolio",
+    "cross-chain-transaction-history",
+    "address-activity-scanner"
+  ]
 }

@@ -1,9 +1,54 @@
 {
   "title": "NFT Portfolio Valuation",
-  "description": "Value an entire NFT portfolio using live collection and market data.",
+  "description": "Fetch all NFTs held in a wallet across EVM chains \u2014 including collection names, token IDs, metadata, and images \u2014 to build a complete NFT portfolio view with estimated holdings.",
   "category": "nft",
-  "url": "https://goldrush.dev",
+  "url": "https://goldrush.dev/docs/api/nft/get-nfts-for-address/",
   "tag": "API Key Required",
   "date-added": "2026-03-12",
-  "slug": "nft-portfolio-valuation"
+  "slug": "nft-portfolio-valuation",
+  "complexity": "Intermediate",
+  "useCase": "Build a wallet NFT portfolio page showing every collection held, total NFT count per collection, and token thumbnails across all supported chains.",
+  "chains": [
+    "ethereum",
+    "base",
+    "polygon",
+    "bsc",
+    "optimism",
+    "arbitrum",
+    "avalanche",
+    "gnosis",
+    "fantom",
+    "celo",
+    "moonbeam",
+    "blast",
+    "linea",
+    "scroll",
+    "zkSync",
+    "mantle",
+    "sonic",
+    "unichain",
+    "sei"
+  ],
+  "creditCost": "1 credit/call",
+  "endpoints": [
+    "GET /v1/{chainName}/address/{walletAddress}/balances_nft/"
+  ],
+  "keyParams": {
+    "chainName": "EVM chain identifier (e.g. eth-mainnet, matic-mainnet)",
+    "walletAddress": "0x wallet address"
+  },
+  "responseFields": [
+    "items[].contract_name",
+    "items[].contract_address",
+    "items[].nft_data[].token_id",
+    "items[].nft_data[].external_data.name",
+    "items[].nft_data[].external_data.image",
+    "items[].nft_data[].owner"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function getNftPortfolio(chainName: string, walletAddress: string) {\n  const resp = await client.NftService.getNftsForAddress(chainName, walletAddress);\n\n  if (resp.error) throw new Error(resp.error_message);\n\n  return resp.data.items.map(collection => ({\n    collection: collection.contract_name,\n    contractAddress: collection.contract_address,\n    count: (collection.nft_data ?? []).length,\n    tokens: (collection.nft_data ?? []).map(nft => ({\n      tokenId: nft.token_id,\n      name: nft.external_data?.name,\n      image: nft.external_data?.image,\n    })),\n  }));\n}",
+  "buildsWith": [
+    "nft-metadata-fetcher",
+    "nft-gallery-viewer",
+    "nft-traits-explorer"
+  ]
 }

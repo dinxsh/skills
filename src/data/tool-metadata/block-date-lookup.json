@@ -1,0 +1,40 @@
+{
+  "title": "Block Date Lookup",
+  "description": "Convert any date range to block numbers on any EVM chain \u2014 returns the first and last block for each day between two dates. Essential for historical queries and event log scanning.",
+  "category": "developer",
+  "url": "https://goldrush.dev/docs/api/base/get-block-heights/",
+  "tag": "Free Tier",
+  "date-added": "2026-03-23",
+  "slug": "block-date-lookup",
+  "complexity": "Beginner",
+  "useCase": "Find the exact block numbers for a date range before running historical event log queries \u2014 convert '2024-01-01' to '2024-01-31' into startingBlock and endingBlock parameters.",
+  "chains": [
+    "ethereum",
+    "base",
+    "bsc",
+    "polygon",
+    "optimism",
+    "arbitrum",
+    "avalanche",
+    "gnosis"
+  ],
+  "creditCost": "0.1 credit/call",
+  "endpoints": [
+    "GET /v1/{chainName}/block_v2/{startDate}/{endDate}/"
+  ],
+  "keyParams": {
+    "chainName": "EVM chain identifier (e.g. eth-mainnet, base-mainnet)",
+    "startDate": "Start date in YYYY-MM-DD format",
+    "endDate": "End date in YYYY-MM-DD format"
+  },
+  "responseFields": [
+    "items[].signed_at",
+    "items[].height"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function getBlocksForDateRange(\n  chainName: string,\n  startDate: string, // 'YYYY-MM-DD'\n  endDate: string    // 'YYYY-MM-DD'\n) {\n  const resp = await client.BaseService.getBlockHeights(\n    chainName,\n    startDate,\n    endDate\n  );\n\n  if (resp.error) throw new Error(resp.error_message);\n\n  const blocks = resp.data.items;\n  if (blocks.length === 0) throw new Error('No blocks found for date range');\n\n  const startBlock = blocks[0].height;\n  const endBlock = blocks[blocks.length - 1].height;\n\n  return {\n    startBlock,\n    endBlock,\n    blockCount: blocks.length,\n    range: blocks.map(b => ({ date: b.signed_at, block: b.height })),\n  };\n}\n\n// Usage: find blocks for January 2024 on Ethereum\nconst range = await getBlocksForDateRange('eth-mainnet', '2024-01-01', '2024-01-31');\nconsole.log(`Blocks ${range.startBlock} to ${range.endBlock}`);\n",
+  "buildsWith": [
+    "contract-event-log-monitor",
+    "cross-contract-event-scanner",
+    "block-explorer-toolkit"
+  ]
+}

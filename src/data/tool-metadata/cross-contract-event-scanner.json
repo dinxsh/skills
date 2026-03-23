@@ -1,9 +1,56 @@
 {
   "title": "Cross-Contract Event Scanner",
-  "description": "Scan ALL contracts on a chain for a specific event by topic hash — e.g. find every ERC-20 Transfer or every Uniswap Swap across the entire chain.",
+  "description": "Scan ALL contracts on a chain for a specific event by topic hash \u2014 find every ERC-20 Transfer, every Uniswap Swap, or any custom event across the entire chain within a block range.",
   "category": "analytics",
-  "url": "https://goldrush.dev",
+  "url": "https://goldrush.dev/docs/api/base/get-log-events-by-topic-hash/",
   "tag": "API Key Required",
   "date-added": "2026-03-16",
-  "slug": "cross-contract-event-scanner"
+  "slug": "cross-contract-event-scanner",
+  "complexity": "Advanced",
+  "useCase": "Find every Uniswap V3 Swap event on Base within the last 1000 blocks \u2014 build cross-protocol DEX aggregators, airdrop eligibility scanners, and chain-wide analytics.",
+  "chains": [
+    "ethereum",
+    "base",
+    "polygon",
+    "bsc",
+    "optimism",
+    "arbitrum",
+    "avalanche",
+    "gnosis",
+    "fantom",
+    "celo",
+    "moonbeam",
+    "blast",
+    "linea",
+    "scroll",
+    "zkSync",
+    "mantle",
+    "sonic",
+    "unichain",
+    "sei"
+  ],
+  "creditCost": "1 credit/call",
+  "endpoints": [
+    "GET /v1/{chainName}/events/topics/{topicHash}/"
+  ],
+  "keyParams": {
+    "chainName": "EVM chain identifier (e.g. eth-mainnet, base-mainnet)",
+    "topicHash": "keccak256 hash of the event signature (e.g. Transfer(address,address,uint256))",
+    "startingBlock": "Start block height",
+    "endingBlock": "End block height"
+  },
+  "responseFields": [
+    "items[].block_signed_at",
+    "items[].tx_hash",
+    "items[].sender_address",
+    "items[].decoded.name",
+    "items[].decoded.params[].name",
+    "items[].decoded.params[].value"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\n// Transfer(address indexed from, address indexed to, uint256 value)\nconst TRANSFER_TOPIC = '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef';\n\nasync function scanTransferEvents(\n  chainName: string,\n  startingBlock: number,\n  endingBlock: number\n) {\n  const resp = await client.BaseService.getLogEventsByTopicHash(\n    chainName,\n    TRANSFER_TOPIC,\n    { startingBlock, endingBlock }\n  );\n\n  if (resp.error) throw new Error(resp.error_message);\n\n  return resp.data.items.map(log => ({\n    contract: log.sender_address,\n    txHash: log.tx_hash,\n    timestamp: log.block_signed_at,\n    params: Object.fromEntries(\n      (log.decoded?.params ?? []).map(p => [p.name, p.value])\n    ),\n  }));\n}",
+  "buildsWith": [
+    "contract-event-log-monitor",
+    "event-log-decoder",
+    "block-explorer-toolkit"
+  ]
 }

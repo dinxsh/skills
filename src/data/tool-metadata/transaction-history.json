@@ -1,9 +1,60 @@
 {
   "title": "Transaction History",
-  "description": "Paginated, decoded transaction history with logs for any wallet or contract address.",
+  "description": "Paginated, decoded transaction history with event logs for any wallet or contract address \u2014 includes value, gas, decoded log events, and ERC-20/NFT transfer breakdowns.",
   "category": "wallet",
-  "url": "https://goldrush.dev",
+  "url": "https://goldrush.dev/docs/api/transactions/get-transactions-for-address-v3/",
   "tag": "Free Tier",
   "date-added": "2026-03-12",
-  "slug": "transaction-history"
+  "slug": "transaction-history",
+  "complexity": "Beginner",
+  "useCase": "Build a paginated transaction feed showing decoded event names, ETH value, gas paid, and success status \u2014 the core of any wallet explorer or activity page.",
+  "chains": [
+    "ethereum",
+    "base",
+    "polygon",
+    "bsc",
+    "optimism",
+    "arbitrum",
+    "avalanche",
+    "gnosis",
+    "fantom",
+    "celo",
+    "moonbeam",
+    "blast",
+    "linea",
+    "scroll",
+    "zkSync",
+    "mantle",
+    "sonic",
+    "unichain",
+    "sei"
+  ],
+  "creditCost": "1 credit/call",
+  "endpoints": [
+    "GET /v1/{chainName}/address/{walletAddress}/transactions_v3/"
+  ],
+  "keyParams": {
+    "chainName": "EVM chain identifier (e.g. eth-mainnet, base-mainnet)",
+    "walletAddress": "0x wallet address",
+    "pageNumber": "Page index starting from 0"
+  },
+  "responseFields": [
+    "items[].block_signed_at",
+    "items[].tx_hash",
+    "items[].from_address",
+    "items[].to_address",
+    "items[].value",
+    "items[].value_quote",
+    "items[].gas_spent",
+    "items[].fees_paid",
+    "items[].successful",
+    "items[].log_events[].decoded.name",
+    "items[].log_events[].decoded.params[]"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function getTransactionHistory(\n  chainName: string,\n  walletAddress: string,\n  pageNumber = 0\n) {\n  const resp = await client.TransactionService.getTransactionsForAddressV3(\n    chainName,\n    walletAddress,\n    pageNumber\n  );\n\n  if (resp.error) throw new Error(resp.error_message);\n\n  return resp.data.items.map(tx => ({\n    hash: tx.tx_hash,\n    timestamp: tx.block_signed_at,\n    from: tx.from_address,\n    to: tx.to_address,\n    valueEth: Number(tx.value) / 1e18,\n    valueUsd: tx.value_quote,\n    gasUsed: tx.gas_spent,\n    success: tx.successful,\n    events: (tx.log_events ?? []).map(e => e.decoded?.name).filter(Boolean),\n  }));\n}",
+  "buildsWith": [
+    "wallet-age-summary",
+    "wallet-activity-feed",
+    "transaction-decoded-receipt"
+  ]
 }

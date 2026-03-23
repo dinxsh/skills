@@ -1,9 +1,55 @@
 {
   "title": "Gas Analytics",
-  "description": "Real-time and historical gas price tracking for any EVM-compatible chain.",
+  "description": "Real-time and historical gas price tracking for any EVM-compatible chain \u2014 returns slow/fast/instant gas prices in gwei plus estimated USD fees for a standard transfer.",
   "category": "analytics",
-  "url": "https://goldrush.dev",
+  "url": "https://goldrush.dev/docs/api/base/get-gas-prices/",
   "tag": "Free Tier",
   "date-added": "2026-03-12",
-  "slug": "gas-analytics"
+  "slug": "gas-analytics",
+  "complexity": "Beginner",
+  "useCase": "Build a gas fee estimator widget that shows real-time slow/fast/instant gas prices in gwei and estimated USD cost for a standard transaction.",
+  "chains": [
+    "ethereum",
+    "base",
+    "polygon",
+    "bsc",
+    "optimism",
+    "arbitrum",
+    "avalanche",
+    "gnosis",
+    "fantom",
+    "celo",
+    "moonbeam",
+    "blast",
+    "linea",
+    "scroll",
+    "zkSync",
+    "mantle",
+    "sonic",
+    "unichain",
+    "sei"
+  ],
+  "creditCost": "0.1 credit/call",
+  "endpoints": [
+    "GET /v1/{chainName}/event/{eventType}/gas_prices/"
+  ],
+  "keyParams": {
+    "chainName": "EVM chain identifier (e.g. eth-mainnet, matic-mainnet)",
+    "eventType": "erc20 | nativetokens | uniswapv3"
+  },
+  "responseFields": [
+    "items[].base_fee",
+    "items[].open.gas_price",
+    "items[].open.fee_usd",
+    "items[].fast.gas_price",
+    "items[].fast.fee_usd",
+    "items[].instant.gas_price",
+    "items[].instant.fee_usd"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function getGasPrices(chainName: string) {\n  const resp = await client.BaseService.getGasPrices(chainName, 'erc20');\n\n  if (resp.error) throw new Error(resp.error_message);\n\n  const latest = resp.data.items[0];\n  return {\n    baseFeeGwei: latest.base_fee,\n    slow: {\n      gasPriceGwei: latest.open?.gas_price,\n      estimatedUsd: latest.open?.fee_usd,\n    },\n    fast: {\n      gasPriceGwei: latest.fast?.gas_price,\n      estimatedUsd: latest.fast?.fee_usd,\n    },\n    instant: {\n      gasPriceGwei: latest.instant?.gas_price,\n      estimatedUsd: latest.instant?.fee_usd,\n    },\n  };\n}",
+  "buildsWith": [
+    "block-explorer-toolkit",
+    "transaction-decoded-receipt",
+    "all-chains-status"
+  ]
 }

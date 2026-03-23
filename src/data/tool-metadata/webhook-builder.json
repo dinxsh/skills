@@ -1,9 +1,55 @@
 {
   "title": "Webhook Builder",
-  "description": "Configure real-time webhooks for wallet events, transfers, and contract interactions.",
+  "description": "Configure real-time webhooks for wallet events, token transfers, and contract interactions \u2014 receive instant HTTP callbacks when on-chain events occur without polling.",
   "category": "developer",
-  "url": "https://goldrush.dev",
+  "url": "https://goldrush.dev/docs/webhooks/",
   "tag": "API Key Required",
   "date-added": "2026-03-12",
-  "slug": "webhook-builder"
+  "slug": "webhook-builder",
+  "complexity": "Intermediate",
+  "useCase": "Build a notification system that fires HTTP webhooks when a wallet receives tokens, completes a swap, or interacts with a contract \u2014 no polling, pure push delivery.",
+  "chains": [
+    "ethereum",
+    "base",
+    "polygon",
+    "bsc",
+    "optimism",
+    "arbitrum",
+    "avalanche",
+    "gnosis",
+    "fantom",
+    "celo",
+    "moonbeam",
+    "blast",
+    "linea",
+    "scroll",
+    "zkSync",
+    "mantle",
+    "sonic",
+    "unichain",
+    "sei"
+  ],
+  "creditCost": "Per event delivery",
+  "endpoints": [
+    "POST /v1/webhooks/",
+    "GET /v1/webhooks/"
+  ],
+  "keyParams": {
+    "url": "HTTPS endpoint to receive webhook payloads",
+    "type": "Event type: wallet_activity | token_transfer | contract_event",
+    "filters": "Object containing address, chain, and event filters"
+  },
+  "responseFields": [
+    "webhook_id",
+    "url",
+    "type",
+    "status",
+    "created_at"
+  ],
+  "snippet": "// Configure via GoldRush dashboard at goldrush.dev/platform/webhooks\n// Or use the REST API:\n\nasync function createWalletWebhook(walletAddress: string, webhookUrl: string) {\n  const resp = await fetch('https://api.covalenthq.com/v1/webhooks/', {\n    method: 'POST',\n    headers: {\n      'Authorization': `Bearer ${process.env.GOLDRUSH_API_KEY}`,\n      'Content-Type': 'application/json',\n    },\n    body: JSON.stringify({\n      url: webhookUrl,\n      type: 'wallet_activity',\n      filters: {\n        address: walletAddress,\n        chain_name: 'eth-mainnet',\n      },\n    }),\n  });\n\n  return resp.json();\n}\n\n// Receive the webhook payload:\n// POST your-server.com/webhook\n// { event: 'wallet_activity', txHash, value, from, to, timestamp }",
+  "buildsWith": [
+    "realtime-wallet-stream",
+    "wallet-activity-feed",
+    "contract-event-log-monitor"
+  ]
 }

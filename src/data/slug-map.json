@@ -205,5 +205,38 @@
   ],
   "transaction-decoded-receipt": [
     "security"
+  ],
+  "bitcoin-balance-checker": [
+    "wallet"
+  ],
+  "bitcoin-hd-wallet-scanner": [
+    "wallet"
+  ],
+  "bitcoin-transaction-explorer": [
+    "wallet"
+  ],
+  "historical-token-holdings": [
+    "wallet"
+  ],
+  "wallet-pnl-tracker": [
+    "wallet"
+  ],
+  "dex-pool-spot-price": [
+    "token"
+  ],
+  "token-search": [
+    "token"
+  ],
+  "live-dex-pair-stream": [
+    "defi"
+  ],
+  "token-ohlcv-chart": [
+    "analytics"
+  ],
+  "ronin-nft-inventory": [
+    "nft"
+  ],
+  "block-date-lookup": [
+    "developer"
   ]
 }

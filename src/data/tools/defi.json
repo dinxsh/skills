@@ -6,5 +6,13 @@
     "url": "https://goldrush.dev",
     "date-added": "2026-03-12",
     "slug": "dex-trade-history"
+  },
+  {
+    "title": "Live DEX Pair Stream",
+    "body": "Subscribe to new DEX pair creations as they happen across chains \u2014 catch launches the moment liquidity is added.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev/docs/streaming/",
+    "date-added": "2026-03-23",
+    "slug": "live-dex-pair-stream"
   }
 ]

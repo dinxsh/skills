@@ -1,9 +1,57 @@
 {
   "title": "Agent Counterparty Verification",
-  "description": "Verify counterparty wallets before agent-initiated transactions using risk signals.",
+  "description": "Verify counterparty wallets before agent-initiated transactions \u2014 check approvals, wallet age, and transaction summary to surface risk signals before executing any on-chain action.",
   "category": "agents",
-  "url": "https://goldrush.dev",
+  "url": "https://goldrush.dev/docs/api/security/get-approvals/",
   "tag": "Free Tier",
   "date-added": "2026-03-16",
-  "slug": "agent-counterparty-verification"
+  "slug": "agent-counterparty-verification",
+  "complexity": "Intermediate",
+  "useCase": "Build a pre-transaction risk check for AI agents \u2014 before sending tokens, verify the recipient is not a flagged address, has a real transaction history, and has no dangerous approvals.",
+  "chains": [
+    "ethereum",
+    "base",
+    "polygon",
+    "bsc",
+    "optimism",
+    "arbitrum",
+    "avalanche",
+    "gnosis",
+    "fantom",
+    "celo",
+    "moonbeam",
+    "blast",
+    "linea",
+    "scroll",
+    "zkSync",
+    "mantle",
+    "sonic",
+    "unichain",
+    "sei"
+  ],
+  "creditCost": "1 credit/call",
+  "endpoints": [
+    "GET /v1/{chainName}/approvals/{walletAddress}/",
+    "GET /v1/{chainName}/address/{walletAddress}/transactions_summary/"
+  ],
+  "keyParams": {
+    "chainName": "EVM chain identifier (e.g. eth-mainnet, base-mainnet)",
+    "walletAddress": "0x address of the counterparty wallet to verify"
+  },
+  "responseFields": [
+    "items[].token_address",
+    "items[].token_ticker_symbol",
+    "items[].spender_address",
+    "items[].spender_name",
+    "items[].value_at_risk",
+    "items[].risk_factor",
+    "items[].total_count",
+    "items[].earliest_transaction.block_signed_at"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function verifyCounterparty(chainName: string, walletAddress: string) {\n  const [approvalsResp, summaryResp] = await Promise.all([\n    client.SecurityService.getApprovals(chainName, walletAddress),\n    client.TransactionService.getTransactionSummary(chainName, walletAddress),\n  ]);\n\n  if (approvalsResp.error) throw new Error(approvalsResp.error_message);\n  if (summaryResp.error) throw new Error(summaryResp.error_message);\n\n  const highRisk = approvalsResp.data.items.filter(\n    a => (a.risk_factor ?? 0) > 0.7\n  );\n\n  const summary = summaryResp.data.items[0];\n  const firstTx = summary?.earliest_transaction?.block_signed_at;\n  const ageInDays = firstTx\n    ? Math.floor((Date.now() - new Date(firstTx).getTime()) / 86_400_000)\n    : 0;\n\n  return {\n    walletAgeInDays: ageInDays,\n    totalTransactions: summary?.total_count ?? 0,\n    highRiskApprovals: highRisk.length,\n    riskScore: highRisk.length > 0 ? 'HIGH' : ageInDays < 7 ? 'MEDIUM' : 'LOW',\n  };\n}",
+  "buildsWith": [
+    "token-approval-risk-scanner",
+    "wallet-age-summary",
+    "approval-auditor"
+  ]
 }

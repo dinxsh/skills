@@ -1,9 +1,55 @@
 {
   "title": "Smart Contract Interaction Risk",
-  "description": "Score the risk of interacting with any smart contract based on its onchain history and approvals.",
+  "description": "Score the risk of interacting with any smart contract \u2014 combines approval data and log event history to surface dangerous contracts, honeypots, and exploit patterns.",
   "category": "security",
-  "url": "https://goldrush.dev",
+  "url": "https://goldrush.dev/docs/api/security/get-approvals/",
   "tag": "API Key Required",
   "date-added": "2026-03-16",
-  "slug": "smart-contract-interaction-risk"
+  "slug": "smart-contract-interaction-risk",
+  "complexity": "Advanced",
+  "useCase": "Build a pre-transaction risk check that scores any contract before users interact with it \u2014 surface honeypot signals, unusual approval patterns, and known exploited contracts.",
+  "chains": [
+    "ethereum",
+    "base",
+    "polygon",
+    "bsc",
+    "optimism",
+    "arbitrum",
+    "avalanche",
+    "gnosis",
+    "fantom",
+    "celo",
+    "moonbeam",
+    "blast",
+    "linea",
+    "scroll",
+    "zkSync",
+    "mantle",
+    "sonic",
+    "unichain",
+    "sei"
+  ],
+  "creditCost": "1 credit/call",
+  "endpoints": [
+    "GET /v1/{chainName}/approvals/{walletAddress}/",
+    "GET /v1/{chainName}/events/address/{contractAddress}/"
+  ],
+  "keyParams": {
+    "chainName": "EVM chain identifier (e.g. eth-mainnet, base-mainnet)",
+    "walletAddress": "0x wallet address to check approvals for",
+    "contractAddress": "Smart contract address to score"
+  },
+  "responseFields": [
+    "items[].spender_address",
+    "items[].spender_name",
+    "items[].value_at_risk",
+    "items[].risk_factor",
+    "items[].decoded.name"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function scoreContractRisk(\n  chainName: string,\n  walletAddress: string,\n  contractAddress: string\n) {\n  const [approvalsResp, logsResp] = await Promise.all([\n    client.SecurityService.getApprovals(chainName, walletAddress),\n    client.BaseService.getLogEventsByAddress(chainName, contractAddress, {\n      startingBlock: 0, endingBlock: 0,\n    }),\n  ]);\n\n  if (approvalsResp.error) throw new Error(approvalsResp.error_message);\n\n  const existingApproval = approvalsResp.data.items.find(\n    a => a.spender_address?.toLowerCase() === contractAddress.toLowerCase()\n  );\n\n  const eventCount = logsResp.error ? 0 : logsResp.data.items.length;\n\n  return {\n    contractAddress,\n    hasExistingApproval: !!existingApproval,\n    approvalRiskFactor: existingApproval?.risk_factor ?? 0,\n    valueAtRisk: existingApproval?.value_at_risk ?? 0,\n    recentEventCount: eventCount,\n    riskLevel: (existingApproval?.risk_factor ?? 0) > 0.7 ? 'HIGH' : 'LOW',\n  };\n}",
+  "buildsWith": [
+    "approval-auditor",
+    "contract-interaction-history",
+    "token-approval-risk-scanner"
+  ]
 }

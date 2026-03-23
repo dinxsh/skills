@@ -1,9 +1,53 @@
 {
   "title": "Spot Price Ticker",
-  "description": "Live spot prices for thousands of tokens indexed by GoldRush across all chains.",
+  "description": "Live spot prices for thousands of ERC-20 tokens indexed by GoldRush \u2014 fetch the current USD price for any token contract address across all supported chains.",
   "category": "token",
-  "url": "https://goldrush.dev",
+  "url": "https://goldrush.dev/docs/api/pricing/get-token-prices/",
   "tag": "Free Tier",
   "date-added": "2026-03-12",
-  "slug": "spot-price-ticker"
+  "slug": "spot-price-ticker",
+  "complexity": "Beginner",
+  "useCase": "Build a live token price ticker or price lookup widget \u2014 fetch the current USD price for any ERC-20 by contract address with a single API call.",
+  "chains": [
+    "ethereum",
+    "base",
+    "polygon",
+    "bsc",
+    "optimism",
+    "arbitrum",
+    "avalanche",
+    "gnosis",
+    "fantom",
+    "celo",
+    "moonbeam",
+    "blast",
+    "linea",
+    "scroll",
+    "zkSync",
+    "mantle",
+    "sonic",
+    "unichain",
+    "sei",
+    "bitcoin"
+  ],
+  "creditCost": "1 credit/call",
+  "endpoints": [
+    "GET /v1/pricing/historical_by_addresses_v2/{chainName}/{quoteCurrency}/{contractAddresses}/"
+  ],
+  "keyParams": {
+    "chainName": "EVM chain identifier (e.g. eth-mainnet, base-mainnet)",
+    "quoteCurrency": "Quote currency (e.g. USD)",
+    "contractAddresses": "Comma-separated list of ERC-20 contract addresses"
+  },
+  "responseFields": [
+    "items[].contract_address",
+    "items[].prices[].date",
+    "items[].prices[].price"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function getSpotPrice(chainName: string, contractAddress: string) {\n  const resp = await client.PricingService.getTokenPrices(\n    chainName,\n    'USD',\n    contractAddress\n  );\n\n  if (resp.error) throw new Error(resp.error_message);\n\n  const token = resp.data.items[0];\n  const latest = token.prices?.[0];\n\n  return {\n    address: token.contract_address,\n    priceUsd: latest?.price ?? null,\n    date: latest?.date ?? null,\n  };\n}",
+  "buildsWith": [
+    "token-price-chart",
+    "token-price-history",
+    "token-supply-metadata"
+  ]
 }
