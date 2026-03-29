@@ -1,0 +1,9 @@
+{
+  "title": "Solana Staking Snapshot",
+  "description": "Query a Solana wallet's complete staking picture: native stake accounts (active, activating, deactivating, inactive) pulled from the on-chain stake program, plus liquid staking positions in mSOL (Marinade), jitoSOL (Jito), bSOL (Sanctum), and stSOL (Lido). Returns stake amount in SOL, activation epoch, estimated APY, and claimable rewards for each position — build a staking dashboard, rewards calculator, or unstaking automation agent in one view.",
+  "category": "wallet",
+  "url": "https://goldrush.dev",
+  "tag": "API Key Required",
+  "date-added": "2026-03-26",
+  "slug": "solana-staking-snapshot"
+}

@@ -1,0 +1,9 @@
+{
+  "title": "Solana NFT Collection Stats",
+  "description": "Fetch aggregated on-chain stats for any Solana NFT collection by collection address — floor price in SOL and USD, 24h trading volume, total unique holder count, total listed supply, and top 5 holder wallets ranked by number of items. Pair with GoldRush's real-time NFT transfer stream to track when floor listings are scooped. Build a collection monitor that fires an alert when floor drops below your target price, volume spikes above 2x average, or holder concentration increases.",
+  "category": "nft",
+  "url": "https://goldrush.dev",
+  "tag": "API Key Required",
+  "date-added": "2026-03-26",
+  "slug": "solana-nft-collection-stats"
+}

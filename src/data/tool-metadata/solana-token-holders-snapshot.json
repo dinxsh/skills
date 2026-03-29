@@ -1,0 +1,9 @@
+{
+  "title": "Solana Token Holders Snapshot",
+  "description": "Call `GET /v1/solana-mainnet/tokens/{mint}/token_holders/?page-size=100` to retrieve a ranked list of every wallet holding a given SPL token — returns wallet address, raw balance, USD value, and percentage of total supply for each holder. Paginate through all pages for a complete holder distribution. Use for airdrop snapshot lists, DAO governance voter registries, whale identification, or as input to a holder concentration risk score.",
+  "category": "token",
+  "url": "https://goldrush.dev",
+  "tag": "API Key Required",
+  "date-added": "2026-03-26",
+  "slug": "solana-token-holders-snapshot"
+}

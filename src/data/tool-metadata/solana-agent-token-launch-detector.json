@@ -1,0 +1,9 @@
+{
+  "title": "Solana Agent Token Launch Detector",
+  "description": "Stream new SPL token mint events and pump.fun bonding curve graduations in real-time using GoldRush's event monitoring on `solana-mainnet`. When a token graduates (reaches ~$69K market cap and migrates to Raydium), emit a structured event with the mint address, initial Raydium pool address, launch liquidity in SOL, and top-10 early buyers — giving autonomous sniper and launch-monitor agents a clean trigger with full token context to act on immediately.",
+  "category": "agents",
+  "url": "https://goldrush.dev",
+  "tag": "API Key Required",
+  "date-added": "2026-03-26",
+  "slug": "solana-agent-token-launch-detector"
+}

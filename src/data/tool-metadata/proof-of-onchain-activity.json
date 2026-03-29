@@ -1,54 +1,9 @@
 {
   "title": "Proof of Onchain Activity",
-  "description": "Generate a verifiable proof of wallet activity depth \u2014 combines transaction count, wallet age, and multi-chain presence into a single score for KYC-lite and airdrop gates.",
+  "description": "Verify wallet activity depth and onchain history as a proof of genuine use.",
   "category": "identity",
-  "url": "https://goldrush.dev/docs/api/transactions/get-transaction-summary/",
+  "url": "https://goldrush.dev",
   "tag": "Beta",
   "date-added": "2026-03-12",
-  "slug": "proof-of-onchain-activity",
-  "complexity": "Intermediate",
-  "useCase": "Issue a proof-of-personhood score for any wallet \u2014 score wallets on transaction history, wallet age, and multi-chain diversity to filter Sybil accounts from airdrop campaigns.",
-  "chains": [
-    "ethereum",
-    "base",
-    "polygon",
-    "bsc",
-    "optimism",
-    "arbitrum",
-    "avalanche",
-    "gnosis",
-    "fantom",
-    "celo",
-    "moonbeam",
-    "blast",
-    "linea",
-    "scroll",
-    "zkSync",
-    "mantle",
-    "sonic",
-    "unichain",
-    "sei",
-    "bitcoin"
-  ],
-  "creditCost": "0.1 credit/call",
-  "endpoints": [
-    "GET /v1/{chainName}/address/{walletAddress}/transactions_summary/",
-    "GET /v1/address/{walletAddress}/activity/"
-  ],
-  "keyParams": {
-    "chainName": "Primary chain to check activity on (e.g. eth-mainnet)",
-    "walletAddress": "0x wallet address to generate proof for"
-  },
-  "responseFields": [
-    "items[].total_count",
-    "items[].earliest_transaction.block_signed_at",
-    "items[].name",
-    "items[].last_seen_at"
-  ],
-  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function generateActivityProof(walletAddress: string) {\n  const activityResp = await client.BaseService.getAddressActivity(walletAddress);\n  if (activityResp.error) throw new Error(activityResp.error_message);\n\n  const activeChains = activityResp.data.items.filter(c => !c.is_testnet);\n\n  // Check activity on each active chain\n  const chainSummaries = await Promise.all(\n    activeChains.slice(0, 5).map(c =>\n      client.TransactionService.getTransactionSummary(c.name!, walletAddress)\n    )\n  );\n\n  const totalTxs = chainSummaries.reduce((sum, r) =>\n    sum + (r.error ? 0 : (r.data.items[0]?.total_count ?? 0)), 0\n  );\n\n  return {\n    walletAddress,\n    activeChainCount: activeChains.length,\n    totalTransactions: totalTxs,\n    proof: {\n      level: totalTxs > 100 ? 'GOLD' : totalTxs > 10 ? 'SILVER' : 'BRONZE',\n      generatedAt: new Date().toISOString(),\n    },\n  };\n}",
-  "buildsWith": [
-    "onchain-activity-verifier",
-    "wallet-age-summary",
-    "address-activity-scanner"
-  ]
+  "slug": "proof-of-onchain-activity"
 }

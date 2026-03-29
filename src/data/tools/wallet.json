@@ -1,5 +1,37 @@
 [
   {
+    "title": "Bitcoin Balance Checker",
+    "body": "Fetch confirmed UTXOs, current balance, and USD value for any Bitcoin address.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev/docs/api/balances/get-bitcoin-non-hd-wallet-balances/",
+    "date-added": "2026-03-23",
+    "slug": "bitcoin-balance-checker"
+  },
+  {
+    "title": "Bitcoin HD Wallet Scanner",
+    "body": "Enumerate all derived addresses and balances from a Bitcoin xpub/ypub/zpub HD wallet key.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev/docs/api/balances/get-bitcoin-hd-wallet-balances/",
+    "date-added": "2026-03-23",
+    "slug": "bitcoin-hd-wallet-scanner"
+  },
+  {
+    "title": "Bitcoin Transaction Explorer",
+    "body": "Paginated transaction history for any Bitcoin address — inputs, outputs, fees, and confirmation status.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev/docs/api/transactions/get-transactions-for-btc-address/",
+    "date-added": "2026-03-23",
+    "slug": "bitcoin-transaction-explorer"
+  },
+  {
+    "title": "Crypto Tax Exporter",
+    "body": "Export a complete CSV of all ERC-20 transfers and transactions with USD cost basis for tax reporting — Koinly/CoinTracker compatible.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-23",
+    "slug": "crypto-tax-exporter"
+  },
+  {
     "title": "ERC-20 Transfer History",
     "body": "Fetch full ERC-20 transfer history for any wallet, optionally filtered by token contract.",
     "tag": "Free Tier",
@@ -9,11 +41,27 @@
   },
   {
     "title": "Historical Portfolio Value",
-    "body": "30-day rolling historical portfolio value with open/close/high/low per token per day \u00e2\u20ac\u201d build P&L charts, portfolio performance dashboards, and DeFi fund trackers.",
+    "body": "30-day rolling historical portfolio value with open/close/high/low per token per day â€” build P&L charts, portfolio performance dashboards, and DeFi fund trackers.",
     "tag": "API Key Required",
     "url": "https://goldrush.dev",
     "date-added": "2026-03-16",
     "slug": "historical-portfolio-value"
+  },
+  {
+    "title": "Historical Token Holdings",
+    "body": "Snapshot of every ERC-20 token balance and USD value at any past date — foundational chains only.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev/docs/api/balances/get-historical-token-balances-for-wallet-address/",
+    "date-added": "2026-03-23",
+    "slug": "historical-token-holdings"
+  },
+  {
+    "title": "Multi-Wallet Portfolio Aggregator",
+    "body": "Enter multiple wallet addresses and see combined token balances, total net worth, and unified transaction feed — your whole onchain life in one view.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-23",
+    "slug": "multi-wallet-aggregator"
   },
   {
     "title": "Native Token Balance",
@@ -33,11 +81,19 @@
   },
   {
     "title": "Portfolio History",
-    "body": "30-day historical portfolio value over time \u00e2\u20ac\u201d asset-by-asset breakdown per day.",
+    "body": "30-day historical portfolio value over time â€” asset-by-asset breakdown per day.",
     "tag": "API Key Required",
     "url": "https://goldrush.dev",
     "date-added": "2026-03-12",
     "slug": "portfolio-history"
+  },
+  {
+    "title": "Portfolio Performance Report",
+    "body": "30-day rolling P&L report with per-token open/high/low/close — build fund-grade performance dashboards for any wallet on foundational chains.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-23",
+    "slug": "portfolio-performance-report"
   },
   {
     "title": "Portfolio Tracker",
@@ -46,6 +102,38 @@
     "url": "https://goldrush.dev",
     "date-added": "2026-03-12",
     "slug": "portfolio-tracker"
+  },
+  {
+    "title": "Solana Staking Snapshot",
+    "body": "Query a Solana wallet's complete staking picture: native stake accounts (active, activating, deactivating, inactive) pulled from the on-chain stake program, plus liquid staking positions in mSOL (Marinade), jitoSOL (Jito), bSOL (Sanctum), and stSOL (Lido). Returns stake amount in SOL, activation epoch, estimated APY, and claimable rewards for each position — build a staking dashboard, rewards calculator, or unstaking automation agent in one view.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-26",
+    "slug": "solana-staking-snapshot"
+  },
+  {
+    "title": "Solana Transaction History",
+    "body": "Fetch paginated Solana transaction history via `GET /v1/solana-mainnet/address/{wallet}/transactions_v3/` — each transaction is decoded with the top-level program name (Jupiter, Raydium, System, Token, etc.), SOL fee paid, success/fail status, block time, and a human-readable summary. Paginate with `page` and `page-size` params. Build a complete Solana activity feed or trading journal without ever parsing raw instruction data.",
+    "tag": "Free Tier",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-26",
+    "slug": "solana-transaction-history"
+  },
+  {
+    "title": "Solana Wallet Age & Activity",
+    "body": "Use `GET /v1/solana-mainnet/address/{wallet}/transactions_v3/?page-size=1&sort=asc` to find the wallet's first-ever transaction (creation date), then the summary endpoint for total tx count and unique programs interacted with. Returns: first tx date, total lifetime transaction count, top 5 most-called programs, and days since last activity — foundational data for Solana wallet scoring, sybil detection, onchain identity badges, and airdrop eligibility checks.",
+    "tag": "Free Tier",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-26",
+    "slug": "solana-wallet-age-activity"
+  },
+  {
+    "title": "Solana Wallet Balances",
+    "body": "Call `GET /v1/solana-mainnet/address/{wallet}/balances_v2/` with your GoldRush API key to retrieve every SPL token held — including name, symbol, logo URI, raw balance, decimals, current USD price, and total USD value per token. Handles associated token accounts (ATAs) automatically with no manual derivation. Add `nft=false` to filter out NFTs and return pure fungible token holdings. Build a full Solana portfolio UI in under 50 lines of TypeScript.",
+    "tag": "Free Tier",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-26",
+    "slug": "solana-wallet-balances"
   },
   {
     "title": "Transaction History",
@@ -65,7 +153,7 @@
   },
   {
     "title": "Wallet Age & Summary",
-    "body": "Get first and last transaction date, total transaction count, and gas spent for any wallet \u00e2\u20ac\u201d the foundation for wallet age verification and on-chain identity.",
+    "body": "Get first and last transaction date, total transaction count, and gas spent for any wallet â€” the foundation for wallet age verification and on-chain identity.",
     "tag": "Free Tier",
     "url": "https://goldrush.dev",
     "date-added": "2026-03-16",
@@ -80,67 +168,11 @@
     "slug": "wallet-balances-skill"
   },
   {
-    "title": "Bitcoin Balance Checker",
-    "body": "Fetch confirmed UTXOs, current balance, and USD value for any Bitcoin address.",
-    "tag": "API Key Required",
-    "url": "https://goldrush.dev/docs/api/balances/get-bitcoin-non-hd-wallet-balances/",
-    "date-added": "2026-03-23",
-    "slug": "bitcoin-balance-checker"
-  },
-  {
-    "title": "Bitcoin HD Wallet Scanner",
-    "body": "Enumerate all derived addresses and balances from a Bitcoin xpub/ypub/zpub HD wallet key.",
-    "tag": "API Key Required",
-    "url": "https://goldrush.dev/docs/api/balances/get-bitcoin-hd-wallet-balances/",
-    "date-added": "2026-03-23",
-    "slug": "bitcoin-hd-wallet-scanner"
-  },
-  {
-    "title": "Bitcoin Transaction Explorer",
-    "body": "Paginated transaction history for any Bitcoin address \u2014 inputs, outputs, fees, and confirmation status.",
-    "tag": "API Key Required",
-    "url": "https://goldrush.dev/docs/api/transactions/get-transactions-for-btc-address/",
-    "date-added": "2026-03-23",
-    "slug": "bitcoin-transaction-explorer"
-  },
-  {
-    "title": "Historical Token Holdings",
-    "body": "Snapshot of every ERC-20 token balance and USD value at any past date \u2014 foundational chains only.",
-    "tag": "API Key Required",
-    "url": "https://goldrush.dev/docs/api/balances/get-historical-token-balances-for-wallet-address/",
-    "date-added": "2026-03-23",
-    "slug": "historical-token-holdings"
-  },
-  {
     "title": "Wallet P&L Tracker",
-    "body": "Unrealized P&L for every token in a wallet \u2014 shows entry price, current price, and total gain/loss per position.",
+    "body": "Unrealized P&L for every token in a wallet — shows entry price, current price, and total gain/loss per position.",
     "tag": "API Key Required",
     "url": "https://goldrush.dev/docs/streaming/",
     "date-added": "2026-03-23",
     "slug": "wallet-pnl-tracker"
-  },
-  {
-    "title": "Crypto Tax Exporter",
-    "body": "Export a complete CSV of all ERC-20 transfers and transactions with USD cost basis for tax reporting — Koinly/CoinTracker compatible.",
-    "tag": "API Key Required",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-23",
-    "slug": "crypto-tax-exporter"
-  },
-  {
-    "title": "Multi-Wallet Portfolio Aggregator",
-    "body": "Enter multiple wallet addresses and see combined token balances, total net worth, and unified transaction feed — your whole onchain life in one view.",
-    "tag": "API Key Required",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-23",
-    "slug": "multi-wallet-aggregator"
-  },
-  {
-    "title": "Portfolio Performance Report",
-    "body": "30-day rolling P&L report with per-token open/high/low/close — build fund-grade performance dashboards for any wallet on foundational chains.",
-    "tag": "API Key Required",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-23",
-    "slug": "portfolio-performance-report"
   }
 ]

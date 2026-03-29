@@ -2,31 +2,8 @@
   "title": "Multi-Chain NFT Gallery",
   "description": "Discover and display every NFT a wallet holds across all chains in one gallery — scan with getAddressActivity then fetch NFTs per active chain.",
   "category": "nft",
-  "url": "https://goldrush.dev/docs/api/nft/get-nfts-for-address/",
+  "url": "https://goldrush.dev",
   "tag": "API Key Required",
   "date-added": "2026-03-23",
-  "slug": "multichain-nft-gallery",
-  "complexity": "Intermediate",
-  "useCase": "Build a cross-chain NFT gallery that shows all NFTs a wallet holds on every chain — Ethereum PFPs, Base collections, Polygon gaming assets — in a single responsive grid.",
-  "chains": ["ethereum", "base", "polygon", "bsc", "optimism", "arbitrum", "avalanche", "gnosis", "blast", "linea"],
-  "creditCost": "0.5/call (activity) + 1/chain (NFTs)",
-  "endpoints": [
-    "GET /v1/address/{walletAddress}/activity/",
-    "GET /v1/{chainName}/address/{walletAddress}/balances_nft/"
-  ],
-  "keyParams": {
-    "walletAddress": "0x wallet address to discover NFTs for across all chains"
-  },
-  "responseFields": [
-    "chain",
-    "items[].contract_name",
-    "items[].contract_address",
-    "items[].nft_data[].token_id",
-    "items[].nft_data[].external_data.name",
-    "items[].nft_data[].external_data.image",
-    "items[].nft_data[].external_data.attributes[].trait_type",
-    "items[].nft_data[].external_data.attributes[].value"
-  ],
-  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nconst EVM_CHAINS = new Set([\n  'eth-mainnet','base-mainnet','matic-mainnet','bsc-mainnet',\n  'optimism-mainnet','arbitrum-mainnet','avalanche-mainnet',\n  'gnosis-mainnet','blast-mainnet','linea-mainnet',\n]);\n\nasync function fetchMultichainNFTs(walletAddress: string) {\n  // 1. Discover active chains\n  const activityResp = await client.BaseService.getAddressActivity(walletAddress);\n  const activeChains = (activityResp.data?.items ?? [])\n    .filter(c => !c.is_testnet && EVM_CHAINS.has(c.name ?? ''))\n    .map(c => c.name!);\n\n  if (activeChains.length === 0) return [];\n\n  // 2. Fetch NFTs on all active chains in parallel\n  const nftResults = await Promise.allSettled(\n    activeChains.map(chain =>\n      client.NftService.getNftsForAddress(chain, walletAddress)\n        .then(r => ({ chain, items: r.data?.items ?? [] }))\n    )\n  );\n\n  // 3. Flatten and collect all NFTs\n  const allNfts = nftResults\n    .filter((r): r is PromiseFulfilledResult<any> => r.status === 'fulfilled')\n    .flatMap(r => r.value.items.flatMap((col: any) =>\n      (col.nft_data ?? []).map((nft: any) => ({\n        chain: r.value.chain,\n        collection: col.contract_name,\n        contractAddress: col.contract_address,\n        tokenId: nft.token_id,\n        name: nft.external_data?.name,\n        image: nft.external_data?.image,\n        attributes: nft.external_data?.attributes ?? [],\n      }))\n    ));\n\n  return allNfts;\n}",
-  "buildsWith": ["address-activity-scanner", "nft-metadata-fetcher", "nft-gallery-viewer"]
+  "slug": "multichain-nft-gallery"
 }

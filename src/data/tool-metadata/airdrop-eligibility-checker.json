@@ -2,35 +2,8 @@
   "title": "Airdrop Eligibility Checker",
   "description": "Check whether a wallet meets configurable airdrop criteria — transaction count, wallet age, multi-chain activity, specific protocol interactions, and minimum balance thresholds.",
   "category": "identity",
-  "url": "https://goldrush.dev/docs/api/transactions/get-transaction-summary/",
+  "url": "https://goldrush.dev",
   "tag": "API Key Required",
   "date-added": "2026-03-23",
-  "slug": "airdrop-eligibility-checker",
-  "complexity": "Intermediate",
-  "useCase": "Build an airdrop checker tool that evaluates wallets against a configurable set of criteria and returns a pass/fail with score breakdown — like the Arbitrum or OP airdrop checker.",
-  "chains": ["ethereum", "base", "bsc", "polygon", "optimism", "arbitrum", "avalanche"],
-  "creditCost": "~3-5 credits/check",
-  "endpoints": [
-    "GET /v1/{chainName}/address/{walletAddress}/transactions_summary/",
-    "GET /v1/address/{walletAddress}/activity/",
-    "GET /v1/{chainName}/address/{walletAddress}/balances_v2/",
-    "GET /v1/{chainName}/events/address/{contractAddress}/"
-  ],
-  "keyParams": {
-    "walletAddress": "Wallet address to evaluate for airdrop eligibility",
-    "criteria.minTxCount": "Minimum number of transactions required",
-    "criteria.minWalletAgeDays": "Minimum wallet age in days",
-    "criteria.minChainCount": "Minimum number of chains the wallet must be active on",
-    "criteria.requiredContracts": "Array of contract addresses the wallet must have interacted with"
-  },
-  "responseFields": [
-    "passed",
-    "score",
-    "criteria[].name",
-    "criteria[].passed",
-    "criteria[].actual",
-    "criteria[].required"
-  ],
-  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\ninterface Criteria {\n  minTxCount?: number;\n  minWalletAgeDays?: number;\n  minChainCount?: number;\n  minNetWorthUsd?: number;\n  requiredContracts?: string[];\n}\n\nasync function checkAirdropEligibility(\n  walletAddress: string,\n  chainName: string,\n  criteria: Criteria\n) {\n  const [summaryResp, activityResp, balResp] = await Promise.all([\n    client.TransactionService.getTransactionSummary(chainName, walletAddress),\n    client.BaseService.getAddressActivity(walletAddress),\n    client.BalanceService.getTokenBalancesForWalletAddress(chainName, walletAddress),\n  ]);\n\n  const summary = summaryResp.data?.items?.[0];\n  const txCount = summary?.total_count ?? 0;\n  const firstTxDate = summary?.earliest_transaction?.block_signed_at;\n  const walletAgeDays = firstTxDate\n    ? Math.floor((Date.now() - new Date(firstTxDate).getTime()) / 86_400_000) : 0;\n  const chainCount = (activityResp.data?.items ?? []).filter(c => !c.is_testnet).length;\n  const netWorth = (balResp.data?.items ?? [])\n    .filter(t => !t.is_spam).reduce((s, t) => s + (t.quote ?? 0), 0);\n\n  const checks = [\n    { name: 'Transaction Count', req: criteria.minTxCount ?? 0, actual: txCount },\n    { name: 'Wallet Age (days)', req: criteria.minWalletAgeDays ?? 0, actual: walletAgeDays },\n    { name: 'Active Chains', req: criteria.minChainCount ?? 0, actual: chainCount },\n    { name: 'Net Worth (USD)', req: criteria.minNetWorthUsd ?? 0, actual: netWorth },\n  ];\n\n  const results = checks.map(c => ({ ...c, passed: c.actual >= c.req }));\n  const score = results.filter(r => r.passed).length;\n  const passed = results.every(r => r.passed);\n\n  return { passed, score, total: results.length, criteria: results };\n}",
-  "buildsWith": ["wallet-age-summary", "onchain-activity-verifier", "multichain-activity-discovery", "contract-event-log-monitor"]
+  "slug": "airdrop-eligibility-checker"
 }

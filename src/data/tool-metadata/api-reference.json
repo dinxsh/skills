@@ -1,47 +1,9 @@
 {
   "title": "API Reference",
-  "description": "Interactive API explorer and full reference docs for all GoldRush endpoints \u2014 browse every endpoint, test calls live, and copy SDK snippets directly from the docs.",
+  "description": "Interactive API explorer and full reference docs for all GoldRush endpoints.",
   "category": "developer",
-  "url": "https://goldrush.dev/docs/api/",
+  "url": "https://goldrush.dev",
   "tag": "Free",
   "date-added": "2026-03-12",
-  "slug": "api-reference",
-  "complexity": "Beginner",
-  "useCase": "Explore every available GoldRush API endpoint in your browser \u2014 test calls with your API key, see live responses, and copy ready-to-use SDK code snippets.",
-  "chains": [
-    "ethereum",
-    "base",
-    "polygon",
-    "bsc",
-    "optimism",
-    "arbitrum",
-    "avalanche",
-    "gnosis",
-    "fantom",
-    "celo",
-    "moonbeam",
-    "blast",
-    "linea",
-    "scroll",
-    "zkSync",
-    "mantle",
-    "sonic",
-    "unichain",
-    "sei",
-    "bitcoin"
-  ],
-  "creditCost": "Free to browse",
-  "endpoints": [
-    "https://goldrush.dev/docs/api/"
-  ],
-  "keyParams": {
-    "apiKey": "GoldRush API key for authenticated test calls in the playground"
-  },
-  "responseFields": [],
-  "snippet": "// No SDK call needed \u2014 browse at https://goldrush.dev/docs/api/\n// But here is how to get started with the TypeScript SDK:\n\n// 1. Install the SDK\n// npm install @covalenthq/client-sdk\n\nimport { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\n// 2. Get all supported chains\nconst chainsResp = await client.BaseService.getAllChains();\nif (!chainsResp.error) {\n  console.log('Supported chains:', chainsResp.data.items.map(c => c.name));\n}\n\n// 3. Verify your key works\nconst statusResp = await client.BaseService.getAllChainStatus();\nconsole.log('API key valid:', !statusResp.error);",
-  "buildsWith": [
-    "goldrush-typescript-sdk",
-    "goldrush-playground",
-    "quickstart-templates"
-  ]
+  "slug": "api-reference"
 }

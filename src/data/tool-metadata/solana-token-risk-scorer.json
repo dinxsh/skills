@@ -1,0 +1,9 @@
+{
+  "title": "Solana Token Risk Scorer",
+  "description": "For any SPL token mint address, check 4 critical rug-pull signals via GoldRush: (1) mint authority — can the deployer print unlimited new tokens? (2) freeze authority — can they lock tokens in your wallet? (3) top-10 holder concentration — are 10 wallets holding >80% of supply? (4) liquidity lock — is the Raydium LP locked or can it be withdrawn instantly? Returns a 0–100 composite risk score plus the raw value of each signal so you can explain exactly why a token scored high risk. Wire as a pre-trade guard in any agent pipeline or wallet UI.",
+  "category": "security",
+  "url": "https://goldrush.dev",
+  "tag": "API Key Required",
+  "date-added": "2026-03-26",
+  "slug": "solana-token-risk-scorer"
+}

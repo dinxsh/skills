@@ -1,0 +1,9 @@
+{
+  "title": "Solana Program Activity Monitor",
+  "description": "Track the on-chain growth of any Solana program — DEX, lending protocol, game, or DePIN — using GoldRush's transaction data on `solana-mainnet`. Fetch daily instruction call count, unique signing wallets per day, week-over-week growth rate, and cumulative user count over any 90-day window. Compare two programs head-to-head on the same metrics. Use for investor due diligence on early-stage protocols, health monitoring dashboards, or surfacing underrated programs with breakout growth before they trend.",
+  "category": "analytics",
+  "url": "https://goldrush.dev",
+  "tag": "API Key Required",
+  "date-added": "2026-03-26",
+  "slug": "solana-program-activity-monitor"
+}

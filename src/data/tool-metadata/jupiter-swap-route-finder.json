@@ -1,0 +1,9 @@
+{
+  "title": "Jupiter Swap Route Finder",
+  "description": "Query Jupiter's on-chain routing data indexed by GoldRush to find the best swap path for any SPL token pair — returns the expected output amount, minimum output after slippage tolerance, price impact percentage, and the full multi-hop route through intermediate DEXes (Raydium, Orca, Meteora, Lifinity, etc.). Feed this into an agent's trade execution loop: if price impact exceeds your threshold, hold the position; otherwise use the route data to construct and submit the swap transaction.",
+  "category": "defi",
+  "url": "https://goldrush.dev",
+  "tag": "API Key Required",
+  "date-added": "2026-03-26",
+  "slug": "jupiter-swap-route-finder"
+}

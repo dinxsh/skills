@@ -1,0 +1,9 @@
+{
+  "title": "Solana DEX Trade History",
+  "description": "Decode all swap transactions for any Solana wallet via GoldRush's transaction decoder on `solana-mainnet` — automatically identifies and extracts trades from Jupiter, Raydium, Orca, and Meteora instructions. Each decoded trade returns: input token + amount, output token + amount, USD value at trade time, DEX used, and tx signature. Returns a clean trade-by-trade list with zero raw instruction parsing. Build a full Solana trading journal, PnL calculator, or strategy performance analyzer.",
+  "category": "defi",
+  "url": "https://goldrush.dev",
+  "tag": "API Key Required",
+  "date-added": "2026-03-26",
+  "slug": "solana-dex-trade-history"
+}

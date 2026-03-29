@@ -1,58 +1,9 @@
 {
   "title": "Portfolio Tracker",
-  "description": "Monitor multi-chain portfolio value and asset composition in real time \u2014 fetches all ERC-20 and native token balances with USD values, logos, and spam filtering.",
+  "description": "Monitor multi-chain portfolio value and asset composition in real time.",
   "category": "wallet",
-  "url": "https://goldrush.dev/docs/api/balances/get-token-balances-for-wallet-address/",
-  "tag": "Free Tier",
+  "url": "https://goldrush.dev",
+  "tag": "Open Source",
   "date-added": "2026-03-12",
-  "slug": "portfolio-tracker",
-  "complexity": "Beginner",
-  "useCase": "Build a real-time portfolio dashboard that shows every asset a wallet holds with live USD prices and spam tokens filtered out automatically.",
-  "chains": [
-    "ethereum",
-    "base",
-    "polygon",
-    "bsc",
-    "optimism",
-    "arbitrum",
-    "avalanche",
-    "gnosis",
-    "fantom",
-    "celo",
-    "moonbeam",
-    "blast",
-    "linea",
-    "scroll",
-    "zkSync",
-    "mantle",
-    "sonic",
-    "unichain",
-    "sei"
-  ],
-  "creditCost": "1 credit/call",
-  "endpoints": [
-    "GET /v1/{chainName}/address/{walletAddress}/balances_v2/"
-  ],
-  "keyParams": {
-    "chainName": "EVM chain identifier (e.g. eth-mainnet, base-mainnet, matic-mainnet)",
-    "walletAddress": "0x wallet address or ENS name"
-  },
-  "responseFields": [
-    "items[].contract_name",
-    "items[].contract_ticker_symbol",
-    "items[].contract_address",
-    "items[].contract_decimals",
-    "items[].balance",
-    "items[].quote",
-    "items[].quote_rate",
-    "items[].logo_url",
-    "items[].is_spam",
-    "items[].type"
-  ],
-  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function getPortfolio(chainName: string, walletAddress: string) {\n  const resp = await client.BalanceService.getTokenBalancesForWalletAddress(\n    chainName,\n    walletAddress\n  );\n\n  if (resp.error) throw new Error(resp.error_message);\n\n  const tokens = resp.data.items\n    .filter(t => !t.is_spam && (t.quote ?? 0) > 0)\n    .map(t => ({\n      name: t.contract_name,\n      symbol: t.contract_ticker_symbol,\n      balance: Number(t.balance) / 10 ** (t.contract_decimals ?? 18),\n      usdValue: t.quote,\n      logo: t.logo_url,\n    }));\n\n  const totalUsd = tokens.reduce((sum, t) => sum + (t.usdValue ?? 0), 0);\n  return { totalUsd, tokens };\n}",
-  "buildsWith": [
-    "wallet-balances-skill",
-    "net-worth-calculator",
-    "historical-portfolio-value"
-  ]
+  "slug": "portfolio-tracker"
 }

@@ -1,54 +1,9 @@
 {
   "title": "GoldRush Kit Token Balances",
-  "description": "Drop-in React component for a full token balances table using GoldRush Kit's TokenBalancesListView \u2014 ships with sorting, USD values, logos, and spam filtering out of the box.",
+  "description": "Drop-in React component for a full token balances table â€” ERC-20 + native â€” using GoldRush Kit's TokenBalancesListView. Ships with sorting, USD values, logos, and spam filtering.",
   "category": "developer",
-  "url": "https://goldrush.dev/docs/goldrush-kit/",
+  "url": "https://goldrush.dev",
   "tag": "Open Source",
   "date-added": "2026-03-16",
-  "slug": "goldrush-kit-token-balances",
-  "complexity": "Beginner",
-  "useCase": "Add a production-quality token balances table to a wallet app in minutes \u2014 no custom UI needed, just drop in the component and pass a wallet address.",
-  "chains": [
-    "ethereum",
-    "base",
-    "polygon",
-    "bsc",
-    "optimism",
-    "arbitrum",
-    "avalanche",
-    "gnosis",
-    "fantom",
-    "celo",
-    "moonbeam",
-    "blast",
-    "linea",
-    "scroll",
-    "zkSync",
-    "mantle",
-    "sonic",
-    "unichain",
-    "sei"
-  ],
-  "creditCost": "1 credit/call",
-  "endpoints": [
-    "GET /v1/{chainName}/address/{walletAddress}/balances_v2/"
-  ],
-  "keyParams": {
-    "address": "0x wallet address to display balances for",
-    "chain_names": "Array of chain names to fetch balances from"
-  },
-  "responseFields": [
-    "items[].contract_name",
-    "items[].contract_ticker_symbol",
-    "items[].balance",
-    "items[].quote",
-    "items[].logo_url",
-    "items[].is_spam"
-  ],
-  "snippet": "// Install: npm install @covalenthq/goldrush-kit\nimport { GoldRushProvider, TokenBalancesListView } from '@covalenthq/goldrush-kit';\nimport '@covalenthq/goldrush-kit/styles.css';\n\nexport function TokenBalancesTable({ walletAddress }: { walletAddress: string }) {\n  return (\n    <GoldRushProvider apikey={process.env.NEXT_PUBLIC_GOLDRUSH_API_KEY!}>\n      <TokenBalancesListView\n        address={walletAddress}\n        chain_names={['eth-mainnet', 'base-mainnet', 'matic-mainnet']}\n        hide_small_balances\n        hide_spam_tokens\n      />\n    </GoldRushProvider>\n  );\n}",
-  "buildsWith": [
-    "wallet-balances-skill",
-    "portfolio-tracker",
-    "goldrush-kit-tx-feed"
-  ]
+  "slug": "goldrush-kit-token-balances"
 }

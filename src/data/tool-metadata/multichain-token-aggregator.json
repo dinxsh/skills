@@ -1,52 +1,9 @@
 {
   "title": "Multi-Chain Token Aggregator",
-  "description": "Aggregate all token balances across every chain a wallet is active on \u2014 auto-discovers active chains then fetches balances in parallel. One function call for a complete cross-chain portfolio.",
+  "description": "Aggregate all token balances across every chain a wallet is active on â€” auto-discovers chains then fetches balances in parallel. One function call for a complete cross-chain portfolio.",
   "category": "crosschain",
-  "url": "https://goldrush.dev/docs/api/balances/get-token-balances/",
+  "url": "https://goldrush.dev",
   "tag": "API Key Required",
   "date-added": "2026-03-16",
-  "slug": "multichain-token-aggregator",
-  "complexity": "Intermediate",
-  "useCase": "Build a complete cross-chain token dashboard that automatically discovers active chains and aggregates all token holdings \u2014 no hard-coded chain list needed.",
-  "chains": [
-    "ethereum",
-    "base",
-    "polygon",
-    "bsc",
-    "optimism",
-    "arbitrum",
-    "avalanche",
-    "gnosis",
-    "fantom",
-    "celo",
-    "moonbeam",
-    "blast",
-    "linea",
-    "scroll",
-    "zkSync",
-    "mantle",
-    "sonic",
-    "unichain",
-    "sei"
-  ],
-  "creditCost": "1 credit/call",
-  "endpoints": [
-    "GET /v1/address/{walletAddress}/balances/"
-  ],
-  "keyParams": {
-    "walletAddress": "0x wallet address to aggregate tokens across all chains"
-  },
-  "responseFields": [
-    "items[].chain_name",
-    "items[].items[].contract_name",
-    "items[].items[].contract_ticker_symbol",
-    "items[].items[].balance",
-    "items[].items[].quote"
-  ],
-  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function aggregateAllTokens(walletAddress: string) {\n  const resp = await client.BalanceService.getTokenBalances(walletAddress);\n\n  if (resp.error) throw new Error(resp.error_message);\n\n  // Flatten all tokens across all chains into one list\n  const allTokens = resp.data.items.flatMap(chain =>\n    chain.items.map(t => ({\n      chain: chain.chain_name,\n      symbol: t.contract_ticker_symbol,\n      name: t.contract_name,\n      balance: t.balance,\n      usdValue: t.quote ?? 0,\n    }))\n  );\n\n  return allTokens\n    .filter(t => t.usdValue > 0)\n    .sort((a, b) => b.usdValue - a.usdValue);\n}",
-  "buildsWith": [
-    "multichain-portfolio",
-    "net-worth-calculator",
-    "address-activity-scanner"
-  ]
+  "slug": "multichain-token-aggregator"
 }

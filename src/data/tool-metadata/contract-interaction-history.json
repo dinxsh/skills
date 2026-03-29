@@ -1,58 +1,9 @@
 {
   "title": "Contract Interaction History",
-  "description": "Full history of smart contract interactions for any wallet \u2014 fetch decoded log events from specific contracts and recent transactions to build a security forensics timeline.",
+  "description": "Full history of contract interactions for security forensics and incident response.",
   "category": "security",
-  "url": "https://goldrush.dev/docs/api/base/get-log-events-by-address/",
+  "url": "https://goldrush.dev",
   "tag": "API Key Required",
   "date-added": "2026-03-12",
-  "slug": "contract-interaction-history",
-  "complexity": "Intermediate",
-  "useCase": "Build a contract interaction audit trail \u2014 show every time a wallet interacted with a specific contract, what events were emitted, and flag any interactions with known exploit contracts.",
-  "chains": [
-    "ethereum",
-    "base",
-    "polygon",
-    "bsc",
-    "optimism",
-    "arbitrum",
-    "avalanche",
-    "gnosis",
-    "fantom",
-    "celo",
-    "moonbeam",
-    "blast",
-    "linea",
-    "scroll",
-    "zkSync",
-    "mantle",
-    "sonic",
-    "unichain",
-    "sei"
-  ],
-  "creditCost": "1 credit/call",
-  "endpoints": [
-    "GET /v1/{chainName}/events/address/{contractAddress}/",
-    "GET /v1/{chainName}/address/{walletAddress}/transactions_v3/"
-  ],
-  "keyParams": {
-    "chainName": "EVM chain identifier (e.g. eth-mainnet, base-mainnet)",
-    "contractAddress": "Smart contract to get interaction history for",
-    "walletAddress": "0x wallet address to check interactions from",
-    "startingBlock": "Start of the block range to query"
-  },
-  "responseFields": [
-    "items[].block_signed_at",
-    "items[].tx_hash",
-    "items[].decoded.name",
-    "items[].decoded.params[].name",
-    "items[].decoded.params[].value",
-    "items[].from_address",
-    "items[].to_address"
-  ],
-  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function getContractInteractionHistory(\n  chainName: string,\n  contractAddress: string,\n  startingBlock: number\n) {\n  const resp = await client.BaseService.getLogEventsByAddress(\n    chainName,\n    contractAddress,\n    { startingBlock, endingBlock: 0 }\n  );\n\n  if (resp.error) throw new Error(resp.error_message);\n\n  return resp.data.items.map(log => ({\n    event: log.decoded?.name ?? 'Unknown',\n    txHash: log.tx_hash,\n    timestamp: log.block_signed_at,\n    params: Object.fromEntries(\n      (log.decoded?.params ?? []).map(p => [p.name, p.value])\n    ),\n  }));\n}",
-  "buildsWith": [
-    "smart-contract-interaction-risk",
-    "transaction-decoded-receipt",
-    "event-log-decoder"
-  ]
+  "slug": "contract-interaction-history"
 }

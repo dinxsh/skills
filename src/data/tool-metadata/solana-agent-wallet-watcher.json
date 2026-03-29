@@ -1,0 +1,9 @@
+{
+  "title": "Solana Agent Wallet Watcher",
+  "description": "Subscribe to any Solana address via GoldRush's wallet activity stream on `solana-mainnet` and receive push events for every SPL token transfer, program invocation, and stake account change — no polling required. Use the event payload (program name, instruction type, token amounts, counterparty address) to trigger downstream agent actions: execute a hedge, send an alert, update agent memory, or rebalance a portfolio the moment a transaction lands.",
+  "category": "agents",
+  "url": "https://goldrush.dev",
+  "tag": "API Key Required",
+  "date-added": "2026-03-26",
+  "slug": "solana-agent-wallet-watcher"
+}

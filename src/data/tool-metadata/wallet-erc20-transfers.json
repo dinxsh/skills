@@ -1,57 +1,9 @@
 {
   "title": "ERC-20 Transfer History",
-  "description": "Fetch the full ERC-20 transfer history for any wallet address \u2014 every token sent and received, with USD values, block timestamps, and decoded token metadata across all EVM chains.",
+  "description": "Fetch full ERC-20 transfer history for any wallet, optionally filtered by token contract.",
   "category": "wallet",
-  "url": "https://goldrush.dev/docs/api/balances/get-erc20-transfers-for-wallet-address/",
+  "url": "https://goldrush.dev",
   "tag": "Free Tier",
   "date-added": "2026-03-16",
-  "slug": "wallet-erc20-transfers",
-  "complexity": "Beginner",
-  "useCase": "Build a complete token transfer timeline showing every ERC-20 sent and received with USD amounts \u2014 perfect for tax reporting tools and portfolio trackers.",
-  "chains": [
-    "ethereum",
-    "base",
-    "polygon",
-    "bsc",
-    "optimism",
-    "arbitrum",
-    "avalanche",
-    "gnosis",
-    "fantom",
-    "celo",
-    "moonbeam",
-    "blast",
-    "linea",
-    "scroll",
-    "zkSync",
-    "mantle",
-    "sonic",
-    "unichain",
-    "sei"
-  ],
-  "creditCost": "1 credit/call",
-  "endpoints": [
-    "GET /v1/{chainName}/address/{walletAddress}/transfers_v2/"
-  ],
-  "keyParams": {
-    "chainName": "EVM chain identifier (e.g. eth-mainnet, base-mainnet, matic-mainnet)",
-    "walletAddress": "0x wallet address or ENS name",
-    "contractAddress": "Optional ERC-20 contract address to filter transfers for a specific token"
-  },
-  "responseFields": [
-    "items[].transfers[].contract_ticker_symbol",
-    "items[].transfers[].from_address",
-    "items[].transfers[].to_address",
-    "items[].transfers[].contract_decimals",
-    "items[].transfers[].delta",
-    "items[].transfers[].quote",
-    "items[].transfers[].block_signed_at",
-    "items[].transfers[].tx_hash"
-  ],
-  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function getErc20Transfers(chainName: string, walletAddress: string) {\n  const resp = await client.BalanceService.getErc20TransfersForWalletAddress(\n    chainName,\n    walletAddress\n  );\n\n  if (resp.error) throw new Error(resp.error_message);\n\n  const transfers = resp.data.items.flatMap(item =>\n    (item.transfers ?? []).map(t => ({\n      symbol: t.contract_ticker_symbol,\n      from: t.from_address,\n      to: t.to_address,\n      amount: Number(t.delta) / 10 ** (t.contract_decimals ?? 18),\n      usdValue: t.quote,\n      txHash: t.tx_hash,\n      timestamp: t.block_signed_at,\n    }))\n  );\n\n  return transfers.sort(\n    (a, b) => new Date(b.timestamp!).getTime() - new Date(a.timestamp!).getTime()\n  );\n}",
-  "buildsWith": [
-    "transaction-history",
-    "wallet-age-summary",
-    "erc20-transfer-history"
-  ]
+  "slug": "wallet-erc20-transfers"
 }

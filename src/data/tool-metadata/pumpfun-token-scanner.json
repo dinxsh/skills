@@ -1,0 +1,9 @@
+{
+  "title": "Pump.fun Token Scanner",
+  "description": "Monitor pump.fun's bonding curve program on Solana mainnet via GoldRush event logs — fetch the current market cap in USD, SOL held in the bonding curve, percentage progress toward graduation (~$69K), and the top 10 buyers ranked by SOL spent for any pump.fun token mint address. Subscribe to the graduation event stream to know the exact block when a token migrates to Raydium and acquires its first real liquidity pool — essential for launch-tracker UIs and autonomous sniper agents.",
+  "category": "token",
+  "url": "https://goldrush.dev",
+  "tag": "API Key Required",
+  "date-added": "2026-03-26",
+  "slug": "pumpfun-token-scanner"
+}

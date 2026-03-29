@@ -2,29 +2,8 @@
   "title": "NFT Transfer Monitor",
   "description": "Real-time feed of NFT mints, sales, and transfers for any collection — subscribe to ERC-721 Transfer events via the wallet activity stream.",
   "category": "nft",
-  "url": "https://goldrush.dev/docs/api/base/get-log-events-by-topic-hash/",
+  "url": "https://goldrush.dev",
   "tag": "API Key Required",
   "date-added": "2026-03-23",
-  "slug": "nft-transfer-monitor",
-  "complexity": "Intermediate",
-  "useCase": "Build a live collection activity feed that shows every mint, transfer, and sale for an NFT collection as it happens — like OpenSea's activity tab but in real-time via WebSocket.",
-  "chains": ["ethereum", "base", "polygon", "optimism", "arbitrum", "blast"],
-  "creditCost": "0.01/event",
-  "endpoints": [
-    "GET /v1/{chainName}/events/topics/{topicHash}/?sender-address={collectionContract}"
-  ],
-  "keyParams": {
-    "chainName": "EVM chain where the NFT collection is deployed",
-    "collectionContract": "NFT collection contract address to monitor for Transfer events",
-    "topicHash": "ERC-721 Transfer topic — 0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef"
-  },
-  "responseFields": [
-    "items[].block_signed_at",
-    "items[].block_height",
-    "items[].tx_hash",
-    "items[].decoded.params[].name",
-    "items[].decoded.params[].value"
-  ],
-  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nconst TRANSFER_TOPIC = '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef';\n\nasync function pollNftTransfers(\n  chainName: string,\n  collectionContract: string,\n  onTransfer: (event: any) => void,\n  intervalMs = 12_000\n) {\n  let lastSeenBlock = 0;\n\n  async function poll() {\n    try {\n      const resp = await client.BaseService.getLogEventsByTopicHash(\n        chainName, TRANSFER_TOPIC,\n        { startingBlock: lastSeenBlock > 0 ? lastSeenBlock + 1 : undefined }\n      );\n      const events = (resp.data?.items ?? [])\n        .filter(e => e.sender_address?.toLowerCase() === collectionContract.toLowerCase());\n\n      for (const event of events) {\n        const params = event.decoded?.params ?? [];\n        const from = params.find((p: any) => p.name === 'from')?.value ?? '';\n        const to = params.find((p: any) => p.name === 'to')?.value ?? '';\n        const tokenId = params.find((p: any) => p.name === 'tokenId')?.value ?? '';\n        const isMint = from === '0x0000000000000000000000000000000000000000';\n\n        onTransfer({\n          type: isMint ? 'MINT' : 'TRANSFER',\n          from, to, tokenId,\n          txHash: event.tx_hash,\n          blockTime: event.block_signed_at,\n          blockHeight: event.block_height,\n        });\n\n        if ((event.block_height ?? 0) > lastSeenBlock) {\n          lastSeenBlock = event.block_height!;\n        }\n      }\n    } catch (err) {\n      console.error('Poll error:', err);\n    }\n  }\n\n  await poll();\n  return setInterval(poll, intervalMs);\n}",
-  "buildsWith": ["nft-metadata-fetcher", "contract-event-log-monitor", "realtime-wallet-stream"]
+  "slug": "nft-transfer-monitor"
 }

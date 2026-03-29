@@ -1,27 +1,11 @@
 [
   {
-    "title": "DEX Trade History",
-    "body": "Pull all DEX swap events and volume for any wallet address or token pair.",
-    "tag": "Free Tier",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-12",
-    "slug": "dex-trade-history"
-  },
-  {
-    "title": "Live DEX Pair Stream",
-    "body": "Subscribe to new DEX pair creations as they happen across chains \u2014 catch launches the moment liquidity is added.",
-    "tag": "API Key Required",
-    "url": "https://goldrush.dev/docs/streaming/",
-    "date-added": "2026-03-23",
-    "slug": "live-dex-pair-stream"
-  },
-  {
-    "title": "Token Launch Screener",
-    "body": "Real-time screener for new DEX token launches — filter by minimum liquidity, chain, and pair token. Build a Dexscreener-style new pairs feed.",
+    "title": "Base Memecoin Screener",
+    "body": "Live feed of new token launches on Base — subscribes to new Aerodrome/Uniswap pairs, shows real-time price candles and momentum for meme coin hunters.",
     "tag": "API Key Required",
     "url": "https://goldrush.dev",
     "date-added": "2026-03-23",
-    "slug": "token-launch-screener"
+    "slug": "base-memecoin-screener"
   },
   {
     "title": "DeFi Wallet Dashboard",
@@ -32,11 +16,59 @@
     "slug": "defi-wallet-dashboard"
   },
   {
-    "title": "Base Memecoin Screener",
-    "body": "Live feed of new token launches on Base — subscribes to new Aerodrome/Uniswap pairs, shows real-time price candles and momentum for meme coin hunters.",
+    "title": "DEX Trade History",
+    "body": "Pull all DEX swap events and volume for any wallet address or token pair.",
+    "tag": "Free Tier",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-12",
+    "slug": "dex-trade-history"
+  },
+  {
+    "title": "Jupiter Swap Route Finder",
+    "body": "Query Jupiter's on-chain routing data indexed by GoldRush to find the best swap path for any SPL token pair — returns the expected output amount, minimum output after slippage tolerance, price impact percentage, and the full multi-hop route through intermediate DEXes (Raydium, Orca, Meteora, Lifinity, etc.). Feed this into an agent's trade execution loop: if price impact exceeds your threshold, hold the position; otherwise use the route data to construct and submit the swap transaction.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-26",
+    "slug": "jupiter-swap-route-finder"
+  },
+  {
+    "title": "Live DEX Pair Stream",
+    "body": "Subscribe to new DEX pair creations as they happen across chains — catch launches the moment liquidity is added.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev/docs/streaming/",
+    "date-added": "2026-03-23",
+    "slug": "live-dex-pair-stream"
+  },
+  {
+    "title": "Raydium Pool Analytics",
+    "body": "Fetch Raydium AMM and CLMM (Concentrated Liquidity) pool data via GoldRush for any pool address or token pair — returns current TVL in USD, 24h trading volume, real-time fee APY, token0/token1 reserve amounts, and current spot price. Use to compare pools before providing liquidity, track impermanent loss on an existing position by comparing entry vs current reserves, or build a Raydium pool leaderboard sorted by fee APY or volume.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-26",
+    "slug": "raydium-pool-analytics"
+  },
+  {
+    "title": "Solana DEX Trade History",
+    "body": "Decode all swap transactions for any Solana wallet via GoldRush's transaction decoder on `solana-mainnet` — automatically identifies and extracts trades from Jupiter, Raydium, Orca, and Meteora instructions. Each decoded trade returns: input token + amount, output token + amount, USD value at trade time, DEX used, and tx signature. Returns a clean trade-by-trade list with zero raw instruction parsing. Build a full Solana trading journal, PnL calculator, or strategy performance analyzer.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-26",
+    "slug": "solana-dex-trade-history"
+  },
+  {
+    "title": "Solana Yield Dashboard",
+    "body": "Aggregate current APY/APR data across the top Solana yield venues using GoldRush: Marinade Finance (native staking 6–7% + liquid mSOL), Orca (CLMM fee APY by pool), Kamino (lending supply/borrow rates), Drift (perpetuals funding rates), and Jito (MEV-boosted staking). Returns a unified yield comparison object sortable by APY, protocol, or risk level — use as the data backbone for an autonomous yield-rebalancing agent or a user-facing 'where should I put my SOL?' comparison UI.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-26",
+    "slug": "solana-yield-dashboard"
+  },
+  {
+    "title": "Token Launch Screener",
+    "body": "Real-time screener for new DEX token launches — filter by minimum liquidity, chain, and pair token. Build a Dexscreener-style new pairs feed.",
     "tag": "API Key Required",
     "url": "https://goldrush.dev",
     "date-added": "2026-03-23",
-    "slug": "base-memecoin-screener"
+    "slug": "token-launch-screener"
   }
 ]

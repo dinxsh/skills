@@ -1,0 +1,9 @@
+{
+  "title": "Solana Token Whale Alert",
+  "description": "Subscribe to SPL token transfer events for any mint address via GoldRush's real-time activity stream on `solana-mainnet` — filter server-side for transfers above a configurable USD threshold (e.g. >$50K). Each alert payload includes: sender wallet, receiver wallet, token amount, USD value at time of transfer, and the tx signature for on-chain verification. Build a Telegram or Discord whale-alert bot that fires within seconds of a large transfer landing on-chain — under 100 lines of code.",
+  "category": "token",
+  "url": "https://goldrush.dev",
+  "tag": "API Key Required",
+  "date-added": "2026-03-26",
+  "slug": "solana-token-whale-alert"
+}

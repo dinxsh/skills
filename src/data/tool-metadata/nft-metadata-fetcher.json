@@ -1,58 +1,9 @@
 {
   "title": "NFT Metadata Fetcher",
-  "description": "Retrieve full NFT metadata, traits, images, and external data for all tokens in a wallet \u2014 name, description, image URL, and attribute arrays for any ERC-721 or ERC-1155 collection.",
+  "description": "Retrieve full NFT metadata, traits, and ownership history for any token onchain.",
   "category": "nft",
-  "url": "https://goldrush.dev/docs/api/nft/get-nfts-for-address/",
+  "url": "https://goldrush.dev",
   "tag": "Free Tier",
   "date-added": "2026-03-12",
-  "slug": "nft-metadata-fetcher",
-  "complexity": "Beginner",
-  "useCase": "Build an NFT detail page that shows token image, traits, description, and owner for any NFT in a wallet \u2014 the foundation for any NFT explorer.",
-  "chains": [
-    "ethereum",
-    "base",
-    "polygon",
-    "bsc",
-    "optimism",
-    "arbitrum",
-    "avalanche",
-    "gnosis",
-    "fantom",
-    "celo",
-    "moonbeam",
-    "blast",
-    "linea",
-    "scroll",
-    "zkSync",
-    "mantle",
-    "sonic",
-    "unichain",
-    "sei"
-  ],
-  "creditCost": "1 credit/call",
-  "endpoints": [
-    "GET /v1/{chainName}/address/{walletAddress}/balances_nft/"
-  ],
-  "keyParams": {
-    "chainName": "EVM chain identifier (e.g. eth-mainnet, base-mainnet)",
-    "walletAddress": "0x wallet address"
-  },
-  "responseFields": [
-    "items[].contract_name",
-    "items[].contract_address",
-    "items[].nft_data[].token_id",
-    "items[].nft_data[].token_url",
-    "items[].nft_data[].external_data.name",
-    "items[].nft_data[].external_data.description",
-    "items[].nft_data[].external_data.image",
-    "items[].nft_data[].external_data.attributes[].trait_type",
-    "items[].nft_data[].external_data.attributes[].value",
-    "items[].nft_data[].owner"
-  ],
-  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function getNftMetadata(chainName: string, walletAddress: string) {\n  const resp = await client.NftService.getNftsForAddress(chainName, walletAddress);\n\n  if (resp.error) throw new Error(resp.error_message);\n\n  return resp.data.items.flatMap(collection =>\n    (collection.nft_data ?? []).map(nft => ({\n      collection: collection.contract_name,\n      contractAddress: collection.contract_address,\n      tokenId: nft.token_id,\n      name: nft.external_data?.name,\n      image: nft.external_data?.image,\n      description: nft.external_data?.description,\n      traits: nft.external_data?.attributes ?? [],\n      owner: nft.owner,\n    }))\n  );\n}",
-  "buildsWith": [
-    "nft-gallery-viewer",
-    "nft-traits-explorer",
-    "nft-portfolio-valuation"
-  ]
+  "slug": "nft-metadata-fetcher"
 }

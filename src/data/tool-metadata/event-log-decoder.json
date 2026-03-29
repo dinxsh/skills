@@ -1,57 +1,9 @@
 {
   "title": "Event Log Decoder",
-  "description": "Decode and search contract event logs across any block range and chain \u2014 combines getLogs and getLogEventsByAddress to return human-readable decoded event parameters.",
+  "description": "Decode and search contract event logs across any block range and chain.",
   "category": "analytics",
-  "url": "https://goldrush.dev/docs/api/base/get-logs/",
+  "url": "https://goldrush.dev",
   "tag": "API Key Required",
   "date-added": "2026-03-12",
-  "slug": "event-log-decoder",
-  "complexity": "Intermediate",
-  "useCase": "Build a contract debugging tool that shows every event emitted by a contract with fully decoded parameters \u2014 from, to, amount, value \u2014 in a readable format.",
-  "chains": [
-    "ethereum",
-    "base",
-    "polygon",
-    "bsc",
-    "optimism",
-    "arbitrum",
-    "avalanche",
-    "gnosis",
-    "fantom",
-    "celo",
-    "moonbeam",
-    "blast",
-    "linea",
-    "scroll",
-    "zkSync",
-    "mantle",
-    "sonic",
-    "unichain",
-    "sei"
-  ],
-  "creditCost": "1 credit/call",
-  "endpoints": [
-    "GET /v1/{chainName}/events/address/{contractAddress}/",
-    "GET /v1/{chainName}/block/{blockHeight}/log_events/"
-  ],
-  "keyParams": {
-    "chainName": "EVM chain identifier (e.g. eth-mainnet, base-mainnet)",
-    "contractAddress": "Contract to decode logs for",
-    "blockHeight": "Block height or range to query logs from",
-    "topics": "Array of topic hashes to filter"
-  },
-  "responseFields": [
-    "items[].block_signed_at",
-    "items[].tx_hash",
-    "items[].decoded.name",
-    "items[].decoded.params[].name",
-    "items[].decoded.params[].value",
-    "items[].decoded.params[].type"
-  ],
-  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function decodeEventLogs(\n  chainName: string,\n  contractAddress: string,\n  startingBlock: number,\n  endingBlock: number\n) {\n  const resp = await client.BaseService.getLogEventsByAddress(\n    chainName,\n    contractAddress,\n    { startingBlock, endingBlock }\n  );\n\n  if (resp.error) throw new Error(resp.error_message);\n\n  return resp.data.items\n    .filter(log => log.decoded)\n    .map(log => ({\n      event: log.decoded!.name,\n      txHash: log.tx_hash,\n      timestamp: log.block_signed_at,\n      args: Object.fromEntries(\n        (log.decoded!.params ?? []).map(p => [p.name, p.value])\n      ),\n    }));\n}",
-  "buildsWith": [
-    "contract-event-log-monitor",
-    "cross-contract-event-scanner",
-    "block-explorer-toolkit"
-  ]
+  "slug": "event-log-decoder"
 }

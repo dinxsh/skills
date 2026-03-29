@@ -2,31 +2,8 @@
   "title": "Stale Approval Cleaner",
   "description": "Surface all active ERC-20 and NFT approvals sorted by risk level — identify unlimited approvals, deprecated protocol spenders, and dead contracts that should be revoked.",
   "category": "security",
-  "url": "https://goldrush.dev/docs/api/security/get-approvals/",
+  "url": "https://goldrush.dev",
   "tag": "Free Tier",
   "date-added": "2026-03-23",
-  "slug": "stale-approval-cleaner",
-  "complexity": "Beginner",
-  "useCase": "Build a wallet security dashboard that shows every active token approval grouped by risk (critical/high/medium/safe), with the dollar value at risk and a direct Etherscan revoke link for each.",
-  "chains": ["ethereum", "base", "bsc", "polygon", "optimism", "arbitrum", "avalanche"],
-  "creditCost": "2 credits/call",
-  "endpoints": [
-    "GET /v1/{chainName}/approvals/{walletAddress}/"
-  ],
-  "keyParams": {
-    "chainName": "EVM chain to scan approvals on",
-    "walletAddress": "0x wallet address to audit approvals for"
-  },
-  "responseFields": [
-    "items[].token_ticker_symbol",
-    "items[].spender_name",
-    "items[].spender_address",
-    "items[].value_at_risk",
-    "items[].risk_factor",
-    "items[].allowance",
-    "items[].token_address",
-    "items[].token_balance"
-  ],
-  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\ntype RiskGroup = 'critical' | 'high' | 'medium' | 'safe';\n\nfunction classifyRisk(riskFactor: number): RiskGroup {\n  if (riskFactor >= 4) return 'critical';\n  if (riskFactor >= 3) return 'high';\n  if (riskFactor >= 2) return 'medium';\n  return 'safe';\n}\n\nasync function scanStaleApprovals(chainName: string, walletAddress: string) {\n  const resp = await client.SecurityService.getApprovals(chainName, walletAddress);\n  const approvals = resp.data?.items ?? [];\n\n  const sorted = [...approvals].sort((a, b) => (b.risk_factor ?? 0) - (a.risk_factor ?? 0));\n\n  const riskGroups: Record<RiskGroup, any[]> = {\n    critical: [], high: [], medium: [], safe: [],\n  };\n\n  for (const approval of sorted) {\n    const group = classifyRisk(approval.risk_factor ?? 0);\n    const etherscanBase = chainName === 'eth-mainnet' ? 'https://etherscan.io' : '#';\n    riskGroups[group].push({\n      tokenSymbol: approval.token_ticker_symbol,\n      tokenAddress: approval.token_address,\n      spenderName: approval.spender_name ?? 'Unknown',\n      spenderAddress: approval.spender_address,\n      allowance: approval.allowance,\n      valueAtRisk: approval.value_at_risk ?? 0,\n      riskFactor: approval.risk_factor ?? 0,\n      revokeUrl: `${etherscanBase}/tokenapprovalchecker`,\n    });\n  }\n\n  const totalValueAtRisk = sorted.reduce((s, a) => s + (a.value_at_risk ?? 0), 0);\n\n  return {\n    totalValueAtRisk,\n    totalApprovals: sorted.length,\n    riskGroups,\n  };\n}",
-  "buildsWith": ["approval-auditor", "token-approval-risk-scanner", "token-approval-scanner"]
+  "slug": "stale-approval-cleaner"
 }

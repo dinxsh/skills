@@ -1,43 +1,9 @@
 {
   "title": "Token OHLCV Chart",
-  "description": "Real-time OHLCV candlestick data for any token via WebSocket subscription \u2014 stream live candles at any resolution for TradingView-style charts and price dashboards.",
+  "description": "Real-time OHLCV candlestick data for any token — stream live candles via WebSocket for TradingView-style charts.",
   "category": "analytics",
   "url": "https://goldrush.dev/docs/streaming/",
   "tag": "API Key Required",
   "date-added": "2026-03-23",
-  "slug": "token-ohlcv-chart",
-  "complexity": "Intermediate",
-  "useCase": "Power a real-time TradingView-style candlestick chart for any token \u2014 subscribe to live 1m/5m/1h OHLCV candles via WebSocket and update the chart as new candles close.",
-  "chains": [
-    "ethereum",
-    "base",
-    "bsc",
-    "polygon",
-    "arbitrum",
-    "optimism",
-    "avalanche"
-  ],
-  "creditCost": "Streaming subscription",
-  "endpoints": [
-    "wss://streaming.goldrushdata.com/graphql \u2014 ohlcvCandlesForToken subscription"
-  ],
-  "keyParams": {
-    "tokenAddress": "ERC-20 token contract address",
-    "chainName": "EVM chain name (e.g. eth-mainnet, base-mainnet)",
-    "resolution": "Candle resolution: 1m, 5m, 15m, 1h, 4h, 1d"
-  },
-  "responseFields": [
-    "timestamp",
-    "open",
-    "high",
-    "low",
-    "close",
-    "volume"
-  ],
-  "snippet": "import { createClient } from 'graphql-ws';\n\nconst wsClient = createClient({\n  url: 'wss://streaming.goldrushdata.com/graphql',\n  connectionParams: { apiKey: process.env.GOLDRUSH_API_KEY },\n});\n\nasync function streamOhlcvCandles(\n  tokenAddress: string,\n  chainName: string,\n  resolution: '1m' | '5m' | '15m' | '1h' | '4h' | '1d',\n  onCandle: (candle: any) => void\n) {\n  const sub = wsClient.iterate({\n    query: `subscription OHLCV($token: String!, $chain: String!, $res: String!) {\n      ohlcvCandlesForToken(tokenAddress: $token, chainName: $chain, resolution: $res) {\n        timestamp open high low close volume\n      }\n    }`,\n    variables: { token: tokenAddress, chain: chainName, res: resolution },\n  });\n\n  for await (const event of sub) {\n    const candle = event.data?.ohlcvCandlesForToken;\n    if (candle) onCandle(candle);\n  }\n}\n\n// Usage: stream 5-minute candles\nstreamOhlcvCandles(\n  '0x4200000000000000000000000000000000000006', // WETH on Base\n  'base-mainnet',\n  '5m',\n  candle => console.log(`Close: $${candle.close}, Volume: ${candle.volume}`)\n);",
-  "buildsWith": [
-    "token-price-chart",
-    "dex-pool-spot-price",
-    "live-dex-pair-stream"
-  ]
+  "slug": "token-ohlcv-chart"
 }

@@ -1,41 +1,9 @@
 {
   "title": "Token Holder List",
-  "description": "Retrieve a ranked, paginated list of holders for any ERC-20 token contract \u2014 includes balance, percent of total supply, and address for each holder. Foundational chains only.",
+  "description": "Retrieve a ranked list of holders for any token contract address across chains.",
   "category": "token",
-  "url": "https://goldrush.dev/docs/api/balances/get-token-holders-v2/",
+  "url": "https://goldrush.dev",
   "tag": "API Key Required",
   "date-added": "2026-03-12",
-  "slug": "token-holder-list",
-  "complexity": "Intermediate",
-  "useCase": "Build a token holder leaderboard showing the top 100 holders of any ERC-20 \u2014 display wallet addresses, balances, and ownership percentages for community dashboards.",
-  "chains": [
-    "ethereum",
-    "base",
-    "bsc",
-    "polygon",
-    "optimism",
-    "gnosis"
-  ],
-  "creditCost": "1 credit/call",
-  "endpoints": [
-    "GET /v1/{chainName}/tokens/{tokenAddress}/token_holders_v2/"
-  ],
-  "keyParams": {
-    "chainName": "Foundational chain only: eth-mainnet, base-mainnet, bsc-mainnet, matic-mainnet, optimism-mainnet, gnosis-mainnet",
-    "tokenAddress": "ERC-20 token contract address",
-    "pageNumber": "Page number (0-indexed)",
-    "pageSize": "Items per page (max 1000)"
-  },
-  "responseFields": [
-    "items[].address",
-    "items[].balance",
-    "items[].total_supply",
-    "items[].balance_percent_of_total"
-  ],
-  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function getTokenHolders(\n  chainName: string,\n  tokenAddress: string,\n  pageNumber = 0\n) {\n  const resp = await client.BalanceService.getTokenHoldersV2ForTokenAddress(\n    chainName,\n    tokenAddress,\n    { pageNumber, pageSize: 100 }\n  );\n\n  if (resp.error) throw new Error(resp.error_message);\n\n  return resp.data.items.map((h, rank) => ({\n    rank: rank + 1 + pageNumber * 100,\n    address: h.address,\n    balance: h.balance,\n    percentOfSupply: h.balance_percent_of_total,\n  }));\n}",
-  "buildsWith": [
-    "token-holders-snapshot",
-    "governance-token-snapshot",
-    "token-supply-metadata"
-  ]
+  "slug": "token-holder-list"
 }

@@ -1,8 +1,26 @@
 {
+  "bitcoin-balance-checker": [
+    "wallet"
+  ],
+  "bitcoin-hd-wallet-scanner": [
+    "wallet"
+  ],
+  "bitcoin-transaction-explorer": [
+    "wallet"
+  ],
+  "crypto-tax-exporter": [
+    "wallet"
+  ],
   "wallet-erc20-transfers": [
     "wallet"
   ],
   "historical-portfolio-value": [
+    "wallet"
+  ],
+  "historical-token-holdings": [
+    "wallet"
+  ],
+  "multi-wallet-aggregator": [
     "wallet"
   ],
   "native-token-balance": [
@@ -14,7 +32,22 @@
   "portfolio-history": [
     "wallet"
   ],
+  "portfolio-performance-report": [
+    "wallet"
+  ],
   "portfolio-tracker": [
+    "wallet"
+  ],
+  "solana-staking-snapshot": [
+    "wallet"
+  ],
+  "solana-transaction-history": [
+    "wallet"
+  ],
+  "solana-wallet-age-activity": [
+    "wallet"
+  ],
+  "solana-wallet-balances": [
     "wallet"
   ],
   "transaction-history": [
@@ -29,8 +62,47 @@
   "wallet-balances-skill": [
     "wallet"
   ],
+  "wallet-pnl-tracker": [
+    "wallet"
+  ],
+  "base-memecoin-screener": [
+    "defi"
+  ],
+  "defi-wallet-dashboard": [
+    "defi"
+  ],
   "dex-trade-history": [
     "defi"
+  ],
+  "jupiter-swap-route-finder": [
+    "defi"
+  ],
+  "live-dex-pair-stream": [
+    "defi"
+  ],
+  "raydium-pool-analytics": [
+    "defi"
+  ],
+  "solana-dex-trade-history": [
+    "defi"
+  ],
+  "solana-yield-dashboard": [
+    "defi"
+  ],
+  "token-launch-screener": [
+    "defi"
+  ],
+  "compressed-nft-scanner": [
+    "nft"
+  ],
+  "metaplex-nft-portfolio": [
+    "nft"
+  ],
+  "multichain-nft-gallery": [
+    "nft"
+  ],
+  "nft-collection-analytics": [
+    "nft"
   ],
   "nft-gallery-viewer": [
     "nft"
@@ -47,10 +119,25 @@
   "nft-traits-explorer": [
     "nft"
   ],
+  "nft-transfer-monitor": [
+    "nft"
+  ],
   "nft-transfer-tracker": [
     "nft"
   ],
+  "nft-gated-app": [
+    "nft"
+  ],
+  "ronin-nft-inventory": [
+    "nft"
+  ],
+  "solana-nft-collection-stats": [
+    "nft"
+  ],
   "block-explorer-toolkit": [
+    "analytics"
+  ],
+  "contract-event-dashboard": [
     "analytics"
   ],
   "contract-event-log-monitor": [
@@ -71,10 +158,28 @@
   "onchain-data-query": [
     "analytics"
   ],
+  "smart-money-copier": [
+    "analytics"
+  ],
+  "solana-program-activity-monitor": [
+    "analytics"
+  ],
+  "solana-smart-money-tracker": [
+    "analytics"
+  ],
+  "token-ohlcv-chart": [
+    "analytics"
+  ],
   "token-price-history": [
     "analytics"
   ],
   "wallet-activity-heatmap": [
+    "analytics"
+  ],
+  "wallet-comparison-tool": [
+    "analytics"
+  ],
+  "whale-wallet-watchlist": [
     "analytics"
   ],
   "agent-counterparty-verification": [
@@ -98,10 +203,40 @@
   "realtime-wallet-stream": [
     "agents"
   ],
+  "solana-agent-defi-navigator": [
+    "agents"
+  ],
+  "solana-agent-portfolio-snapshot": [
+    "agents"
+  ],
+  "solana-agent-risk-gate": [
+    "agents"
+  ],
+  "solana-agent-token-launch-detector": [
+    "agents"
+  ],
+  "solana-agent-transaction-validator": [
+    "agents"
+  ],
+  "solana-agent-wallet-watcher": [
+    "agents"
+  ],
   "all-chains-status": [
     "developer"
   ],
+  "anchor-program-data-reader": [
+    "developer"
+  ],
   "api-reference": [
+    "developer"
+  ],
+  "block-date-lookup": [
+    "developer"
+  ],
+  "block-explorer-lite": [
+    "developer"
+  ],
+  "gas-price-widget": [
     "developer"
   ],
   "goldrush-kit-approvals": [
@@ -125,10 +260,16 @@
   "quickstart-templates": [
     "developer"
   ],
+  "solana-goldrush-quickstart": [
+    "developer"
+  ],
   "webhook-builder": [
     "developer"
   ],
   "address-activity-scanner": [
+    "crosschain"
+  ],
+  "cross-chain-activity-report": [
     "crosschain"
   ],
   "cross-chain-address-lookup": [
@@ -146,7 +287,25 @@
   "multichain-portfolio": [
     "crosschain"
   ],
+  "dex-pool-spot-price": [
+    "token"
+  ],
   "erc20-transfer-history": [
+    "token"
+  ],
+  "pumpfun-token-scanner": [
+    "token"
+  ],
+  "solana-token-holders-snapshot": [
+    "token"
+  ],
+  "solana-token-price-history": [
+    "token"
+  ],
+  "solana-token-whale-alert": [
+    "token"
+  ],
+  "spl-token-metadata": [
     "token"
   ],
   "spot-price-ticker": [
@@ -158,6 +317,9 @@
   "token-holder-list": [
     "token"
   ],
+  "token-holders-leaderboard": [
+    "token"
+  ],
   "token-holders-snapshot": [
     "token"
   ],
@@ -167,11 +329,23 @@
   "token-price-chart": [
     "token"
   ],
+  "token-search": [
+    "token"
+  ],
   "token-supply-metadata": [
     "token"
   ],
   "token-transfer-stream": [
     "token"
+  ],
+  "token-unlock-tracker": [
+    "token"
+  ],
+  "token-whale-alert": [
+    "token"
+  ],
+  "airdrop-eligibility-checker": [
+    "identity"
   ],
   "ens-resolver": [
     "identity"
@@ -183,6 +357,12 @@
     "identity"
   ],
   "onchain-activity-verifier": [
+    "identity"
+  ],
+  "onchain-credit-widget": [
+    "identity"
+  ],
+  "onchain-resume": [
     "identity"
   ],
   "proof-of-onchain-activity": [
@@ -197,6 +377,15 @@
   "smart-contract-interaction-risk": [
     "security"
   ],
+  "solana-program-verifier": [
+    "security"
+  ],
+  "solana-token-risk-scorer": [
+    "security"
+  ],
+  "stale-approval-cleaner": [
+    "security"
+  ],
   "token-approval-risk-scanner": [
     "security"
   ],
@@ -205,110 +394,5 @@
   ],
   "transaction-decoded-receipt": [
     "security"
-  ],
-  "bitcoin-balance-checker": [
-    "wallet"
-  ],
-  "bitcoin-hd-wallet-scanner": [
-    "wallet"
-  ],
-  "bitcoin-transaction-explorer": [
-    "wallet"
-  ],
-  "historical-token-holdings": [
-    "wallet"
-  ],
-  "wallet-pnl-tracker": [
-    "wallet"
-  ],
-  "dex-pool-spot-price": [
-    "token"
-  ],
-  "token-search": [
-    "token"
-  ],
-  "live-dex-pair-stream": [
-    "defi"
-  ],
-  "token-ohlcv-chart": [
-    "analytics"
-  ],
-  "ronin-nft-inventory": [
-    "nft"
-  ],
-  "block-date-lookup": [
-    "developer"
-  ],
-  "crypto-tax-exporter": [
-    "wallet"
-  ],
-  "multi-wallet-aggregator": [
-    "wallet"
-  ],
-  "portfolio-performance-report": [
-    "wallet"
-  ],
-  "token-launch-screener": [
-    "defi"
-  ],
-  "defi-wallet-dashboard": [
-    "defi"
-  ],
-  "base-memecoin-screener": [
-    "defi"
-  ],
-  "nft-gated-app": [
-    "nft"
-  ],
-  "multichain-nft-gallery": [
-    "nft"
-  ],
-  "nft-transfer-monitor": [
-    "nft"
-  ],
-  "nft-collection-analytics": [
-    "nft"
-  ],
-  "whale-wallet-watchlist": [
-    "analytics"
-  ],
-  "smart-money-copier": [
-    "analytics"
-  ],
-  "wallet-comparison-tool": [
-    "analytics"
-  ],
-  "contract-event-dashboard": [
-    "analytics"
-  ],
-  "token-holders-leaderboard": [
-    "token"
-  ],
-  "token-unlock-tracker": [
-    "token"
-  ],
-  "token-whale-alert": [
-    "token"
-  ],
-  "onchain-resume": [
-    "identity"
-  ],
-  "airdrop-eligibility-checker": [
-    "identity"
-  ],
-  "onchain-credit-widget": [
-    "identity"
-  ],
-  "stale-approval-cleaner": [
-    "security"
-  ],
-  "block-explorer-lite": [
-    "developer"
-  ],
-  "gas-price-widget": [
-    "developer"
-  ],
-  "cross-chain-activity-report": [
-    "crosschain"
   ]
 }

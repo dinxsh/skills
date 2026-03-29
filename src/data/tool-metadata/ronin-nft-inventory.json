@@ -1,35 +1,9 @@
 {
   "title": "Ronin NFT Inventory",
-  "description": "List all NFTs held in a Ronin wallet \u2014 Axie Infinity, Land, and other Sky Mavis NFT collections. Uses getNftsForAddress on axie-mainnet.",
+  "description": "List all NFTs held in a Ronin wallet — Axie Infinity, Land, and other Sky Mavis NFT collections.",
   "category": "nft",
   "url": "https://goldrush.dev/docs/api/nft/get-nfts-for-address/",
   "tag": "API Key Required",
   "date-added": "2026-03-23",
-  "slug": "ronin-nft-inventory",
-  "complexity": "Beginner",
-  "useCase": "Build a Ronin wallet NFT viewer showing all Axie Infinity, Land, and Sky Mavis NFT collections held by any Ronin address \u2014 the foundation for Axie portfolio apps.",
-  "chains": [
-    "ronin"
-  ],
-  "creditCost": "1 credit/call",
-  "endpoints": [
-    "GET /v1/axie-mainnet/address/{walletAddress}/balances_nft/"
-  ],
-  "keyParams": {
-    "walletAddress": "Ronin wallet address (0x format or ronin: prefix stripped)"
-  },
-  "responseFields": [
-    "items[].contract_name",
-    "items[].contract_address",
-    "items[].nft_data[].token_id",
-    "items[].nft_data[].external_data.name",
-    "items[].nft_data[].external_data.image",
-    "items[].nft_data[].external_data.attributes[]"
-  ],
-  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function getRoninNftInventory(walletAddress: string) {\n  // Always use 'axie-mainnet' for Ronin chain\n  const resp = await client.NftService.getNftsForAddress(\n    'axie-mainnet',\n    walletAddress\n  );\n\n  if (resp.error) throw new Error(resp.error_message);\n\n  return resp.data.items.map(collection => ({\n    collectionName: collection.contract_name,\n    contractAddress: collection.contract_address,\n    nftCount: (collection.nft_data ?? []).length,\n    nfts: (collection.nft_data ?? []).map(nft => ({\n      tokenId: nft.token_id,\n      name: nft.external_data?.name,\n      image: nft.external_data?.image,\n      traits: nft.external_data?.attributes ?? [],\n    })),\n  }));\n}",
-  "buildsWith": [
-    "nft-metadata-fetcher",
-    "nft-gallery-viewer",
-    "nft-traits-explorer"
-  ]
+  "slug": "ronin-nft-inventory"
 }

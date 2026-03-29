@@ -2,30 +2,8 @@
   "title": "Portfolio Performance Report",
   "description": "30-day rolling P&L report with per-token open/high/low/close — build fund-grade performance dashboards for any wallet on foundational chains.",
   "category": "wallet",
-  "url": "https://goldrush.dev/docs/api/balances/get-historical-portfolio-for-wallet-address/",
+  "url": "https://goldrush.dev",
   "tag": "API Key Required",
   "date-added": "2026-03-23",
-  "slug": "portfolio-performance-report",
-  "complexity": "Intermediate",
-  "useCase": "Build a hedge fund-style monthly performance report showing each token's 30-day price range, unrealized gain/loss, and portfolio allocation shift.",
-  "chains": ["ethereum", "base", "bsc", "polygon", "optimism", "gnosis"],
-  "creditCost": "2 credits/item",
-  "endpoints": [
-    "GET /v1/{chainName}/address/{walletAddress}/portfolio_v2/"
-  ],
-  "keyParams": {
-    "chainName": "Foundational chain only — eth-mainnet, base-mainnet, bsc-mainnet, matic-mainnet, optimism-mainnet, gnosis-mainnet",
-    "walletAddress": "0x wallet address for the performance report"
-  },
-  "responseFields": [
-    "items[].contract_name",
-    "items[].contract_ticker_symbol",
-    "items[].holdings[].timestamp",
-    "items[].holdings[].open.quote",
-    "items[].holdings[].high.quote",
-    "items[].holdings[].low.quote",
-    "items[].holdings[].close.quote"
-  ],
-  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\ninterface TokenPerf {\n  name: string; symbol: string;\n  startValue: number; endValue: number;\n  high30d: number; low30d: number;\n  pnl: number; pnlPct: number;\n}\n\nasync function buildPerformanceReport(chainName: string, walletAddress: string) {\n  const resp = await client.BalanceService.getHistoricalPortfolioForWalletAddress(\n    chainName, walletAddress\n  );\n  const items = resp.data?.items ?? [];\n\n  const tokenPerf: TokenPerf[] = items\n    .filter(item => (item.holdings?.length ?? 0) > 1)\n    .map(item => {\n      const holdings = item.holdings!;\n      const startValue = holdings[0].close?.quote ?? 0;\n      const endValue = holdings[holdings.length - 1].close?.quote ?? 0;\n      const high30d = Math.max(...holdings.map(h => h.high?.quote ?? 0));\n      const low30d = Math.min(...holdings.filter(h => (h.low?.quote ?? 0) > 0).map(h => h.low!.quote!));\n      const pnl = endValue - startValue;\n      const pnlPct = startValue > 0 ? (pnl / startValue) * 100 : 0;\n      return {\n        name: item.contract_name ?? '',\n        symbol: item.contract_ticker_symbol ?? '',\n        startValue, endValue, high30d, low30d, pnl, pnlPct,\n      };\n    })\n    .sort((a, b) => b.pnl - a.pnl);\n\n  const totalPnl = tokenPerf.reduce((s, t) => s + t.pnl, 0);\n  const totalEndValue = tokenPerf.reduce((s, t) => s + t.endValue, 0);\n  return { totalPnl, totalEndValue, positions: tokenPerf };\n}",
-  "buildsWith": ["historical-portfolio-value", "portfolio-tracker", "wallet-pnl-tracker"]
+  "slug": "portfolio-performance-report"
 }

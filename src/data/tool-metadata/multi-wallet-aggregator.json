@@ -2,31 +2,8 @@
   "title": "Multi-Wallet Portfolio Aggregator",
   "description": "Enter multiple wallet addresses and see combined token balances, total net worth, and unified transaction feed — your whole onchain life in one view.",
   "category": "wallet",
-  "url": "https://goldrush.dev/docs/api/balances/get-token-balances-for-wallet-address/",
+  "url": "https://goldrush.dev",
   "tag": "API Key Required",
   "date-added": "2026-03-23",
-  "slug": "multi-wallet-aggregator",
-  "complexity": "Intermediate",
-  "useCase": "Build a household/team portfolio dashboard that aggregates assets across multiple wallets and shows combined USD net worth, per-wallet breakdown, and top holdings.",
-  "chains": ["ethereum", "base", "bsc", "polygon", "optimism", "arbitrum", "avalanche", "gnosis"],
-  "creditCost": "1 credit/wallet/chain",
-  "endpoints": [
-    "GET /v1/{chainName}/address/{walletAddress}/balances_v2/",
-    "GET /v1/address/{walletAddress}/balances_all_chains/"
-  ],
-  "keyParams": {
-    "walletAddresses": "Array of 0x wallet addresses to aggregate across",
-    "chainName": "EVM chain name — or use multichain endpoint to auto-discover all chains"
-  },
-  "responseFields": [
-    "items[].contract_name",
-    "items[].contract_ticker_symbol",
-    "items[].contract_address",
-    "items[].balance",
-    "items[].quote",
-    "items[].quote_rate",
-    "items[].logo_url"
-  ],
-  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\ninterface AggregatedToken {\n  symbol: string; name: string; logoUrl: string;\n  totalBalance: number; totalQuote: number;\n  wallets: Array<{ address: string; balance: number; quote: number }>;\n}\n\nasync function aggregateMultiWallet(walletAddresses: string[], chainName: string) {\n  const results = await Promise.all(\n    walletAddresses.map(addr =>\n      client.BalanceService.getTokenBalancesForWalletAddress(chainName, addr)\n        .then(r => ({ addr, items: r.data?.items ?? [] }))\n    )\n  );\n\n  const tokenMap = new Map<string, AggregatedToken>();\n\n  for (const { addr, items } of results) {\n    for (const token of items) {\n      if (token.is_spam) continue;\n      const key = token.contract_address ?? token.contract_ticker_symbol ?? '';\n      const existing = tokenMap.get(key) ?? {\n        symbol: token.contract_ticker_symbol ?? '',\n        name: token.contract_name ?? '',\n        logoUrl: token.logo_url ?? '',\n        totalBalance: 0, totalQuote: 0, wallets: [],\n      };\n      const bal = Number(token.balance) / Math.pow(10, token.contract_decimals ?? 18);\n      existing.totalBalance += bal;\n      existing.totalQuote += token.quote ?? 0;\n      existing.wallets.push({ address: addr, balance: bal, quote: token.quote ?? 0 });\n      tokenMap.set(key, existing);\n    }\n  }\n\n  const tokens = [...tokenMap.values()].sort((a, b) => b.totalQuote - a.totalQuote);\n  const totalNetWorth = tokens.reduce((s, t) => s + t.totalQuote, 0);\n  return { totalNetWorth, tokenCount: tokens.length, tokens };\n}",
-  "buildsWith": ["wallet-balances-skill", "multichain-portfolio", "net-worth-calculator"]
+  "slug": "multi-wallet-aggregator"
 }

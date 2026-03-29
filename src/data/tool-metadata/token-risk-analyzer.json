@@ -1,54 +1,9 @@
 {
   "title": "Token Risk Analyzer",
-  "description": "Analyze token risk signals by combining approval data and price history \u2014 surface rug-pull indicators, ownership concentration, and volatile price patterns for any ERC-20.",
+  "description": "Score tokens for rug-pull signals, ownership concentration, and LP lock status.",
   "category": "security",
-  "url": "https://goldrush.dev/docs/api/security/get-approvals/",
+  "url": "https://goldrush.dev",
   "tag": "API Key Required",
   "date-added": "2026-03-12",
-  "slug": "token-risk-analyzer",
-  "complexity": "Advanced",
-  "useCase": "Build a token safety checker that scores any ERC-20 for rug-pull risk \u2014 combine approval data, price history volatility, and holder concentration into a risk score.",
-  "chains": [
-    "ethereum",
-    "base",
-    "polygon",
-    "bsc",
-    "optimism",
-    "arbitrum",
-    "avalanche",
-    "gnosis",
-    "fantom",
-    "celo",
-    "moonbeam",
-    "blast",
-    "linea",
-    "scroll",
-    "zkSync",
-    "mantle",
-    "sonic",
-    "unichain",
-    "sei"
-  ],
-  "creditCost": "1 credit/call",
-  "endpoints": [
-    "GET /v1/{chainName}/approvals/{walletAddress}/",
-    "GET /v1/pricing/historical_by_addresses_v2/{chainName}/{quoteCurrency}/{contractAddresses}/"
-  ],
-  "keyParams": {
-    "chainName": "EVM chain identifier (e.g. eth-mainnet, base-mainnet)",
-    "walletAddress": "Wallet holding the token to analyze",
-    "contractAddress": "ERC-20 token contract to analyze"
-  },
-  "responseFields": [
-    "items[].risk_factor",
-    "items[].value_at_risk",
-    "items[].prices[].date",
-    "items[].prices[].price"
-  ],
-  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function analyzeTokenRisk(\n  chainName: string,\n  walletAddress: string,\n  tokenAddress: string\n) {\n  const [approvalsResp, priceResp] = await Promise.all([\n    client.SecurityService.getApprovals(chainName, walletAddress),\n    client.PricingService.getTokenPrices(chainName, 'USD', tokenAddress),\n  ]);\n\n  if (approvalsResp.error) throw new Error(approvalsResp.error_message);\n\n  const tokenApprovals = approvalsResp.data.items.filter(\n    a => a.token_address?.toLowerCase() === tokenAddress.toLowerCase()\n  );\n\n  const prices = priceResp.error ? [] : (priceResp.data.items[0]?.prices ?? []);\n  const priceValues = prices.map(p => p.price ?? 0).filter(Boolean);\n  const volatility = priceValues.length > 1\n    ? Math.max(...priceValues) / Math.min(...priceValues)\n    : 0;\n\n  return {\n    tokenAddress,\n    approvalCount: tokenApprovals.length,\n    maxRiskFactor: Math.max(...tokenApprovals.map(a => a.risk_factor ?? 0), 0),\n    priceVolatility: volatility,\n    riskScore: volatility > 5 || tokenApprovals.some(a => (a.risk_factor ?? 0) > 0.7)\n      ? 'HIGH' : 'MEDIUM',\n  };\n}",
-  "buildsWith": [
-    "token-approval-risk-scanner",
-    "smart-contract-interaction-risk",
-    "token-price-chart"
-  ]
+  "slug": "token-risk-analyzer"
 }

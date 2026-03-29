@@ -1,53 +1,9 @@
 {
   "title": "Native Token Balance",
-  "description": "Lightweight check for the native token balance (ETH, MATIC, BNB, etc.) of any wallet across any EVM chain \u2014 returns balance in wei and current USD value.",
+  "description": "Lightweight check for the native token balance (ETH, MATIC, BNB, etc.) of any wallet across any chain.",
   "category": "wallet",
-  "url": "https://goldrush.dev/docs/api/balances/get-native-token-balance/",
+  "url": "https://goldrush.dev",
   "tag": "Free Tier",
   "date-added": "2026-03-16",
-  "slug": "native-token-balance",
-  "complexity": "Beginner",
-  "useCase": "Check if a wallet has enough native gas token to cover a transaction before sending \u2014 gate app actions by a minimum ETH/MATIC/BNB balance threshold.",
-  "chains": [
-    "ethereum",
-    "base",
-    "polygon",
-    "bsc",
-    "optimism",
-    "arbitrum",
-    "avalanche",
-    "gnosis",
-    "fantom",
-    "celo",
-    "moonbeam",
-    "blast",
-    "linea",
-    "scroll",
-    "zkSync",
-    "mantle",
-    "sonic",
-    "unichain",
-    "sei"
-  ],
-  "creditCost": "0.1 credit/call",
-  "endpoints": [
-    "GET /v1/{chainName}/address/{walletAddress}/balances_native/"
-  ],
-  "keyParams": {
-    "chainName": "EVM chain identifier (e.g. eth-mainnet, base-mainnet, matic-mainnet)",
-    "walletAddress": "0x wallet address or ENS name"
-  },
-  "responseFields": [
-    "items[].contract_name",
-    "items[].contract_ticker_symbol",
-    "items[].balance",
-    "items[].quote",
-    "items[].quote_rate"
-  ],
-  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function getNativeBalance(chainName: string, walletAddress: string) {\n  const resp = await client.BalanceService.getNativeTokenBalance(\n    chainName,\n    walletAddress\n  );\n\n  if (resp.error) throw new Error(resp.error_message);\n\n  const item = resp.data.items[0];\n  return {\n    symbol: item.contract_ticker_symbol,\n    balance: Number(item.balance) / 1e18,\n    usdValue: item.quote,\n    priceUsd: item.quote_rate,\n  };\n}",
-  "buildsWith": [
-    "wallet-balances-skill",
-    "net-worth-calculator",
-    "gas-analytics"
-  ]
+  "slug": "native-token-balance"
 }

@@ -1,56 +1,9 @@
 {
   "title": "Token Metadata API",
-  "description": "Fetch logos, decimals, contract info, name, symbol, and USD price for any ERC-20 token \u2014 the metadata is embedded in the balance response for any wallet that holds the token.",
+  "description": "Fetch logos, decimals, contract info, and supply data for any ERC-20 token.",
   "category": "token",
-  "url": "https://goldrush.dev/docs/api/balances/get-token-balances-for-wallet-address/",
+  "url": "https://goldrush.dev",
   "tag": "Free Tier",
   "date-added": "2026-03-12",
-  "slug": "token-metadata-api",
-  "complexity": "Beginner",
-  "useCase": "Build a token info card that shows name, symbol, logo, decimals, and current USD price for any ERC-20 \u2014 use getTokenBalancesForWalletAddress and filter by contract address.",
-  "chains": [
-    "ethereum",
-    "base",
-    "polygon",
-    "bsc",
-    "optimism",
-    "arbitrum",
-    "avalanche",
-    "gnosis",
-    "fantom",
-    "celo",
-    "moonbeam",
-    "blast",
-    "linea",
-    "scroll",
-    "zkSync",
-    "mantle",
-    "sonic",
-    "unichain",
-    "sei"
-  ],
-  "creditCost": "1 credit/call",
-  "endpoints": [
-    "GET /v1/{chainName}/address/{walletAddress}/balances_v2/"
-  ],
-  "keyParams": {
-    "chainName": "EVM chain identifier (e.g. eth-mainnet, base-mainnet)",
-    "walletAddress": "Any wallet address that holds the token",
-    "contractAddress": "ERC-20 contract address to get metadata for"
-  },
-  "responseFields": [
-    "items[].contract_name",
-    "items[].contract_ticker_symbol",
-    "items[].contract_address",
-    "items[].contract_decimals",
-    "items[].logo_url",
-    "items[].quote_rate",
-    "items[].type"
-  ],
-  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\n// Use a well-known holder to fetch token metadata\nconst VITALIK = '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045';\n\nasync function getTokenMetadata(chainName: string, tokenAddress: string) {\n  const resp = await client.BalanceService.getTokenBalancesForWalletAddress(\n    chainName,\n    VITALIK\n  );\n\n  if (resp.error) throw new Error(resp.error_message);\n\n  const token = resp.data.items.find(\n    t => t.contract_address?.toLowerCase() === tokenAddress.toLowerCase()\n  );\n\n  if (!token) throw new Error('Token not found in response');\n\n  return {\n    name: token.contract_name,\n    symbol: token.contract_ticker_symbol,\n    decimals: token.contract_decimals,\n    logo: token.logo_url,\n    priceUsd: token.quote_rate,\n    type: token.type,\n  };\n}",
-  "buildsWith": [
-    "token-supply-metadata",
-    "spot-price-ticker",
-    "token-price-chart"
-  ]
+  "slug": "token-metadata-api"
 }

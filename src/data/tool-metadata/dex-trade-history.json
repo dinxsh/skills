@@ -1,57 +1,9 @@
 {
   "title": "DEX Trade History",
-  "description": "Pull all DEX swap events and ERC-20 transfer volume for any wallet \u2014 decodes Swap log events from Uniswap, Curve, and other DEX contracts using getErc20TransfersForWalletAddress and getLogEventsByAddress.",
+  "description": "Pull all DEX swap events and volume for any wallet address or token pair.",
   "category": "defi",
-  "url": "https://goldrush.dev/docs/api/balances/get-erc20-transfers-for-wallet-address/",
+  "url": "https://goldrush.dev",
   "tag": "Free Tier",
   "date-added": "2026-03-12",
-  "slug": "dex-trade-history",
-  "complexity": "Intermediate",
-  "useCase": "Build a DEX trade history page that shows every swap a wallet made \u2014 token in/out, USD value, and which protocol handled the trade.",
-  "chains": [
-    "ethereum",
-    "base",
-    "polygon",
-    "bsc",
-    "optimism",
-    "arbitrum",
-    "avalanche",
-    "gnosis",
-    "fantom",
-    "celo",
-    "moonbeam",
-    "blast",
-    "linea",
-    "scroll",
-    "zkSync",
-    "mantle",
-    "sonic",
-    "unichain",
-    "sei"
-  ],
-  "creditCost": "1 credit/call",
-  "endpoints": [
-    "GET /v1/{chainName}/address/{walletAddress}/transfers_v2/",
-    "GET /v1/{chainName}/events/address/{contractAddress}/"
-  ],
-  "keyParams": {
-    "chainName": "EVM chain identifier (e.g. eth-mainnet, base-mainnet)",
-    "walletAddress": "0x wallet address to look up trade history for",
-    "contractAddress": "Optional DEX router address to filter events"
-  },
-  "responseFields": [
-    "items[].transfers[].contract_ticker_symbol",
-    "items[].transfers[].from_address",
-    "items[].transfers[].to_address",
-    "items[].transfers[].delta",
-    "items[].transfers[].quote",
-    "items[].transfers[].tx_hash",
-    "items[].transfers[].block_signed_at"
-  ],
-  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\n// Known DEX router addresses (add more as needed)\nconst DEX_ROUTERS = new Set([\n  '0x7a250d5630b4cf539739df2c5dacb4c659f2488d', // Uniswap v2\n  '0xe592427a0aece92de3edee1f18e0157c05861564', // Uniswap v3\n]);\n\nasync function getDexTradeHistory(chainName: string, walletAddress: string) {\n  const resp = await client.BalanceService.getErc20TransfersForWalletAddress(\n    chainName,\n    walletAddress\n  );\n\n  if (resp.error) throw new Error(resp.error_message);\n\n  return resp.data.items\n    .flatMap(item => item.transfers ?? [])\n    .filter(t => DEX_ROUTERS.has((t.to_address ?? '').toLowerCase()))\n    .map(t => ({\n      symbol: t.contract_ticker_symbol,\n      amount: Number(t.delta) / 10 ** (t.contract_decimals ?? 18),\n      usdValue: t.quote,\n      txHash: t.tx_hash,\n      timestamp: t.block_signed_at,\n    }));\n}",
-  "buildsWith": [
-    "wallet-erc20-transfers",
-    "contract-event-log-monitor",
-    "transaction-history"
-  ]
+  "slug": "dex-trade-history"
 }

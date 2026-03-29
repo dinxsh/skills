@@ -1,54 +1,9 @@
 {
   "title": "GoldRush Kit Approval Manager",
-  "description": "Drop-in React component that shows all active ERC-20 and NFT approvals for a wallet using ApprovalsListView \u2014 with built-in revoke functionality, risk scoring, and value-at-risk display.",
+  "description": "Drop-in React component that shows all active ERC-20 and NFT approvals for a wallet using ApprovalsListView â€” with built-in revoke functionality.",
   "category": "developer",
-  "url": "https://goldrush.dev/docs/goldrush-kit/",
+  "url": "https://goldrush.dev",
   "tag": "Open Source",
   "date-added": "2026-03-16",
-  "slug": "goldrush-kit-approvals",
-  "complexity": "Beginner",
-  "useCase": "Add a token approval manager to any wallet app \u2014 show users all their active approvals with risk scores and let them revoke dangerous ones in one click.",
-  "chains": [
-    "ethereum",
-    "base",
-    "polygon",
-    "bsc",
-    "optimism",
-    "arbitrum",
-    "avalanche",
-    "gnosis",
-    "fantom",
-    "celo",
-    "moonbeam",
-    "blast",
-    "linea",
-    "scroll",
-    "zkSync",
-    "mantle",
-    "sonic",
-    "unichain",
-    "sei"
-  ],
-  "creditCost": "1 credit/call",
-  "endpoints": [
-    "GET /v1/{chainName}/approvals/{walletAddress}/"
-  ],
-  "keyParams": {
-    "address": "0x wallet address whose approvals to display",
-    "chain_names": "Array of chain names to check approvals across"
-  },
-  "responseFields": [
-    "items[].token_address",
-    "items[].token_ticker_symbol",
-    "items[].spender_address",
-    "items[].spender_name",
-    "items[].value_at_risk",
-    "items[].risk_factor"
-  ],
-  "snippet": "// Install: npm install @covalenthq/goldrush-kit\nimport { GoldRushProvider, TokenApprovalsListView } from '@covalenthq/goldrush-kit';\nimport '@covalenthq/goldrush-kit/styles.css';\n\nexport function ApprovalManager({ walletAddress }: { walletAddress: string }) {\n  return (\n    <GoldRushProvider apikey={process.env.NEXT_PUBLIC_GOLDRUSH_API_KEY!}>\n      <TokenApprovalsListView\n        address={walletAddress}\n        chain_names={['eth-mainnet', 'base-mainnet', 'matic-mainnet']}\n        on_revoke_approval={(txHash) => console.log('Revoked:', txHash)}\n      />\n    </GoldRushProvider>\n  );\n}",
-  "buildsWith": [
-    "token-approval-scanner",
-    "approval-auditor",
-    "token-approval-risk-scanner"
-  ]
+  "slug": "goldrush-kit-approvals"
 }

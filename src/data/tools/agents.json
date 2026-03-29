@@ -33,7 +33,7 @@
   },
   {
     "title": "Claude GoldRush Skill",
-    "body": "Claude agent skill for querying GoldRush APIs — fetch wallet data, prices, and NFTs.",
+    "body": "Claude agent skill for querying GoldRush APIs â€” fetch wallet data, prices, and NFTs.",
     "tag": "Open Source",
     "url": "https://goldrush.dev",
     "date-added": "2026-03-12",
@@ -49,10 +49,58 @@
   },
   {
     "title": "Real-time Wallet Stream",
-    "body": "Subscribe to live wallet activity events via WebSocket — zero polling, instant updates.",
+    "body": "Subscribe to live wallet activity events via WebSocket â€” zero polling, instant updates.",
     "tag": "Beta",
     "url": "https://goldrush.dev",
     "date-added": "2026-03-12",
     "slug": "realtime-wallet-stream"
+  },
+  {
+    "title": "Solana Agent DeFi Navigator",
+    "body": "Pull real-time Jupiter-aggregated route data and Raydium/Orca pool metrics via GoldRush to give an AI agent the swap intelligence it needs: best output amount, price impact, pool liquidity depth, and fee tier — all in one structured call. Feed this into an agent's decision loop to autonomously execute optimal swaps on Solana — if price impact exceeds threshold, hold; otherwise sign and submit.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-26",
+    "slug": "solana-agent-defi-navigator"
+  },
+  {
+    "title": "Solana Agent Portfolio Snapshot",
+    "body": "Call GoldRush's `/v1/solana-mainnet/address/{address}/balances_v2/` to load a complete structured payload of every SPL token, native SOL balance, staking positions, and USD net worth into your agent's context. Use this as the mandatory first step before any Solana agent makes a DeFi decision — gives the agent full portfolio awareness in a single API call.",
+    "tag": "Free Tier",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-26",
+    "slug": "solana-agent-portfolio-snapshot"
+  },
+  {
+    "title": "Solana Agent Risk Gate",
+    "body": "Before any agent-initiated Solana transaction, run the target token's mint address through GoldRush's token risk endpoint: check for active mint authority (creator can inflate supply), freeze authority (creator can lock your tokens), top-3 holder concentration above 50%, and unverified program interactions. Returns a 0–100 risk score plus per-signal breakdown — wire this as a middleware guard in every agent transaction pipeline to block rug pulls before they execute.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-26",
+    "slug": "solana-agent-risk-gate"
+  },
+  {
+    "title": "Solana Agent Token Launch Detector",
+    "body": "Stream new SPL token mint events and pump.fun bonding curve graduations in real-time using GoldRush's event monitoring on `solana-mainnet`. When a token graduates (reaches ~$69K market cap and migrates to Raydium), emit a structured event with the mint address, initial Raydium pool address, launch liquidity in SOL, and top-10 early buyers — giving autonomous sniper and launch-monitor agents a clean trigger with full token context to act on immediately.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-26",
+    "slug": "solana-agent-token-launch-detector"
+  },
+  {
+    "title": "Solana Agent Transaction Validator",
+    "body": "Before an agent signs any Solana transaction, call three GoldRush endpoints in parallel: (1) recipient wallet summary — is this a fresh wallet or known flagged address? (2) token risk score — does the token have active mint/freeze authority? (3) agent wallet balance — is there enough SOL for rent + fees? Combine results into a structured go/no-go payload the agent parses before submitting any instruction to the network.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-26",
+    "slug": "solana-agent-transaction-validator"
+  },
+  {
+    "title": "Solana Agent Wallet Watcher",
+    "body": "Subscribe to any Solana address via GoldRush's wallet activity stream on `solana-mainnet` and receive push events for every SPL token transfer, program invocation, and stake account change — no polling required. Use the event payload (program name, instruction type, token amounts, counterparty address) to trigger downstream agent actions: execute a hedge, send an alert, update agent memory, or rebalance a portfolio the moment a transaction lands.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-26",
+    "slug": "solana-agent-wallet-watcher"
   }
 ]

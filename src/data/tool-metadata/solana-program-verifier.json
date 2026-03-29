@@ -1,0 +1,9 @@
+{
+  "title": "Solana Program Verifier",
+  "description": "Before an agent or user interacts with any unknown Solana program, verify its safety via GoldRush: check if the deployed binary matches a verified source build (OtterSec/Sec3/Otter-verified programs list), look up the program ID against known-malicious contract databases, and fetch its historical instruction volume — high usage over 6+ months signals a battle-tested contract. Returns a `verified` / `unverified` / `malicious` enum plus a link to the audit report if one exists.",
+  "category": "security",
+  "url": "https://goldrush.dev",
+  "tag": "API Key Required",
+  "date-added": "2026-03-26",
+  "slug": "solana-program-verifier"
+}

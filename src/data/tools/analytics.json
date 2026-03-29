@@ -1,15 +1,23 @@
 [
   {
     "title": "Block Explorer Toolkit",
-    "body": "Fetch block details, all transactions in a block, and decode individual transactions \u00e2\u20ac\u201d all the building blocks for a custom block explorer.",
+    "body": "Fetch block details, all transactions in a block, and decode individual transactions â€” all the building blocks for a custom block explorer.",
     "tag": "Free Tier",
     "url": "https://goldrush.dev",
     "date-added": "2026-03-16",
     "slug": "block-explorer-toolkit"
   },
   {
+    "title": "Contract Event Dashboard",
+    "body": "Build a real-time event monitor for any smart contract — poll decoded event logs and display a live activity feed for any protocol or token.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-23",
+    "slug": "contract-event-dashboard"
+  },
+  {
     "title": "Contract Event Log Monitor",
-    "body": "Stream all decoded event logs emitted by any smart contract \u00e2\u20ac\u201d filter by topic hash, date, or block range. The foundation for DEX analytics, protocol dashboards, and real-time monitoring.",
+    "body": "Stream all decoded event logs emitted by any smart contract â€” filter by topic hash, date, or block range. The foundation for DEX analytics, protocol dashboards, and real-time monitoring.",
     "tag": "API Key Required",
     "url": "https://goldrush.dev",
     "date-added": "2026-03-16",
@@ -17,7 +25,7 @@
   },
   {
     "title": "Cross-Contract Event Scanner",
-    "body": "Scan ALL contracts on a chain for a specific event by topic hash \u00e2\u20ac\u201d e.g. find every ERC-20 Transfer or every Uniswap Swap across the entire chain.",
+    "body": "Scan ALL contracts on a chain for a specific event by topic hash â€” e.g. find every ERC-20 Transfer or every Uniswap Swap across the entire chain.",
     "tag": "API Key Required",
     "url": "https://goldrush.dev",
     "date-added": "2026-03-16",
@@ -56,6 +64,38 @@
     "slug": "onchain-data-query"
   },
   {
+    "title": "Smart Money Copier",
+    "body": "Track known alpha wallets and surface their new token buys the moment they execute — build a copy trading radar using wallet activity streaming.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-23",
+    "slug": "smart-money-copier"
+  },
+  {
+    "title": "Solana Program Activity Monitor",
+    "body": "Track the on-chain growth of any Solana program — DEX, lending protocol, game, or DePIN — using GoldRush's transaction data on `solana-mainnet`. Fetch daily instruction call count, unique signing wallets per day, week-over-week growth rate, and cumulative user count over any 90-day window. Compare two programs head-to-head on the same metrics. Use for investor due diligence on early-stage protocols, health monitoring dashboards, or surfacing underrated programs with breakout growth before they trend.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-26",
+    "slug": "solana-program-activity-monitor"
+  },
+  {
+    "title": "Solana Smart Money Tracker",
+    "body": "Identify high-alpha Solana wallets using GoldRush: fetch recent token buys via transaction history, calculate realized PnL from decoded swap history, and surface wallets with consistently profitable trades (>2x average return over 30 days). Once you have a watchlist, subscribe to their real-time activity stream to receive instant push notifications the moment they buy a new token — before it shows up on Dexscreener. Build a Solana copy-trading radar, alpha group feed, or smart-money signal layer for your trading agent.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-26",
+    "slug": "solana-smart-money-tracker"
+  },
+  {
+    "title": "Token OHLCV Chart",
+    "body": "Real-time OHLCV candlestick data for any token — stream live candles via WebSocket for TradingView-style charts.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev/docs/streaming/",
+    "date-added": "2026-03-23",
+    "slug": "token-ohlcv-chart"
+  },
+  {
     "title": "Token Price History",
     "body": "Fetch historical spot prices and OHLCV data for any ERC-20 token onchain.",
     "tag": "API Key Required",
@@ -65,35 +105,11 @@
   },
   {
     "title": "Wallet Activity Heatmap",
-    "body": "Generate a GitHub-style activity heatmap showing daily transaction counts for any wallet \u00e2\u20ac\u201d visualize on-chain behaviour patterns.",
+    "body": "Generate a GitHub-style activity heatmap showing daily transaction counts for any wallet â€” visualize on-chain behaviour patterns.",
     "tag": "API Key Required",
     "url": "https://goldrush.dev",
     "date-added": "2026-03-16",
     "slug": "wallet-activity-heatmap"
-  },
-  {
-    "title": "Token OHLCV Chart",
-    "body": "Real-time OHLCV candlestick data for any token \u2014 stream live candles via WebSocket for TradingView-style charts.",
-    "tag": "API Key Required",
-    "url": "https://goldrush.dev/docs/streaming/",
-    "date-added": "2026-03-23",
-    "slug": "token-ohlcv-chart"
-  },
-  {
-    "title": "Whale Wallet Watchlist",
-    "body": "Monitor a list of whale wallets in real-time — subscribe to live transaction streams for multiple addresses and alert when they move large amounts.",
-    "tag": "API Key Required",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-23",
-    "slug": "whale-wallet-watchlist"
-  },
-  {
-    "title": "Smart Money Copier",
-    "body": "Track known alpha wallets and surface their new token buys the moment they execute — build a copy trading radar using wallet activity streaming.",
-    "tag": "API Key Required",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-23",
-    "slug": "smart-money-copier"
   },
   {
     "title": "Wallet Comparison Tool",
@@ -104,11 +120,11 @@
     "slug": "wallet-comparison-tool"
   },
   {
-    "title": "Contract Event Dashboard",
-    "body": "Build a real-time event monitor for any smart contract — poll decoded event logs and display a live activity feed for any protocol or token.",
+    "title": "Whale Wallet Watchlist",
+    "body": "Monitor a list of whale wallets in real-time — subscribe to live transaction streams for multiple addresses and alert when they move large amounts.",
     "tag": "API Key Required",
     "url": "https://goldrush.dev",
     "date-added": "2026-03-23",
-    "slug": "contract-event-dashboard"
+    "slug": "whale-wallet-watchlist"
   }
 ]

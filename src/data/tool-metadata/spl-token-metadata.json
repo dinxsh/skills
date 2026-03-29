@@ -1,0 +1,9 @@
+{
+  "title": "SPL Token Metadata",
+  "description": "Call `GET /v1/solana-mainnet/tokens/{mint}/` with any SPL token mint address to retrieve: token name, symbol, decimals, total supply, logo URI, and current USD price as indexed by GoldRush. Works for any SPL token including newly launched pump.fun tokens, wrapped assets, and DeFi governance tokens. This is the mandatory first call for any Solana token analytics page — gives your app complete token context from a single endpoint.",
+  "category": "token",
+  "url": "https://goldrush.dev",
+  "tag": "Free Tier",
+  "date-added": "2026-03-26",
+  "slug": "spl-token-metadata"
+}

@@ -1,0 +1,9 @@
+{
+  "title": "Raydium Pool Analytics",
+  "description": "Fetch Raydium AMM and CLMM (Concentrated Liquidity) pool data via GoldRush for any pool address or token pair — returns current TVL in USD, 24h trading volume, real-time fee APY, token0/token1 reserve amounts, and current spot price. Use to compare pools before providing liquidity, track impermanent loss on an existing position by comparing entry vs current reserves, or build a Raydium pool leaderboard sorted by fee APY or volume.",
+  "category": "defi",
+  "url": "https://goldrush.dev",
+  "tag": "API Key Required",
+  "date-added": "2026-03-26",
+  "slug": "raydium-pool-analytics"
+}

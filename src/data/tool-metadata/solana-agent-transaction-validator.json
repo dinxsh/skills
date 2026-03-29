@@ -1,0 +1,9 @@
+{
+  "title": "Solana Agent Transaction Validator",
+  "description": "Before an agent signs any Solana transaction, call three GoldRush endpoints in parallel: (1) recipient wallet summary — is this a fresh wallet or known flagged address? (2) token risk score — does the token have active mint/freeze authority? (3) agent wallet balance — is there enough SOL for rent + fees? Combine results into a structured go/no-go payload the agent parses before submitting any instruction to the network.",
+  "category": "agents",
+  "url": "https://goldrush.dev",
+  "tag": "API Key Required",
+  "date-added": "2026-03-26",
+  "slug": "solana-agent-transaction-validator"
+}

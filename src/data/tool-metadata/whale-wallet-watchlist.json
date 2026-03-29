@@ -2,32 +2,8 @@
   "title": "Whale Wallet Watchlist",
   "description": "Monitor a list of whale wallets in real-time — subscribe to live transaction streams for multiple addresses and alert when they move large amounts.",
   "category": "analytics",
-  "url": "https://goldrush.dev/docs/streaming/",
+  "url": "https://goldrush.dev",
   "tag": "API Key Required",
   "date-added": "2026-03-23",
-  "slug": "whale-wallet-watchlist",
-  "complexity": "Intermediate",
-  "useCase": "Build a whale alert dashboard that monitors 10-50 known smart money wallets simultaneously and fires notifications the moment any of them execute a transaction above a threshold.",
-  "chains": ["ethereum", "base", "bsc", "polygon", "arbitrum", "optimism", "avalanche"],
-  "creditCost": "Streaming subscription per wallet",
-  "endpoints": [
-    "wss://streaming.goldrushdata.com/graphql — walletTxs subscription",
-    "GET /v1/{chainName}/address/{walletAddress}/balances_v2/"
-  ],
-  "keyParams": {
-    "walletAddresses": "Array of whale wallet addresses to monitor simultaneously",
-    "chainName": "EVM chain to monitor — e.g. eth-mainnet, base-mainnet",
-    "minValueUsd": "Minimum USD transaction value to trigger an alert"
-  },
-  "responseFields": [
-    "txHash",
-    "blockSignedAt",
-    "value",
-    "fromAddress",
-    "toAddress",
-    "transfers[].tokenSymbol",
-    "transfers[].delta"
-  ],
-  "snippet": "import { createClient } from 'graphql-ws';\nimport { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst wsClient = createClient({\n  url: 'wss://streaming.goldrushdata.com/graphql',\n  connectionParams: { apiKey: process.env.GOLDRUSH_API_KEY },\n});\nconst apiClient = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nfunction watchWhaleWallets(\n  walletAddresses: string[],\n  chainName: string,\n  minValueUsd: number,\n  onAlert: (alert: any) => void\n) {\n  const subscriptions = walletAddresses.map(walletAddress => {\n    return wsClient.subscribe(\n      {\n        query: `subscription WalletTxs($addr: String!, $chain: String!) {\n          walletTxs(walletAddress: $addr, chainName: $chain) {\n            txHash blockSignedAt value fromAddress toAddress\n            transfers { tokenSymbol delta fromAddress toAddress }\n          }\n        }`,\n        variables: { addr: walletAddress, chain: chainName },\n      },\n      {\n        next: ({ data }: any) => {\n          const tx = data?.walletTxs;\n          if (!tx) return;\n          const nativeValue = parseFloat(tx.value ?? '0') / 1e18;\n          const hasLargeTransfer = (tx.transfers ?? []).some(\n            (t: any) => Math.abs(parseFloat(t.delta ?? '0')) > minValueUsd\n          );\n          if (nativeValue > 0 || hasLargeTransfer) {\n            onAlert({ wallet: walletAddress, chainName, ...tx });\n          }\n        },\n        error: (err) => console.error(`Stream error for ${walletAddress}:`, err),\n        complete: () => {},\n      }\n    );\n  });\n\n  return () => subscriptions.forEach(unsub => unsub());\n}",
-  "buildsWith": ["realtime-wallet-stream", "wallet-balances-skill", "smart-money-copier"]
+  "slug": "whale-wallet-watchlist"
 }

@@ -1,0 +1,9 @@
+{
+  "title": "Anchor Program Data Reader",
+  "description": "Fetch and decode the on-chain state of any Anchor-based Solana program account via GoldRush — pass a program ID and account address to get fully-typed, human-readable account data with field names and values, using the program's published IDL for deserialization. No custom Borsh deserializer required. Works with any program that has a public IDL: Raydium AMM pools, Drift user accounts, Kamino lending positions, Marinade stake state. Read protocol state directly in your app or agent without a local Anchor client.",
+  "category": "developer",
+  "url": "https://goldrush.dev",
+  "tag": "Free Tier",
+  "date-added": "2026-03-26",
+  "slug": "anchor-program-data-reader"
+}

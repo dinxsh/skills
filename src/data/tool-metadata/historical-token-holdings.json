@@ -1,40 +1,9 @@
 {
   "title": "Historical Token Holdings",
-  "description": "Snapshot of every ERC-20 token balance and USD value at any past date \u2014 returns historical balance and price data per token using getHistoricalTokenBalancesForWalletAddress. Foundational chains only.",
+  "description": "Snapshot of every ERC-20 token balance and USD value at any past date — foundational chains only.",
   "category": "wallet",
   "url": "https://goldrush.dev/docs/api/balances/get-historical-token-balances-for-wallet-address/",
   "tag": "API Key Required",
   "date-added": "2026-03-23",
-  "slug": "historical-token-holdings",
-  "complexity": "Intermediate",
-  "useCase": "Reconstruct a wallet's exact token holdings at any past date \u2014 essential for tax calculations, historical P&L reports, and portfolio audits.",
-  "chains": [
-    "ethereum",
-    "base",
-    "bsc",
-    "polygon",
-    "optimism",
-    "gnosis"
-  ],
-  "creditCost": "1 credit/call",
-  "endpoints": [
-    "GET /v1/{chainName}/address/{walletAddress}/historical_balances/"
-  ],
-  "keyParams": {
-    "chainName": "Foundational chain only: eth-mainnet, base-mainnet, bsc-mainnet, matic-mainnet, optimism-mainnet, gnosis-mainnet",
-    "walletAddress": "0x wallet address"
-  },
-  "responseFields": [
-    "items[].contract_name",
-    "items[].contract_ticker_symbol",
-    "items[].holdings[].timestamp",
-    "items[].holdings[].quote_rate",
-    "items[].holdings[].close.balance"
-  ],
-  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function getHistoricalTokenHoldings(chainName: string, walletAddress: string) {\n  const resp = await client.BalanceService.getHistoricalTokenBalancesForWalletAddress(\n    chainName,\n    walletAddress\n  );\n\n  if (resp.error) throw new Error(resp.error_message);\n\n  return resp.data.items.map(token => ({\n    name: token.contract_name,\n    symbol: token.contract_ticker_symbol,\n    history: (token.holdings ?? []).map(h => ({\n      timestamp: h.timestamp,\n      priceUsd: h.quote_rate,\n      balance: h.close?.balance,\n      usdValue: h.quote_rate && h.close?.balance\n        ? (Number(h.close.balance) / 1e18) * h.quote_rate\n        : null,\n    })),\n  }));\n}",
-  "buildsWith": [
-    "historical-portfolio-value",
-    "portfolio-history",
-    "portfolio-tracker"
-  ]
+  "slug": "historical-token-holdings"
 }

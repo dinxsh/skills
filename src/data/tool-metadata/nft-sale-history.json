@@ -1,58 +1,9 @@
 {
   "title": "NFT Token Sale History",
-  "description": "Full transfer and sale history for NFT tokens \u2014 track ownership changes by combining NFT data with ERC-20 transfer events to identify sale prices and past owners.",
+  "description": "Full transfer and sale history for a single NFT token ID â€” who owned it, when it sold, and for how much. Powers provenance viewers and NFT detail pages.",
   "category": "nft",
-  "url": "https://goldrush.dev/docs/api/nft/get-nfts-for-address/",
+  "url": "https://goldrush.dev",
   "tag": "API Key Required",
   "date-added": "2026-03-16",
-  "slug": "nft-sale-history",
-  "complexity": "Intermediate",
-  "useCase": "Build an NFT provenance page showing every historical owner, transfer timestamp, and inferred sale price from ERC-20 payments \u2014 ideal for NFT detail pages and rarity tools.",
-  "chains": [
-    "ethereum",
-    "base",
-    "polygon",
-    "bsc",
-    "optimism",
-    "arbitrum",
-    "avalanche",
-    "gnosis",
-    "fantom",
-    "celo",
-    "moonbeam",
-    "blast",
-    "linea",
-    "scroll",
-    "zkSync",
-    "mantle",
-    "sonic",
-    "unichain",
-    "sei"
-  ],
-  "creditCost": "1 credit/call",
-  "endpoints": [
-    "GET /v1/{chainName}/address/{walletAddress}/balances_nft/",
-    "GET /v1/{chainName}/address/{walletAddress}/transfers_v2/"
-  ],
-  "keyParams": {
-    "chainName": "EVM chain identifier (e.g. eth-mainnet)",
-    "walletAddress": "0x wallet address holding or previously holding the NFT",
-    "contractAddress": "NFT collection contract address"
-  },
-  "responseFields": [
-    "items[].contract_name",
-    "items[].nft_data[].token_id",
-    "items[].nft_data[].owner",
-    "items[].transfers[].from_address",
-    "items[].transfers[].to_address",
-    "items[].transfers[].delta",
-    "items[].transfers[].block_signed_at",
-    "items[].transfers[].tx_hash"
-  ],
-  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function getNftSaleHistory(chainName: string, walletAddress: string) {\n  const [nftResp, txResp] = await Promise.all([\n    client.NftService.getNftsForAddress(chainName, walletAddress),\n    client.BalanceService.getErc20TransfersForWalletAddress(chainName, walletAddress),\n  ]);\n\n  if (nftResp.error) throw new Error(nftResp.error_message);\n  if (txResp.error) throw new Error(txResp.error_message);\n\n  const nfts = nftResp.data.items.flatMap(c =>\n    (c.nft_data ?? []).map(n => ({ collection: c.contract_name, tokenId: n.token_id, owner: n.owner }))\n  );\n\n  const transfers = txResp.data.items.flatMap(i => i.transfers ?? []);\n\n  return { nfts, recentTransfers: transfers.slice(0, 20) };\n}",
-  "buildsWith": [
-    "nft-metadata-fetcher",
-    "nft-transfer-tracker",
-    "wallet-erc20-transfers"
-  ]
+  "slug": "nft-sale-history"
 }

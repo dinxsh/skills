@@ -1,0 +1,9 @@
+{
+  "title": "Compressed NFT Scanner",
+  "description": "Fetch all cNFTs (Metaplex Bubblegum / Digital Asset Standard) from any Solana wallet using GoldRush's DAS-compatible NFT endpoint — returns asset ID, Merkle tree address, creator, collection address, and full metadata URI for every compressed NFT. Critical for gaming apps (Aurory, Star Atlas items), DePIN reward programs, and loyalty platforms that mint thousands of cNFTs at ~1/1000th the cost of standard NFTs. One call returns the complete cNFT inventory without running a custom DAS indexer.",
+  "category": "nft",
+  "url": "https://goldrush.dev",
+  "tag": "API Key Required",
+  "date-added": "2026-03-26",
+  "slug": "compressed-nft-scanner"
+}

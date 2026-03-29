@@ -1,0 +1,9 @@
+{
+  "title": "Solana Wallet Age & Activity",
+  "description": "Use `GET /v1/solana-mainnet/address/{wallet}/transactions_v3/?page-size=1&sort=asc` to find the wallet's first-ever transaction (creation date), then the summary endpoint for total tx count and unique programs interacted with. Returns: first tx date, total lifetime transaction count, top 5 most-called programs, and days since last activity — foundational data for Solana wallet scoring, sybil detection, onchain identity badges, and airdrop eligibility checks.",
+  "category": "wallet",
+  "url": "https://goldrush.dev",
+  "tag": "Free Tier",
+  "date-added": "2026-03-26",
+  "slug": "solana-wallet-age-activity"
+}

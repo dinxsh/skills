@@ -1,0 +1,9 @@
+{
+  "title": "Solana Agent DeFi Navigator",
+  "description": "Pull real-time Jupiter-aggregated route data and Raydium/Orca pool metrics via GoldRush to give an AI agent the swap intelligence it needs: best output amount, price impact, pool liquidity depth, and fee tier — all in one structured call. Feed this into an agent's decision loop to autonomously execute optimal swaps on Solana — if price impact exceeds threshold, hold; otherwise sign and submit.",
+  "category": "agents",
+  "url": "https://goldrush.dev",
+  "tag": "API Key Required",
+  "date-added": "2026-03-26",
+  "slug": "solana-agent-defi-navigator"
+}

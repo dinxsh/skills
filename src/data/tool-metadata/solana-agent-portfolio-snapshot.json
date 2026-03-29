@@ -1,0 +1,9 @@
+{
+  "title": "Solana Agent Portfolio Snapshot",
+  "description": "Call GoldRush's `/v1/solana-mainnet/address/{address}/balances_v2/` to load a complete structured payload of every SPL token, native SOL balance, staking positions, and USD net worth into your agent's context. Use this as the mandatory first step before any Solana agent makes a DeFi decision — gives the agent full portfolio awareness in a single API call.",
+  "category": "agents",
+  "url": "https://goldrush.dev",
+  "tag": "Free Tier",
+  "date-added": "2026-03-26",
+  "slug": "solana-agent-portfolio-snapshot"
+}

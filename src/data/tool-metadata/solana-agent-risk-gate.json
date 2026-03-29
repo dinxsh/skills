@@ -1,0 +1,9 @@
+{
+  "title": "Solana Agent Risk Gate",
+  "description": "Before any agent-initiated Solana transaction, run the target token's mint address through GoldRush's token risk endpoint: check for active mint authority (creator can inflate supply), freeze authority (creator can lock your tokens), top-3 holder concentration above 50%, and unverified program interactions. Returns a 0–100 risk score plus per-signal breakdown — wire this as a middleware guard in every agent transaction pipeline to block rug pulls before they execute.",
+  "category": "agents",
+  "url": "https://goldrush.dev",
+  "tag": "API Key Required",
+  "date-added": "2026-03-26",
+  "slug": "solana-agent-risk-gate"
+}

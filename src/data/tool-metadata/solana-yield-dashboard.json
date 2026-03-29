@@ -1,0 +1,9 @@
+{
+  "title": "Solana Yield Dashboard",
+  "description": "Aggregate current APY/APR data across the top Solana yield venues using GoldRush: Marinade Finance (native staking 6–7% + liquid mSOL), Orca (CLMM fee APY by pool), Kamino (lending supply/borrow rates), Drift (perpetuals funding rates), and Jito (MEV-boosted staking). Returns a unified yield comparison object sortable by APY, protocol, or risk level — use as the data backbone for an autonomous yield-rebalancing agent or a user-facing 'where should I put my SOL?' comparison UI.",
+  "category": "defi",
+  "url": "https://goldrush.dev",
+  "tag": "API Key Required",
+  "date-added": "2026-03-26",
+  "slug": "solana-yield-dashboard"
+}

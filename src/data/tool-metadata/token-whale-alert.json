@@ -2,30 +2,8 @@
   "title": "Token Whale Alert",
   "description": "Detect large ERC-20 transfers for any token in real-time — subscribe to wallet activity and fire alerts when a single transfer exceeds a USD threshold.",
   "category": "token",
-  "url": "https://goldrush.dev/docs/streaming/",
+  "url": "https://goldrush.dev",
   "tag": "API Key Required",
   "date-added": "2026-03-23",
-  "slug": "token-whale-alert",
-  "complexity": "Intermediate",
-  "useCase": "Build a whale alert bot that monitors a specific token contract and fires a notification whenever a transfer exceeds $100k — shows sender, receiver, amount, and USD value.",
-  "chains": ["ethereum", "base", "bsc", "polygon", "arbitrum", "optimism", "avalanche"],
-  "creditCost": "Streaming subscription",
-  "endpoints": [
-    "wss://streaming.goldrushdata.com/graphql — walletTxs subscription"
-  ],
-  "keyParams": {
-    "chainName": "EVM chain to monitor for large token transfers",
-    "tokenAddress": "ERC-20 token contract address to watch for whale moves",
-    "minUsdThreshold": "Minimum USD transfer value to trigger a whale alert"
-  },
-  "responseFields": [
-    "txHash",
-    "blockSignedAt",
-    "transfers[].tokenSymbol",
-    "transfers[].delta",
-    "transfers[].fromAddress",
-    "transfers[].toAddress"
-  ],
-  "snippet": "import { createClient } from 'graphql-ws';\n\nconst wsClient = createClient({\n  url: 'wss://streaming.goldrushdata.com/graphql',\n  connectionParams: { apiKey: process.env.GOLDRUSH_API_KEY },\n});\n\ninterface WhaleAlert {\n  txHash: string; blockSignedAt: string;\n  tokenSymbol: string; amount: string;\n  usdValue: number; from: string; to: string;\n}\n\nfunction watchTokenWhaleAlerts(\n  chainName: string,\n  tokenAddress: string,\n  minUsdThreshold: number,\n  onAlert: (alert: WhaleAlert) => void\n) {\n  return wsClient.subscribe(\n    {\n      query: `subscription WhaleWatch($addr: String!, $chain: String!) {\n        walletTxs(walletAddress: $addr, chainName: $chain) {\n          txHash blockSignedAt\n          transfers {\n            tokenSymbol tokenAddress delta quoteRate\n            fromAddress toAddress\n          }\n        }\n      }`,\n      variables: { addr: tokenAddress, chain: chainName },\n    },\n    {\n      next: ({ data }: any) => {\n        const tx = data?.walletTxs;\n        if (!tx) return;\n        for (const transfer of tx.transfers ?? []) {\n          if (transfer.tokenAddress?.toLowerCase() !== tokenAddress.toLowerCase()) continue;\n          const rawAmount = parseFloat(transfer.delta ?? '0');\n          const usdValue = Math.abs(rawAmount) * (transfer.quoteRate ?? 0);\n          if (usdValue < minUsdThreshold) continue;\n          onAlert({\n            txHash: tx.txHash,\n            blockSignedAt: tx.blockSignedAt,\n            tokenSymbol: transfer.tokenSymbol,\n            amount: transfer.delta,\n            usdValue,\n            from: transfer.fromAddress,\n            to: transfer.toAddress,\n          });\n        }\n      },\n      error: (err) => console.error('Stream error:', err),\n      complete: () => {},\n    }\n  );\n}",
-  "buildsWith": ["realtime-wallet-stream", "spot-price-ticker", "token-transfer-stream"]
+  "slug": "token-whale-alert"
 }

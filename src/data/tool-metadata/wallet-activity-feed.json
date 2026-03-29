@@ -1,52 +1,9 @@
 {
   "title": "Wallet Activity Feed",
-  "description": "Stream live wallet transactions and token transfers via WebSocket subscription \u2014 zero polling, instant delivery of every on-chain event as it is confirmed.",
+  "description": "Stream live wallet events and transaction activity across any supported chain.",
   "category": "wallet",
-  "url": "https://goldrush.dev/docs/streaming/",
+  "url": "https://goldrush.dev",
   "tag": "API Key Required",
   "date-added": "2026-03-12",
-  "slug": "wallet-activity-feed",
-  "complexity": "Intermediate",
-  "useCase": "Add a live activity feed to a wallet dashboard that pushes incoming and outgoing transfers instantly without polling \u2014 using the GoldRush streaming WebSocket.",
-  "chains": [
-    "ethereum",
-    "base",
-    "polygon",
-    "bsc",
-    "optimism",
-    "arbitrum",
-    "avalanche",
-    "gnosis",
-    "fantom",
-    "celo",
-    "blast",
-    "linea",
-    "scroll",
-    "zkSync",
-    "mantle",
-    "sonic"
-  ],
-  "creditCost": "Streaming subscription",
-  "endpoints": [
-    "wss://streaming.goldrushdata.com/graphql \u2014 walletTxs subscription"
-  ],
-  "keyParams": {
-    "walletAddress": "0x wallet address to subscribe to",
-    "chainName": "EVM chain name (e.g. eth-mainnet, base-mainnet)"
-  },
-  "responseFields": [
-    "txHash",
-    "blockSignedAt",
-    "value",
-    "fromAddress",
-    "toAddress",
-    "transfers[].tokenSymbol",
-    "transfers[].delta"
-  ],
-  "snippet": "import { createClient } from 'graphql-ws';\n\nconst wsClient = createClient({\n  url: 'wss://streaming.goldrushdata.com/graphql',\n  connectionParams: { apiKey: process.env.GOLDRUSH_API_KEY },\n});\n\nfunction subscribeWalletFeed(walletAddress: string, chainName: string) {\n  return wsClient.iterate({\n    query: `subscription WalletFeed($addr: String!, $chain: String!) {\n      walletTxs(walletAddress: $addr, chainName: $chain) {\n        txHash blockSignedAt value fromAddress toAddress\n        transfers { tokenSymbol delta }\n      }\n    }`,\n    variables: { addr: walletAddress, chain: chainName },\n  });\n}\n\nfor await (const event of subscribeWalletFeed('0xYourWallet', 'eth-mainnet')) {\n  console.log('New tx:', event.data?.walletTxs);\n}",
-  "buildsWith": [
-    "transaction-history",
-    "realtime-wallet-stream",
-    "token-transfer-stream"
-  ]
+  "slug": "wallet-activity-feed"
 }

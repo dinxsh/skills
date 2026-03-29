@@ -1,0 +1,9 @@
+{
+  "title": "Solana Wallet Balances",
+  "description": "Call `GET /v1/solana-mainnet/address/{wallet}/balances_v2/` with your GoldRush API key to retrieve every SPL token held — including name, symbol, logo URI, raw balance, decimals, current USD price, and total USD value per token. Handles associated token accounts (ATAs) automatically with no manual derivation. Add `nft=false` to filter out NFTs and return pure fungible token holdings. Build a full Solana portfolio UI in under 50 lines of TypeScript.",
+  "category": "wallet",
+  "url": "https://goldrush.dev",
+  "tag": "Free Tier",
+  "date-added": "2026-03-26",
+  "slug": "solana-wallet-balances"
+}

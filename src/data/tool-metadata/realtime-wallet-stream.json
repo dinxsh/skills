@@ -1,52 +1,9 @@
 {
   "title": "Real-time Wallet Stream",
-  "description": "Subscribe to live wallet activity events via WebSocket \u2014 zero polling, instant delivery of incoming and outgoing transactions and token transfers for any wallet address.",
+  "description": "Subscribe to live wallet activity events via WebSocket â€” zero polling, instant updates.",
   "category": "agents",
-  "url": "https://goldrush.dev/docs/streaming/",
+  "url": "https://goldrush.dev",
   "tag": "Beta",
   "date-added": "2026-03-12",
-  "slug": "realtime-wallet-stream",
-  "complexity": "Intermediate",
-  "useCase": "Build a live transaction alert system for an AI agent \u2014 trigger actions (e.g. notify, rebalance, log) the instant any on-chain activity occurs for a monitored wallet.",
-  "chains": [
-    "ethereum",
-    "base",
-    "polygon",
-    "bsc",
-    "optimism",
-    "arbitrum",
-    "avalanche",
-    "gnosis",
-    "fantom",
-    "celo",
-    "blast",
-    "linea",
-    "scroll",
-    "zkSync",
-    "mantle",
-    "sonic"
-  ],
-  "creditCost": "Streaming subscription",
-  "endpoints": [
-    "wss://streaming.goldrushdata.com/graphql \u2014 walletTxs subscription"
-  ],
-  "keyParams": {
-    "walletAddress": "0x wallet address to monitor",
-    "chainName": "EVM chain name (e.g. eth-mainnet, base-mainnet)"
-  },
-  "responseFields": [
-    "txHash",
-    "blockSignedAt",
-    "value",
-    "fromAddress",
-    "toAddress",
-    "transfers[].tokenSymbol",
-    "transfers[].delta"
-  ],
-  "snippet": "import { createClient } from 'graphql-ws';\n\nconst wsClient = createClient({\n  url: 'wss://streaming.goldrushdata.com/graphql',\n  connectionParams: { apiKey: process.env.GOLDRUSH_API_KEY },\n});\n\nasync function watchWallet(\n  walletAddress: string,\n  chainName: string,\n  onEvent: (tx: any) => void\n) {\n  const subscription = wsClient.iterate({\n    query: `subscription Watch($addr: String!, $chain: String!) {\n      walletTxs(walletAddress: $addr, chainName: $chain) {\n        txHash blockSignedAt value fromAddress toAddress\n        transfers { tokenSymbol delta }\n      }\n    }`,\n    variables: { addr: walletAddress, chain: chainName },\n  });\n\n  for await (const event of subscription) {\n    if (event.data?.walletTxs) {\n      onEvent(event.data.walletTxs);\n    }\n  }\n}\n\n// Usage: trigger agent action on every new transaction\nwatchWallet('0xYourWallet', 'eth-mainnet', tx => {\n  console.log('New tx detected:', tx.txHash);\n});",
-  "buildsWith": [
-    "wallet-activity-feed",
-    "token-transfer-stream",
-    "agent-wallet-skill"
-  ]
+  "slug": "realtime-wallet-stream"
 }

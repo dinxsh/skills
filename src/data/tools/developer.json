@@ -1,11 +1,19 @@
 [
   {
     "title": "All Chains Status Monitor",
-    "body": "Fetch the real-time sync status of all 200+ GoldRush-supported chains \u00e2\u20ac\u201d latest indexed block, sync lag, and chain metadata. Ideal for multi-chain app health checks.",
+    "body": "Fetch the real-time sync status of all 200+ GoldRush-supported chains â€” latest indexed block, sync lag, and chain metadata. Ideal for multi-chain app health checks.",
     "tag": "Free Tier",
     "url": "https://goldrush.dev",
     "date-added": "2026-03-16",
     "slug": "all-chains-status"
+  },
+  {
+    "title": "Anchor Program Data Reader",
+    "body": "Fetch and decode the on-chain state of any Anchor-based Solana program account via GoldRush — pass a program ID and account address to get fully-typed, human-readable account data with field names and values, using the program's published IDL for deserialization. No custom Borsh deserializer required. Works with any program that has a public IDL: Raydium AMM pools, Drift user accounts, Kamino lending positions, Marinade stake state. Read protocol state directly in your app or agent without a local Anchor client.",
+    "tag": "Free Tier",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-26",
+    "slug": "anchor-program-data-reader"
   },
   {
     "title": "API Reference",
@@ -16,8 +24,32 @@
     "slug": "api-reference"
   },
   {
+    "title": "Block Date Lookup",
+    "body": "Convert any date range to block numbers on any EVM chain — essential for historical queries and event log scanning.",
+    "tag": "Free Tier",
+    "url": "https://goldrush.dev/docs/api/base/get-block-heights/",
+    "date-added": "2026-03-23",
+    "slug": "block-date-lookup"
+  },
+  {
+    "title": "Block Explorer Lite",
+    "body": "Full-featured mini block explorer for any EVM chain — search by block, transaction hash, or wallet address, with decoded event logs and internal transfers.",
+    "tag": "Free Tier",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-23",
+    "slug": "block-explorer-lite"
+  },
+  {
+    "title": "Gas Price Widget",
+    "body": "Embeddable real-time gas tracker with open/fast/instant tiers and USD fee estimates — drop it into any dApp to show live network conditions.",
+    "tag": "Free Tier",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-23",
+    "slug": "gas-price-widget"
+  },
+  {
     "title": "GoldRush Kit Approval Manager",
-    "body": "Drop-in React component that shows all active ERC-20 and NFT approvals for a wallet using ApprovalsListView \u00e2\u20ac\u201d with built-in revoke functionality.",
+    "body": "Drop-in React component that shows all active ERC-20 and NFT approvals for a wallet using ApprovalsListView â€” with built-in revoke functionality.",
     "tag": "Open Source",
     "url": "https://goldrush.dev",
     "date-added": "2026-03-16",
@@ -25,7 +57,7 @@
   },
   {
     "title": "GoldRush Kit Token Balances",
-    "body": "Drop-in React component for a full token balances table \u00e2\u20ac\u201d ERC-20 + native \u00e2\u20ac\u201d using GoldRush Kit's TokenBalancesListView. Ships with sorting, USD values, logos, and spam filtering.",
+    "body": "Drop-in React component for a full token balances table â€” ERC-20 + native â€” using GoldRush Kit's TokenBalancesListView. Ships with sorting, USD values, logos, and spam filtering.",
     "tag": "Open Source",
     "url": "https://goldrush.dev",
     "date-added": "2026-03-16",
@@ -49,7 +81,7 @@
   },
   {
     "title": "GoldRush React Hooks",
-    "body": "Drop-in React hooks for balances, NFTs, and token prices \u00e2\u20ac\u201d onchain data made simple.",
+    "body": "Drop-in React hooks for balances, NFTs, and token prices â€” onchain data made simple.",
     "tag": "Open Source",
     "url": "https://goldrush.dev",
     "date-added": "2026-03-12",
@@ -72,35 +104,19 @@
     "slug": "quickstart-templates"
   },
   {
+    "title": "Solana GoldRush Quickstart",
+    "body": "Scaffold a production-ready Solana wallet dashboard in one command using the GoldRush Next.js starter for Solana — pre-wired with `@covalenthq/client-sdk`, Solana wallet adapter (Phantom/Backpack/Solflare), and four ready-to-run components: SPL token balances table with USD values, decoded transaction history feed with program labels, Metaplex NFT gallery, and a wallet age summary card. Clone, add `GOLDRUSH_API_KEY=your_key` to `.env.local`, run `npm dev`, and ship. No blockchain parsing required.",
+    "tag": "Open Source",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-26",
+    "slug": "solana-goldrush-quickstart"
+  },
+  {
     "title": "Webhook Builder",
     "body": "Configure real-time webhooks for wallet events, transfers, and contract interactions.",
     "tag": "API Key Required",
     "url": "https://goldrush.dev",
     "date-added": "2026-03-12",
     "slug": "webhook-builder"
-  },
-  {
-    "title": "Block Date Lookup",
-    "body": "Convert any date range to block numbers on any EVM chain \u2014 essential for historical queries and event log scanning.",
-    "tag": "Free Tier",
-    "url": "https://goldrush.dev/docs/api/base/get-block-heights/",
-    "date-added": "2026-03-23",
-    "slug": "block-date-lookup"
-  },
-  {
-    "title": "Block Explorer Lite",
-    "body": "Full-featured mini block explorer for any EVM chain — search by block, transaction hash, or wallet address, with decoded event logs and internal transfers.",
-    "tag": "Free Tier",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-23",
-    "slug": "block-explorer-lite"
-  },
-  {
-    "title": "Gas Price Widget",
-    "body": "Embeddable real-time gas tracker with open/fast/instant tiers and USD fee estimates — drop it into any dApp to show live network conditions.",
-    "tag": "Free Tier",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-23",
-    "slug": "gas-price-widget"
   }
 ]

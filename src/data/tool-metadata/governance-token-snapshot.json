@@ -1,41 +1,9 @@
 {
   "title": "Governance Token Snapshot",
-  "description": "Snapshot all holders of a governance token at a specific block height \u2014 returns paginated holder list with balance and supply percentage for voting power calculation and DAO membership verification.",
+  "description": "Snapshot all holders of a governance token at a specific block height for voting power calculation, airdrop distribution, or DAO membership verification.",
   "category": "identity",
-  "url": "https://goldrush.dev/docs/api/balances/get-token-holders-v2/",
+  "url": "https://goldrush.dev",
   "tag": "API Key Required",
   "date-added": "2026-03-16",
-  "slug": "governance-token-snapshot",
-  "complexity": "Intermediate",
-  "useCase": "Take a holder snapshot for a DAO governance token at a specific block \u2014 generate the eligible voter list and voting power distribution for an upcoming proposal.",
-  "chains": [
-    "ethereum",
-    "base",
-    "bsc",
-    "polygon",
-    "optimism",
-    "gnosis"
-  ],
-  "creditCost": "1 credit/page",
-  "endpoints": [
-    "GET /v1/{chainName}/tokens/{tokenAddress}/token_holders_v2/"
-  ],
-  "keyParams": {
-    "chainName": "Foundational chain only: eth-mainnet, base-mainnet, bsc-mainnet, matic-mainnet, optimism-mainnet, gnosis-mainnet",
-    "tokenAddress": "Governance token contract address",
-    "blockHeight": "Block number for the snapshot (optional \u2014 omit for current state)",
-    "pageNumber": "Page index starting from 0"
-  },
-  "responseFields": [
-    "items[].address",
-    "items[].balance",
-    "items[].total_supply",
-    "items[].balance_percent_of_total"
-  ],
-  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function takeGovernanceSnapshot(\n  chainName: string,\n  tokenAddress: string\n) {\n  const holders: Array<{ address: string; votingPower: number }> = [];\n  let page = 0;\n\n  while (true) {\n    const resp = await client.BalanceService.getTokenHoldersV2ForTokenAddress(\n      chainName,\n      tokenAddress,\n      { pageNumber: page, pageSize: 1000 }\n    );\n\n    if (resp.error) throw new Error(resp.error_message);\n    if (resp.data.items.length === 0) break;\n\n    holders.push(\n      ...resp.data.items.map(h => ({\n        address: h.address,\n        votingPower: h.balance_percent_of_total ?? 0,\n      }))\n    );\n\n    if (resp.data.items.length < 1000) break;\n    page++;\n  }\n\n  return holders.sort((a, b) => b.votingPower - a.votingPower);\n}",
-  "buildsWith": [
-    "token-holders-snapshot",
-    "token-holder-list",
-    "token-supply-metadata"
-  ]
+  "slug": "governance-token-snapshot"
 }

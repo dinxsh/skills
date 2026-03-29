@@ -1,7 +1,39 @@
 [
   {
+    "title": "Compressed NFT Scanner",
+    "body": "Fetch all cNFTs (Metaplex Bubblegum / Digital Asset Standard) from any Solana wallet using GoldRush's DAS-compatible NFT endpoint — returns asset ID, Merkle tree address, creator, collection address, and full metadata URI for every compressed NFT. Critical for gaming apps (Aurory, Star Atlas items), DePIN reward programs, and loyalty platforms that mint thousands of cNFTs at ~1/1000th the cost of standard NFTs. One call returns the complete cNFT inventory without running a custom DAS indexer.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-26",
+    "slug": "compressed-nft-scanner"
+  },
+  {
+    "title": "Metaplex NFT Portfolio",
+    "body": "Call `GET /v1/solana-mainnet/address/{wallet}/nfts/` to return every Metaplex NFT held by a wallet — standard NFTs, pNFTs (programmable NFTs with transfer hooks), and print editions — each with name, image URI, collection address, traits array, and estimated USD floor value derived from recent collection sales. Handles both legacy Token Metadata standard and Token Extensions (Token-2022). Build a complete Solana NFT gallery or valuation dashboard with a single API call.",
+    "tag": "Free Tier",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-26",
+    "slug": "metaplex-nft-portfolio"
+  },
+  {
+    "title": "Multi-Chain NFT Gallery",
+    "body": "Discover and display every NFT a wallet holds across all chains in one gallery — scan with getAddressActivity then fetch NFTs per active chain.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-23",
+    "slug": "multichain-nft-gallery"
+  },
+  {
+    "title": "NFT Collection Analytics",
+    "body": "Holder count, top holders, transfer velocity, and ownership concentration for any ERC-721 collection — build analytics dashboards without a marketplace API.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-23",
+    "slug": "nft-collection-analytics"
+  },
+  {
     "title": "NFT Gallery Viewer",
-    "body": "Drop-in React component that renders a full NFT gallery for any wallet using GoldRush Kit's NFTWalletCollectionView \u00e2\u20ac\u201d zero custom UI needed.",
+    "body": "Drop-in React component that renders a full NFT gallery for any wallet using GoldRush Kit's NFTWalletCollectionView â€” zero custom UI needed.",
     "tag": "Open Source",
     "url": "https://goldrush.dev",
     "date-added": "2026-03-16",
@@ -25,7 +57,7 @@
   },
   {
     "title": "NFT Token Sale History",
-    "body": "Full transfer and sale history for a single NFT token ID \u00e2\u20ac\u201d who owned it, when it sold, and for how much. Powers provenance viewers and NFT detail pages.",
+    "body": "Full transfer and sale history for a single NFT token ID â€” who owned it, when it sold, and for how much. Powers provenance viewers and NFT detail pages.",
     "tag": "API Key Required",
     "url": "https://goldrush.dev",
     "date-added": "2026-03-16",
@@ -40,20 +72,20 @@
     "slug": "nft-traits-explorer"
   },
   {
+    "title": "NFT Transfer Monitor",
+    "body": "Real-time feed of NFT mints, sales, and transfers for any collection — subscribe to ERC-721 Transfer events via the wallet activity stream.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-23",
+    "slug": "nft-transfer-monitor"
+  },
+  {
     "title": "NFT Transfer Tracker",
     "body": "Monitor NFT mints, transfers, and burns as they happen onchain.",
     "tag": "Free Tier",
     "url": "https://goldrush.dev",
     "date-added": "2026-03-12",
     "slug": "nft-transfer-tracker"
-  },
-  {
-    "title": "Ronin NFT Inventory",
-    "body": "List all NFTs held in a Ronin wallet \u2014 Axie Infinity, Land, and other Sky Mavis NFT collections.",
-    "tag": "API Key Required",
-    "url": "https://goldrush.dev/docs/api/nft/get-nfts-for-address/",
-    "date-added": "2026-03-23",
-    "slug": "ronin-nft-inventory"
   },
   {
     "title": "NFT-Gated App Boilerplate",
@@ -64,27 +96,19 @@
     "slug": "nft-gated-app"
   },
   {
-    "title": "Multi-Chain NFT Gallery",
-    "body": "Discover and display every NFT a wallet holds across all chains in one gallery — scan with getAddressActivity then fetch NFTs per active chain.",
+    "title": "Ronin NFT Inventory",
+    "body": "List all NFTs held in a Ronin wallet — Axie Infinity, Land, and other Sky Mavis NFT collections.",
     "tag": "API Key Required",
-    "url": "https://goldrush.dev",
+    "url": "https://goldrush.dev/docs/api/nft/get-nfts-for-address/",
     "date-added": "2026-03-23",
-    "slug": "multichain-nft-gallery"
+    "slug": "ronin-nft-inventory"
   },
   {
-    "title": "NFT Transfer Monitor",
-    "body": "Real-time feed of NFT mints, sales, and transfers for any collection — subscribe to ERC-721 Transfer events via the wallet activity stream.",
+    "title": "Solana NFT Collection Stats",
+    "body": "Fetch aggregated on-chain stats for any Solana NFT collection by collection address — floor price in SOL and USD, 24h trading volume, total unique holder count, total listed supply, and top 5 holder wallets ranked by number of items. Pair with GoldRush's real-time NFT transfer stream to track when floor listings are scooped. Build a collection monitor that fires an alert when floor drops below your target price, volume spikes above 2x average, or holder concentration increases.",
     "tag": "API Key Required",
     "url": "https://goldrush.dev",
-    "date-added": "2026-03-23",
-    "slug": "nft-transfer-monitor"
-  },
-  {
-    "title": "NFT Collection Analytics",
-    "body": "Holder count, top holders, transfer velocity, and ownership concentration for any ERC-721 collection — build analytics dashboards without a marketplace API.",
-    "tag": "API Key Required",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-23",
-    "slug": "nft-collection-analytics"
+    "date-added": "2026-03-26",
+    "slug": "solana-nft-collection-stats"
   }
 ]

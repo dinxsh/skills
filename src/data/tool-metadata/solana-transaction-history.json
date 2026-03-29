@@ -1,0 +1,9 @@
+{
+  "title": "Solana Transaction History",
+  "description": "Fetch paginated Solana transaction history via `GET /v1/solana-mainnet/address/{wallet}/transactions_v3/` — each transaction is decoded with the top-level program name (Jupiter, Raydium, System, Token, etc.), SOL fee paid, success/fail status, block time, and a human-readable summary. Paginate with `page` and `page-size` params. Build a complete Solana activity feed or trading journal without ever parsing raw instruction data.",
+  "category": "wallet",
+  "url": "https://goldrush.dev",
+  "tag": "Free Tier",
+  "date-added": "2026-03-26",
+  "slug": "solana-transaction-history"
+}

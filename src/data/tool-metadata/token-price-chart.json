@@ -1,53 +1,9 @@
 {
-  "title": "Token Price Chart",
-  "description": "Historical USD price time series for any ERC-20 token contract \u2014 returns daily close prices ideal for rendering candlestick or line charts and P&L calculations.",
+  "title": "Token Price History",
+  "description": "Historical USD price for one or more token contracts on any chain. Powers price charts, backtesting, P&L calculation, and DeFi analytics.",
   "category": "token",
-  "url": "https://goldrush.dev/docs/api/pricing/get-token-prices/",
+  "url": "https://goldrush.dev",
   "tag": "API Key Required",
   "date-added": "2026-03-16",
-  "slug": "token-price-chart",
-  "complexity": "Beginner",
-  "useCase": "Render a 30-day price history chart for any ERC-20 token \u2014 show daily USD close prices as a line or candlestick chart for DeFi dashboards and portfolio analytics.",
-  "chains": [
-    "ethereum",
-    "base",
-    "polygon",
-    "bsc",
-    "optimism",
-    "arbitrum",
-    "avalanche",
-    "gnosis",
-    "fantom",
-    "celo",
-    "moonbeam",
-    "blast",
-    "linea",
-    "scroll",
-    "zkSync",
-    "mantle",
-    "sonic",
-    "unichain",
-    "sei",
-    "bitcoin"
-  ],
-  "creditCost": "1 credit/call",
-  "endpoints": [
-    "GET /v1/pricing/historical_by_addresses_v2/{chainName}/{quoteCurrency}/{contractAddresses}/"
-  ],
-  "keyParams": {
-    "chainName": "EVM chain identifier (e.g. eth-mainnet, base-mainnet)",
-    "quoteCurrency": "Quote currency (USD)",
-    "contractAddresses": "ERC-20 contract address"
-  },
-  "responseFields": [
-    "items[].contract_address",
-    "items[].prices[].date",
-    "items[].prices[].price"
-  ],
-  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function getTokenPriceChart(chainName: string, contractAddress: string) {\n  const resp = await client.PricingService.getTokenPrices(\n    chainName,\n    'USD',\n    contractAddress\n  );\n\n  if (resp.error) throw new Error(resp.error_message);\n\n  const token = resp.data.items[0];\n  const chartData = (token.prices ?? [])\n    .map(p => ({ date: p.date, priceUsd: p.price }))\n    .sort((a, b) => String(a.date).localeCompare(String(b.date)));\n\n  return {\n    address: token.contract_address,\n    chartData,\n    currentPrice: chartData[chartData.length - 1]?.priceUsd ?? null,\n  };\n}",
-  "buildsWith": [
-    "spot-price-ticker",
-    "token-price-history",
-    "portfolio-history"
-  ]
+  "slug": "token-price-chart"
 }

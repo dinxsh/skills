@@ -1,0 +1,9 @@
+{
+  "title": "Metaplex NFT Portfolio",
+  "description": "Call `GET /v1/solana-mainnet/address/{wallet}/nfts/` to return every Metaplex NFT held by a wallet — standard NFTs, pNFTs (programmable NFTs with transfer hooks), and print editions — each with name, image URI, collection address, traits array, and estimated USD floor value derived from recent collection sales. Handles both legacy Token Metadata standard and Token Extensions (Token-2022). Build a complete Solana NFT gallery or valuation dashboard with a single API call.",
+  "category": "nft",
+  "url": "https://goldrush.dev",
+  "tag": "Free Tier",
+  "date-added": "2026-03-26",
+  "slug": "metaplex-nft-portfolio"
+}

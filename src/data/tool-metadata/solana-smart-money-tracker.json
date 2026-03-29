@@ -1,0 +1,9 @@
+{
+  "title": "Solana Smart Money Tracker",
+  "description": "Identify high-alpha Solana wallets using GoldRush: fetch recent token buys via transaction history, calculate realized PnL from decoded swap history, and surface wallets with consistently profitable trades (>2x average return over 30 days). Once you have a watchlist, subscribe to their real-time activity stream to receive instant push notifications the moment they buy a new token — before it shows up on Dexscreener. Build a Solana copy-trading radar, alpha group feed, or smart-money signal layer for your trading agent.",
+  "category": "analytics",
+  "url": "https://goldrush.dev",
+  "tag": "API Key Required",
+  "date-added": "2026-03-26",
+  "slug": "solana-smart-money-tracker"
+}

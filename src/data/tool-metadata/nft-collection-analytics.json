@@ -2,31 +2,8 @@
   "title": "NFT Collection Analytics",
   "description": "Holder count, top holders, transfer velocity, and ownership concentration for any ERC-721 collection — build analytics dashboards without a marketplace API.",
   "category": "nft",
-  "url": "https://goldrush.dev/docs/api/balances/get-token-holders-v2-for-token-address/",
+  "url": "https://goldrush.dev",
   "tag": "API Key Required",
   "date-added": "2026-03-23",
-  "slug": "nft-collection-analytics",
-  "complexity": "Intermediate",
-  "useCase": "Build an NFT collection insights page showing unique holder count, top 10 whale holders, daily transfer volume, and holder concentration — all from on-chain data.",
-  "chains": ["ethereum", "base", "bsc", "polygon", "optimism", "gnosis"],
-  "creditCost": "0.02/holder + 0.01/event",
-  "endpoints": [
-    "GET /v1/{chainName}/tokens/{collectionContract}/token_holders_v2/",
-    "GET /v1/{chainName}/events/topics/{topicHash}/?sender-address={collectionContract}"
-  ],
-  "keyParams": {
-    "chainName": "Foundational chain only — eth-mainnet, base-mainnet, bsc-mainnet, matic-mainnet, optimism-mainnet, gnosis-mainnet",
-    "collectionContract": "NFT collection contract address to analyze",
-    "pageSize": "Number of holders per page — max 100"
-  },
-  "responseFields": [
-    "items[].address",
-    "items[].balance",
-    "items[].total_supply",
-    "items[].balance_percent_of_total",
-    "transferCount24h",
-    "uniqueHolders"
-  ],
-  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nconst TRANSFER_TOPIC = '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef';\n\nasync function getNftCollectionAnalytics(chainName: string, collectionContract: string) {\n  // 1. Fetch top holders page\n  const holdersResp = await client.BalanceService.getTokenHoldersV2ForTokenAddress(\n    chainName, collectionContract, { pageNumber: 0, pageSize: 100 }\n  );\n  const holders = holdersResp.data?.items ?? [];\n\n  // 2. Compute concentration — top 10 holders % of supply\n  const top10 = holders.slice(0, 10);\n  const top10Pct = top10.reduce((s, h) => s + (h.balance_percent_of_total ?? 0), 0);\n  const totalSupply = holders[0]?.total_supply ?? '0';\n  const uniqueHolders = holders.length;\n\n  // 3. Fetch recent Transfer events for 24h volume\n  const transferResp = await client.BaseService.getLogEventsByTopicHash(\n    chainName, TRANSFER_TOPIC\n  );\n  const oneDayAgo = Date.now() - 86_400_000;\n  const recentTransfers = (transferResp.data?.items ?? []).filter(e => {\n    const sender = e.sender_address?.toLowerCase();\n    const eventTime = new Date(e.block_signed_at ?? 0).getTime();\n    return sender === collectionContract.toLowerCase() && eventTime > oneDayAgo;\n  });\n\n  return {\n    uniqueHolders,\n    totalSupply,\n    top10HoldersPct: top10Pct.toFixed(2),\n    transferCount24h: recentTransfers.length,\n    topHolders: top10.map(h => ({\n      address: h.address,\n      balance: h.balance,\n      pctOfSupply: h.balance_percent_of_total,\n    })),\n  };\n}",
-  "buildsWith": ["token-holders-snapshot", "nft-transfer-monitor", "cross-contract-event-scanner"]
+  "slug": "nft-collection-analytics"
 }

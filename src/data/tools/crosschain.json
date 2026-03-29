@@ -8,6 +8,14 @@
     "slug": "address-activity-scanner"
   },
   {
+    "title": "Cross-Chain Activity Report",
+    "body": "Full cross-chain footprint for any wallet — active chains, combined net worth, unified transaction timeline, and per-chain asset breakdown in one API call.",
+    "tag": "API Key Required",
+    "url": "https://goldrush.dev",
+    "date-added": "2026-03-23",
+    "slug": "cross-chain-activity-report"
+  },
+  {
     "title": "Cross-chain Address Lookup",
     "body": "Resolve and look up the same address across all supported EVM chains at once.",
     "tag": "Free Tier",
@@ -17,7 +25,7 @@
   },
   {
     "title": "Cross-Chain Transaction History",
-    "body": "Fetch and merge transaction history across multiple chains for a single wallet — great for multichain explorers, unified activity timelines, and tax reporting tools.",
+    "body": "Fetch and merge transaction history across multiple chains for a single wallet â€” great for multichain explorers, unified activity timelines, and tax reporting tools.",
     "tag": "API Key Required",
     "url": "https://goldrush.dev",
     "date-added": "2026-03-16",
@@ -25,7 +33,7 @@
   },
   {
     "title": "Multi-Chain Activity Discovery",
-    "body": "Scan every supported chain simultaneously to discover which networks a wallet has been active on — single call, 200+ chains. The must-have entry point for any cross-chain app.",
+    "body": "Scan every supported chain simultaneously to discover which networks a wallet has been active on â€” single call, 200+ chains. The must-have entry point for any cross-chain app.",
     "tag": "API Key Required",
     "url": "https://goldrush.dev",
     "date-added": "2026-03-16",
@@ -33,7 +41,7 @@
   },
   {
     "title": "Multi-Chain Token Aggregator",
-    "body": "Aggregate all token balances across every chain a wallet is active on — auto-discovers chains then fetches balances in parallel. One function call for a complete cross-chain portfolio.",
+    "body": "Aggregate all token balances across every chain a wallet is active on â€” auto-discovers chains then fetches balances in parallel. One function call for a complete cross-chain portfolio.",
     "tag": "API Key Required",
     "url": "https://goldrush.dev",
     "date-added": "2026-03-16",
@@ -46,14 +54,5 @@
     "url": "https://goldrush.dev",
     "date-added": "2026-03-12",
     "slug": "multichain-portfolio"
-  },
-  {
-    "title": "Cross-Chain Activity Report",
-    "body": "Full cross-chain footprint for any wallet — active chains, combined net worth, unified transaction timeline, and per-chain asset breakdown in one API call.",
-    "tag": "API Key Required",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-23",
-    "slug": "cross-chain-activity-report"
   }
 ]
-

@@ -1,0 +1,9 @@
+{
+  "title": "Solana GoldRush Quickstart",
+  "description": "Scaffold a production-ready Solana wallet dashboard in one command using the GoldRush Next.js starter for Solana — pre-wired with `@covalenthq/client-sdk`, Solana wallet adapter (Phantom/Backpack/Solflare), and four ready-to-run components: SPL token balances table with USD values, decoded transaction history feed with program labels, Metaplex NFT gallery, and a wallet age summary card. Clone, add `GOLDRUSH_API_KEY=your_key` to `.env.local`, run `npm dev`, and ship. No blockchain parsing required.",
+  "category": "developer",
+  "url": "https://goldrush.dev",
+  "tag": "Open Source",
+  "date-added": "2026-03-26",
+  "slug": "solana-goldrush-quickstart"
+}

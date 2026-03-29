@@ -1,54 +1,9 @@
 {
   "title": "Token Approval Risk Scanner",
-  "description": "Scan all active ERC-20 and NFT approvals for a wallet and score each by risk level \u2014 identify unlimited approvals, deprecated protocols, and known exploited contracts.",
+  "description": "Scan all active ERC-20 and NFT approvals for a wallet and score each by risk level â€” identify dangerous unlimited approvals, deprecated protocols, and known exploited contracts.",
   "category": "security",
-  "url": "https://goldrush.dev/docs/api/security/get-approvals/",
+  "url": "https://goldrush.dev",
   "tag": "API Key Required",
   "date-added": "2026-03-16",
-  "slug": "token-approval-risk-scanner",
-  "complexity": "Intermediate",
-  "useCase": "Build a comprehensive approval risk report for any wallet \u2014 categorize every approval as low/medium/high risk, sum up total value at risk, and recommend which to revoke.",
-  "chains": [
-    "ethereum",
-    "base",
-    "polygon",
-    "bsc",
-    "optimism",
-    "arbitrum",
-    "avalanche",
-    "gnosis",
-    "fantom",
-    "celo",
-    "moonbeam",
-    "blast",
-    "linea",
-    "scroll",
-    "zkSync",
-    "mantle",
-    "sonic",
-    "unichain",
-    "sei"
-  ],
-  "creditCost": "1 credit/call",
-  "endpoints": [
-    "GET /v1/{chainName}/approvals/{walletAddress}/"
-  ],
-  "keyParams": {
-    "chainName": "EVM chain identifier (e.g. eth-mainnet, matic-mainnet)",
-    "walletAddress": "0x wallet address to scan"
-  },
-  "responseFields": [
-    "items[].token_address",
-    "items[].token_ticker_symbol",
-    "items[].spender_address",
-    "items[].spender_name",
-    "items[].value_at_risk",
-    "items[].risk_factor"
-  ],
-  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nfunction getRiskLevel(riskFactor: number) {\n  if (riskFactor >= 0.7) return 'HIGH';\n  if (riskFactor >= 0.4) return 'MEDIUM';\n  return 'LOW';\n}\n\nasync function scanApprovalRisk(chainName: string, walletAddress: string) {\n  const resp = await client.SecurityService.getApprovals(\n    chainName,\n    walletAddress\n  );\n\n  if (resp.error) throw new Error(resp.error_message);\n\n  const approvals = resp.data.items.map(a => ({\n    token: a.token_ticker_symbol,\n    spender: a.spender_name ?? a.spender_address,\n    valueAtRisk: a.value_at_risk ?? 0,\n    riskLevel: getRiskLevel(a.risk_factor ?? 0),\n    shouldRevoke: (a.risk_factor ?? 0) > 0.6,\n  }));\n\n  const totalAtRisk = approvals.reduce((s, a) => s + a.valueAtRisk, 0);\n  const highRisk = approvals.filter(a => a.riskLevel === 'HIGH');\n\n  return { totalAtRisk, highRiskCount: highRisk.length, approvals };\n}",
-  "buildsWith": [
-    "approval-auditor",
-    "token-approval-scanner",
-    "goldrush-kit-approvals"
-  ]
+  "slug": "token-approval-risk-scanner"
 }

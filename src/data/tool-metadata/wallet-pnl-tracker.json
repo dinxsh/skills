@@ -1,40 +1,9 @@
 {
   "title": "Wallet P&L Tracker",
-  "description": "Unrealized P&L for every token in a wallet \u2014 shows entry price, current price, and total gain/loss per position using the GoldRush streaming API's upnlForWallet query.",
+  "description": "Unrealized P&L for every token in a wallet — shows entry price, current price, and total gain/loss per position.",
   "category": "wallet",
   "url": "https://goldrush.dev/docs/streaming/",
   "tag": "API Key Required",
   "date-added": "2026-03-23",
-  "slug": "wallet-pnl-tracker",
-  "complexity": "Intermediate",
-  "useCase": "Build an unrealized P&L dashboard that shows every open token position \u2014 entry cost, current value, and total gain/loss in USD \u2014 for any wallet in real time.",
-  "chains": [
-    "ethereum",
-    "base",
-    "bsc",
-    "polygon",
-    "arbitrum",
-    "optimism"
-  ],
-  "creditCost": "Streaming query",
-  "endpoints": [
-    "wss://streaming.goldrushdata.com/graphql \u2014 upnlForWallet query"
-  ],
-  "keyParams": {
-    "walletAddress": "0x wallet address to fetch P&L for",
-    "chainName": "EVM chain name (e.g. eth-mainnet, base-mainnet)"
-  },
-  "responseFields": [
-    "totalUnrealizedPnl",
-    "tokens[].symbol",
-    "tokens[].pnl",
-    "tokens[].balance",
-    "tokens[].currentPrice"
-  ],
-  "snippet": "import { createClient } from 'graphql-ws';\n\nconst wsClient = createClient({\n  url: 'wss://streaming.goldrushdata.com/graphql',\n  connectionParams: { apiKey: process.env.GOLDRUSH_API_KEY },\n});\n\nasync function getWalletPnl(walletAddress: string, chainName: string) {\n  // upnlForWallet is a query (single response), not a subscription\n  const result = await new Promise<any>((resolve, reject) => {\n    wsClient.subscribe(\n      {\n        query: `query WalletPnl($addr: String!, $chain: String!) {\n          upnlForWallet(walletAddress: $addr, chainName: $chain) {\n            totalUnrealizedPnl\n            tokens { symbol pnl balance currentPrice }\n          }\n        }`,\n        variables: { addr: walletAddress, chain: chainName },\n      },\n      {\n        next: (data) => resolve(data.data?.upnlForWallet),\n        error: reject,\n        complete: () => {},\n      }\n    );\n  });\n\n  return {\n    totalPnlUsd: result.totalUnrealizedPnl,\n    positions: result.tokens.sort((a: any, b: any) => b.pnl - a.pnl),\n  };\n}",
-  "buildsWith": [
-    "portfolio-tracker",
-    "historical-portfolio-value",
-    "token-price-chart"
-  ]
+  "slug": "wallet-pnl-tracker"
 }

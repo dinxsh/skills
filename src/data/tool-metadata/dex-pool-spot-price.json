@@ -1,39 +1,9 @@
 {
   "title": "DEX Pool Spot Price",
-  "description": "Fetch real-time spot prices and liquidity for any AMM pool address \u2014 supports Uniswap v2/v3, Aerodrome, PancakeSwap, and other DEX pools. Foundational chains only.",
+  "description": "Fetch real-time spot prices and liquidity for any AMM pool — Uniswap, Aerodrome, PancakeSwap, and more.",
   "category": "token",
   "url": "https://goldrush.dev/docs/api/pricing/get-pool-spot-prices/",
   "tag": "API Key Required",
   "date-added": "2026-03-23",
-  "slug": "dex-pool-spot-price",
-  "complexity": "Intermediate",
-  "useCase": "Build a DEX pool price monitor that shows real-time token0/token1 spot prices and total liquidity for any AMM pool \u2014 Uniswap, Aerodrome, PancakeSwap, and more.",
-  "chains": [
-    "ethereum",
-    "base",
-    "bsc",
-    "polygon",
-    "optimism",
-    "gnosis"
-  ],
-  "creditCost": "1 credit/call",
-  "endpoints": [
-    "GET /v1/{chainName}/pricing/pool/{contractAddress}/spot_prices/"
-  ],
-  "keyParams": {
-    "chainName": "Foundational chain only: eth-mainnet, base-mainnet, bsc-mainnet, matic-mainnet, optimism-mainnet, gnosis-mainnet",
-    "contractAddress": "AMM pool contract address (e.g. Uniswap v3 pool)"
-  },
-  "responseFields": [
-    "items[].token0_address",
-    "items[].token1_address",
-    "items[].price",
-    "items[].liquidity_quote"
-  ],
-  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function getPoolSpotPrice(chainName: string, poolAddress: string) {\n  const resp = await client.PricingService.getPoolSpotPrices(\n    chainName,\n    poolAddress\n  );\n\n  if (resp.error) throw new Error(resp.error_message);\n\n  const pool = resp.data.items[0];\n  return {\n    poolAddress,\n    token0: pool.token0_address,\n    token1: pool.token1_address,\n    spotPrice: pool.price,\n    liquidityUsd: pool.liquidity_quote,\n  };\n}\n\n// Example: USDC/ETH on Uniswap v3 (Base)\nconst price = await getPoolSpotPrice(\n  'base-mainnet',\n  '0xd0b53D9277642d899DF5C87A3966A349A798F224'\n);\nconsole.log(`Pool price: ${price.spotPrice}, Liquidity: $${price.liquidityUsd}`);\n",
-  "buildsWith": [
-    "spot-price-ticker",
-    "token-price-chart",
-    "token-ohlcv-chart"
-  ]
+  "slug": "dex-pool-spot-price"
 }

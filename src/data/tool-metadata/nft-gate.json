@@ -1,52 +1,9 @@
 {
   "title": "NFT Gate",
-  "description": "Gate content or app features based on NFT ownership \u2014 verify whether a wallet holds any NFT in a collection, or a specific token ID, using GoldRush's ownership check endpoints.",
+  "description": "Gate content or app features based on NFT ownership verified through GoldRush.",
   "category": "identity",
-  "url": "https://goldrush.dev/docs/api/nft/check-ownership-in-nft/",
-  "tag": "Free Tier",
+  "url": "https://goldrush.dev",
+  "tag": "Open Source",
   "date-added": "2026-03-12",
-  "slug": "nft-gate",
-  "complexity": "Beginner",
-  "useCase": "Lock premium content, Discord roles, or app features behind NFT ownership \u2014 check if a connected wallet holds any token from a collection in a single API call.",
-  "chains": [
-    "ethereum",
-    "base",
-    "polygon",
-    "bsc",
-    "optimism",
-    "arbitrum",
-    "avalanche",
-    "gnosis",
-    "fantom",
-    "celo",
-    "moonbeam",
-    "blast",
-    "linea",
-    "scroll",
-    "zkSync",
-    "mantle",
-    "sonic",
-    "unichain",
-    "sei"
-  ],
-  "creditCost": "0.1 credit/call",
-  "endpoints": [
-    "GET /v1/{chainName}/address/{walletAddress}/collection/{collectionContract}/",
-    "GET /v1/{chainName}/address/{walletAddress}/collection/{collectionContract}/token/{tokenId}/"
-  ],
-  "keyParams": {
-    "chainName": "EVM chain identifier (e.g. eth-mainnet, matic-mainnet)",
-    "walletAddress": "0x wallet address to check ownership for",
-    "collectionContract": "NFT collection contract address",
-    "tokenId": "Specific token ID (optional \u2014 check for a single token)"
-  },
-  "responseFields": [
-    "data.is_owner"
-  ],
-  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function checkNftGate(\n  chainName: string,\n  walletAddress: string,\n  collectionContract: string,\n  tokenId?: string\n) {\n  const resp = tokenId\n    ? await client.NftService.checkOwnershipInNftForSpecificTokenId(\n        chainName, walletAddress, collectionContract, tokenId\n      )\n    : await client.NftService.checkOwnershipInNft(\n        chainName, walletAddress, collectionContract\n      );\n\n  if (resp.error) throw new Error(resp.error_message);\n\n  return {\n    isOwner: resp.data.is_owner,\n    wallet: walletAddress,\n    collection: collectionContract,\n    tokenId: tokenId ?? 'any',\n  };\n}",
-  "buildsWith": [
-    "nft-metadata-fetcher",
-    "nft-gallery-viewer",
-    "onchain-activity-verifier"
-  ]
+  "slug": "nft-gate"
 }

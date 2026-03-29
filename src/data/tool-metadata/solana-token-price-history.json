@@ -1,0 +1,9 @@
+{
+  "title": "Solana Token Price History",
+  "description": "Fetch OHLCV daily candlestick data for any SPL token via GoldRush's pricing endpoint — specify the mint address and date range (up to 365 days of history for tokens with sufficient liquidity). Each candle returns open, high, low, close price in USD, and 24h trading volume. Use to render price charts with Recharts or Chart.js, run strategy backtests, calculate unrealized P&L for agent-held positions, or power a token screener with momentum signals.",
+  "category": "token",
+  "url": "https://goldrush.dev",
+  "tag": "API Key Required",
+  "date-added": "2026-03-26",
+  "slug": "solana-token-price-history"
+}
