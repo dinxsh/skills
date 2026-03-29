@@ -37,14 +37,14 @@
     font-family: var(--monospace);
     font-size: 0.7rem;
     letter-spacing: 0.03em;
-    padding: 0 var(--spacing-06) 0 var(--spacing-03);
+    padding: 0 1.75rem 0 0.5rem;
     height: 1.75rem;
     cursor: pointer;
     outline: none;
     transition: border-color 0.15s ease, color 0.15s ease;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'%3E%3Cpath stroke='%23666' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.2' d='m1 1 4 4 4-4'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
-    background-position: right var(--spacing-02) center;
+    background-position: right 0.5rem center;
     white-space: nowrap;
 }
 
