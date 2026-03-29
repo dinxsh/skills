@@ -1,0 +1,103 @@
+.filter-bar-container {
+    position: sticky;
+    top: var(--nav-height, 48px);
+    width: 100%;
+    z-index: 999999;
+    background-color: var(--background-high-contrast);
+    border-bottom: 0.5px solid var(--border-muted);
+}
+
+.filter-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-04);
+    padding: var(--spacing-03) var(--spacing-05);
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.filter-bar::-webkit-scrollbar {
+    display: none;
+}
+
+.filter-selects {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-02);
+    flex-shrink: 0;
+}
+
+.filter-select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: var(--background);
+    color: var(--content-secondary);
+    border: 0.5px solid var(--border-muted);
+    font-family: var(--monospace);
+    font-size: 0.7rem;
+    letter-spacing: 0.03em;
+    padding: 0 var(--spacing-06) 0 var(--spacing-03);
+    height: 1.75rem;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.15s ease, color 0.15s ease;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'%3E%3Cpath stroke='%23666' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.2' d='m1 1 4 4 4-4'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right var(--spacing-02) center;
+    white-space: nowrap;
+}
+
+.filter-select:hover,
+.filter-select:focus {
+    border-color: var(--border);
+    color: var(--content-primary);
+}
+
+.filter-select option {
+    background-color: var(--background);
+    color: var(--content-primary);
+}
+
+.filter-bar-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-03);
+    flex-shrink: 0;
+}
+
+.filter-count {
+    font-family: var(--monospace);
+    font-size: 0.65rem;
+    color: var(--content-secondary-alt);
+    white-space: nowrap;
+}
+
+.filter-clear {
+    background: none;
+    border: 0.5px solid var(--border-muted);
+    color: var(--content-secondary-alt);
+    font-family: var(--monospace);
+    font-size: 0.65rem;
+    padding: 0 var(--spacing-02);
+    height: 1.25rem;
+    cursor: pointer;
+    transition: color 0.15s ease, border-color 0.15s ease;
+    letter-spacing: 0.04em;
+}
+
+.filter-clear:hover {
+    color: var(--content-primary);
+    border-color: var(--border);
+}
+
+@media (max-width: 640px) {
+    .filter-bar {
+        padding: var(--spacing-02) var(--spacing-04);
+        gap: var(--spacing-02);
+    }
+
+    .filter-selects {
+        gap: var(--spacing-02);
+    }
+}

@@ -4,6 +4,7 @@ import Card from './Card';
 import EmptyState, { SearchIcon } from './EmptyState';
 import './CardsContainer.css';
 import data from '../data/tools.json';
+import skillsMeta from '../data/skills-meta.json';
 import type { Tool, Category } from '../types';
 import { toolComparators, seededShuffle, type SortKey } from '../utils/sorting';
 import { isRecentlyAdded } from '../utils/dates';
@@ -29,18 +30,26 @@ const fuseOptions = {
 
 interface CardsContainerProps {
     filter: string;
+    chainFilter?: string;
+    typeFilter?: string;
+    difficultyFilter?: string;
     sort?: SortKey;
     randomSeed?: number;
     searchQuery?: string;
     filterNew?: boolean;
+    onFilteredCountChange?: (count: number) => void;
 }
 
 export default function CardsContainer({
     filter,
+    chainFilter = 'all',
+    typeFilter = 'all',
+    difficultyFilter = 'all',
     sort = 'nameAsc',
     randomSeed = 0,
     searchQuery = '',
     filterNew = false,
+    onFilteredCountChange,
 }: CardsContainerProps) {
     const [displayedCount, setDisplayedCount] = useState(ITEMS_PER_PAGE);
     const [isLoading, setIsLoading] = useState(false);
@@ -99,25 +108,44 @@ export default function CardsContainer({
                 );
         }
 
-        // Filter for new tools (added within last 30 days)
         if (filterNew) {
             base = base.filter((tool) => isRecentlyAdded(tool['date-added'], 30));
         }
 
+        if (chainFilter !== 'all') {
+            base = base.filter((tool) => {
+                const meta = (skillsMeta as Record<string, { chains: string[]; complexity: string }>)[tool.slug ?? ''];
+                return meta?.chains?.includes(chainFilter) ?? false;
+            });
+        }
+
+        if (typeFilter !== 'all') {
+            base = base.filter((tool) => tool.tag === typeFilter);
+        }
+
+        if (difficultyFilter !== 'all') {
+            base = base.filter((tool) => {
+                const meta = (skillsMeta as Record<string, { chains: string[]; complexity: string }>)[tool.slug ?? ''];
+                return meta?.complexity === difficultyFilter;
+            });
+        }
+
         if (sort === 'random') {
-            // Use provided seed for deterministic shuffling, fallback to stable default
-            // If truly random ordering per session is needed, pass Date.now() as randomSeed from parent
             const DEFAULT_SEED = 42;
             return seededShuffle(base, randomSeed || DEFAULT_SEED);
         } else {
             const comparator = toolComparators[sort] || toolComparators.nameAsc;
             return [...base].sort(comparator);
         }
-    }, [filter, sort, randomSeed, searchQuery, filterNew, fuse]);
+    }, [filter, chainFilter, typeFilter, difficultyFilter, sort, randomSeed, searchQuery, filterNew, fuse]);
+
+    useEffect(() => {
+        onFilteredCountChange?.(filteredCards.length);
+    }, [filteredCards.length, onFilteredCountChange]);
 
     useEffect(() => {
         setDisplayedCount(ITEMS_PER_PAGE);
-    }, [filter, searchQuery, filterNew]);
+    }, [filter, chainFilter, typeFilter, difficultyFilter, searchQuery, filterNew]);
 
     useEffect(() => {
         const handleSaveState = () => {
@@ -166,7 +194,7 @@ export default function CardsContainer({
     useEffect(() => {
         const observer = new IntersectionObserver(
             (entries) => {
-            if (entries[0]?.isIntersecting && !isLoading && displayedCount < filteredCards.length) {
+                if (entries[0]?.isIntersecting && !isLoading && displayedCount < filteredCards.length) {
                     setIsLoading(true);
                     setTimeout(() => {
                         setDisplayedCount((prev) => Math.min(prev + ITEMS_PER_PAGE, filteredCards.length));
@@ -186,7 +214,6 @@ export default function CardsContainer({
 
     const displayedCards = filteredCards.slice(0, displayedCount);
 
-    // Check if searching with no results in a specific category
     const isSearchingInCategory = searchQuery && searchQuery.length >= 2 && filter !== 'all';
     const hasNoSearchResults = isSearchingInCategory && filteredCards.length === 0;
 
@@ -197,6 +224,19 @@ export default function CardsContainer({
                     icon={<SearchIcon />}
                     message={`No results found for "${searchQuery}" in this category.`}
                     actionText="Search All Tools"
+                    actionHref="/"
+                />
+            </section>
+        );
+    }
+
+    if (filteredCards.length === 0) {
+        return (
+            <section>
+                <EmptyState
+                    icon={<SearchIcon />}
+                    message="No skills match the selected filters."
+                    actionText="Clear Filters"
                     actionHref="/"
                 />
             </section>
