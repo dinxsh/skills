@@ -4,9 +4,10 @@
     z-index: 999999;
     background-color: var(--background-high-contrast);
     border-bottom: 0.5px solid var(--border-muted);
-    /* break out of main's horizontal margins */
+    /* break out of main's horizontal margins + cancel its top margin */
     width: 100vw;
     margin-left: calc(50% - 50vw);
+    margin-top: calc(-1 * var(--spacing-07));
 }
 
 .filter-bar {
@@ -14,7 +15,7 @@
     align-items: center;
     justify-content: space-between;
     gap: var(--spacing-04);
-    padding: var(--spacing-03) var(--spacing-05);
+    padding: var(--spacing-02) var(--spacing-09);
     overflow-x: auto;
     scrollbar-width: none;
 }
@@ -46,7 +47,7 @@
 }
 
 .filter-search-wrap :global(.search-input) {
-    height: 1.75rem;
+    height: 1.5rem;
     padding: 0 2.25rem 0 1.75rem;
     font-family: var(--monospace);
     font-size: 0.7rem;
@@ -94,7 +95,7 @@
     font-size: 0.7rem;
     letter-spacing: 0.03em;
     padding: 0 1.75rem 0 0.5rem;
-    height: 1.75rem;
+    height: 1.5rem;
     cursor: pointer;
     outline: none;
     transition: border-color 0.15s ease, color 0.15s ease;
