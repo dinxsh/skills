@@ -14,8 +14,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: var(--spacing-04);
-    padding: var(--spacing-02) var(--spacing-09);
+    gap: var(--spacing-03);
+    padding: 5px var(--spacing-09);
     overflow-x: auto;
     scrollbar-width: none;
 }
@@ -27,15 +27,14 @@
 .filter-bar-left {
     display: flex;
     align-items: center;
-    gap: var(--spacing-03);
+    gap: var(--spacing-02);
     flex: 1;
     min-width: 0;
 }
 
 .filter-search-wrap {
-    flex: 1;
-    min-width: 0;
-    max-width: 260px;
+    flex-shrink: 0;
+    width: 180px;
 }
 
 .filter-search-wrap :global(.search-container) {
@@ -82,7 +81,7 @@
 .filter-selects--desktop {
     display: flex;
     align-items: center;
-    gap: var(--spacing-02);
+    gap: 4px;
     flex-shrink: 0;
 }
 
@@ -288,7 +287,7 @@
 /* ── Responsive ─────────────────────────────────────── */
 @media (max-width: 640px) {
     .filter-bar {
-        padding: var(--spacing-02) var(--spacing-09);
+        padding: 5px var(--spacing-09);
         gap: var(--spacing-02);
     }
 
@@ -298,7 +297,7 @@
 
     .filter-search-wrap {
         flex: 1;
-        max-width: none;
+        width: auto;
     }
 
     /* Hide desktop selects, show mobile toggle */
