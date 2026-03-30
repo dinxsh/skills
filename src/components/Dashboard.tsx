@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import FilterBar, { type FilterState } from './FilterBar';
 import CardsContainer from './CardsContainer';
+import BuildCart from './BuildCart';
 import data from '../data/tools.json';
 import type { Category } from '../types';
 
@@ -31,6 +32,7 @@ export default function Dashboard({ category }: DashboardProps) {
         type: 'all',
         difficulty: 'all',
     });
+    const [selectedSlugs, setSelectedSlugs] = useState<string[]>([]);
 
     useEffect(() => {
         const handleSearch = (e: Event) => {
@@ -60,6 +62,27 @@ export default function Dashboard({ category }: DashboardProps) {
         };
     }, []);
 
+    const handleCartToggle = useCallback((slug: string) => {
+        setSelectedSlugs(prev => {
+            const isSelected = prev.includes(slug);
+            const next = isSelected ? prev.filter(s => s !== slug) : [...prev, slug];
+            // GA4 event
+            window.gtag?.('event', isSelected ? 'build_cart_remove' : 'build_cart_add', {
+                skill_slug: slug,
+                cart_size: next.length,
+            });
+            return next;
+        });
+    }, []);
+
+    const handleCartClear = useCallback(() => {
+        setSelectedSlugs([]);
+    }, []);
+
+    const handleCartRemove = useCallback((slug: string) => {
+        setSelectedSlugs(prev => prev.filter(s => s !== slug));
+    }, []);
+
     return (
         <>
             <FilterBar
@@ -76,6 +99,13 @@ export default function Dashboard({ category }: DashboardProps) {
                 searchQuery={searchQuery}
                 filterNew={filterNew}
                 onFilteredCountChange={setFilteredCount}
+                selectedSlugs={selectedSlugs}
+                onCartToggle={handleCartToggle}
+            />
+            <BuildCart
+                selectedSlugs={selectedSlugs}
+                onClear={handleCartClear}
+                onRemove={handleCartRemove}
             />
         </>
     );

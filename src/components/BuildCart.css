@@ -1,0 +1,340 @@
+/* ── Sticky bottom cart bar ─────────────────────────── */
+.build-cart {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999998;
+    background-color: var(--background-high-contrast);
+    border-top: 0.5px solid var(--border);
+    animation: cartSlideUp 0.2s ease;
+}
+
+@keyframes cartSlideUp {
+    from { transform: translateY(100%); opacity: 0; }
+    to   { transform: translateY(0);    opacity: 1; }
+}
+
+.build-cart-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-04);
+    padding: var(--spacing-03) var(--spacing-09);
+    max-width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+.build-cart-inner::-webkit-scrollbar { display: none; }
+
+.build-cart-skills {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-02);
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    flex: 1;
+    min-width: 0;
+}
+.build-cart-skills::-webkit-scrollbar { display: none; }
+
+.build-cart-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 0 var(--spacing-02);
+    background-color: rgba(255, 140, 0, 0.1);
+    border: 0.5px solid rgba(255, 140, 0, 0.3);
+    color: DarkOrange;
+    font-family: var(--monospace);
+    font-size: 0.65rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+    height: 1.375rem;
+}
+
+.build-cart-chip-remove {
+    background: none;
+    border: none;
+    color: DarkOrange;
+    font-size: 0.75rem;
+    cursor: pointer;
+    padding: 0;
+    opacity: 0.6;
+    line-height: 1;
+    margin-left: 2px;
+    transition: opacity 0.1s;
+}
+.build-cart-chip-remove:hover { opacity: 1; }
+
+.build-cart-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-03);
+    flex-shrink: 0;
+}
+
+.build-cart-count {
+    font-family: var(--monospace);
+    font-size: 0.65rem;
+    color: var(--content-secondary-alt);
+    white-space: nowrap;
+}
+
+.build-cart-clear {
+    background: none;
+    border: 0.5px solid var(--border-muted);
+    color: var(--content-secondary-alt);
+    font-family: var(--monospace);
+    font-size: 0.65rem;
+    padding: 0 var(--spacing-02);
+    height: 1.375rem;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+    letter-spacing: 0.04em;
+}
+.build-cart-clear:hover {
+    color: var(--content-primary);
+    border-color: var(--border);
+}
+
+.build-cart-generate {
+    background-color: DarkOrange;
+    border: none;
+    color: #000;
+    font-family: var(--monospace);
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0 var(--spacing-05);
+    height: 1.75rem;
+    cursor: pointer;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    transition: opacity 0.15s, transform 0.15s;
+}
+.build-cart-generate:hover { opacity: 0.88; }
+.build-cart-generate:active { transform: scale(0.97); }
+
+/* ── Combined prompt modal ───────────────────────────── */
+.build-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 9999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-06);
+    animation: fadeIn 0.15s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+.build-modal {
+    background-color: var(--background-high-contrast);
+    border: 0.5px solid var(--border);
+    width: 100%;
+    max-width: 52rem;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    animation: modalIn 0.2s ease;
+}
+
+@keyframes modalIn {
+    from { transform: translateY(12px); opacity: 0; }
+    to   { transform: translateY(0);    opacity: 1; }
+}
+
+.build-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--spacing-04) var(--spacing-05);
+    border-bottom: 0.5px solid var(--border-muted);
+    flex-shrink: 0;
+}
+
+.build-modal-title {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-02);
+    font-family: var(--monospace);
+    font-size: 0.7rem;
+    color: var(--content-secondary);
+    letter-spacing: 0.04em;
+}
+
+.build-modal-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0 var(--spacing-02);
+    background-color: rgba(255, 140, 0, 0.1);
+    color: DarkOrange;
+    font-family: var(--monospace);
+    font-size: 0.6rem;
+    border: 0.5px solid rgba(255, 140, 0, 0.3);
+    height: 1.1rem;
+}
+
+.build-modal-header-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-03);
+}
+
+.build-modal-copy {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-02);
+    background-color: DarkOrange;
+    border: none;
+    color: #000;
+    font-family: var(--monospace);
+    font-size: 0.65rem;
+    font-weight: 600;
+    padding: 0 var(--spacing-04);
+    height: 1.5rem;
+    cursor: pointer;
+    transition: opacity 0.15s;
+    letter-spacing: 0.03em;
+}
+.build-modal-copy:hover { opacity: 0.88; }
+
+.build-modal-close {
+    background: none;
+    border: 0.5px solid var(--border-muted);
+    color: var(--content-secondary-alt);
+    width: 1.5rem;
+    height: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: border-color 0.15s, color 0.15s;
+}
+.build-modal-close:hover {
+    border-color: var(--border);
+    color: var(--content-primary);
+}
+
+.build-modal-hint {
+    font-family: var(--monospace);
+    font-size: 0.65rem;
+    color: var(--content-secondary-alt);
+    margin: 0;
+    padding: var(--spacing-03) var(--spacing-05);
+    border-bottom: 0.5px solid var(--border-muted);
+    flex-shrink: 0;
+}
+
+.build-modal-textarea {
+    flex: 1;
+    background-color: var(--background);
+    border: none;
+    color: var(--content-secondary);
+    font-family: var(--monospace);
+    font-size: 0.65rem;
+    line-height: 1.6;
+    padding: var(--spacing-05);
+    resize: none;
+    outline: none;
+    min-height: 0;
+    overflow-y: auto;
+}
+
+/* Post-copy next steps */
+.build-modal-next {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-04);
+    padding: var(--spacing-03) var(--spacing-05);
+    border-top: 0.5px solid var(--border-muted);
+    background-color: rgba(255, 140, 0, 0.04);
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    animation: fadeIn 0.2s ease;
+}
+
+.build-modal-next-label {
+    font-family: var(--monospace);
+    font-size: 0.6rem;
+    color: var(--content-secondary-alt);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.build-modal-next-step {
+    font-family: var(--monospace);
+    font-size: 0.65rem;
+    color: DarkOrange;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: opacity 0.15s;
+}
+.build-modal-next-step:hover { opacity: 0.75; }
+
+/* Card selected state */
+.link-card--selected {
+    border-color: rgba(255, 140, 0, 0.5) !important;
+    background-color: rgba(255, 140, 0, 0.04) !important;
+}
+.link-card--selected > a {
+    border-left-color: DarkOrange !important;
+}
+
+/* Cart add button on cards */
+.card-cart-btn {
+    position: absolute;
+    bottom: var(--spacing-03);
+    right: var(--spacing-03);
+    z-index: 10;
+    width: 1.25rem;
+    height: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: 0.5px solid var(--border-muted);
+    color: var(--content-secondary-alt);
+    font-size: 0.9rem;
+    line-height: 1;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.15s, border-color 0.15s, color 0.15s, background-color 0.15s;
+    font-family: var(--monospace);
+}
+.link-card:hover .card-cart-btn,
+.link-card:focus-within .card-cart-btn {
+    opacity: 1;
+}
+.card-cart-btn--active {
+    opacity: 1 !important;
+    background-color: DarkOrange;
+    border-color: DarkOrange;
+    color: #000;
+}
+.card-cart-btn:hover:not(.card-cart-btn--active) {
+    border-color: var(--border);
+    color: var(--content-primary);
+}
+
+@media (hover: none) {
+    .card-cart-btn { opacity: 1; }
+}
+
+@media (max-width: 640px) {
+    .build-cart-inner {
+        padding: var(--spacing-03) var(--spacing-05);
+        gap: var(--spacing-03);
+    }
+    .build-cart-skills { display: none; }
+    .build-modal-backdrop { padding: var(--spacing-03); }
+    .build-modal-next { gap: var(--spacing-03); }
+    .build-modal-next-step { font-size: 0.6rem; }
+}

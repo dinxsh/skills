@@ -78,11 +78,38 @@
     right: 1.8rem;
 }
 
-.filter-selects {
+/* Desktop selects — visible above 640px */
+.filter-selects--desktop {
     display: flex;
     align-items: center;
     gap: var(--spacing-02);
     flex-shrink: 0;
+}
+
+/* Mobile drawer toggle — hidden above 640px */
+.filter-drawer-toggle {
+    display: none;
+    align-items: center;
+    gap: 5px;
+    background: none;
+    border: 0.5px solid var(--border-muted);
+    color: var(--content-secondary);
+    font-family: var(--monospace);
+    font-size: 0.7rem;
+    padding: 0 0.6rem;
+    height: 1.5rem;
+    cursor: pointer;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: border-color 0.15s, color 0.15s;
+}
+.filter-drawer-toggle:hover {
+    border-color: var(--border);
+    color: var(--content-primary);
+}
+.filter-drawer-toggle--active {
+    border-color: DarkOrange;
+    color: DarkOrange;
 }
 
 .filter-select {
@@ -103,6 +130,13 @@
     background-repeat: no-repeat;
     background-position: right 0.5rem center;
     white-space: nowrap;
+}
+
+.filter-select--full {
+    width: 100%;
+    height: 2rem;
+    padding: 0 2rem 0 0.6rem;
+    font-size: 0.75rem;
 }
 
 .filter-select:hover,
@@ -148,9 +182,113 @@
     border-color: var(--border);
 }
 
+/* ── Mobile bottom drawer ───────────────────────────── */
+.filter-drawer-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9999998;
+    animation: backdropIn 0.2s ease;
+}
+
+@keyframes backdropIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+.filter-drawer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--background-high-contrast);
+    border-top: 0.5px solid var(--border);
+    z-index: 9999999;
+    display: flex;
+    flex-direction: column;
+    max-height: 85vh;
+    animation: drawerIn 0.25s ease;
+}
+
+@keyframes drawerIn {
+    from { transform: translateY(100%); }
+    to   { transform: translateY(0); }
+}
+
+.filter-drawer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--spacing-04) var(--spacing-05);
+    border-bottom: 0.5px solid var(--border-muted);
+    flex-shrink: 0;
+}
+
+.filter-drawer-title {
+    font-family: var(--monospace);
+    font-size: 0.75rem;
+    color: var(--content-primary);
+    letter-spacing: 0.04em;
+}
+
+.filter-drawer-close {
+    background: none;
+    border: 0.5px solid var(--border-muted);
+    color: var(--content-secondary-alt);
+    width: 1.5rem;
+    height: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.filter-drawer-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-03);
+    padding: var(--spacing-05);
+    overflow-y: auto;
+    flex: 1;
+}
+
+.filter-drawer-label {
+    font-family: var(--monospace);
+    font-size: 0.65rem;
+    color: var(--content-secondary-alt);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: calc(-1 * var(--spacing-02));
+}
+
+.filter-drawer-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--spacing-03);
+    padding: var(--spacing-04) var(--spacing-05);
+    border-top: 0.5px solid var(--border-muted);
+    flex-shrink: 0;
+}
+
+.filter-drawer-apply {
+    background-color: DarkOrange;
+    border: none;
+    color: #000;
+    font-family: var(--monospace);
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0 var(--spacing-05);
+    height: 2rem;
+    cursor: pointer;
+    transition: opacity 0.15s;
+}
+.filter-drawer-apply:hover { opacity: 0.88; }
+
+/* ── Responsive ─────────────────────────────────────── */
 @media (max-width: 640px) {
     .filter-bar {
-        padding: var(--spacing-02) var(--spacing-04);
+        padding: var(--spacing-02) var(--spacing-05);
         gap: var(--spacing-02);
     }
 
@@ -159,10 +297,16 @@
     }
 
     .filter-search-wrap {
-        max-width: 120px;
+        flex: 1;
+        max-width: none;
     }
 
-    .filter-selects {
-        gap: var(--spacing-02);
+    /* Hide desktop selects, show mobile toggle */
+    .filter-selects--desktop {
+        display: none;
+    }
+
+    .filter-drawer-toggle {
+        display: inline-flex;
     }
 }

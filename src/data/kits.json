@@ -1,0 +1,58 @@
+{
+  "kits": [
+    {
+      "id": "defi-dashboard",
+      "title": "DeFi Dashboard",
+      "description": "A complete DeFi portfolio tracker showing token balances, USD values, DEX trade history, and P&L across any EVM chain.",
+      "skills": ["wallet-balances-skill", "defi-wallet-dashboard", "dex-trade-history", "wallet-pnl-tracker", "token-price-history"],
+      "chains": ["ethereum", "base", "polygon", "arbitrum", "optimism"],
+      "complexity": "Intermediate",
+      "emoji": "📊"
+    },
+    {
+      "id": "nft-portfolio-viewer",
+      "title": "NFT Portfolio Viewer",
+      "description": "Browse and value any wallet's NFT collection with floor prices, traits, sale history, and multi-chain support.",
+      "skills": ["nft-gallery-viewer", "nft-metadata-fetcher", "nft-portfolio-valuation", "nft-sale-history", "multichain-nft-gallery"],
+      "chains": ["ethereum", "base", "polygon", "solana"],
+      "complexity": "Intermediate",
+      "emoji": "🖼️"
+    },
+    {
+      "id": "ai-wallet-agent",
+      "title": "AI Wallet Agent",
+      "description": "An autonomous AI agent that monitors wallets, detects anomalies, verifies counterparties, and reports onchain activity.",
+      "skills": ["agent-wallet-skill", "agent-counterparty-verification", "agent-fleet-monitor", "realtime-wallet-stream", "onchain-activity-verifier"],
+      "chains": ["ethereum", "base", "polygon", "arbitrum"],
+      "complexity": "Advanced",
+      "emoji": "🤖"
+    },
+    {
+      "id": "token-analytics",
+      "title": "Token Analytics",
+      "description": "Deep token research tool with holder distribution, price history, whale alerts, and risk scoring.",
+      "skills": ["token-holders-snapshot", "token-price-history", "token-whale-alert", "token-risk-analyzer", "token-ohlcv-chart"],
+      "chains": ["ethereum", "base", "solana", "bsc"],
+      "complexity": "Intermediate",
+      "emoji": "🔍"
+    },
+    {
+      "id": "multichain-explorer",
+      "title": "Multichain Explorer",
+      "description": "Track any address across all chains — transactions, balances, NFTs, and activity heatmap in a single view.",
+      "skills": ["address-activity-scanner", "cross-chain-address-lookup", "multichain-portfolio", "wallet-activity-heatmap", "transaction-history"],
+      "chains": ["ethereum", "base", "polygon", "arbitrum", "optimism", "bsc", "avalanche"],
+      "complexity": "Beginner",
+      "emoji": "🌐"
+    },
+    {
+      "id": "solana-builder",
+      "title": "Solana Builder Kit",
+      "description": "Everything you need to build Solana apps — wallet balances, SPL tokens, NFTs, DEX trades, and staking data.",
+      "skills": ["solana-wallet-balances", "spl-token-metadata", "solana-dex-trade-history", "solana-nft-collection-stats", "solana-staking-snapshot"],
+      "chains": ["solana"],
+      "complexity": "Intermediate",
+      "emoji": "⚡"
+    }
+  ]
+}

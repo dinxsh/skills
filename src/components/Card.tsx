@@ -10,6 +10,8 @@ interface CardProps {
     dateAdded?: string | undefined;
     slug?: string | undefined;
     category?: string | undefined;
+    isSelected?: boolean;
+    onCartToggle?: (slug: string) => void;
 }
 
 export default function Card({
@@ -20,12 +22,14 @@ export default function Card({
     dateAdded,
     slug,
     category,
+    isSelected = false,
+    onCartToggle,
 }: CardProps) {
     const linkUrl = slug ? `/tools/${slug}` : href;
     const isNew = isRecentlyAdded(dateAdded, 30);
 
     return (
-        <li className="link-card">
+        <li className={`link-card${isSelected ? ' link-card--selected' : ''}`}>
             <a
                 href={linkUrl}
                 onClick={() => {
@@ -46,6 +50,16 @@ export default function Card({
                 <div className="card-bookmark">
                     <BookmarkButton slug={slug} title={title} variant="small" />
                 </div>
+            )}
+            {slug && onCartToggle && (
+                <button
+                    className={`card-cart-btn${isSelected ? ' card-cart-btn--active' : ''}`}
+                    onClick={(e) => { e.stopPropagation(); onCartToggle(slug); }}
+                    aria-label={isSelected ? `Remove ${title} from build` : `Add ${title} to build`}
+                    title={isSelected ? 'Remove from build' : 'Add to build'}
+                >
+                    {isSelected ? '−' : '+'}
+                </button>
             )}
         </li>
     );

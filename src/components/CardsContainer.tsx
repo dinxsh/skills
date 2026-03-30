@@ -38,6 +38,8 @@ interface CardsContainerProps {
     searchQuery?: string;
     filterNew?: boolean;
     onFilteredCountChange?: (count: number) => void;
+    selectedSlugs?: string[];
+    onCartToggle?: (slug: string) => void;
 }
 
 export default function CardsContainer({
@@ -50,6 +52,8 @@ export default function CardsContainer({
     searchQuery = '',
     filterNew = false,
     onFilteredCountChange,
+    selectedSlugs = [],
+    onCartToggle,
 }: CardsContainerProps) {
     const [displayedCount, setDisplayedCount] = useState(ITEMS_PER_PAGE);
     const [isLoading, setIsLoading] = useState(false);
@@ -256,6 +260,8 @@ export default function CardsContainer({
                         dateAdded={dateAdded}
                         slug={slug}
                         category={category}
+                        isSelected={slug ? selectedSlugs.includes(slug) : false}
+                        onCartToggle={onCartToggle}
                     />
                 ))}
             </ul>

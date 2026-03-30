@@ -49,8 +49,8 @@ try {
             // Get metadata if available
             const meta = metadataMap[tool.slug] || {};
 
-            // Create minimal metadata object
-            const toolMetadata = {
+            // Create base metadata object (always current from tools.json)
+            const baseMetadata = {
                 title: meta.title || tool.title,
                 description: meta.description || tool.body,
                 category: category.category,
@@ -60,10 +60,33 @@ try {
                 slug: tool.slug
             };
 
-            // Write to individual file
+            // Merge with existing file to preserve enrichment fields (snippet, chains, etc.)
             const outputPath = path.join(outputDir, `${tool.slug}.json`);
+            let toolMetadata: Record<string, any> = baseMetadata;
+            if (fs.existsSync(outputPath)) {
+                try {
+                    const existing = JSON.parse(fs.readFileSync(outputPath, 'utf-8'));
+                    toolMetadata = { ...existing, ...baseMetadata };
+                } catch {}
+            }
+
             const jsonContent = JSON.stringify(toolMetadata, null, 2);
-            fs.writeFileSync(outputPath, jsonContent);
+            // Retry write up to 3 times for Windows file-lock transients
+            let written = false;
+            for (let attempt = 0; attempt < 3 && !written; attempt++) {
+                try {
+                    fs.writeFileSync(outputPath, jsonContent, 'utf-8');
+                    written = true;
+                } catch (writeErr: any) {
+                    if (attempt < 2) {
+                        const waitMs = 50 * (attempt + 1);
+                        const end = Date.now() + waitMs;
+                        while (Date.now() < end) { /* spin wait */ }
+                    } else {
+                        throw writeErr;
+                    }
+                }
+            }
 
             totalFiles++;
             totalSize += jsonContent.length;

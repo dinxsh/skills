@@ -215,7 +215,7 @@ const breadcrumbs = [
   <BreadcrumbSchema items={breadcrumbs} />
   <main id="main-content">
     <div class="modal-backdrop" id="modalBackdrop">
-      <div class="modal" id="toolModal" data-fallback={fallbackPath}>
+      <div class="modal" id="toolModal" data-fallback={fallbackPath} data-skill-slug={slug} data-skill-category={category}>
 
         <!-- Header -->
         <div class="modal-header">
@@ -294,6 +294,12 @@ const breadcrumbs = [
             </div>
             <p class="prompt-hint">Paste into Claude → complete Next.js app with chain switching.</p>
             <textarea id="claudePromptText" readonly class="prompt-textarea">{claudePrompt}</textarea>
+            <div class="post-copy-steps" id="postCopySteps" style="display:none">
+              <span class="post-copy-label">Next</span>
+              <a href="https://claude.ai" target="_blank" rel="noopener noreferrer" class="post-copy-step">1 · Open Claude.ai →</a>
+              <a href="https://goldrush.dev/platform/auth/register" target="_blank" rel="noopener noreferrer" class="post-copy-step">2 · Get free API key →</a>
+              <a href="https://vercel.com/new" target="_blank" rel="noopener noreferrer" class="post-copy-step">3 · Deploy on Vercel →</a>
+            </div>
           </div>
 
           {snippet && (
@@ -421,6 +427,11 @@ const breadcrumbs = [
         navigator.clipboard.writeText(code).then(() => {
           const label = snippetBtn.querySelector(".copy-label");
           if (label) { label.textContent = "Copied!"; setTimeout(() => (label.textContent = "Copy"), 2000); }
+          if (typeof window.gtag === "function") {
+            window.gtag("event", "skill_snippet_copy", {
+              skill_slug: document.querySelector("[data-skill-slug]")?.dataset.skillSlug ?? "",
+            });
+          }
         });
       }
 
@@ -430,7 +441,17 @@ const breadcrumbs = [
         const text = promptEl ? promptEl.value : "";
         navigator.clipboard.writeText(text).then(() => {
           const label = claudeBtn.querySelector(".copy-claude-label");
-          if (label) { label.textContent = "Copied!"; setTimeout(() => (label.textContent = "Copy prompt"), 2000); }
+          if (label) { label.textContent = "Copied!"; setTimeout(() => (label.textContent = "Copy prompt"), 2500); }
+          // Show next-steps panel
+          const nextSteps = document.getElementById("postCopySteps");
+          if (nextSteps) { nextSteps.style.display = "flex"; }
+          // GA4 event
+          if (typeof window.gtag === "function") {
+            window.gtag("event", "skill_prompt_copy", {
+              skill_slug: document.querySelector("[data-skill-slug]")?.dataset.skillSlug ?? "",
+              skill_category: document.querySelector("[data-skill-category]")?.dataset.skillCategory ?? "",
+            });
+          }
         });
       }
     }
@@ -639,6 +660,32 @@ const breadcrumbs = [
       letter-spacing: 0.06em;
     }
     .prompt-hint { margin: 0; font-size: 11px; color: #484848; }
+    .post-copy-steps {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 10px;
+      background: rgba(255, 140, 0, 0.05);
+      border-top: 0.5px solid rgba(255, 140, 0, 0.15);
+      flex-wrap: wrap;
+      animation: fadeIn 0.2s ease;
+    }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .post-copy-label {
+      font-size: 10px;
+      color: #555;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .post-copy-step {
+      font-size: 11px;
+      color: DarkOrange;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: opacity 0.15s;
+    }
+    .post-copy-step:hover { opacity: 0.75; }
     .prompt-textarea {
       width: 100%;
       height: 96px;

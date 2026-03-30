@@ -142,6 +142,7 @@ const {
                 </a>
             </div>
             <div class="btn-group">
+                <a href="/kits" class="kits-link">Starter Kits</a>
                 <button
                     class="new-filter-toggle"
                     id="new-filter-toggle"
@@ -472,6 +473,24 @@ const {
         outline-offset: 2px;
     }
 
+    .kits-link {
+        display: inline-flex;
+        align-items: center;
+        padding: var(--spacing-02) var(--spacing-04);
+        border: 0.5px solid var(--border-muted);
+        background: none;
+        color: var(--content-secondary);
+        text-decoration: none;
+        font-family: var(--monospace);
+        font-size: var(--desktop-caption);
+        letter-spacing: 0.03em;
+        white-space: nowrap;
+        transition: border-color 0.15s, color 0.15s;
+    }
+    .kits-link:hover {
+        border-color: var(--border);
+        color: var(--content-primary);
+    }
     .favorites-link {
         display: inline-flex;
         align-items: center;

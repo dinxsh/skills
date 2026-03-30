@@ -1,0 +1,73 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import kitsData from "../../data/kits.json";
+---
+
+<Layout
+  site="GoldRush Skills"
+  title="Starter Kits"
+  tagline="Pre-composed skill bundles for building complete onchain apps with one Claude prompt."
+  pageTitle="Starter Kits — GoldRush Skills"
+  pageDescription="6 pre-composed GoldRush skill bundles for building complete onchain apps in one shot. DeFi dashboard, NFT portfolio, AI wallet agent, token analytics, and more."
+  canonicalUrl="https://skills.goldrush.dev/kits"
+  ogTitle="Starter Kits — GoldRush Skills"
+  ogDescription="Pre-composed skill bundles for building complete onchain apps with one Claude prompt."
+>
+  <main id="main-content" class="kits-page">
+    <div class="kits-header">
+      <a href="/" class="kits-back">← All skills</a>
+      <h1 class="kits-title">Starter Kits</h1>
+      <p class="kits-subtitle">Pre-composed bundles of 4–6 GoldRush skills. Copy one prompt, build a complete app.</p>
+    </div>
+
+    <div class="kits-grid">
+      {kitsData.kits.map(kit => (
+        <a href={`/kits/${kit.id}`} class="kit-card">
+          <div class="kit-card-top">
+            <span class="kit-card-emoji">{kit.emoji}</span>
+            <span class={`kit-card-complexity kit-card-complexity--${kit.complexity.toLowerCase()}`}>{kit.complexity}</span>
+          </div>
+          <strong class="kit-card-title">{kit.title}</strong>
+          <p class="kit-card-desc">{kit.description}</p>
+          <div class="kit-card-footer">
+            <span class="kit-card-count">{kit.skills.length} skills</span>
+            <div class="kit-card-chains">
+              {kit.chains.slice(0, 4).map(c => (
+                <span class="kit-card-chain">{c}</span>
+              ))}
+              {kit.chains.length > 4 && <span class="kit-card-chain">+{kit.chains.length - 4}</span>}
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </main>
+
+  <style>
+    .kits-page { max-width: 60rem; margin: var(--spacing-08) auto; padding: 0 var(--spacing-09); }
+    .kits-back { font-family: var(--monospace); font-size: 0.7rem; color: var(--content-secondary); text-decoration: none; }
+    .kits-back:hover { color: var(--content-primary); }
+    .kits-header { margin-bottom: var(--spacing-07); }
+    .kits-title { margin: var(--spacing-04) 0 var(--spacing-03); font-size: 1.5rem; color: var(--content-primary); }
+    .kits-subtitle { margin: 0; color: var(--content-secondary); font-size: var(--desktop-body-sm); line-height: 1.6; }
+    .kits-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr)); gap: var(--spacing-03); }
+    .kit-card { display: flex; flex-direction: column; gap: var(--spacing-03); padding: var(--spacing-06); background: var(--background); border: 0.5px solid var(--border-muted); text-decoration: none; transition: border-color 0.15s, background-color 0.15s; }
+    .kit-card:hover { border-color: var(--border); background-color: var(--background-secondary); }
+    .kit-card-top { display: flex; align-items: center; justify-content: space-between; }
+    .kit-card-emoji { font-size: 1.25rem; }
+    .kit-card-complexity { font-family: var(--monospace); font-size: 0.6rem; padding: 1px 6px; }
+    .kit-card-complexity--beginner     { background: rgba(110,224,110,.08); color: #6ee06e; }
+    .kit-card-complexity--intermediate { background: rgba(224,200,78,.08);  color: #e0c84e; }
+    .kit-card-complexity--advanced     { background: rgba(224,110,110,.08); color: #e06e6e; }
+    .kit-card-title { color: var(--content-primary); font-size: var(--desktop-body-sm); }
+    .kit-card-desc { margin: 0; color: var(--content-secondary); font-size: var(--desktop-caption); line-height: 1.5; flex: 1; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    .kit-card-footer { display: flex; align-items: center; justify-content: space-between; margin-top: auto; }
+    .kit-card-count { font-family: var(--monospace); font-size: 0.65rem; color: var(--content-secondary-alt); }
+    .kit-card-chains { display: flex; gap: 4px; flex-wrap: wrap; }
+    .kit-card-chain { font-family: var(--monospace); font-size: 0.6rem; color: var(--content-secondary-alt); padding: 0 5px; background: var(--background-secondary); border: 0.5px solid var(--border-muted); }
+    @media (max-width: 640px) {
+      .kits-page { padding: 0 var(--spacing-05); }
+      .kits-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</Layout>
