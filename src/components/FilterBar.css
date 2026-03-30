@@ -1,10 +1,12 @@
 .filter-bar-container {
     position: sticky;
     top: var(--nav-height, 48px);
-    width: 100%;
     z-index: 999999;
     background-color: var(--background-high-contrast);
     border-bottom: 0.5px solid var(--border-muted);
+    /* break out of main's horizontal margins */
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
 }
 
 .filter-bar {
