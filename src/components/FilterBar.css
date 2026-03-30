@@ -4,9 +4,9 @@
     z-index: 999999;
     background-color: var(--background-high-contrast);
     border-bottom: 0.5px solid var(--border-muted);
-    /* break out of main's horizontal margins + cancel its top margin */
-    width: 100vw;
-    margin-left: calc(50% - 50vw);
+    /* break out of main's horizontal margins without scrollbar-width skew */
+    width: calc(100% + 2 * var(--spacing-09));
+    margin-left: calc(-1 * var(--spacing-09));
     margin-top: calc(-1 * var(--spacing-07));
 }
 
@@ -288,7 +288,7 @@
 /* ── Responsive ─────────────────────────────────────── */
 @media (max-width: 640px) {
     .filter-bar {
-        padding: var(--spacing-02) var(--spacing-05);
+        padding: var(--spacing-02) var(--spacing-09);
         gap: var(--spacing-02);
     }
 
@@ -308,5 +308,16 @@
 
     .filter-drawer-toggle {
         display: inline-flex;
+    }
+}
+
+@media (max-width: 30rem) {
+    .filter-bar-container {
+        width: calc(100% + 2 * var(--spacing-06));
+        margin-left: calc(-1 * var(--spacing-06));
+    }
+
+    .filter-bar {
+        padding: var(--spacing-02) var(--spacing-06);
     }
 }
