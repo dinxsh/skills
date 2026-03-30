@@ -215,7 +215,7 @@ const {
         font-display: swap;
     }
     :root {
-        --nav-height: 48px; /* floating-nav height: 8px padding × 2 + 32px logo */
+        --nav-height: 34px; /* 5px padding × 2 + 24px (1.5rem) content */
         --accent: var(--link);
         --body-copy: "ROM-Regular", var(--system-ui);
         --monospace: "ROM-Mono", var(--monospace-code);
@@ -330,7 +330,7 @@ const {
     .floating-nav {
         position: sticky;
         top: 0;
-        padding: var(--spacing-03) var(--spacing-09);
+        padding: 5px var(--spacing-09);
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -339,7 +339,6 @@ const {
         background-color: var(--background-high-contrast);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
-        border-bottom: 0.5px solid var(--border-muted);
     }
     .btn-group {
         display: flex;
@@ -348,20 +347,22 @@ const {
         justify-content: flex-end;
     }
     .submit-btn {
-        padding: var(--spacing-02) var(--spacing-05);
+        padding: 0 var(--spacing-04);
+        height: 1.5rem;
         border: none;
         outline: none;
         text-decoration: none;
         background-color: DarkOrange;
         color: #000;
         border-radius: var(--spacing-00);
-        font-size: var(--desktop-body-sm);
+        font-size: 0.7rem;
         font-family: var(--monospace);
         font-weight: 600;
-        line-height: var(--lh-desktop-body-sm);
-        letter-spacing: 0.01em;
+        letter-spacing: 0.02em;
         transition: opacity 0.15s ease, transform 0.15s ease;
         white-space: nowrap;
+        display: inline-flex;
+        align-items: center;
 
         &:hover {
             opacity: 0.88;
@@ -398,7 +399,7 @@ const {
 
     .logo-text {
         font-family: var(--monospace);
-        font-size: var(--desktop-body-sm);
+        font-size: 0.75rem;
         font-weight: 600;
         color: var(--content-primary);
         letter-spacing: 0.02em;
@@ -413,7 +414,8 @@ const {
         z-index: 999;
         background: none;
         border: 0.5px solid var(--border-muted);
-        padding: var(--spacing-01) var(--spacing-03);
+        padding: 0 var(--spacing-03);
+        height: 1.5rem;
         cursor: var(--c-pointer);
         touch-action: manipulation;
         -webkit-tap-highlight-color: transparent;
@@ -437,7 +439,7 @@ const {
 
     .new-label {
         font-family: var(--monospace);
-        font-size: var(--desktop-caption);
+        font-size: 0.65rem;
         color: var(--content-secondary-alt);
         opacity: 0.6;
         letter-spacing: 0.04em;
@@ -476,13 +478,14 @@ const {
     .kits-link {
         display: inline-flex;
         align-items: center;
-        padding: var(--spacing-02) var(--spacing-04);
+        padding: 0 var(--spacing-04);
+        height: 1.5rem;
         border: 0.5px solid var(--border-muted);
         background: none;
         color: var(--content-secondary);
         text-decoration: none;
         font-family: var(--monospace);
-        font-size: var(--desktop-caption);
+        font-size: 0.65rem;
         letter-spacing: 0.03em;
         white-space: nowrap;
         transition: border-color 0.15s, color 0.15s;
@@ -495,15 +498,18 @@ const {
         display: inline-flex;
         align-items: center;
         gap: var(--spacing-02);
-        padding: var(--spacing-02) var(--spacing-05);
+        padding: 0 var(--spacing-04);
+        height: 1.5rem;
         border: 0.5px solid var(--border-muted);
         background-color: var(--background);
         color: var(--content-secondary);
         text-decoration: none;
-        font-size: var(--desktop-body-sm);
-        line-height: var(--lh-desktop-body-sm);
+        font-family: var(--monospace);
+        font-size: 0.65rem;
+        letter-spacing: 0.03em;
         border-radius: var(--spacing-00);
         outline: none;
+        white-space: nowrap;
         transition: transform 0.2s ease;
     }
 
@@ -534,7 +540,7 @@ const {
 
     @media (max-width: 48rem) {
         .floating-nav {
-            padding: var(--spacing-03) var(--spacing-06);
+            padding: 5px var(--spacing-06);
         }
         .favorites-text {
             display: none;
@@ -618,7 +624,7 @@ const {
             margin: auto var(--spacing-06);
         }
         .floating-nav {
-            padding: var(--spacing-04) var(--spacing-06);
+            padding: 5px var(--spacing-06);
         }
         .container {
             margin: var(--spacing-06);

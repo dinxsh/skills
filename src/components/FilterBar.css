@@ -1,8 +1,9 @@
 .filter-bar-container {
     position: sticky;
-    top: var(--nav-height, 48px);
+    top: var(--nav-height, 34px);
     z-index: 999999;
     background-color: var(--background-high-contrast);
+    border-top: 0.5px solid var(--border-muted);
     border-bottom: 0.5px solid var(--border-muted);
     /* break out of main's horizontal margins without scrollbar-width skew */
     width: calc(100% + 2 * var(--spacing-09));
