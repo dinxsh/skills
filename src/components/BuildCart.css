@@ -120,12 +120,12 @@
 .build-modal-backdrop {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.75);
     z-index: 9999999;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: var(--spacing-06);
+    padding: var(--spacing-05);
     animation: fadeIn 0.15s ease;
 }
 
@@ -138,8 +138,8 @@
     background-color: var(--background-high-contrast);
     border: 0.5px solid var(--border);
     width: 100%;
-    max-width: 52rem;
-    max-height: 90vh;
+    max-width: 80rem;
+    height: 92vh;
     display: flex;
     flex-direction: column;
     animation: modalIn 0.2s ease;
