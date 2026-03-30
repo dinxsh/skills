@@ -5,5 +5,35 @@
   "url": "https://goldrush.dev",
   "tag": "Free Tier",
   "date-added": "2026-03-26",
-  "slug": "solana-wallet-age-activity"
+  "slug": "solana-wallet-age-activity",
+  "useCase": "Build a Solana wallet age and activity scorer for sybil detection, airdrop eligibility checks, and onchain identity badges using first transaction date and lifetime interaction data.",
+  "complexity": "Beginner",
+  "chains": [
+    "solana"
+  ],
+  "creditCost": "1 credit/call",
+  "endpoints": [
+    "GET /v1/solana-mainnet/address/{address}/transactions_v3/"
+  ],
+  "keyParams": {
+    "address": "The Solana wallet address to analyze for age and activity signals",
+    "page_size": "Use 1 with ascending sort to find the first-ever transaction efficiently",
+    "block_signed_at_asc": "Set to true to retrieve the oldest transaction for wallet age calculation"
+  },
+  "responseFields": [
+    "items[].tx_hash",
+    "items[].block_signed_at",
+    "items[].successful",
+    "items[].from_address",
+    "items[].log_events[].sender_name",
+    "pagination.total_count",
+    "pagination.page_number"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\ninterface WalletAgeActivity {\n  walletAddress: string;\n  firstTxDate: string;\n  walletAgeMonths: number;\n  totalTxCount: number;\n  daysSinceLastActivity: number;\n  topPrograms: Array<{ name: string; count: number }>;\n  activityScore: number;\n}\n\nasync function getWalletAgeActivity(walletAddress: string): Promise<WalletAgeActivity | null> {\n  const client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\n  const [recentResp, oldestResp] = await Promise.all([\n    client.TransactionService.getTransactionsForAddressV3('solana-mainnet', walletAddress, { pageSize: 100 }),\n    client.TransactionService.getTransactionsForAddressV3('solana-mainnet', walletAddress, { pageSize: 1 }),\n  ]);\n\n  if (recentResp.error) {\n    console.error('GoldRush error:', recentResp.error_message);\n    return null;\n  }\n\n  const recentTxs = recentResp.data?.items ?? [];\n  const totalTxCount = recentResp.data?.pagination?.total_count ?? recentTxs.length;\n  const newestTx = recentTxs[0];\n  const oldestTx = oldestResp.data?.items?.[0];\n\n  const firstTxDate = oldestTx?.block_signed_at ?? newestTx?.block_signed_at ?? '';\n  const walletAgeMonths = firstTxDate\n    ? Math.floor((Date.now() - new Date(firstTxDate).getTime()) / (30 * 24 * 3600 * 1000))\n    : 0;\n\n  const lastActivityDate = newestTx?.block_signed_at ?? '';\n  const daysSinceLastActivity = lastActivityDate\n    ? Math.floor((Date.now() - new Date(lastActivityDate).getTime()) / 86_400_000)\n    : 999;\n\n  const programCounts = new Map<string, number>();\n  for (const tx of recentTxs) {\n    const prog = tx.log_events?.[0]?.sender_name ?? 'System';\n    programCounts.set(prog, (programCounts.get(prog) ?? 0) + 1);\n  }\n  const topPrograms = Array.from(programCounts.entries())\n    .sort((a, b) => b[1] - a[1])\n    .slice(0, 5)\n    .map(([name, count]) => ({ name, count }));\n\n  const activityScore = Math.min(\n    Math.round(walletAgeMonths * 5 + Math.log10(Math.max(totalTxCount, 1)) * 20 + (daysSinceLastActivity < 30 ? 10 : 0)),\n    100\n  );\n\n  return { walletAddress, firstTxDate, walletAgeMonths, totalTxCount, daysSinceLastActivity, topPrograms, activityScore };\n}\n\n// Usage\ngetWalletAgeActivity('7Np41oeYqPefeAfUZx9j5yCLrMQZMDyApbJAKhgQFMRm').then((data) => {\n  if (data) {\n    console.log(`Age: ${data.walletAgeMonths} months | Txs: ${data.totalTxCount} | Score: ${data.activityScore}/100`);\n    data.topPrograms.forEach((p) => console.log(`  ${p.name}: ${p.count} calls`));\n  }\n});",
+  "buildsWith": [
+    "solana-transaction-history",
+    "solana-wallet-balances",
+    "wallet-age-summary",
+    "onchain-activity-verifier"
+  ]
 }

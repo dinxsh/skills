@@ -5,5 +5,43 @@
   "url": "https://goldrush.dev",
   "tag": "API Key Required",
   "date-added": "2026-03-23",
-  "slug": "token-launch-screener"
+  "slug": "token-launch-screener",
+  "complexity": "Intermediate",
+  "useCase": "Build a live token launch feed that surfaces new pairs the moment they are created on any DEX, filtered by minimum liquidity threshold and sorted by chain.",
+  "chains": [
+    "ethereum",
+    "base",
+    "bsc",
+    "polygon",
+    "arbitrum",
+    "optimism",
+    "avalanche",
+    "sonic"
+  ],
+  "creditCost": "Streaming subscription",
+  "endpoints": [
+    "wss://streaming.goldrushdata.com/graphql — newPairs subscription",
+    "wss://streaming.goldrushdata.com/graphql — ohlcvCandlesForToken subscription"
+  ],
+  "keyParams": {
+    "minLiquidityUsd": "Minimum USD liquidity threshold to surface a new pair",
+    "chainName": "Optional chain filter — e.g. 'base-mainnet'. Omit for all chains",
+    "pairToken": "Optional base pair token filter — e.g. 'USDC' or 'WETH'"
+  },
+  "responseFields": [
+    "pairAddress",
+    "token0.symbol",
+    "token0.address",
+    "token1.symbol",
+    "token1.address",
+    "chainName",
+    "createdAt",
+    "liquidityUsd"
+  ],
+  "snippet": "import { createClient } from 'graphql-ws';\n\nconst wsClient = createClient({\n  url: 'wss://streaming.goldrushdata.com/graphql',\n  connectionParams: { apiKey: process.env.GOLDRUSH_API_KEY },\n});\n\ninterface NewPair {\n  pairAddress: string; chainName: string; createdAt: string;\n  liquidityUsd: number;\n  token0: { symbol: string; address: string };\n  token1: { symbol: string; address: string };\n}\n\nfunction subscribeToNewLaunches(\n  minLiquidityUsd: number,\n  chainFilter?: string,\n  onNewPair?: (pair: NewPair) => void\n) {\n  const recentLaunches: NewPair[] = [];\n\n  wsClient.subscribe(\n    {\n      query: `subscription NewPairs {\n        newPairs {\n          pairAddress chainName createdAt liquidityUsd\n          token0 { symbol address }\n          token1 { symbol address }\n        }\n      }`,\n    },\n    {\n      next: ({ data }: any) => {\n        const pair: NewPair = data?.newPairs;\n        if (!pair) return;\n        if (pair.liquidityUsd < minLiquidityUsd) return;\n        if (chainFilter && pair.chainName !== chainFilter) return;\n        recentLaunches.unshift(pair);\n        if (recentLaunches.length > 500) recentLaunches.pop();\n        onNewPair?.(pair);\n      },\n      error: (err) => console.error('Stream error:', err),\n      complete: () => console.log('Stream closed'),\n    }\n  );\n\n  return recentLaunches;\n}",
+  "buildsWith": [
+    "live-dex-pair-stream",
+    "token-ohlcv-chart",
+    "dex-trade-history"
+  ]
 }

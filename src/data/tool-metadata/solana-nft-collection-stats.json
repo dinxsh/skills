@@ -5,5 +5,39 @@
   "url": "https://goldrush.dev",
   "tag": "API Key Required",
   "date-added": "2026-03-26",
-  "slug": "solana-nft-collection-stats"
+  "slug": "solana-nft-collection-stats",
+  "useCase": "Build a Solana NFT collection monitor that tracks floor price, 24h volume, and holder concentration and fires alerts when key thresholds are crossed.",
+  "complexity": "Intermediate",
+  "chains": [
+    "solana"
+  ],
+  "creditCost": "1 credit/call",
+  "endpoints": [
+    "GET /v1/solana-mainnet/tokens/{tokenAddress}/token_holders_v2/",
+    "GET /v1/solana-mainnet/address/{address}/nfts/"
+  ],
+  "keyParams": {
+    "tokenAddress": "The collection mint address or verified collection address to fetch stats for",
+    "address": "Wallet address to check for NFTs from this collection",
+    "page_size": "Number of top holders to return for concentration analysis",
+    "no_spam": "Filter out spam NFT collections from holder queries"
+  },
+  "responseFields": [
+    "items[].address",
+    "items[].balance",
+    "items[].total_supply",
+    "items[].contract_name",
+    "items[].contract_address",
+    "pagination.total_count",
+    "items[].nft_data[].token_id",
+    "items[].floor_price_quote",
+    "items[].contract_ticker_symbol"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\ninterface NFTCollectionStats {\n  collectionAddress: string;\n  collectionName: string;\n  totalHolders: number;\n  totalSupply: number;\n  floorPriceUsd: number | null;\n  top5Holders: Array<{ wallet: string; itemCount: number }>;\n  holderConcentrationPct: number;\n}\n\nasync function getNFTCollectionStats(\n  collectionAddress: string\n): Promise<NFTCollectionStats | null> {\n  const client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\n  const holdersResp = await client.BaseService.getTokenHoldersV2(\n    'solana-mainnet',\n    collectionAddress,\n    { pageSize: 10 }\n  );\n\n  if (holdersResp.error) {\n    console.error('GoldRush error:', holdersResp.error_message);\n    return null;\n  }\n\n  const holders = holdersResp.data?.items ?? [];\n  const totalHolders = holdersResp.data?.pagination?.total_count ?? 0;\n  const totalSupply = Number(holders[0]?.total_supply ?? 0);\n\n  const top5Holders = holders.slice(0, 5).map((h) => ({\n    wallet: h.address ?? '',\n    itemCount: Number(h.balance ?? 0),\n  }));\n\n  const top5Balance = top5Holders.reduce((sum, h) => sum + h.itemCount, 0);\n  const holderConcentrationPct =\n    totalSupply > 0 ? parseFloat(((top5Balance / totalSupply) * 100).toFixed(2)) : 0;\n\n  return {\n    collectionAddress,\n    collectionName: holders[0]?.contract_name ?? 'Unknown Collection',\n    totalHolders,\n    totalSupply,\n    floorPriceUsd: null,\n    top5Holders,\n    holderConcentrationPct,\n  };\n}\n\n// Usage\ngetNFTCollectionStats('J1S9H3QjnRtBbbuD4HjPV6RpRhwuk4zKbxsnCHuTgh9w').then((stats) => {\n  if (stats) {\n    console.log(`${stats.collectionName}: ${stats.totalHolders} holders`);\n    console.log(`Top 5 control ${stats.holderConcentrationPct}% of supply`);\n  }\n});",
+  "buildsWith": [
+    "metaplex-nft-portfolio",
+    "compressed-nft-scanner",
+    "token-holder-list",
+    "nft-metadata-fetcher"
+  ]
 }

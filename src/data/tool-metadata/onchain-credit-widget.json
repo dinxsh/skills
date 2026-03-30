@@ -5,5 +5,42 @@
   "url": "https://goldrush.dev",
   "tag": "Free Tier",
   "date-added": "2026-03-23",
-  "slug": "onchain-credit-widget"
+  "slug": "onchain-credit-widget",
+  "complexity": "Intermediate",
+  "useCase": "Build an embeddable onchain credit score component that lenders, DAOs, and apps can drop in to gate access based on wallet reputation — score computed from age, tx count, chains, net worth, and risky approvals.",
+  "chains": [
+    "ethereum",
+    "base",
+    "bsc",
+    "polygon",
+    "optimism",
+    "arbitrum"
+  ],
+  "creditCost": "~4 credits/score",
+  "endpoints": [
+    "GET /v1/{chainName}/address/{walletAddress}/transactions_summary/",
+    "GET /v1/address/{walletAddress}/activity/",
+    "GET /v1/{chainName}/address/{walletAddress}/balances_v2/",
+    "GET /v1/{chainName}/address/{walletAddress}/approvals/"
+  ],
+  "keyParams": {
+    "walletAddress": "0x wallet address to score",
+    "chainName": "Primary EVM chain for balance and approval data"
+  },
+  "responseFields": [
+    "score",
+    "grade",
+    "breakdown.walletAge",
+    "breakdown.activity",
+    "breakdown.diversity",
+    "breakdown.wealth",
+    "breakdown.safety"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nfunction getGrade(score: number): string {\n  if (score >= 750) return 'A+';\n  if (score >= 650) return 'A';\n  if (score >= 550) return 'B';\n  if (score >= 450) return 'C';\n  if (score >= 300) return 'D';\n  return 'F';\n}\n\nasync function computeOnchainCreditScore(walletAddress: string, chainName: string) {\n  const [summaryResp, activityResp, balResp, approvalsResp] = await Promise.all([\n    client.TransactionService.getTransactionSummary(chainName, walletAddress),\n    client.BaseService.getAddressActivity(walletAddress),\n    client.BalanceService.getTokenBalancesForWalletAddress(chainName, walletAddress),\n    client.SecurityService.getApprovals(chainName, walletAddress),\n  ]);\n\n  const summary = summaryResp.data?.items?.[0];\n  const firstTxDate = summary?.earliest_transaction?.block_signed_at;\n  const ageDays = firstTxDate\n    ? Math.floor((Date.now() - new Date(firstTxDate).getTime()) / 86_400_000) : 0;\n  const txCount = summary?.total_count ?? 0;\n  const chainCount = (activityResp.data?.items ?? []).filter(c => !c.is_testnet).length;\n  const tokens = (balResp.data?.items ?? []).filter(t => !t.is_spam);\n  const netWorth = tokens.reduce((s, t) => s + (t.quote ?? 0), 0);\n  const riskyApprovals = (approvalsResp.data?.items ?? [])\n    .filter(a => (a.risk_factor ?? 0) >= 2).length;\n\n  // Score components (each max 200 pts)\n  const walletAgeScore = Math.min(200, Math.floor(ageDays / 3));\n  const activityScore = Math.min(200, Math.floor(Math.log2(txCount + 1) * 25));\n  const diversityScore = Math.min(200, chainCount * 25);\n  const wealthScore = Math.min(200, Math.floor(Math.log10(netWorth + 1) * 40));\n  const safetyScore = Math.max(0, 200 - riskyApprovals * 20);\n\n  const score = walletAgeScore + activityScore + diversityScore + wealthScore + safetyScore;\n\n  return {\n    score,\n    grade: getGrade(score),\n    breakdown: { walletAge: walletAgeScore, activity: activityScore,\n      diversity: diversityScore, wealth: wealthScore, safety: safetyScore },\n    meta: { ageDays, txCount, chainCount, netWorth, riskyApprovals },\n  };\n}",
+  "buildsWith": [
+    "wallet-age-summary",
+    "onchain-activity-verifier",
+    "approval-auditor",
+    "wallet-balances-skill"
+  ]
 }

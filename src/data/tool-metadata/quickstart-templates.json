@@ -5,5 +5,42 @@
   "url": "https://goldrush.dev",
   "tag": "Open Source",
   "date-added": "2026-03-12",
-  "slug": "quickstart-templates"
+  "slug": "quickstart-templates",
+  "complexity": "Beginner",
+  "useCase": "Clone a production-ready Next.js starter that ships with GoldRush Kit components, Tailwind styling, and TypeScript — skip boilerplate and start building your dApp immediately.",
+  "chains": [
+    "ethereum",
+    "base",
+    "polygon",
+    "bsc",
+    "optimism",
+    "arbitrum",
+    "avalanche",
+    "gnosis",
+    "fantom",
+    "celo",
+    "moonbeam",
+    "blast",
+    "linea",
+    "scroll",
+    "zkSync",
+    "mantle",
+    "sonic",
+    "unichain",
+    "sei"
+  ],
+  "creditCost": "Free",
+  "endpoints": [
+    "https://github.com/covalenthq/goldrush-kit"
+  ],
+  "keyParams": {
+    "NEXT_PUBLIC_GOLDRUSH_API_KEY": "GoldRush API key added to .env.local"
+  },
+  "responseFields": [],
+  "snippet": "# Clone and run in 3 commands:\n# git clone https://github.com/covalenthq/goldrush-kit\n# cd goldrush-kit && npm install\n# NEXT_PUBLIC_GOLDRUSH_API_KEY=your_key npm run dev\n\n// Or scaffold from scratch:\nimport { GoldRushProvider, TokenBalancesListView } from '@covalenthq/goldrush-kit';\nimport '@covalenthq/goldrush-kit/styles.css';\n\nexport default function WalletPage({ params }: { params: { address: string } }) {\n  return (\n    <GoldRushProvider apikey={process.env.NEXT_PUBLIC_GOLDRUSH_API_KEY!}>\n      <TokenBalancesListView\n        address={params.address}\n        chain_names={['eth-mainnet', 'base-mainnet', 'matic-mainnet']}\n      />\n    </GoldRushProvider>\n  );\n}",
+  "buildsWith": [
+    "goldrush-typescript-sdk",
+    "goldrush-kit-token-balances",
+    "goldrush-playground"
+  ]
 }

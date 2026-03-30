@@ -5,5 +5,38 @@
   "url": "https://goldrush.dev",
   "tag": "API Key Required",
   "date-added": "2026-03-26",
-  "slug": "pumpfun-token-scanner"
+  "slug": "pumpfun-token-scanner",
+  "useCase": "Build a real-time pump.fun launch tracker that monitors bonding curve progress and fires an alert the moment a token graduates to Raydium with initial liquidity.",
+  "complexity": "Advanced",
+  "chains": [
+    "solana"
+  ],
+  "creditCost": "2 credits/call",
+  "endpoints": [
+    "GET /v1/solana-mainnet/address/{address}/transactions_v3/",
+    "GET /v1/solana-mainnet/tokens/{tokenAddress}/token_holders_v2/"
+  ],
+  "keyParams": {
+    "address": "The pump.fun bonding curve program address or token mint address",
+    "tokenAddress": "SPL token mint address of the pump.fun token to scan",
+    "page_size": "Number of transactions to analyze per page (max 100)",
+    "block_signed_at_asc": "Sort ascending to track bonding curve progression chronologically"
+  },
+  "responseFields": [
+    "items[].tx_hash",
+    "items[].block_signed_at",
+    "items[].successful",
+    "items[].from_address",
+    "items[].fees_paid",
+    "items[].log_events[].decoded.name",
+    "items[].log_events[].decoded.params[].name",
+    "items[].log_events[].decoded.params[].value"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\ninterface PumpFunTokenState {\n  mintAddress: string;\n  estimatedMarketCapUsd: number;\n  estimatedSolInCurve: number;\n  graduationProgressPct: number;\n  top10Buyers: Array<{ wallet: string; txCount: number }>;\n  graduated: boolean;\n  lastChecked: string;\n}\n\nconst GRADUATION_THRESHOLD_USD = 69_000;\nconst SOL_PRICE_USD = 150;\n\nasync function scanPumpFunToken(mintAddress: string): Promise<PumpFunTokenState | null> {\n  const client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\n  const txResp = await client.TransactionService.getTransactionsForAddressV3(\n    'solana-mainnet',\n    mintAddress,\n    { pageSize: 100 }\n  );\n\n  if (txResp.error) {\n    console.error('GoldRush error:', txResp.error_message);\n    return null;\n  }\n\n  const txs = txResp.data?.items ?? [];\n  const buyerMap = new Map<string, number>();\n\n  for (const tx of txs) {\n    if (!tx.successful || !tx.from_address) continue;\n    buyerMap.set(tx.from_address, (buyerMap.get(tx.from_address) ?? 0) + 1);\n  }\n\n  const top10Buyers = Array.from(buyerMap.entries())\n    .sort((a, b) => b[1] - a[1])\n    .slice(0, 10)\n    .map(([wallet, txCount]) => ({ wallet, txCount }));\n\n  const estimatedSolInCurve = txs.length * 0.1;\n  const estimatedMarketCapUsd = estimatedSolInCurve * SOL_PRICE_USD;\n  const graduationProgressPct = Math.min(\n    (estimatedMarketCapUsd / GRADUATION_THRESHOLD_USD) * 100,\n    100\n  );\n\n  return {\n    mintAddress,\n    estimatedMarketCapUsd: parseFloat(estimatedMarketCapUsd.toFixed(2)),\n    estimatedSolInCurve: parseFloat(estimatedSolInCurve.toFixed(4)),\n    graduationProgressPct: parseFloat(graduationProgressPct.toFixed(2)),\n    top10Buyers,\n    graduated: graduationProgressPct >= 100,\n    lastChecked: new Date().toISOString(),\n  };\n}\n\n// Usage\nscanPumpFunToken('DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263').then((state) => {\n  if (state) console.log(JSON.stringify(state, null, 2));\n});",
+  "buildsWith": [
+    "solana-agent-token-launch-detector",
+    "solana-token-risk-scorer",
+    "solana-token-holders-snapshot",
+    "solana-token-whale-alert"
+  ]
 }

@@ -5,5 +5,40 @@
   "url": "https://goldrush.dev",
   "tag": "Free Tier",
   "date-added": "2026-03-23",
-  "slug": "gas-price-widget"
+  "slug": "gas-price-widget",
+  "complexity": "Beginner",
+  "useCase": "Build a reusable gas price component that shows open/fast/instant gas tiers with estimated USD fees for an ETH transfer and ERC-20 transfer — refreshes every 15 seconds.",
+  "chains": [
+    "ethereum",
+    "base",
+    "bsc",
+    "polygon",
+    "optimism",
+    "arbitrum",
+    "avalanche",
+    "gnosis"
+  ],
+  "creditCost": "1 credit/call",
+  "endpoints": [
+    "GET /v1/{chainName}/event/gas_prices/?event-type={eventType}"
+  ],
+  "keyParams": {
+    "chainName": "EVM chain to fetch gas prices for",
+    "eventType": "Transaction type for fee estimation — 'erc20' or 'uniswapv3'"
+  },
+  "responseFields": [
+    "items[].base_fee",
+    "items[].open.gas_price",
+    "items[].open.fee_usd",
+    "items[].fast.gas_price",
+    "items[].fast.fee_usd",
+    "items[].instant.gas_price",
+    "items[].instant.fee_usd"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\nimport { useState, useEffect } from 'react';\n\nconst client = new GoldRushClient(process.env.NEXT_PUBLIC_GOLDRUSH_API_KEY!);\n\ninterface GasTiers {\n  baseFee: string;\n  open: { gasPrice: string; feeUsd: number };\n  fast: { gasPrice: string; feeUsd: number };\n  instant: { gasPrice: string; feeUsd: number };\n}\n\nasync function fetchGasPrices(chainName: string, eventType = 'erc20'): Promise<GasTiers | null> {\n  const resp = await client.BaseService.getGasPrices(chainName, eventType);\n  const item = resp.data?.items?.[0];\n  if (!item) return null;\n  return {\n    baseFee: item.base_fee?.toString() ?? '0',\n    open: { gasPrice: item.open?.gas_price?.toString() ?? '0', feeUsd: item.open?.fee_usd ?? 0 },\n    fast: { gasPrice: item.fast?.gas_price?.toString() ?? '0', feeUsd: item.fast?.fee_usd ?? 0 },\n    instant: { gasPrice: item.instant?.gas_price?.toString() ?? '0', feeUsd: item.instant?.fee_usd ?? 0 },\n  };\n}\n\n// React hook version — auto-refreshes every 15 seconds\nexport function useGasPrice(chainName: string, eventType = 'erc20') {\n  const [gas, setGas] = useState<GasTiers | null>(null);\n  const [loading, setLoading] = useState(true);\n\n  useEffect(() => {\n    let cancelled = false;\n    async function load() {\n      setLoading(true);\n      const data = await fetchGasPrices(chainName, eventType).catch(() => null);\n      if (!cancelled) { setGas(data); setLoading(false); }\n    }\n    load();\n    const interval = setInterval(load, 15_000);\n    return () => { cancelled = true; clearInterval(interval); };\n  }, [chainName, eventType]);\n\n  return { gas, loading };\n}",
+  "buildsWith": [
+    "block-explorer-lite",
+    "block-explorer-toolkit",
+    "all-chains-status"
+  ]
 }

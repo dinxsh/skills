@@ -5,5 +5,39 @@
   "url": "https://goldrush.dev",
   "tag": "Free Tier",
   "date-added": "2026-03-26",
-  "slug": "metaplex-nft-portfolio"
+  "slug": "metaplex-nft-portfolio",
+  "useCase": "Build a full Solana NFT gallery and valuation dashboard that displays all Metaplex NFTs, pNFTs, and print editions held by a wallet with their traits and estimated USD floor value.",
+  "complexity": "Beginner",
+  "chains": [
+    "solana"
+  ],
+  "creditCost": "1 credit/call",
+  "endpoints": [
+    "GET /v1/solana-mainnet/address/{address}/nfts/"
+  ],
+  "keyParams": {
+    "address": "Solana wallet address to fetch the NFT portfolio for",
+    "no_spam": "Set to true to filter spam or airdrop NFTs (recommended)",
+    "page": "Page index for pagination through large portfolios",
+    "page_size": "Number of NFT collection groups per page (max 100)"
+  },
+  "responseFields": [
+    "items[].contract_name",
+    "items[].contract_address",
+    "items[].contract_ticker_symbol",
+    "items[].floor_price_quote",
+    "items[].nft_data[].token_id",
+    "items[].nft_data[].token_url",
+    "items[].nft_data[].external_data.name",
+    "items[].nft_data[].external_data.image",
+    "items[].nft_data[].external_data.description",
+    "items[].nft_data[].external_data.attributes"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\ninterface NFTAsset {\n  tokenId: string;\n  name: string;\n  imageUrl: string;\n  description: string;\n  collectionName: string;\n  collectionAddress: string;\n  attributes: Array<{ trait_type: string; value: string }>;\n  floorPriceUsd: number | null;\n}\n\nasync function getMetaplexNFTPortfolio(walletAddress: string): Promise<NFTAsset[]> {\n  const client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\n  const resp = await client.NftService.getNftsForAddress(\n    'solana-mainnet',\n    walletAddress,\n    { noSpam: true }\n  );\n\n  if (resp.error) {\n    console.error('GoldRush error:', resp.error_message);\n    return [];\n  }\n\n  const collections = resp.data?.items ?? [];\n  const assets: NFTAsset[] = [];\n\n  for (const collection of collections) {\n    for (const nft of collection.nft_data ?? []) {\n      assets.push({\n        tokenId: nft.token_id ?? '',\n        name: nft.external_data?.name ?? collection.contract_name ?? 'Unknown NFT',\n        imageUrl: nft.external_data?.image ?? '',\n        description: (nft.external_data?.description as string) ?? '',\n        collectionName: collection.contract_name ?? '',\n        collectionAddress: collection.contract_address ?? '',\n        attributes:\n          (nft.external_data?.attributes as Array<{ trait_type: string; value: string }>) ?? [],\n        floorPriceUsd: collection.floor_price_quote ?? null,\n      });\n    }\n  }\n\n  console.log(`Loaded ${assets.length} NFTs across ${collections.length} collections`);\n  return assets;\n}\n\n// Usage\ngetMetaplexNFTPortfolio('7Np41oeYqPefeAfUZx9j5yCLrMQZMDyApbJAKhgQFMRm').then((nfts) => {\n  nfts.slice(0, 5).forEach((n) =>\n    console.log(`${n.name} | ${n.collectionName} | Floor: $${n.floorPriceUsd ?? 'N/A'}`)\n  );\n});",
+  "buildsWith": [
+    "compressed-nft-scanner",
+    "solana-nft-collection-stats",
+    "nft-metadata-fetcher",
+    "solana-wallet-balances"
+  ]
 }

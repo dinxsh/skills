@@ -5,5 +5,42 @@
   "url": "https://goldrush.dev",
   "tag": "Free Tier",
   "date-added": "2026-03-26",
-  "slug": "solana-agent-portfolio-snapshot"
+  "slug": "solana-agent-portfolio-snapshot",
+  "useCase": "Load a full Solana wallet snapshot — every SPL token, native SOL, staking positions, and total USD net worth — into an AI agent's context before any DeFi decision.",
+  "complexity": "Beginner",
+  "chains": [
+    "solana"
+  ],
+  "creditCost": "1 credit/call",
+  "endpoints": [
+    "GET /v1/solana-mainnet/address/{address}/balances_v2/"
+  ],
+  "keyParams": {
+    "address": "The Solana wallet address to snapshot",
+    "nft": "Set to false to exclude NFTs and return only fungible token holdings",
+    "no_spam": "Set to true to filter out spam tokens from the response"
+  },
+  "responseFields": [
+    "address",
+    "updated_at",
+    "next_update_at",
+    "quote_currency",
+    "chain_id",
+    "chain_name",
+    "items[].contract_decimals",
+    "items[].contract_name",
+    "items[].contract_ticker_symbol",
+    "items[].contract_address",
+    "items[].logo_url",
+    "items[].balance",
+    "items[].quote_rate",
+    "items[].quote"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\ninterface AgentPortfolioSnapshot {\n  walletAddress: string;\n  totalNetWorthUsd: number;\n  solBalanceUsd: number;\n  tokenCount: number;\n  topHoldings: Array<{\n    symbol: string;\n    balanceFormatted: number;\n    valueUsd: number;\n  }>;\n  snapshotAt: string;\n}\n\nasync function getAgentPortfolioSnapshot(\n  walletAddress: string\n): Promise<AgentPortfolioSnapshot | null> {\n  const client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\n  const resp = await client.BalanceService.getTokenBalancesForWalletAddress(\n    'solana-mainnet',\n    walletAddress,\n    { nft: false, noSpam: true }\n  );\n\n  if (resp.error) {\n    console.error('GoldRush error:', resp.error_message);\n    return null;\n  }\n\n  const items = resp.data?.items ?? [];\n  const totalNetWorthUsd = items.reduce((sum, t) => sum + Number(t.quote ?? 0), 0);\n\n  const solToken = items.find(\n    (t) => t.contract_address === 'So11111111111111111111111111111111111111112'\n  );\n\n  const topHoldings = items\n    .sort((a, b) => Number(b.quote ?? 0) - Number(a.quote ?? 0))\n    .slice(0, 5)\n    .map((t) => ({\n      symbol: t.contract_ticker_symbol ?? '',\n      balanceFormatted: Number(t.balance ?? 0) / Math.pow(10, t.contract_decimals ?? 0),\n      valueUsd: Number(t.quote ?? 0),\n    }));\n\n  return {\n    walletAddress,\n    totalNetWorthUsd: parseFloat(totalNetWorthUsd.toFixed(2)),\n    solBalanceUsd: Number(solToken?.quote ?? 0),\n    tokenCount: items.length,\n    topHoldings,\n    snapshotAt: new Date().toISOString(),\n  };\n}\n\n// Usage\ngetAgentPortfolioSnapshot('7Np41oeYqPefeAfUZx9j5yCLrMQZMDyApbJAKhgQFMRm').then((snap) => {\n  if (snap) {\n    console.log(`Net worth: $${snap.totalNetWorthUsd}`);\n    snap.topHoldings.forEach((h) => console.log(`  ${h.symbol}: $${h.valueUsd}`));\n  }\n});",
+  "buildsWith": [
+    "solana-wallet-balances",
+    "solana-staking-snapshot",
+    "solana-agent-defi-navigator",
+    "net-worth-calculator"
+  ]
 }

@@ -5,5 +5,49 @@
   "url": "https://goldrush.dev",
   "tag": "API Key Required",
   "date-added": "2026-03-16",
-  "slug": "nft-traits-explorer"
+  "slug": "nft-traits-explorer",
+  "complexity": "Intermediate",
+  "useCase": "Build a trait rarity calculator that shows how rare each attribute combination is across a collection — the core of any NFT analytics platform.",
+  "chains": [
+    "ethereum",
+    "base",
+    "polygon",
+    "bsc",
+    "optimism",
+    "arbitrum",
+    "avalanche",
+    "gnosis",
+    "fantom",
+    "celo",
+    "moonbeam",
+    "blast",
+    "linea",
+    "scroll",
+    "zkSync",
+    "mantle",
+    "sonic",
+    "unichain",
+    "sei"
+  ],
+  "creditCost": "1 credit/call",
+  "endpoints": [
+    "GET /v1/{chainName}/address/{walletAddress}/balances_nft/"
+  ],
+  "keyParams": {
+    "chainName": "EVM chain identifier (e.g. eth-mainnet, matic-mainnet)",
+    "walletAddress": "0x wallet address holding NFTs from the collection"
+  },
+  "responseFields": [
+    "items[].contract_name",
+    "items[].contract_address",
+    "items[].nft_data[].token_id",
+    "items[].nft_data[].external_data.attributes[].trait_type",
+    "items[].nft_data[].external_data.attributes[].value"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function exploreNftTraits(chainName: string, walletAddress: string) {\n  const resp = await client.NftService.getNftsForAddress(chainName, walletAddress);\n\n  if (resp.error) throw new Error(resp.error_message);\n\n  const traitCounts: Record<string, Record<string, number>> = {};\n\n  for (const collection of resp.data.items) {\n    for (const nft of collection.nft_data ?? []) {\n      for (const attr of nft.external_data?.attributes ?? []) {\n        const { trait_type, value } = attr;\n        if (!trait_type || !value) continue;\n        traitCounts[trait_type] ??= {};\n        traitCounts[trait_type][String(value)] =\n          (traitCounts[trait_type][String(value)] ?? 0) + 1;\n      }\n    }\n  }\n\n  return traitCounts;\n}",
+  "buildsWith": [
+    "nft-metadata-fetcher",
+    "nft-portfolio-valuation",
+    "nft-gallery-viewer"
+  ]
 }

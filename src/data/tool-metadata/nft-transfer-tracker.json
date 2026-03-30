@@ -5,5 +5,50 @@
   "url": "https://goldrush.dev",
   "tag": "Free Tier",
   "date-added": "2026-03-12",
-  "slug": "nft-transfer-tracker"
+  "slug": "nft-transfer-tracker",
+  "complexity": "Beginner",
+  "useCase": "Build an NFT transfer notification system that alerts users when NFTs enter or leave their wallet — mint detector, transfer feed, and burn tracker in one.",
+  "chains": [
+    "ethereum",
+    "base",
+    "polygon",
+    "bsc",
+    "optimism",
+    "arbitrum",
+    "avalanche",
+    "gnosis",
+    "fantom",
+    "celo",
+    "moonbeam",
+    "blast",
+    "linea",
+    "scroll",
+    "zkSync",
+    "mantle",
+    "sonic",
+    "unichain",
+    "sei"
+  ],
+  "creditCost": "1 credit/call",
+  "endpoints": [
+    "GET /v1/{chainName}/address/{walletAddress}/transfers_v2/"
+  ],
+  "keyParams": {
+    "chainName": "EVM chain identifier (e.g. eth-mainnet, matic-mainnet)",
+    "walletAddress": "0x wallet address to track NFT movements for"
+  },
+  "responseFields": [
+    "items[].transfers[].contract_ticker_symbol",
+    "items[].transfers[].from_address",
+    "items[].transfers[].to_address",
+    "items[].transfers[].delta",
+    "items[].transfers[].block_signed_at",
+    "items[].transfers[].tx_hash"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nconst ZERO = '0x0000000000000000000000000000000000000000';\n\nasync function trackNftTransfers(chainName: string, walletAddress: string) {\n  const resp = await client.BalanceService.getErc20TransfersForWalletAddress(\n    chainName,\n    walletAddress\n  );\n\n  if (resp.error) throw new Error(resp.error_message);\n\n  return resp.data.items\n    .flatMap(item => item.transfers ?? [])\n    .map(t => ({\n      type: t.from_address === ZERO ? 'mint'\n          : t.to_address === ZERO ? 'burn'\n          : 'transfer',\n      symbol: t.contract_ticker_symbol,\n      from: t.from_address,\n      to: t.to_address,\n      txHash: t.tx_hash,\n      timestamp: t.block_signed_at,\n    }));\n}",
+  "buildsWith": [
+    "nft-sale-history",
+    "nft-metadata-fetcher",
+    "wallet-erc20-transfers"
+  ]
 }

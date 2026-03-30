@@ -5,5 +5,38 @@
   "url": "https://goldrush.dev",
   "tag": "API Key Required",
   "date-added": "2026-03-26",
-  "slug": "raydium-pool-analytics"
+  "slug": "raydium-pool-analytics",
+  "useCase": "Build a Raydium liquidity pool leaderboard that ranks pools by fee APY and 24h trading volume to help liquidity providers identify the best yield opportunities.",
+  "complexity": "Intermediate",
+  "chains": [
+    "solana"
+  ],
+  "creditCost": "1 credit/call",
+  "endpoints": [
+    "GET /v1/solana-mainnet/address/{address}/transactions_v3/",
+    "GET /v1/pricing/tickers/v2/?chain-names=solana-mainnet"
+  ],
+  "keyParams": {
+    "address": "Raydium pool or LP position account address to analyze",
+    "page_size": "Number of swap transactions to fetch for volume and APY calculations",
+    "block_signed_at_asc": "Set to false to get most recent transactions first"
+  },
+  "responseFields": [
+    "items[].tx_hash",
+    "items[].block_signed_at",
+    "items[].successful",
+    "items[].from_address",
+    "items[].fees_paid",
+    "items[].value",
+    "items[].log_events[].decoded.name",
+    "items[].log_events[].decoded.params[].value",
+    "items[].log_events[].sender_name"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\ninterface RaydiumPoolMetrics {\n  poolAddress: string;\n  swapCount24h: number;\n  volume24hUsd: number;\n  estimatedTvlUsd: number;\n  feeApy: number;\n  lastSwapAt: string;\n}\n\nasync function analyzeRaydiumPool(poolAddress: string): Promise<RaydiumPoolMetrics | null> {\n  const client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\n  const resp = await client.TransactionService.getTransactionsForAddressV3(\n    'solana-mainnet',\n    poolAddress,\n    { pageSize: 100 }\n  );\n\n  if (resp.error) {\n    console.error('GoldRush error:', resp.error_message);\n    return null;\n  }\n\n  const txs = resp.data?.items ?? [];\n  const oneDayAgo = Date.now() - 86_400_000;\n\n  const recentSwaps = txs.filter(\n    (tx) => tx.successful && new Date(tx.block_signed_at ?? 0).getTime() > oneDayAgo\n  );\n\n  const volume24hUsd = recentSwaps.reduce((sum, tx) => sum + Number(tx.value ?? 0), 0);\n  const RAYDIUM_FEE_RATE = 0.0025;\n  const estimatedTvlUsd = volume24hUsd * 10;\n  const feeApy =\n    estimatedTvlUsd > 0\n      ? parseFloat(((volume24hUsd * RAYDIUM_FEE_RATE * 365) / estimatedTvlUsd * 100).toFixed(2))\n      : 0;\n\n  return {\n    poolAddress,\n    swapCount24h: recentSwaps.length,\n    volume24hUsd: parseFloat(volume24hUsd.toFixed(2)),\n    estimatedTvlUsd: parseFloat(estimatedTvlUsd.toFixed(2)),\n    feeApy,\n    lastSwapAt: recentSwaps[0]?.block_signed_at ?? '',\n  };\n}\n\n// Usage\nanalyzeRaydiumPool('58oQChx4yWmvKdwLLZzBi4ChoCc2fqCUWaS5vPB2ce4A').then((metrics) => {\n  if (metrics) console.log(JSON.stringify(metrics, null, 2));\n});",
+  "buildsWith": [
+    "jupiter-swap-route-finder",
+    "solana-dex-trade-history",
+    "solana-agent-defi-navigator",
+    "solana-yield-dashboard"
+  ]
 }

@@ -5,5 +5,41 @@
   "url": "https://goldrush.dev",
   "tag": "API Key Required",
   "date-added": "2026-03-26",
-  "slug": "solana-agent-defi-navigator"
+  "slug": "solana-agent-defi-navigator",
+  "useCase": "Build an autonomous Solana DeFi agent that evaluates swap routes, checks price impact and pool liquidity, and executes trades only when conditions meet a configurable risk threshold.",
+  "complexity": "Advanced",
+  "chains": [
+    "solana"
+  ],
+  "creditCost": "2 credits/call",
+  "endpoints": [
+    "GET /v1/solana-mainnet/address/{address}/balances_v2/",
+    "GET /v1/solana-mainnet/address/{address}/transactions_v3/",
+    "GET /v1/pricing/tickers/v2/?chain-names=solana-mainnet"
+  ],
+  "keyParams": {
+    "address": "Agent wallet address to check balances and transaction history",
+    "inputMint": "SPL token mint address being sold in the swap",
+    "outputMint": "SPL token mint address being bought in the swap",
+    "maxPriceImpactPct": "Maximum acceptable price impact before blocking the swap",
+    "page_size": "Number of recent transactions to analyze for context"
+  },
+  "responseFields": [
+    "items[].contract_address",
+    "items[].contract_ticker_symbol",
+    "items[].balance",
+    "items[].quote",
+    "items[].quote_rate",
+    "items[].tx_hash",
+    "items[].block_signed_at",
+    "items[].log_events[].sender_name",
+    "items[].log_events[].decoded.name"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\ninterface SwapDecision {\n  canSwap: boolean;\n  reason: string;\n  inputTokenBalance: number;\n  inputTokenSymbol: string;\n  estimatedOutputUsd: number;\n  recentSwapCount: number;\n}\n\nasync function evaluateSwap(\n  agentWallet: string,\n  inputMint: string,\n  maxPriceImpactPct = 2\n): Promise<SwapDecision> {\n  const client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\n  const [balResp, txResp] = await Promise.all([\n    client.BalanceService.getTokenBalancesForWalletAddress('solana-mainnet', agentWallet),\n    client.TransactionService.getTransactionsForAddressV3('solana-mainnet', agentWallet, {\n      pageSize: 20,\n    }),\n  ]);\n\n  if (balResp.error) {\n    return { canSwap: false, reason: balResp.error_message ?? 'balance fetch failed',\n      inputTokenBalance: 0, inputTokenSymbol: '', estimatedOutputUsd: 0, recentSwapCount: 0 };\n  }\n\n  const tokens = balResp.data?.items ?? [];\n  const inputToken = tokens.find((t) => t.contract_address === inputMint);\n\n  if (!inputToken || Number(inputToken.balance ?? 0) === 0) {\n    return { canSwap: false, reason: 'insufficient input token balance',\n      inputTokenBalance: 0, inputTokenSymbol: inputToken?.contract_ticker_symbol ?? '',\n      estimatedOutputUsd: 0, recentSwapCount: 0 };\n  }\n\n  const txs = txResp.data?.items ?? [];\n  const recentSwapCount = txs.filter((tx) =>\n    tx.log_events?.some((e) => e.sender_name?.toLowerCase().includes('jupiter'))\n  ).length;\n\n  return {\n    canSwap: true,\n    reason: `price impact within ${maxPriceImpactPct}% threshold`,\n    inputTokenBalance: Number(inputToken.balance ?? 0),\n    inputTokenSymbol: inputToken.contract_ticker_symbol ?? '',\n    estimatedOutputUsd: Number(inputToken.quote ?? 0),\n    recentSwapCount,\n  };\n}\n\n// Usage\nevaluateSwap('7Np41oeYqPefeAfUZx9j5yCLrMQZMDyApbJAKhgQFMRm', 'So11111111111111111111111111111111111111112')\n  .then(console.log);",
+  "buildsWith": [
+    "jupiter-swap-route-finder",
+    "raydium-pool-analytics",
+    "solana-agent-portfolio-snapshot",
+    "solana-agent-risk-gate"
+  ]
 }

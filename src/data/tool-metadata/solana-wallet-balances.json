@@ -5,5 +5,40 @@
   "url": "https://goldrush.dev",
   "tag": "Free Tier",
   "date-added": "2026-03-26",
-  "slug": "solana-wallet-balances"
+  "slug": "solana-wallet-balances",
+  "useCase": "Build a full Solana portfolio UI that lists every SPL token with its USD value and logo, automatically handling all associated token accounts, in under 50 lines of TypeScript.",
+  "complexity": "Beginner",
+  "chains": [
+    "solana"
+  ],
+  "creditCost": "1 credit/call",
+  "endpoints": [
+    "GET /v1/solana-mainnet/address/{address}/balances_v2/"
+  ],
+  "keyParams": {
+    "address": "The Solana wallet address to retrieve token balances for",
+    "nft": "Set to false to exclude NFTs and return only fungible token holdings",
+    "no_spam": "Set to true to filter out spam or dust token accounts"
+  },
+  "responseFields": [
+    "address",
+    "updated_at",
+    "quote_currency",
+    "chain_name",
+    "items[].contract_decimals",
+    "items[].contract_name",
+    "items[].contract_ticker_symbol",
+    "items[].contract_address",
+    "items[].logo_url",
+    "items[].balance",
+    "items[].quote_rate",
+    "items[].quote"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\ninterface SPLTokenBalance {\n  name: string;\n  symbol: string;\n  logoUrl: string;\n  contractAddress: string;\n  balance: string;\n  balanceFormatted: number;\n  priceUsd: number;\n  valueUsd: number;\n}\n\ninterface WalletBalances {\n  walletAddress: string;\n  totalNetWorthUsd: number;\n  tokenCount: number;\n  tokens: SPLTokenBalance[];\n}\n\nasync function getSolanaWalletBalances(walletAddress: string): Promise<WalletBalances | null> {\n  const client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\n  const resp = await client.BalanceService.getTokenBalancesForWalletAddress(\n    'solana-mainnet',\n    walletAddress,\n    { nft: false, noSpam: true }\n  );\n\n  if (resp.error) {\n    console.error('GoldRush error:', resp.error_message);\n    return null;\n  }\n\n  const items = resp.data?.items ?? [];\n\n  const tokens: SPLTokenBalance[] = items.map((token) => {\n    const decimals = token.contract_decimals ?? 0;\n    const rawBalance = token.balance ?? '0';\n    const balanceFormatted = Number(rawBalance) / Math.pow(10, decimals);\n    return {\n      name: token.contract_name ?? '',\n      symbol: token.contract_ticker_symbol ?? '',\n      logoUrl: token.logo_url ?? '',\n      contractAddress: token.contract_address ?? '',\n      balance: rawBalance,\n      balanceFormatted: parseFloat(balanceFormatted.toFixed(6)),\n      priceUsd: Number(token.quote_rate ?? 0),\n      valueUsd: Number(token.quote ?? 0),\n    };\n  });\n\n  const totalNetWorthUsd = tokens.reduce((sum, t) => sum + t.valueUsd, 0);\n\n  return {\n    walletAddress,\n    totalNetWorthUsd: parseFloat(totalNetWorthUsd.toFixed(2)),\n    tokenCount: tokens.length,\n    tokens: tokens.sort((a, b) => b.valueUsd - a.valueUsd),\n  };\n}\n\n// Usage\ngetSolanaWalletBalances('7Np41oeYqPefeAfUZx9j5yCLrMQZMDyApbJAKhgQFMRm').then((balances) => {\n  if (balances) {\n    console.log(`Net worth: $${balances.totalNetWorthUsd} across ${balances.tokenCount} tokens`);\n    balances.tokens.slice(0, 5).forEach((t) =>\n      console.log(`  ${t.symbol}: ${t.balanceFormatted} ($${t.valueUsd.toFixed(2)})`)\n    );\n  }\n});",
+  "buildsWith": [
+    "solana-transaction-history",
+    "solana-staking-snapshot",
+    "solana-agent-portfolio-snapshot",
+    "net-worth-calculator"
+  ]
 }

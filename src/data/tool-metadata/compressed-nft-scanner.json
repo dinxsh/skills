@@ -5,5 +5,38 @@
   "url": "https://goldrush.dev",
   "tag": "API Key Required",
   "date-added": "2026-03-26",
-  "slug": "compressed-nft-scanner"
+  "slug": "compressed-nft-scanner",
+  "useCase": "Build a gaming inventory browser that displays all compressed NFT assets — items, characters, and rewards — held by a player wallet along with their metadata and collection info.",
+  "complexity": "Intermediate",
+  "chains": [
+    "solana"
+  ],
+  "creditCost": "1 credit/call",
+  "endpoints": [
+    "GET /v1/solana-mainnet/address/{address}/nfts/"
+  ],
+  "keyParams": {
+    "address": "The Solana wallet address to scan for compressed NFTs",
+    "no_spam": "Set to true to filter out spam or airdropped cNFTs",
+    "page": "Page number for paginating large cNFT inventories",
+    "page_size": "Number of NFT collection records per page (max 100)"
+  },
+  "responseFields": [
+    "items[].contract_name",
+    "items[].contract_address",
+    "items[].contract_ticker_symbol",
+    "items[].nft_data[].token_id",
+    "items[].nft_data[].token_url",
+    "items[].nft_data[].external_data.name",
+    "items[].nft_data[].external_data.image",
+    "items[].nft_data[].external_data.attributes",
+    "items[].floor_price_quote"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\ninterface CompressedNFT {\n  assetId: string;\n  name: string;\n  imageUrl: string;\n  collectionAddress: string;\n  collectionName: string;\n  metadataUri: string;\n  attributes: Array<{ trait_type: string; value: string }>;\n}\n\nasync function scanCompressedNFTs(walletAddress: string): Promise<CompressedNFT[]> {\n  const client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\n  const resp = await client.NftService.getNftsForAddress(\n    'solana-mainnet',\n    walletAddress,\n    { noSpam: true }\n  );\n\n  if (resp.error) {\n    console.error('GoldRush error:', resp.error_message);\n    return [];\n  }\n\n  const collections = resp.data?.items ?? [];\n  const cNFTs: CompressedNFT[] = [];\n\n  for (const collection of collections) {\n    for (const nft of collection.nft_data ?? []) {\n      cNFTs.push({\n        assetId: nft.token_id ?? '',\n        name: nft.external_data?.name ?? collection.contract_name ?? 'Unknown',\n        imageUrl: nft.external_data?.image ?? '',\n        collectionAddress: collection.contract_address ?? '',\n        collectionName: collection.contract_name ?? '',\n        metadataUri: nft.token_url ?? '',\n        attributes:\n          (nft.external_data?.attributes as Array<{ trait_type: string; value: string }>) ?? [],\n      });\n    }\n  }\n\n  console.log(`Found ${cNFTs.length} compressed NFTs for ${walletAddress}`);\n  return cNFTs;\n}\n\n// Usage\nscanCompressedNFTs('7Np41oeYqPefeAfUZx9j5yCLrMQZMDyApbJAKhgQFMRm').then((nfts) => {\n  nfts.slice(0, 5).forEach((n) => console.log(`${n.name} — ${n.collectionName}`));\n});",
+  "buildsWith": [
+    "metaplex-nft-portfolio",
+    "solana-nft-collection-stats",
+    "nft-metadata-fetcher",
+    "solana-wallet-balances"
+  ]
 }

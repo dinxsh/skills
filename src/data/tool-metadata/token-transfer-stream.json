@@ -5,5 +5,47 @@
   "url": "https://goldrush.dev",
   "tag": "API Key Required",
   "date-added": "2026-03-12",
-  "slug": "token-transfer-stream"
+  "slug": "token-transfer-stream",
+  "complexity": "Intermediate",
+  "useCase": "Build a live token transfer alert that fires instantly when any ERC-20 token enters or leaves a watched wallet — no polling, pure WebSocket delivery.",
+  "chains": [
+    "ethereum",
+    "base",
+    "polygon",
+    "bsc",
+    "optimism",
+    "arbitrum",
+    "avalanche",
+    "gnosis",
+    "fantom",
+    "celo",
+    "blast",
+    "linea",
+    "scroll",
+    "zkSync",
+    "mantle",
+    "sonic"
+  ],
+  "creditCost": "Streaming subscription",
+  "endpoints": [
+    "wss://streaming.goldrushdata.com/graphql — walletTxs subscription"
+  ],
+  "keyParams": {
+    "walletAddress": "0x wallet address to stream transfers for",
+    "chainName": "EVM chain name (e.g. eth-mainnet, base-mainnet)"
+  },
+  "responseFields": [
+    "txHash",
+    "blockSignedAt",
+    "fromAddress",
+    "toAddress",
+    "transfers[].tokenSymbol",
+    "transfers[].delta"
+  ],
+  "snippet": "import { createClient } from 'graphql-ws';\n\nconst wsClient = createClient({\n  url: 'wss://streaming.goldrushdata.com/graphql',\n  connectionParams: { apiKey: process.env.GOLDRUSH_API_KEY },\n});\n\nasync function streamTokenTransfers(\n  walletAddress: string,\n  chainName: string,\n  onTransfer: (transfer: any) => void\n) {\n  const sub = wsClient.iterate({\n    query: `subscription TokenTransfers($addr: String!, $chain: String!) {\n      walletTxs(walletAddress: $addr, chainName: $chain) {\n        txHash blockSignedAt fromAddress toAddress\n        transfers { tokenSymbol delta }\n      }\n    }`,\n    variables: { addr: walletAddress, chain: chainName },\n  });\n\n  for await (const event of sub) {\n    const tx = event.data?.walletTxs;\n    if (tx?.transfers?.length) {\n      tx.transfers.forEach((t: any) => onTransfer({ ...t, txHash: tx.txHash }));\n    }\n  }\n}",
+  "buildsWith": [
+    "wallet-activity-feed",
+    "realtime-wallet-stream",
+    "erc20-transfer-history"
+  ]
 }

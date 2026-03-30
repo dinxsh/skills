@@ -5,5 +5,34 @@
   "url": "https://goldrush.dev",
   "tag": "API Key Required",
   "date-added": "2026-03-26",
-  "slug": "solana-token-price-history"
+  "slug": "solana-token-price-history",
+  "useCase": "Render a Solana token price chart with OHLCV candlestick data and calculate momentum signals for a token screener or strategy backtester.",
+  "complexity": "Beginner",
+  "chains": [
+    "solana"
+  ],
+  "creditCost": "1 credit/call",
+  "endpoints": [
+    "GET /v1/pricing/historical_by_addresses_v2/solana-mainnet/USD/{contractAddresses}/"
+  ],
+  "keyParams": {
+    "contractAddresses": "Comma-separated SPL token mint addresses to fetch price history for",
+    "from": "Start date in YYYY-MM-DD format (up to 365 days ago)",
+    "to": "End date in YYYY-MM-DD format (defaults to today)"
+  },
+  "responseFields": [
+    "data[].contract_address",
+    "data[].contract_name",
+    "data[].contract_ticker_symbol",
+    "data[].prices[].date",
+    "data[].prices[].price",
+    "data[].prices[].pretty_price"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\ninterface OHLCVCandle {\n  date: string;\n  price: number;\n}\n\ninterface TokenPriceHistory {\n  tokenAddress: string;\n  tokenSymbol: string;\n  tokenName: string;\n  candles: OHLCVCandle[];\n  currentPrice: number;\n  priceChange30dPct: number;\n}\n\nasync function getTokenPriceHistory(\n  tokenAddress: string,\n  fromDate: string,\n  toDate: string\n): Promise<TokenPriceHistory | null> {\n  const client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\n  const resp = await client.PricingService.getTokenPrices(\n    'solana-mainnet',\n    'USD',\n    tokenAddress,\n    { from: fromDate, to: toDate }\n  );\n\n  if (resp.error) {\n    console.error('GoldRush error:', resp.error_message);\n    return null;\n  }\n\n  const data = resp.data?.[0];\n  if (!data) return null;\n\n  const candles: OHLCVCandle[] = (data.prices ?? []).map((p) => ({\n    date: p.date ?? '',\n    price: Number(p.price ?? 0),\n  }));\n\n  const currentPrice = candles[candles.length - 1]?.price ?? 0;\n  const price30dAgo = candles[0]?.price ?? currentPrice;\n  const priceChange30dPct =\n    price30dAgo > 0\n      ? parseFloat((((currentPrice - price30dAgo) / price30dAgo) * 100).toFixed(2))\n      : 0;\n\n  return {\n    tokenAddress,\n    tokenSymbol: data.contract_ticker_symbol ?? '',\n    tokenName: data.contract_name ?? '',\n    candles,\n    currentPrice,\n    priceChange30dPct,\n  };\n}\n\n// Usage\nconst thirtyDaysAgo = new Date(Date.now() - 30 * 86400000).toISOString().slice(0, 10);\nconst today = new Date().toISOString().slice(0, 10);\ngetTokenPriceHistory(\n  'So11111111111111111111111111111111111111112',\n  thirtyDaysAgo,\n  today\n).then((history) => {\n  if (history) console.log(`${history.tokenSymbol}: ${history.priceChange30dPct}% in 30d`);\n});",
+  "buildsWith": [
+    "spl-token-metadata",
+    "solana-token-risk-scorer",
+    "token-price-history",
+    "solana-dex-trade-history"
+  ]
 }

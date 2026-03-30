@@ -5,5 +5,51 @@
   "url": "https://goldrush.dev",
   "tag": "Free Tier",
   "date-added": "2026-03-16",
-  "slug": "token-supply-metadata"
+  "slug": "token-supply-metadata",
+  "complexity": "Beginner",
+  "useCase": "Build a token directory that shows name, symbol, decimals, logo, and live USD price for any ERC-20 token in your app — no separate metadata endpoint needed.",
+  "chains": [
+    "ethereum",
+    "base",
+    "polygon",
+    "bsc",
+    "optimism",
+    "arbitrum",
+    "avalanche",
+    "gnosis",
+    "fantom",
+    "celo",
+    "moonbeam",
+    "blast",
+    "linea",
+    "scroll",
+    "zkSync",
+    "mantle",
+    "sonic",
+    "unichain",
+    "sei"
+  ],
+  "creditCost": "1 credit/call",
+  "endpoints": [
+    "GET /v1/{chainName}/address/{walletAddress}/balances_v2/"
+  ],
+  "keyParams": {
+    "chainName": "EVM chain identifier (e.g. eth-mainnet, base-mainnet)",
+    "walletAddress": "Any wallet address holding the token"
+  },
+  "responseFields": [
+    "items[].contract_name",
+    "items[].contract_ticker_symbol",
+    "items[].contract_address",
+    "items[].contract_decimals",
+    "items[].logo_url",
+    "items[].quote_rate",
+    "items[].type"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function getTokenSupplyAndMeta(\n  chainName: string,\n  walletAddress: string\n) {\n  const resp = await client.BalanceService.getTokenBalancesForWalletAddress(\n    chainName,\n    walletAddress\n  );\n\n  if (resp.error) throw new Error(resp.error_message);\n\n  return resp.data.items\n    .filter(t => t.type === 'cryptocurrency' && !t.is_spam)\n    .map(t => ({\n      name: t.contract_name,\n      symbol: t.contract_ticker_symbol,\n      address: t.contract_address,\n      decimals: t.contract_decimals,\n      logo: t.logo_url,\n      priceUsd: t.quote_rate,\n    }));\n}",
+  "buildsWith": [
+    "token-metadata-api",
+    "spot-price-ticker",
+    "token-price-chart"
+  ]
 }

@@ -5,5 +5,41 @@
   "url": "https://goldrush.dev",
   "tag": "Open Source",
   "date-added": "2026-03-26",
-  "slug": "solana-goldrush-quickstart"
+  "slug": "solana-goldrush-quickstart",
+  "useCase": "Scaffold a production-ready Solana wallet dashboard with token balances, transaction history, NFT gallery, and wallet age summary all pre-wired and ready to ship in minutes.",
+  "complexity": "Beginner",
+  "chains": [
+    "solana"
+  ],
+  "creditCost": "1 credit/call",
+  "endpoints": [
+    "GET /v1/solana-mainnet/address/{address}/balances_v2/",
+    "GET /v1/solana-mainnet/address/{address}/transactions_v3/",
+    "GET /v1/solana-mainnet/address/{address}/nfts/"
+  ],
+  "keyParams": {
+    "address": "Connected Solana wallet address from the wallet adapter",
+    "nft": "Set to false in balance call to separate NFT and token queries",
+    "no_spam": "Set to true to filter spam tokens and NFTs",
+    "page_size": "Number of transactions to display in the activity feed"
+  },
+  "responseFields": [
+    "items[].contract_name",
+    "items[].contract_ticker_symbol",
+    "items[].balance",
+    "items[].quote",
+    "items[].logo_url",
+    "items[].tx_hash",
+    "items[].block_signed_at",
+    "items[].log_events[].sender_name",
+    "items[].nft_data[].external_data.name",
+    "items[].nft_data[].external_data.image"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\ninterface WalletDashboardData {\n  totalNetWorthUsd: number;\n  tokenCount: number;\n  nftCount: number;\n  recentTxCount: number;\n  topTokens: Array<{ symbol: string; valueUsd: number; logoUrl: string }>;\n}\n\nasync function loadWalletDashboard(walletAddress: string): Promise<WalletDashboardData | null> {\n  const client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\n  const [balResp, txResp, nftResp] = await Promise.all([\n    client.BalanceService.getTokenBalancesForWalletAddress('solana-mainnet', walletAddress, {\n      nft: false,\n      noSpam: true,\n    }),\n    client.TransactionService.getTransactionsForAddressV3('solana-mainnet', walletAddress, {\n      pageSize: 10,\n    }),\n    client.NftService.getNftsForAddress('solana-mainnet', walletAddress, { noSpam: true }),\n  ]);\n\n  if (balResp.error) {\n    console.error('Balance error:', balResp.error_message);\n    return null;\n  }\n\n  const tokens = balResp.data?.items ?? [];\n  const totalNetWorthUsd = tokens.reduce((sum, t) => sum + Number(t.quote ?? 0), 0);\n\n  const topTokens = tokens\n    .sort((a, b) => Number(b.quote ?? 0) - Number(a.quote ?? 0))\n    .slice(0, 5)\n    .map((t) => ({\n      symbol: t.contract_ticker_symbol ?? '',\n      valueUsd: Number(t.quote ?? 0),\n      logoUrl: t.logo_url ?? '',\n    }));\n\n  const nftCollections = nftResp.data?.items ?? [];\n  const nftCount = nftCollections.reduce(\n    (sum, c) => sum + (c.nft_data?.length ?? 0),\n    0\n  );\n\n  return {\n    totalNetWorthUsd: parseFloat(totalNetWorthUsd.toFixed(2)),\n    tokenCount: tokens.length,\n    nftCount,\n    recentTxCount: txResp.data?.items?.length ?? 0,\n    topTokens,\n  };\n}\n\n// Usage\nloadWalletDashboard('7Np41oeYqPefeAfUZx9j5yCLrMQZMDyApbJAKhgQFMRm').then((data) => {\n  if (data) console.log(`Net worth: $${data.totalNetWorthUsd} | NFTs: ${data.nftCount}`);\n});",
+  "buildsWith": [
+    "solana-wallet-balances",
+    "solana-transaction-history",
+    "metaplex-nft-portfolio",
+    "solana-wallet-age-activity"
+  ]
 }

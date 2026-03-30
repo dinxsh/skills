@@ -5,5 +5,39 @@
   "url": "https://goldrush.dev",
   "tag": "API Key Required",
   "date-added": "2026-03-26",
-  "slug": "solana-agent-transaction-validator"
+  "slug": "solana-agent-transaction-validator",
+  "useCase": "Build a pre-flight transaction validator that runs three parallel GoldRush checks and returns a structured go/no-go decision before an agent submits any Solana transaction.",
+  "complexity": "Advanced",
+  "chains": [
+    "solana"
+  ],
+  "creditCost": "2 credits/call",
+  "endpoints": [
+    "GET /v1/solana-mainnet/address/{address}/balances_v2/",
+    "GET /v1/solana-mainnet/address/{address}/transactions_v3/",
+    "GET /v1/solana-mainnet/tokens/{tokenAddress}/token_holders_v2/"
+  ],
+  "keyParams": {
+    "agentWallet": "The agent's own wallet address to check SOL balance for fees",
+    "recipientAddress": "Destination wallet address to assess wallet age and activity",
+    "tokenAddress": "SPL token mint address involved in the transaction to risk-score",
+    "minSolForFees": "Minimum SOL required to proceed (default 0.01 SOL for rent+fees)"
+  },
+  "responseFields": [
+    "items[].contract_ticker_symbol",
+    "items[].balance",
+    "items[].quote",
+    "items[].contract_address",
+    "items[].tx_hash",
+    "items[].block_signed_at",
+    "items[].successful",
+    "pagination.total_count"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\ninterface ValidationResult {\n  approved: boolean;\n  checks: {\n    sufficientBalance: boolean;\n    recipientIsEstablished: boolean;\n    tokenHolderCountOk: boolean;\n  };\n  agentSolBalance: number;\n  recipientTxCount: number;\n  tokenHolderCount: number;\n  blockedReason: string | null;\n}\n\nasync function validateTransaction(\n  agentWallet: string,\n  recipientAddress: string,\n  tokenAddress: string,\n  minSolForFees = 0.01\n): Promise<ValidationResult> {\n  const client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\n  const [balResp, txResp, holdersResp] = await Promise.all([\n    client.BalanceService.getTokenBalancesForWalletAddress('solana-mainnet', agentWallet),\n    client.TransactionService.getTransactionsForAddressV3('solana-mainnet', recipientAddress, { pageSize: 1 }),\n    client.BaseService.getTokenHoldersV2('solana-mainnet', tokenAddress, { pageSize: 1 }),\n  ]);\n\n  const solToken = balResp.data?.items?.find(\n    (t) => t.contract_ticker_symbol === 'SOL'\n  );\n  const agentSolBalance = Number(solToken?.balance ?? 0) / 1e9;\n  const sufficientBalance = agentSolBalance >= minSolForFees;\n\n  const recipientTxCount = txResp.data?.pagination?.total_count ?? 0;\n  const recipientIsEstablished = recipientTxCount > 5;\n\n  const tokenHolderCount = holdersResp.data?.pagination?.total_count ?? 0;\n  const tokenHolderCountOk = tokenHolderCount > 50;\n\n  const checks = { sufficientBalance, recipientIsEstablished, tokenHolderCountOk };\n  const failedChecks = Object.entries(checks).filter(([, v]) => !v).map(([k]) => k);\n  const approved = failedChecks.length === 0;\n\n  return {\n    approved,\n    checks,\n    agentSolBalance,\n    recipientTxCount,\n    tokenHolderCount,\n    blockedReason: approved ? null : `Failed checks: ${failedChecks.join(', ')}`,\n  };\n}\n\n// Usage\nvalidateTransaction(\n  '7Np41oeYqPefeAfUZx9j5yCLrMQZMDyApbJAKhgQFMRm',\n  'RecipientAddressHere',\n  'DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263'\n).then((r) => console.log(`Approved: ${r.approved}`, r.blockedReason ?? ''));",
+  "buildsWith": [
+    "solana-agent-risk-gate",
+    "solana-wallet-age-activity",
+    "solana-wallet-balances",
+    "solana-token-risk-scorer"
+  ]
 }

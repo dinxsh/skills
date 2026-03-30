@@ -5,5 +5,37 @@
   "url": "https://goldrush.dev",
   "tag": "API Key Required",
   "date-added": "2026-03-26",
-  "slug": "solana-yield-dashboard"
+  "slug": "solana-yield-dashboard",
+  "useCase": "Build a Solana yield comparison dashboard that ranks staking and DeFi APY opportunities across Marinade, Jito, Orca, and Kamino to power an autonomous yield-rebalancing agent.",
+  "complexity": "Intermediate",
+  "chains": [
+    "solana"
+  ],
+  "creditCost": "1 credit/call",
+  "endpoints": [
+    "GET /v1/solana-mainnet/address/{address}/balances_v2/",
+    "GET /v1/solana-mainnet/address/{address}/transactions_v3/"
+  ],
+  "keyParams": {
+    "address": "Wallet address to check current yield positions and liquid staking token holdings",
+    "nft": "Set to false to focus on fungible token balances only",
+    "no_spam": "Set to true to exclude spam tokens from the balance response"
+  },
+  "responseFields": [
+    "items[].contract_address",
+    "items[].contract_name",
+    "items[].contract_ticker_symbol",
+    "items[].balance",
+    "items[].contract_decimals",
+    "items[].quote_rate",
+    "items[].quote",
+    "items[].logo_url"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst YIELD_PROTOCOLS: Record<string, { protocol: string; type: string; estimatedApy: number; riskLevel: 'LOW' | 'MEDIUM' | 'HIGH' }> = {\n  mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So: { protocol: 'Marinade', type: 'Liquid Staking', estimatedApy: 6.8, riskLevel: 'LOW' },\n  J1toso1uCk3RLmjorhTtrVwY9HJ7X8V9yYac6Y7kGCPn: { protocol: 'Jito', type: 'MEV Staking', estimatedApy: 7.2, riskLevel: 'LOW' },\n  bSo13r4TkiE4KumL71LsHTPpL2euBYLFx6h9HP3piy1: { protocol: 'Sanctum', type: 'Liquid Staking', estimatedApy: 6.5, riskLevel: 'LOW' },\n};\n\ninterface YieldOpportunity {\n  protocol: string;\n  type: string;\n  tokenSymbol: string;\n  tokenAddress: string;\n  currentPositionUsd: number;\n  estimatedApy: number;\n  riskLevel: 'LOW' | 'MEDIUM' | 'HIGH';\n  annualEarningsUsd: number;\n}\n\nasync function getYieldDashboard(walletAddress: string): Promise<YieldOpportunity[]> {\n  const client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\n  const resp = await client.BalanceService.getTokenBalancesForWalletAddress(\n    'solana-mainnet',\n    walletAddress,\n    { nft: false, noSpam: true }\n  );\n\n  if (resp.error) {\n    console.error('GoldRush error:', resp.error_message);\n    return [];\n  }\n\n  const tokens = resp.data?.items ?? [];\n  const opportunities: YieldOpportunity[] = [];\n\n  for (const token of tokens) {\n    const addr = token.contract_address ?? '';\n    const yieldInfo = YIELD_PROTOCOLS[addr];\n    if (!yieldInfo) continue;\n\n    const currentPositionUsd = Number(token.quote ?? 0);\n    const annualEarningsUsd = parseFloat((currentPositionUsd * (yieldInfo.estimatedApy / 100)).toFixed(2));\n\n    opportunities.push({\n      protocol: yieldInfo.protocol,\n      type: yieldInfo.type,\n      tokenSymbol: token.contract_ticker_symbol ?? '',\n      tokenAddress: addr,\n      currentPositionUsd,\n      estimatedApy: yieldInfo.estimatedApy,\n      riskLevel: yieldInfo.riskLevel,\n      annualEarningsUsd,\n    });\n  }\n\n  return opportunities.sort((a, b) => b.estimatedApy - a.estimatedApy);\n}\n\n// Usage\ngetYieldDashboard('7Np41oeYqPefeAfUZx9j5yCLrMQZMDyApbJAKhgQFMRm').then((opps) => {\n  console.log(`Found ${opps.length} yield positions:`);\n  opps.forEach((o) => console.log(`  ${o.protocol} ${o.type}: ${o.estimatedApy}% APY | $${o.annualEarningsUsd}/yr`));\n});",
+  "buildsWith": [
+    "solana-staking-snapshot",
+    "solana-wallet-balances",
+    "raydium-pool-analytics",
+    "defi-wallet-dashboard"
+  ]
 }

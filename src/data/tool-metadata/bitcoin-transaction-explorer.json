@@ -5,5 +5,34 @@
   "url": "https://goldrush.dev/docs/api/transactions/get-transactions-for-btc-address/",
   "tag": "API Key Required",
   "date-added": "2026-03-23",
-  "slug": "bitcoin-transaction-explorer"
+  "slug": "bitcoin-transaction-explorer",
+  "complexity": "Beginner",
+  "useCase": "Build a Bitcoin transaction explorer that shows the full UTXO history for any address — inputs, outputs, fees, and amounts in BTC and USD.",
+  "chains": [
+    "bitcoin"
+  ],
+  "creditCost": "1 credit/call",
+  "endpoints": [
+    "GET /v1/btc-mainnet/address/{walletAddress}/transactions/"
+  ],
+  "keyParams": {
+    "walletAddress": "Bitcoin address (P2PKH, P2SH, or bech32)",
+    "pageNumber": "Page number starting from 0 for pagination"
+  },
+  "responseFields": [
+    "items[].block_signed_at",
+    "items[].tx_hash",
+    "items[].value",
+    "items[].fees",
+    "items[].inputs[].address",
+    "items[].inputs[].value",
+    "items[].outputs[].address",
+    "items[].outputs[].value"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function getBitcoinTransactions(btcAddress: string, pageNumber = 0) {\n  const resp = await client.TransactionService.getTransactionsForBtcAddress(\n    btcAddress,\n    pageNumber\n  );\n\n  if (resp.error) throw new Error(resp.error_message);\n\n  return resp.data.items.map(tx => ({\n    txHash: tx.tx_hash,\n    timestamp: tx.block_signed_at,\n    valueBtc: Number(tx.value) / 1e8,\n    feeBtc: Number(tx.fees) / 1e8,\n    inputs: (tx.inputs ?? []).map(i => ({ address: i.address, valueBtc: Number(i.value) / 1e8 })),\n    outputs: (tx.outputs ?? []).map(o => ({ address: o.address, valueBtc: Number(o.value) / 1e8 })),\n  }));\n}",
+  "buildsWith": [
+    "bitcoin-balance-checker",
+    "bitcoin-hd-wallet-scanner",
+    "transaction-history"
+  ]
 }

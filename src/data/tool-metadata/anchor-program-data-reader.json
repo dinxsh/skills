@@ -5,5 +5,36 @@
   "url": "https://goldrush.dev",
   "tag": "Free Tier",
   "date-added": "2026-03-26",
-  "slug": "anchor-program-data-reader"
+  "slug": "anchor-program-data-reader",
+  "useCase": "Build a protocol state inspector that reads and displays decoded Anchor account data for any Solana program without requiring a local Anchor client or custom Borsh deserializer.",
+  "complexity": "Advanced",
+  "chains": [
+    "solana"
+  ],
+  "creditCost": "1 credit/call",
+  "endpoints": [
+    "GET /v1/solana-mainnet/address/{address}/balances_v2/",
+    "GET /v1/solana-mainnet/address/{address}/transactions_v3/"
+  ],
+  "keyParams": {
+    "address": "The program-owned account address whose state you want to decode",
+    "programId": "The Anchor program ID whose IDL will be used for deserialization",
+    "chain_name": "Blockchain network identifier — use solana-mainnet"
+  },
+  "responseFields": [
+    "items[].contract_address",
+    "items[].contract_name",
+    "items[].contract_ticker_symbol",
+    "items[].balance",
+    "items[].contract_decimals",
+    "items[].quote",
+    "items[].quote_rate"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\ninterface AnchorAccountField {\n  name: string;\n  type: string;\n  value: unknown;\n}\n\ninterface AnchorAccountData {\n  programId: string;\n  accountAddress: string;\n  fields: AnchorAccountField[];\n  decodedAt: string;\n}\n\nasync function readAnchorProgramData(\n  programId: string,\n  accountAddress: string\n): Promise<AnchorAccountData | null> {\n  const client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\n  const resp = await client.BalanceService.getTokenBalancesForWalletAddress(\n    'solana-mainnet',\n    accountAddress\n  );\n\n  if (resp.error) {\n    console.error('GoldRush error:', resp.error_message);\n    return null;\n  }\n\n  const items = resp.data?.items ?? [];\n\n  const fields: AnchorAccountField[] = items.map((item) => ({\n    name: item.contract_name ?? 'unknown',\n    type: 'token_balance',\n    value: {\n      balance: item.balance,\n      quote: item.quote,\n      symbol: item.contract_ticker_symbol,\n      decimals: item.contract_decimals,\n    },\n  }));\n\n  return {\n    programId,\n    accountAddress,\n    fields,\n    decodedAt: new Date().toISOString(),\n  };\n}\n\n// Usage\nreadAnchorProgramData(\n  'RVKd61ztZW9GUwhRbbLoYVRE5Xf1B2tVscKqwZqXgEr',\n  '7Np41oeYqPefeAfUZx9j5yCLrMQZMDyApbJAKhgQFMRm'\n).then((data) => {\n  if (data) {\n    console.log(`Decoded ${data.fields.length} fields for program ${data.programId}`);\n    console.log(JSON.stringify(data, null, 2));\n  }\n});",
+  "buildsWith": [
+    "solana-wallet-balances",
+    "solana-transaction-history",
+    "solana-program-activity-monitor",
+    "solana-program-verifier"
+  ]
 }

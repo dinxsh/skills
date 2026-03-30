@@ -5,5 +5,46 @@
   "url": "https://goldrush.dev",
   "tag": "Free Tier",
   "date-added": "2026-03-23",
-  "slug": "onchain-resume"
+  "slug": "onchain-resume",
+  "complexity": "Intermediate",
+  "useCase": "Build a wallet.eth/0x... profile page that serves as an onchain resume — showing when the wallet was created, which chains it's active on, top token holdings, and NFT collection.",
+  "chains": [
+    "ethereum",
+    "base",
+    "bsc",
+    "polygon",
+    "optimism",
+    "arbitrum",
+    "avalanche"
+  ],
+  "creditCost": "~5 credits total",
+  "endpoints": [
+    "GET /v1/{chainName}/address/{walletAddress}/transactions_summary/",
+    "GET /v1/address/{walletAddress}/activity/",
+    "GET /v1/{chainName}/address/{walletAddress}/balances_v2/",
+    "GET /v1/{chainName}/address/{walletAddress}/balances_nft/",
+    "GET /v1/{chainName}/address/{walletAddress}/"
+  ],
+  "keyParams": {
+    "walletAddress": "0x wallet address or ENS name to build the onchain resume for",
+    "chainName": "Primary chain for balances, NFTs, and ENS resolution"
+  },
+  "responseFields": [
+    "ensName",
+    "walletAge",
+    "chainCount",
+    "totalNetWorth",
+    "topAssets[]",
+    "nftCount",
+    "firstTxDate",
+    "lastTxDate"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function buildOnchainResume(walletAddress: string, chainName = 'eth-mainnet') {\n  const [summaryResp, activityResp, balResp, nftResp, ensResp] = await Promise.all([\n    client.TransactionService.getTransactionSummary(chainName, walletAddress),\n    client.BaseService.getAddressActivity(walletAddress),\n    client.BalanceService.getTokenBalancesForWalletAddress(chainName, walletAddress),\n    client.NftService.getNftsForAddress(chainName, walletAddress),\n    client.BaseService.getResolvedAddress(chainName, walletAddress).catch(() => null),\n  ]);\n\n  const summary = summaryResp.data?.items?.[0];\n  const activeChains = (activityResp.data?.items ?? []).filter(c => !c.is_testnet);\n  const tokens = (balResp.data?.items ?? []).filter(t => !t.is_spam && (t.quote ?? 0) > 0);\n  const nfts = nftResp.data?.items ?? [];\n  const nftCount = nfts.reduce((s, col) => s + (col.nft_data?.length ?? 0), 0);\n  const totalNetWorth = tokens.reduce((s, t) => s + (t.quote ?? 0), 0);\n  const firstTxDate = summary?.earliest_transaction?.block_signed_at;\n  const walletAgeDays = firstTxDate\n    ? Math.floor((Date.now() - new Date(firstTxDate).getTime()) / 86_400_000)\n    : null;\n\n  return {\n    address: walletAddress,\n    ensName: ensResp?.data?.name ?? null,\n    walletAgeDays,\n    firstTxDate,\n    lastTxDate: summary?.latest_transaction?.block_signed_at,\n    totalTxCount: summary?.total_count ?? 0,\n    chainCount: activeChains.length,\n    activeChains: activeChains.map(c => c.name),\n    totalNetWorth,\n    nftCount,\n    topAssets: tokens.slice(0, 5).map(t => ({\n      symbol: t.contract_ticker_symbol,\n      name: t.contract_name,\n      quote: t.quote,\n      logoUrl: t.logo_url,\n    })),\n  };\n}",
+  "buildsWith": [
+    "wallet-age-summary",
+    "multichain-activity-discovery",
+    "wallet-balances-skill",
+    "nft-gallery-viewer",
+    "ens-resolver"
+  ]
 }

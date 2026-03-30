@@ -5,5 +5,38 @@
   "url": "https://goldrush.dev/docs/streaming/",
   "tag": "API Key Required",
   "date-added": "2026-03-23",
-  "slug": "live-dex-pair-stream"
+  "slug": "live-dex-pair-stream",
+  "complexity": "Intermediate",
+  "useCase": "Build a real-time new token launch detector that fires instantly when a new DEX pair is created — catch launches before they go viral by subscribing to the newPairs stream.",
+  "chains": [
+    "ethereum",
+    "base",
+    "bsc",
+    "polygon",
+    "arbitrum",
+    "optimism",
+    "avalanche",
+    "sonic"
+  ],
+  "creditCost": "Streaming subscription",
+  "endpoints": [
+    "wss://streaming.goldrushdata.com/graphql — newPairs subscription"
+  ],
+  "keyParams": {},
+  "responseFields": [
+    "pairAddress",
+    "token0.symbol",
+    "token0.address",
+    "token1.symbol",
+    "token1.address",
+    "chainName",
+    "createdAt",
+    "liquidityUsd"
+  ],
+  "snippet": "import { createClient } from 'graphql-ws';\n\nconst wsClient = createClient({\n  url: 'wss://streaming.goldrushdata.com/graphql',\n  connectionParams: { apiKey: process.env.GOLDRUSH_API_KEY },\n});\n\nasync function streamNewDexPairs(\n  onPair: (pair: any) => void,\n  minLiquidityUsd = 1000\n) {\n  const sub = wsClient.iterate({\n    query: `subscription NewPairs {\n      newPairs {\n        pairAddress\n        chainName\n        createdAt\n        liquidityUsd\n        token0 { symbol address }\n        token1 { symbol address }\n      }\n    }`,\n  });\n\n  for await (const event of sub) {\n    const pair = event.data?.newPairs;\n    if (pair && (pair.liquidityUsd ?? 0) >= minLiquidityUsd) {\n      onPair(pair);\n    }\n  }\n}\n\n// Usage: alert when a new pair with >$5k liquidity launches\nstreamNewDexPairs(\n  pair => console.log(`New pair: ${pair.token0.symbol}/${pair.token1.symbol} on ${pair.chainName}`),\n  5000\n);",
+  "buildsWith": [
+    "dex-trade-history",
+    "token-ohlcv-chart",
+    "wallet-activity-feed"
+  ]
 }

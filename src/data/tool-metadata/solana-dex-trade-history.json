@@ -5,5 +5,39 @@
   "url": "https://goldrush.dev",
   "tag": "API Key Required",
   "date-added": "2026-03-26",
-  "slug": "solana-dex-trade-history"
+  "slug": "solana-dex-trade-history",
+  "useCase": "Build a Solana trading journal and PnL calculator that automatically extracts all DEX swaps from a wallet's transaction history without any raw instruction parsing.",
+  "complexity": "Intermediate",
+  "chains": [
+    "solana"
+  ],
+  "creditCost": "1 credit/call",
+  "endpoints": [
+    "GET /v1/solana-mainnet/address/{address}/transactions_v3/"
+  ],
+  "keyParams": {
+    "address": "The Solana wallet address to fetch DEX trade history for",
+    "page_size": "Number of transactions per page (max 100)",
+    "page": "Page number for paginating through all historical trades",
+    "block_signed_at_asc": "Set to false (default) for newest trades first"
+  },
+  "responseFields": [
+    "items[].tx_hash",
+    "items[].block_signed_at",
+    "items[].successful",
+    "items[].from_address",
+    "items[].fees_paid",
+    "items[].value",
+    "items[].log_events[].sender_name",
+    "items[].log_events[].decoded.name",
+    "items[].log_events[].decoded.params[].name",
+    "items[].log_events[].decoded.params[].value"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst DEX_NAMES = ['jupiter', 'raydium', 'orca', 'meteora', 'lifinity', 'openbook'];\n\ninterface DexTrade {\n  txHash: string;\n  blockTime: string;\n  dex: string;\n  instructionType: string;\n  feePaidSol: number;\n  successful: boolean;\n}\n\nasync function getDexTradeHistory(\n  walletAddress: string,\n  page = 1\n): Promise<{ trades: DexTrade[]; hasMore: boolean }> {\n  const client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\n  const resp = await client.TransactionService.getTransactionsForAddressV3(\n    'solana-mainnet',\n    walletAddress,\n    { pageSize: 100, page }\n  );\n\n  if (resp.error) {\n    console.error('GoldRush error:', resp.error_message);\n    return { trades: [], hasMore: false };\n  }\n\n  const txs = resp.data?.items ?? [];\n  const totalCount = resp.data?.pagination?.total_count ?? 0;\n\n  const trades: DexTrade[] = txs\n    .filter((tx) =>\n      tx.log_events?.some((e) =>\n        DEX_NAMES.some((dex) =>\n          e.sender_name?.toLowerCase().includes(dex)\n        )\n      )\n    )\n    .map((tx) => {\n      const dexEvent = tx.log_events?.find((e) =>\n        DEX_NAMES.some((dex) => e.sender_name?.toLowerCase().includes(dex))\n      );\n      return {\n        txHash: tx.tx_hash ?? '',\n        blockTime: tx.block_signed_at ?? '',\n        dex: dexEvent?.sender_name ?? 'Unknown DEX',\n        instructionType: dexEvent?.decoded?.name ?? 'swap',\n        feePaidSol: Number(tx.fees_paid ?? 0) / 1e9,\n        successful: tx.successful ?? false,\n      };\n    });\n\n  const hasMore = page * 100 < totalCount;\n  console.log(`Page ${page}: ${trades.length} DEX trades (${totalCount} total txs)`);\n  return { trades, hasMore };\n}\n\n// Usage\ngetDexTradeHistory('7Np41oeYqPefeAfUZx9j5yCLrMQZMDyApbJAKhgQFMRm').then(({ trades }) => {\n  trades.forEach((t) => console.log(`${t.dex} | ${t.instructionType} | ${t.blockTime}`));\n});",
+  "buildsWith": [
+    "jupiter-swap-route-finder",
+    "solana-transaction-history",
+    "solana-token-price-history",
+    "wallet-pnl-tracker"
+  ]
 }

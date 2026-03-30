@@ -5,5 +5,39 @@
   "url": "https://goldrush.dev",
   "tag": "API Key Required",
   "date-added": "2026-03-26",
-  "slug": "solana-agent-wallet-watcher"
+  "slug": "solana-agent-wallet-watcher",
+  "useCase": "Build a real-time wallet monitoring agent that triggers automated actions — alerts, hedges, or portfolio rebalancing — the moment a watched Solana address sends or receives tokens.",
+  "complexity": "Advanced",
+  "chains": [
+    "solana"
+  ],
+  "creditCost": "2 credits/call",
+  "endpoints": [
+    "GET /v1/solana-mainnet/address/{address}/transactions_v3/",
+    "GET /v1/solana-mainnet/address/{address}/balances_v2/"
+  ],
+  "keyParams": {
+    "address": "The Solana wallet address to watch for activity",
+    "page_size": "Number of latest transactions to poll per check cycle",
+    "block_signed_at_asc": "Set to false to get newest transactions first for real-time polling"
+  },
+  "responseFields": [
+    "items[].tx_hash",
+    "items[].block_signed_at",
+    "items[].block_height",
+    "items[].successful",
+    "items[].from_address",
+    "items[].to_address",
+    "items[].fees_paid",
+    "items[].log_events[].sender_name",
+    "items[].log_events[].decoded.name",
+    "items[].log_events[].decoded.params[].value"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\ninterface WalletEvent {\n  txHash: string;\n  blockTime: string;\n  programName: string;\n  instructionType: string;\n  fromAddress: string;\n  successful: boolean;\n  feePaid: string;\n}\n\nasync function watchWalletActivity(\n  watchAddress: string,\n  onEvent: (event: WalletEvent) => void,\n  pollIntervalMs = 10_000\n): Promise<() => void> {\n  const client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n  let lastSeenTxHash = '';\n  let running = true;\n\n  const poll = async () => {\n    if (!running) return;\n\n    const resp = await client.TransactionService.getTransactionsForAddressV3(\n      'solana-mainnet',\n      watchAddress,\n      { pageSize: 10 }\n    );\n\n    if (resp.error) {\n      console.error('Poll error:', resp.error_message);\n    } else {\n      const txs = resp.data?.items ?? [];\n      const newTxs = txs.filter((tx) => tx.tx_hash !== lastSeenTxHash);\n\n      if (newTxs.length > 0) {\n        lastSeenTxHash = txs[0]?.tx_hash ?? lastSeenTxHash;\n\n        for (const tx of newTxs) {\n          onEvent({\n            txHash: tx.tx_hash ?? '',\n            blockTime: tx.block_signed_at ?? '',\n            programName: tx.log_events?.[0]?.sender_name ?? 'unknown',\n            instructionType: tx.log_events?.[0]?.decoded?.name ?? 'unknown',\n            fromAddress: tx.from_address ?? '',\n            successful: tx.successful ?? false,\n            feePaid: tx.fees_paid?.toString() ?? '0',\n          });\n        }\n      }\n    }\n\n    if (running) setTimeout(poll, pollIntervalMs);\n  };\n\n  poll();\n  return () => { running = false; };\n}\n\n// Usage\nconst stopWatching = await watchWalletActivity(\n  '7Np41oeYqPefeAfUZx9j5yCLrMQZMDyApbJAKhgQFMRm',\n  (event) => {\n    console.log(`New tx: ${event.txHash} | Program: ${event.programName} | ${event.instructionType}`);\n  }\n);\n// Call stopWatching() to stop",
+  "buildsWith": [
+    "solana-transaction-history",
+    "solana-token-whale-alert",
+    "solana-agent-portfolio-snapshot",
+    "address-activity-scanner"
+  ]
 }

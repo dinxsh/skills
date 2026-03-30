@@ -5,5 +5,39 @@
   "url": "https://goldrush.dev",
   "tag": "API Key Required",
   "date-added": "2026-03-23",
-  "slug": "smart-money-copier"
+  "slug": "smart-money-copier",
+  "complexity": "Advanced",
+  "useCase": "Build a copy trading intelligence tool that monitors a curated list of smart money wallets and surfaces new token buys in real-time.",
+  "chains": [
+    "ethereum",
+    "base",
+    "bsc",
+    "polygon",
+    "arbitrum",
+    "optimism"
+  ],
+  "creditCost": "Streaming + 1 credit/balance check",
+  "endpoints": [
+    "wss://streaming.goldrushdata.com/graphql — walletTxs subscription",
+    "GET /v1/{chainName}/address/{walletAddress}/balances_v2/"
+  ],
+  "keyParams": {
+    "walletAddresses": "Curated list of smart money wallet addresses to monitor",
+    "chainName": "EVM chain to monitor for copy trades",
+    "minPositionUsd": "Minimum USD value of a new buy to surface as a signal"
+  },
+  "responseFields": [
+    "wallet",
+    "txHash",
+    "tokenSymbol",
+    "tokenAddress",
+    "deltaAmount",
+    "estimatedUsdValue"
+  ],
+  "snippet": "import { createClient } from 'graphql-ws';\nimport { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst wsClient = createClient({\n  url: 'wss://streaming.goldrushdata.com/graphql',\n  connectionParams: { apiKey: process.env.GOLDRUSH_API_KEY },\n});\nconst apiClient = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nconst KNOWN_WALLETS = [\n  '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045', // vitalik.eth (example)\n];\n\nfunction startSmartMoneyCopier(\n  chainName: string,\n  minPositionUsd: number,\n  onSignal: (signal: any) => void\n) {\n  KNOWN_WALLETS.forEach(walletAddress => {\n    wsClient.subscribe(\n      {\n        query: `subscription($addr: String!, $chain: String!) {\n          walletTxs(walletAddress: $addr, chainName: $chain) {\n            txHash blockSignedAt transfers { tokenSymbol tokenAddress delta fromAddress }\n          }\n        }`,\n        variables: { addr: walletAddress, chain: chainName },\n      },\n      {\n        next: async ({ data }: any) => {\n          const tx = data?.walletTxs;\n          if (!tx) return;\n          // Find incoming token transfers (buys)\n          const buys = (tx.transfers ?? []).filter(\n            (t: any) => t.fromAddress?.toLowerCase() !== walletAddress.toLowerCase()\n          );\n          for (const buy of buys) {\n            // Confirm position size by fetching current balance\n            try {\n              const balResp = await apiClient.BalanceService\n                .getTokenBalancesForWalletAddress(chainName, walletAddress);\n              const position = (balResp.data?.items ?? []).find(\n                t => t.contract_address?.toLowerCase() === buy.tokenAddress?.toLowerCase()\n              );\n              const estimatedUsdValue = position?.quote ?? 0;\n              if (estimatedUsdValue >= minPositionUsd) {\n                onSignal({\n                  wallet: walletAddress, txHash: tx.txHash,\n                  tokenSymbol: buy.tokenSymbol, tokenAddress: buy.tokenAddress,\n                  deltaAmount: buy.delta, estimatedUsdValue,\n                });\n              }\n            } catch (_) {}\n          }\n        },\n        error: console.error,\n        complete: () => {},\n      }\n    );\n  });\n}",
+  "buildsWith": [
+    "whale-wallet-watchlist",
+    "wallet-balances-skill",
+    "token-price-chart"
+  ]
 }

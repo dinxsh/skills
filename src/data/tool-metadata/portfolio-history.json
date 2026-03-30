@@ -5,5 +5,36 @@
   "url": "https://goldrush.dev",
   "tag": "API Key Required",
   "date-added": "2026-03-12",
-  "slug": "portfolio-history"
+  "slug": "portfolio-history",
+  "complexity": "Intermediate",
+  "useCase": "Render a stacked area chart of total portfolio value over 30 days — ideal for fund dashboards and DeFi performance trackers.",
+  "chains": [
+    "ethereum",
+    "base",
+    "bsc",
+    "polygon",
+    "optimism",
+    "gnosis"
+  ],
+  "creditCost": "1 credit/call",
+  "endpoints": [
+    "GET /v1/{chainName}/address/{walletAddress}/portfolio_v2/"
+  ],
+  "keyParams": {
+    "chainName": "Foundational chain only: eth-mainnet, base-mainnet, bsc-mainnet, matic-mainnet, optimism-mainnet, gnosis-mainnet",
+    "walletAddress": "0x wallet address or ENS name"
+  },
+  "responseFields": [
+    "items[].contract_name",
+    "items[].contract_ticker_symbol",
+    "items[].holdings[].timestamp",
+    "items[].holdings[].open.quote",
+    "items[].holdings[].close.quote"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function getPortfolioHistory(chainName: string, walletAddress: string) {\n  const resp = await client.BalanceService.getHistoricalPortfolioForWalletAddress(\n    chainName,\n    walletAddress\n  );\n\n  if (resp.error) throw new Error(resp.error_message);\n\n  const dailyTotals: Record<string, number> = {};\n  for (const token of resp.data.items) {\n    for (const h of token.holdings ?? []) {\n      const day = String(h.timestamp).slice(0, 10);\n      dailyTotals[day] = (dailyTotals[day] ?? 0) + (h.close?.quote ?? 0);\n    }\n  }\n  return Object.entries(dailyTotals)\n    .sort(([a], [b]) => a.localeCompare(b))\n    .map(([date, totalUsd]) => ({ date, totalUsd }));\n}",
+  "buildsWith": [
+    "historical-portfolio-value",
+    "portfolio-tracker",
+    "wallet-balances-skill"
+  ]
 }

@@ -5,5 +5,39 @@
   "url": "https://goldrush.dev",
   "tag": "API Key Required",
   "date-added": "2026-03-26",
-  "slug": "solana-agent-token-launch-detector"
+  "slug": "solana-agent-token-launch-detector",
+  "useCase": "Build an autonomous token launch detector that fires a structured event with full context the moment a pump.fun token graduates to Raydium, enabling sniper agents to act within seconds.",
+  "complexity": "Advanced",
+  "chains": [
+    "solana"
+  ],
+  "creditCost": "2 credits/call",
+  "endpoints": [
+    "GET /v1/solana-mainnet/address/{address}/transactions_v3/",
+    "GET /v1/solana-mainnet/tokens/{tokenAddress}/token_holders_v2/"
+  ],
+  "keyParams": {
+    "address": "The pump.fun program address to monitor for graduation events",
+    "tokenAddress": "Newly graduated SPL token mint address to enrich with holder data",
+    "page_size": "Number of recent transactions to scan for graduation events",
+    "block_signed_at_asc": "Sort ascending to detect the exact graduation block"
+  },
+  "responseFields": [
+    "items[].tx_hash",
+    "items[].block_signed_at",
+    "items[].block_height",
+    "items[].successful",
+    "items[].from_address",
+    "items[].log_events[].decoded.name",
+    "items[].log_events[].decoded.params[].name",
+    "items[].log_events[].decoded.params[].value",
+    "items[].log_events[].sender_address"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\ninterface TokenLaunchEvent {\n  mintAddress: string;\n  graduationTxHash: string;\n  graduationBlock: number;\n  graduationTime: string;\n  top10EarlyBuyers: Array<{ wallet: string; txCount: number }>;\n  totalTransactionsBeforeGrad: number;\n}\n\nasync function detectTokenLaunches(\n  pumpFunProgramAddress: string\n): Promise<TokenLaunchEvent[]> {\n  const client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\n  const resp = await client.TransactionService.getTransactionsForAddressV3(\n    'solana-mainnet',\n    pumpFunProgramAddress,\n    { pageSize: 100 }\n  );\n\n  if (resp.error) {\n    console.error('GoldRush error:', resp.error_message);\n    return [];\n  }\n\n  const txs = resp.data?.items ?? [];\n  const graduationTxs = txs.filter((tx) =>\n    tx.log_events?.some(\n      (e) =>\n        e.decoded?.name?.toLowerCase().includes('migrate') ||\n        e.decoded?.name?.toLowerCase().includes('graduate')\n    )\n  );\n\n  const launches: TokenLaunchEvent[] = graduationTxs.map((tx) => {\n    const buyerMap = new Map<string, number>();\n    txs\n      .filter((t) => t.block_height && tx.block_height && t.block_height < tx.block_height)\n      .forEach((t) => {\n        if (t.from_address) buyerMap.set(t.from_address, (buyerMap.get(t.from_address) ?? 0) + 1);\n      });\n\n    const top10EarlyBuyers = Array.from(buyerMap.entries())\n      .sort((a, b) => b[1] - a[1])\n      .slice(0, 10)\n      .map(([wallet, txCount]) => ({ wallet, txCount }));\n\n    return {\n      mintAddress: tx.log_events?.[0]?.decoded?.params?.[0]?.value ?? '',\n      graduationTxHash: tx.tx_hash ?? '',\n      graduationBlock: Number(tx.block_height ?? 0),\n      graduationTime: tx.block_signed_at ?? '',\n      top10EarlyBuyers,\n      totalTransactionsBeforeGrad: buyerMap.size,\n    };\n  });\n\n  return launches;\n}\n\n// Usage\ndetectTokenLaunches('6EF8rrecthR5Dkzon8Nwu78hRvfCKubJ14M5uBymL1p').then((events) => {\n  console.log(`Detected ${events.length} graduation events`);\n  events.forEach((e) => console.log(`Token: ${e.mintAddress} graduated at block ${e.graduationBlock}`));\n});",
+  "buildsWith": [
+    "pumpfun-token-scanner",
+    "solana-token-risk-scorer",
+    "solana-token-holders-snapshot",
+    "solana-agent-risk-gate"
+  ]
 }

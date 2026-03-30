@@ -5,5 +5,43 @@
   "url": "https://goldrush.dev",
   "tag": "Open Source",
   "date-added": "2026-03-12",
-  "slug": "goldrush-typescript-sdk"
+  "slug": "goldrush-typescript-sdk",
+  "complexity": "Beginner",
+  "useCase": "Bootstrap any TypeScript or JavaScript project with full on-chain data access in under 5 minutes — install the SDK, paste your API key, and start querying.",
+  "chains": [
+    "ethereum",
+    "base",
+    "polygon",
+    "bsc",
+    "optimism",
+    "arbitrum",
+    "avalanche",
+    "gnosis",
+    "fantom",
+    "celo",
+    "moonbeam",
+    "blast",
+    "linea",
+    "scroll",
+    "zkSync",
+    "mantle",
+    "sonic",
+    "unichain",
+    "sei",
+    "bitcoin"
+  ],
+  "creditCost": "Free to install",
+  "endpoints": [
+    "npm: @covalenthq/client-sdk"
+  ],
+  "keyParams": {
+    "apiKey": "GoldRush API key — get one free at goldrush.dev"
+  },
+  "responseFields": [],
+  "snippet": "// Install: npm install @covalenthq/client-sdk\n\nimport { GoldRushClient } from '@covalenthq/client-sdk';\n\n// Initialize once, reuse everywhere\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\n// Every method returns { error, error_message, data }\nconst resp = await client.BalanceService.getTokenBalancesForWalletAddress(\n  'eth-mainnet',\n  '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045'\n);\n\nif (resp.error) {\n  console.error('Error:', resp.error_message);\n} else {\n  const total = resp.data.items.reduce((s, t) => s + (t.quote ?? 0), 0);\n  console.log(`Portfolio: $${total.toFixed(2)}`);\n}",
+  "buildsWith": [
+    "api-reference",
+    "quickstart-templates",
+    "goldrush-playground"
+  ]
 }

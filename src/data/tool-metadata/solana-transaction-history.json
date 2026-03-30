@@ -5,5 +5,42 @@
   "url": "https://goldrush.dev",
   "tag": "Free Tier",
   "date-added": "2026-03-26",
-  "slug": "solana-transaction-history"
+  "slug": "solana-transaction-history",
+  "useCase": "Build a decoded Solana transaction activity feed that shows program names, instruction types, fees, and status for any wallet without any raw instruction parsing.",
+  "complexity": "Beginner",
+  "chains": [
+    "solana"
+  ],
+  "creditCost": "1 credit/call",
+  "endpoints": [
+    "GET /v1/solana-mainnet/address/{address}/transactions_v3/"
+  ],
+  "keyParams": {
+    "address": "The Solana wallet address to fetch transaction history for",
+    "page_size": "Number of transactions per page (max 100)",
+    "page": "Page index for pagination (starts at 0)",
+    "block_signed_at_asc": "Set to true for oldest-first ordering, false (default) for newest-first"
+  },
+  "responseFields": [
+    "items[].tx_hash",
+    "items[].block_signed_at",
+    "items[].block_height",
+    "items[].successful",
+    "items[].from_address",
+    "items[].fees_paid",
+    "items[].value",
+    "items[].log_events[].sender_name",
+    "items[].log_events[].decoded.name",
+    "items[].log_events[].decoded.params[].name",
+    "items[].log_events[].decoded.params[].value",
+    "pagination.total_count",
+    "pagination.page_number"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\ninterface SolanaTx {\n  txHash: string;\n  blockTime: string;\n  programName: string;\n  instructionType: string;\n  feePaidSol: number;\n  successful: boolean;\n}\n\nasync function getSolanaTransactionHistory(\n  walletAddress: string,\n  page = 0,\n  pageSize = 25\n): Promise<{ txs: SolanaTx[]; totalCount: number }> {\n  const client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\n  const resp = await client.TransactionService.getTransactionsForAddressV3(\n    'solana-mainnet',\n    walletAddress,\n    { page, pageSize }\n  );\n\n  if (resp.error) {\n    console.error('GoldRush error:', resp.error_message);\n    return { txs: [], totalCount: 0 };\n  }\n\n  const items = resp.data?.items ?? [];\n  const totalCount = resp.data?.pagination?.total_count ?? items.length;\n\n  const txs: SolanaTx[] = items.map((tx) => ({\n    txHash: tx.tx_hash ?? '',\n    blockTime: tx.block_signed_at ?? '',\n    programName: tx.log_events?.[0]?.sender_name ?? 'System',\n    instructionType: tx.log_events?.[0]?.decoded?.name ?? 'transfer',\n    feePaidSol: Number(tx.fees_paid ?? 0) / 1e9,\n    successful: tx.successful ?? false,\n  }));\n\n  return { txs, totalCount };\n}\n\n// Usage\ngetSolanaTransactionHistory('7Np41oeYqPefeAfUZx9j5yCLrMQZMDyApbJAKhgQFMRm', 0, 10).then(\n  ({ txs, totalCount }) => {\n    console.log(`Showing ${txs.length} of ${totalCount} total transactions`);\n    txs.forEach((tx) =>\n      console.log(\n        `${tx.programName} | ${tx.instructionType} | ${tx.successful ? 'OK' : 'FAIL'} | ${tx.blockTime}`\n      )\n    );\n  }\n);",
+  "buildsWith": [
+    "solana-wallet-balances",
+    "solana-dex-trade-history",
+    "solana-wallet-age-activity",
+    "transaction-history"
+  ]
 }

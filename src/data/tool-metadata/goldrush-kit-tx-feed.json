@@ -5,5 +5,50 @@
   "url": "https://goldrush.dev",
   "tag": "Open Source",
   "date-added": "2026-03-16",
-  "slug": "goldrush-kit-tx-feed"
+  "slug": "goldrush-kit-tx-feed",
+  "complexity": "Beginner",
+  "useCase": "Add a paginated transaction activity feed to a wallet app — shows decoded event labels, values, and chain info with zero custom UI code required.",
+  "chains": [
+    "ethereum",
+    "base",
+    "polygon",
+    "bsc",
+    "optimism",
+    "arbitrum",
+    "avalanche",
+    "gnosis",
+    "fantom",
+    "celo",
+    "moonbeam",
+    "blast",
+    "linea",
+    "scroll",
+    "zkSync",
+    "mantle",
+    "sonic",
+    "unichain",
+    "sei"
+  ],
+  "creditCost": "1 credit/call",
+  "endpoints": [
+    "GET /v1/{chainName}/address/{walletAddress}/transactions_v3/"
+  ],
+  "keyParams": {
+    "address": "0x wallet address to show transactions for",
+    "chain_names": "Array of chain names to include in the feed"
+  },
+  "responseFields": [
+    "items[].tx_hash",
+    "items[].block_signed_at",
+    "items[].from_address",
+    "items[].to_address",
+    "items[].value_quote",
+    "items[].successful"
+  ],
+  "snippet": "// Install: npm install @covalenthq/goldrush-kit\nimport { GoldRushProvider, WalletActivityListView } from '@covalenthq/goldrush-kit';\nimport '@covalenthq/goldrush-kit/styles.css';\n\nexport function TransactionFeed({ walletAddress }: { walletAddress: string }) {\n  return (\n    <GoldRushProvider apikey={process.env.NEXT_PUBLIC_GOLDRUSH_API_KEY!}>\n      <WalletActivityListView\n        address={walletAddress}\n        chain_names={['eth-mainnet', 'base-mainnet', 'matic-mainnet']}\n      />\n    </GoldRushProvider>\n  );\n}",
+  "buildsWith": [
+    "transaction-history",
+    "goldrush-kit-token-balances",
+    "goldrush-react-hooks"
+  ]
 }

@@ -5,5 +5,35 @@
   "url": "https://goldrush.dev",
   "tag": "API Key Required",
   "date-added": "2026-03-26",
-  "slug": "solana-program-verifier"
+  "slug": "solana-program-verifier",
+  "useCase": "Build a Solana program safety checker that classifies any program as verified, unverified, or malicious using GoldRush transaction history and known-program lists before user interaction.",
+  "complexity": "Intermediate",
+  "chains": [
+    "solana"
+  ],
+  "creditCost": "1 credit/call",
+  "endpoints": [
+    "GET /v1/solana-mainnet/address/{address}/transactions_v3/"
+  ],
+  "keyParams": {
+    "address": "The Solana program ID to verify for safety and historical activity",
+    "page_size": "Number of transactions to fetch to assess historical usage volume",
+    "block_signed_at_asc": "Set to true to measure age (first transaction date)"
+  },
+  "responseFields": [
+    "items[].tx_hash",
+    "items[].block_signed_at",
+    "items[].successful",
+    "items[].from_address",
+    "items[].log_events[].sender_name",
+    "items[].log_events[].sender_address",
+    "pagination.total_count"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\ntype VerificationStatus = 'verified' | 'unverified' | 'malicious' | 'insufficient_data';\n\nconst KNOWN_VERIFIED_PROGRAMS = new Set([\n  'JUP6LkbZbjS1jKKwapdHNy74zcZ3tLUZoi5QNyVTaV4',\n  '675kPX9MHTjS2zt1qfr1NYHuzeLXfQM9H24wFSUt1Mp8',\n  '9WzDXwBbmkg8ZTbNMqUxvQRAyrZzDsGYdLVL9zYtAWWM',\n]);\n\nconst KNOWN_MALICIOUS_PROGRAMS = new Set([\n  'PLACEHOLDER_MALICIOUS_1',\n]);\n\ninterface ProgramVerificationResult {\n  programId: string;\n  status: VerificationStatus;\n  totalTxCount: number;\n  programAgeMonths: number;\n  firstSeenAt: string;\n  successRate: number;\n  auditUrl: string | null;\n}\n\nasync function verifyProgram(programId: string): Promise<ProgramVerificationResult> {\n  const client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\n  if (KNOWN_MALICIOUS_PROGRAMS.has(programId)) {\n    return { programId, status: 'malicious', totalTxCount: 0, programAgeMonths: 0,\n      firstSeenAt: '', successRate: 0, auditUrl: null };\n  }\n\n  const resp = await client.TransactionService.getTransactionsForAddressV3(\n    'solana-mainnet', programId, { pageSize: 100 }\n  );\n\n  if (resp.error || !resp.data?.items?.length) {\n    return { programId, status: 'insufficient_data', totalTxCount: 0, programAgeMonths: 0,\n      firstSeenAt: '', successRate: 0, auditUrl: null };\n  }\n\n  const txs = resp.data.items;\n  const totalTxCount = resp.data.pagination?.total_count ?? txs.length;\n  const successCount = txs.filter((tx) => tx.successful).length;\n  const successRate = parseFloat(((successCount / txs.length) * 100).toFixed(2));\n\n  const oldestTx = txs[txs.length - 1]?.block_signed_at ?? '';\n  const programAgeMonths = oldestTx\n    ? Math.floor((Date.now() - new Date(oldestTx).getTime()) / (30 * 24 * 3600 * 1000))\n    : 0;\n\n  const isBattleTested = totalTxCount > 10000 && programAgeMonths >= 3;\n  const status: VerificationStatus = KNOWN_VERIFIED_PROGRAMS.has(programId)\n    ? 'verified'\n    : isBattleTested ? 'verified' : 'unverified';\n\n  return { programId, status, totalTxCount, programAgeMonths, firstSeenAt: oldestTx,\n    successRate, auditUrl: status === 'verified' ? `https://explorer.solana.com/address/${programId}` : null };\n}\n\n// Usage\nverifyProgram('JUP6LkbZbjS1jKKwapdHNy74zcZ3tLUZoi5QNyVTaV4').then((r) => {\n  console.log(`Status: ${r.status} | Age: ${r.programAgeMonths}mo | Txs: ${r.totalTxCount}`);\n});",
+  "buildsWith": [
+    "solana-program-activity-monitor",
+    "solana-agent-risk-gate",
+    "solana-transaction-history",
+    "smart-contract-interaction-risk"
+  ]
 }

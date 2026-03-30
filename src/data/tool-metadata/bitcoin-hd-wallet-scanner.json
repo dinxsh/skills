@@ -5,5 +5,30 @@
   "url": "https://goldrush.dev/docs/api/balances/get-bitcoin-hd-wallet-balances/",
   "tag": "API Key Required",
   "date-added": "2026-03-23",
-  "slug": "bitcoin-hd-wallet-scanner"
+  "slug": "bitcoin-hd-wallet-scanner",
+  "complexity": "Intermediate",
+  "useCase": "Scan an entire Bitcoin HD wallet from a single xpub/ypub/zpub key — discover all derived addresses, their balances, and total BTC holdings without exposing private keys.",
+  "chains": [
+    "bitcoin"
+  ],
+  "creditCost": "1 credit/call",
+  "endpoints": [
+    "GET /v1/btc-mainnet/address/{xpub}/balances_hd/"
+  ],
+  "keyParams": {
+    "walletAddress": "Bitcoin HD wallet extended public key — xpub, ypub, or zpub format"
+  },
+  "responseFields": [
+    "items[].address",
+    "items[].balance",
+    "items[].quote",
+    "items[].account",
+    "items[].index"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function scanHdWallet(xpub: string) {\n  // Pass xpub/ypub/zpub as the wallet address — no chainName parameter\n  const resp = await client.BalanceService.getBitcoinHdWalletBalances(xpub);\n\n  if (resp.error) throw new Error(resp.error_message);\n\n  const addresses = resp.data.items;\n  const totalSatoshi = addresses.reduce((sum, a) => sum + Number(a.balance ?? 0), 0);\n\n  return {\n    totalBtc: totalSatoshi / 1e8,\n    addressCount: addresses.length,\n    addresses: addresses.map(a => ({\n      address: a.address,\n      balanceBtc: Number(a.balance) / 1e8,\n      account: a.account,\n      index: a.index,\n    })),\n  };\n}",
+  "buildsWith": [
+    "bitcoin-balance-checker",
+    "bitcoin-transaction-explorer",
+    "net-worth-calculator"
+  ]
 }

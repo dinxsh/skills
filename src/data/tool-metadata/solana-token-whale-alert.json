@@ -5,5 +5,38 @@
   "url": "https://goldrush.dev",
   "tag": "API Key Required",
   "date-added": "2026-03-26",
-  "slug": "solana-token-whale-alert"
+  "slug": "solana-token-whale-alert",
+  "useCase": "Build a Telegram or Discord whale-alert bot that fires within seconds whenever a large SPL token transfer exceeds a configurable USD threshold on Solana.",
+  "complexity": "Intermediate",
+  "chains": [
+    "solana"
+  ],
+  "creditCost": "2 credits/call",
+  "endpoints": [
+    "GET /v1/solana-mainnet/address/{address}/transactions_v3/",
+    "GET /v1/pricing/historical_by_addresses_v2/solana-mainnet/USD/{contractAddresses}/"
+  ],
+  "keyParams": {
+    "address": "The SPL token mint address to monitor for large transfers",
+    "minTransferUsd": "Minimum USD value threshold to trigger a whale alert (e.g. 50000)",
+    "page_size": "Number of recent transactions to scan per polling cycle (use 20)"
+  },
+  "responseFields": [
+    "items[].tx_hash",
+    "items[].block_signed_at",
+    "items[].successful",
+    "items[].from_address",
+    "items[].to_address",
+    "items[].value",
+    "items[].fees_paid",
+    "items[].log_events[].decoded.params[].name",
+    "items[].log_events[].decoded.params[].value"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\ninterface WhaleAlert {\n  txHash: string;\n  blockTime: string;\n  senderWallet: string;\n  receiverWallet: string;\n  tokenAmount: string;\n  valueUsd: number;\n  tokenMint: string;\n}\n\nasync function pollWhaleAlerts(\n  tokenMint: string,\n  minTransferUsd: number,\n  onAlert: (alert: WhaleAlert) => void,\n  pollIntervalMs = 15_000\n): Promise<() => void> {\n  const client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n  let lastSeenHash = '';\n  let running = true;\n\n  const poll = async () => {\n    if (!running) return;\n\n    const resp = await client.TransactionService.getTransactionsForAddressV3(\n      'solana-mainnet',\n      tokenMint,\n      { pageSize: 20 }\n    );\n\n    if (!resp.error && resp.data?.items) {\n      const txs = resp.data.items;\n      const newTxs = txs.filter((tx) => tx.tx_hash !== lastSeenHash);\n\n      if (newTxs.length > 0) lastSeenHash = txs[0]?.tx_hash ?? lastSeenHash;\n\n      for (const tx of newTxs) {\n        const valueUsd = Number(tx.value ?? 0);\n        if (valueUsd >= minTransferUsd && tx.successful) {\n          const amountParam = tx.log_events?.[0]?.decoded?.params?.find(\n            (p) => p.name === 'amount'\n          );\n          onAlert({\n            txHash: tx.tx_hash ?? '',\n            blockTime: tx.block_signed_at ?? '',\n            senderWallet: tx.from_address ?? '',\n            receiverWallet: tx.to_address ?? '',\n            tokenAmount: amountParam?.value ?? '0',\n            valueUsd,\n            tokenMint,\n          });\n        }\n      }\n    }\n\n    if (running) setTimeout(poll, pollIntervalMs);\n  };\n\n  poll();\n  return () => { running = false; };\n}\n\n// Usage\nconst stopAlerts = await pollWhaleAlerts(\n  'So11111111111111111111111111111111111111112',\n  50_000,\n  (alert) => {\n    console.log(`WHALE ALERT: $${alert.valueUsd.toFixed(0)} transfer`);\n    console.log(`From: ${alert.senderWallet} -> To: ${alert.receiverWallet}`);\n    console.log(`Tx: https://solscan.io/tx/${alert.txHash}`);\n  }\n);\n// Call stopAlerts() to stop polling",
+  "buildsWith": [
+    "solana-token-holders-snapshot",
+    "solana-transaction-history",
+    "token-whale-alert",
+    "solana-agent-wallet-watcher"
+  ]
 }

@@ -5,5 +5,51 @@
   "url": "https://goldrush.dev",
   "tag": "Open Source",
   "date-added": "2026-03-16",
-  "slug": "nft-gallery-viewer"
+  "slug": "nft-gallery-viewer",
+  "complexity": "Beginner",
+  "useCase": "Add a fully styled NFT gallery to any React/Next.js app in under 10 lines — no custom UI required, just drop in the GoldRush Kit component.",
+  "chains": [
+    "ethereum",
+    "base",
+    "polygon",
+    "bsc",
+    "optimism",
+    "arbitrum",
+    "avalanche",
+    "gnosis",
+    "fantom",
+    "celo",
+    "moonbeam",
+    "blast",
+    "linea",
+    "scroll",
+    "zkSync",
+    "mantle",
+    "sonic",
+    "unichain",
+    "sei"
+  ],
+  "creditCost": "1 credit/call",
+  "endpoints": [
+    "GET /v1/{chainName}/address/{walletAddress}/balances_nft/"
+  ],
+  "keyParams": {
+    "chainName": "EVM chain identifier",
+    "walletAddress": "0x wallet address whose NFTs to display",
+    "apikey": "GoldRush API key passed to GoldRushProvider"
+  },
+  "responseFields": [
+    "items[].contract_name",
+    "items[].contract_address",
+    "items[].nft_data[].token_id",
+    "items[].nft_data[].token_url",
+    "items[].nft_data[].external_data.name",
+    "items[].nft_data[].external_data.image"
+  ],
+  "snippet": "// Install: npm install @covalenthq/goldrush-kit\nimport { GoldRushProvider, NFTWalletCollectionView } from '@covalenthq/goldrush-kit';\nimport '@covalenthq/goldrush-kit/styles.css';\n\nexport function NftGallery({ walletAddress }: { walletAddress: string }) {\n  return (\n    <GoldRushProvider apikey={process.env.NEXT_PUBLIC_GOLDRUSH_API_KEY!}>\n      <NFTWalletCollectionView\n        address={walletAddress}\n        chain_names={['eth-mainnet', 'base-mainnet', 'matic-mainnet']}\n      />\n    </GoldRushProvider>\n  );\n}",
+  "buildsWith": [
+    "nft-metadata-fetcher",
+    "nft-portfolio-valuation",
+    "goldrush-kit-token-balances"
+  ]
 }

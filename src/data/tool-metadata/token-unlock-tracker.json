@@ -5,5 +5,40 @@
   "url": "https://goldrush.dev",
   "tag": "API Key Required",
   "date-added": "2026-03-23",
-  "slug": "token-unlock-tracker"
+  "slug": "token-unlock-tracker",
+  "complexity": "Intermediate",
+  "useCase": "Build a token unlock monitor that watches a vesting contract address for Transfer events and alerts when tokens are released, showing recipient, amount, and USD value.",
+  "chains": [
+    "ethereum",
+    "base",
+    "bsc",
+    "polygon",
+    "optimism",
+    "arbitrum",
+    "avalanche"
+  ],
+  "creditCost": "0.01/event",
+  "endpoints": [
+    "GET /v1/{chainName}/events/topics/{topicHash}/",
+    "GET /v1/{chainName}/block_v2/{startDate}/{endDate}/"
+  ],
+  "keyParams": {
+    "chainName": "EVM chain where the vesting contract is deployed",
+    "vestingContractAddress": "Address of the vesting or lock contract to watch for outgoing transfers",
+    "topicHash": "ERC-20 Transfer topic hash — 0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+    "startDate": "Start date for unlock scan in YYYY-MM-DD format",
+    "endDate": "End date for unlock scan in YYYY-MM-DD format"
+  },
+  "responseFields": [
+    "items[].block_signed_at",
+    "items[].tx_hash",
+    "items[].decoded.params[].name",
+    "items[].decoded.params[].value"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nconst TRANSFER_TOPIC = '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef';\n\nasync function trackTokenUnlocks(\n  chainName: string,\n  vestingContractAddress: string,\n  startDate: string,\n  endDate: string\n) {\n  // 1. Convert date range to block heights\n  const blocksResp = await client.BaseService.getBlockHeights(chainName, startDate, endDate);\n  const blocks = blocksResp.data?.items ?? [];\n  if (blocks.length < 2) throw new Error('Could not resolve block range for dates');\n\n  const startBlock = blocks[0].height!;\n  const endBlock = blocks[blocks.length - 1].height!;\n\n  // 2. Fetch Transfer events from the vesting contract in the date range\n  const resp = await client.BaseService.getLogEventsByTopicHash(\n    chainName, TRANSFER_TOPIC,\n    { startingBlock: startBlock, endingBlock: endBlock }\n  );\n\n  const unlockEvents = (resp.data?.items ?? []).filter(\n    e => e.sender_address?.toLowerCase() === vestingContractAddress.toLowerCase()\n  );\n\n  return unlockEvents.map(event => {\n    const params = event.decoded?.params ?? [];\n    const from = params.find((p: any) => p.name === 'from')?.value ?? '';\n    const to = params.find((p: any) => p.name === 'to')?.value ?? '';\n    const rawValue = params.find((p: any) => p.name === 'value')?.value ?? '0';\n    return {\n      date: event.block_signed_at,\n      txHash: event.tx_hash,\n      from, to,\n      rawAmount: rawValue,\n    };\n  });\n}",
+  "buildsWith": [
+    "block-date-lookup",
+    "contract-event-log-monitor",
+    "token-supply-metadata"
+  ]
 }

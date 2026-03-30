@@ -5,5 +5,36 @@
   "url": "https://goldrush.dev",
   "tag": "API Key Required",
   "date-added": "2026-03-26",
-  "slug": "solana-agent-risk-gate"
+  "slug": "solana-agent-risk-gate",
+  "useCase": "Wire a pre-transaction risk gate into every Solana agent pipeline that scores token safety and blocks trades when rug-pull signals like active mint authority or high holder concentration are detected.",
+  "complexity": "Intermediate",
+  "chains": [
+    "solana"
+  ],
+  "creditCost": "1 credit/call",
+  "endpoints": [
+    "GET /v1/solana-mainnet/tokens/{tokenAddress}/token_holders_v2/",
+    "GET /v1/solana-mainnet/address/{address}/balances_v2/"
+  ],
+  "keyParams": {
+    "tokenAddress": "SPL token mint address to evaluate for rug-pull risk signals",
+    "address": "Wallet address to check token balance and approvals context",
+    "page_size": "Number of top holders to fetch for concentration analysis (use 10)"
+  },
+  "responseFields": [
+    "items[].address",
+    "items[].balance",
+    "items[].total_supply",
+    "items[].contract_address",
+    "items[].contract_name",
+    "items[].contract_ticker_symbol",
+    "pagination.total_count"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\ninterface RiskGateResult {\n  tokenAddress: string;\n  riskScore: number;\n  signals: {\n    top10HolderConcentrationPct: number;\n    holderCount: number;\n    hasHighConcentration: boolean;\n  };\n  decision: 'ALLOW' | 'BLOCK';\n  reason: string;\n}\n\nconst HIGH_CONCENTRATION_THRESHOLD = 60;\nconst MAX_RISK_SCORE = 80;\n\nasync function runRiskGate(tokenAddress: string): Promise<RiskGateResult> {\n  const client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\n  const holdersResp = await client.BaseService.getTokenHoldersV2(\n    'solana-mainnet',\n    tokenAddress,\n    { pageSize: 10 }\n  );\n\n  if (holdersResp.error) {\n    return {\n      tokenAddress,\n      riskScore: 100,\n      signals: { top10HolderConcentrationPct: 0, holderCount: 0, hasHighConcentration: false },\n      decision: 'BLOCK',\n      reason: holdersResp.error_message ?? 'failed to fetch holder data',\n    };\n  }\n\n  const holders = holdersResp.data?.items ?? [];\n  const totalSupply = Number(holdersResp.data?.items?.[0]?.total_supply ?? 1);\n  const top10Balance = holders.reduce((sum, h) => sum + Number(h.balance ?? 0), 0);\n  const top10HolderConcentrationPct = (top10Balance / totalSupply) * 100;\n  const holderCount = holdersResp.data?.pagination?.total_count ?? 0;\n  const hasHighConcentration = top10HolderConcentrationPct > HIGH_CONCENTRATION_THRESHOLD;\n\n  const riskScore = Math.min(Math.round(top10HolderConcentrationPct * 0.8 + (holderCount < 100 ? 20 : 0)), 100);\n\n  return {\n    tokenAddress,\n    riskScore,\n    signals: { top10HolderConcentrationPct: parseFloat(top10HolderConcentrationPct.toFixed(2)), holderCount, hasHighConcentration },\n    decision: riskScore >= MAX_RISK_SCORE ? 'BLOCK' : 'ALLOW',\n    reason: hasHighConcentration ? `Top 10 holders control ${top10HolderConcentrationPct.toFixed(1)}% of supply` : 'Holder distribution acceptable',\n  };\n}\n\n// Usage\nrunRiskGate('DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263').then((result) => {\n  console.log(`Decision: ${result.decision} | Risk Score: ${result.riskScore}/100`);\n  console.log(`Reason: ${result.reason}`);\n});",
+  "buildsWith": [
+    "solana-token-risk-scorer",
+    "solana-token-holders-snapshot",
+    "solana-agent-transaction-validator",
+    "solana-program-verifier"
+  ]
 }

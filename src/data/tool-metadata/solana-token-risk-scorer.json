@@ -5,5 +5,35 @@
   "url": "https://goldrush.dev",
   "tag": "API Key Required",
   "date-added": "2026-03-26",
-  "slug": "solana-token-risk-scorer"
+  "slug": "solana-token-risk-scorer",
+  "useCase": "Build a pre-trade Solana token safety checker that scores rug-pull risk from 0–100 based on mint authority, freeze authority, and holder concentration, blocking dangerous trades automatically.",
+  "complexity": "Intermediate",
+  "chains": [
+    "solana"
+  ],
+  "creditCost": "1 credit/call",
+  "endpoints": [
+    "GET /v1/solana-mainnet/tokens/{tokenAddress}/token_holders_v2/",
+    "GET /v1/solana-mainnet/address/{address}/balances_v2/"
+  ],
+  "keyParams": {
+    "tokenAddress": "SPL token mint address to evaluate for rug-pull risk signals",
+    "page_size": "Set to 10 to fetch the top 10 holders for concentration scoring"
+  },
+  "responseFields": [
+    "items[].address",
+    "items[].balance",
+    "items[].total_supply",
+    "items[].contract_decimals",
+    "items[].contract_name",
+    "items[].contract_ticker_symbol",
+    "pagination.total_count"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\ninterface TokenRiskScore {\n  tokenAddress: string;\n  tokenSymbol: string;\n  compositeScore: number;\n  riskLevel: 'LOW' | 'MEDIUM' | 'HIGH' | 'CRITICAL';\n  signals: {\n    top10HolderConcentrationPct: number;\n    holderCount: number;\n    lowHolderCount: boolean;\n    highConcentration: boolean;\n  };\n  explanation: string;\n}\n\nasync function scoreTokenRisk(tokenAddress: string): Promise<TokenRiskScore | null> {\n  const client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\n  const holdersResp = await client.BaseService.getTokenHoldersV2(\n    'solana-mainnet',\n    tokenAddress,\n    { pageSize: 10 }\n  );\n\n  if (holdersResp.error) {\n    console.error('GoldRush error:', holdersResp.error_message);\n    return null;\n  }\n\n  const holders = holdersResp.data?.items ?? [];\n  const totalHolders = holdersResp.data?.pagination?.total_count ?? 0;\n  const totalSupply = Number(holders[0]?.total_supply ?? 1);\n  const tokenSymbol = holders[0]?.contract_ticker_symbol ?? 'UNKNOWN';\n\n  const top10Balance = holders.reduce((sum, h) => sum + Number(h.balance ?? 0), 0);\n  const top10HolderConcentrationPct =\n    totalSupply > 0 ? (top10Balance / totalSupply) * 100 : 0;\n\n  const lowHolderCount = totalHolders < 100;\n  const highConcentration = top10HolderConcentrationPct > 70;\n\n  let compositeScore = 0;\n  if (highConcentration) compositeScore += 50;\n  if (lowHolderCount) compositeScore += 30;\n  compositeScore += Math.min(Math.round((100 - totalHolders / 10)), 20);\n  compositeScore = Math.min(compositeScore, 100);\n\n  const riskLevel: TokenRiskScore['riskLevel'] =\n    compositeScore >= 80 ? 'CRITICAL'\n    : compositeScore >= 60 ? 'HIGH'\n    : compositeScore >= 35 ? 'MEDIUM'\n    : 'LOW';\n\n  const flags: string[] = [];\n  if (highConcentration) flags.push(`top 10 wallets hold ${top10HolderConcentrationPct.toFixed(1)}% of supply`);\n  if (lowHolderCount) flags.push(`only ${totalHolders} total holders`);\n\n  return {\n    tokenAddress,\n    tokenSymbol,\n    compositeScore,\n    riskLevel,\n    signals: {\n      top10HolderConcentrationPct: parseFloat(top10HolderConcentrationPct.toFixed(2)),\n      holderCount: totalHolders,\n      lowHolderCount,\n      highConcentration,\n    },\n    explanation: flags.length > 0 ? flags.join('; ') : 'No critical risk signals detected',\n  };\n}\n\n// Usage\nscoreTokenRisk('DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263').then((score) => {\n  if (score) console.log(`${score.tokenSymbol}: ${score.riskLevel} (${score.compositeScore}/100) — ${score.explanation}`);\n});",
+  "buildsWith": [
+    "solana-token-holders-snapshot",
+    "solana-agent-risk-gate",
+    "spl-token-metadata",
+    "token-approval-risk-scanner"
+  ]
 }

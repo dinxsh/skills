@@ -5,5 +5,38 @@
   "url": "https://goldrush.dev",
   "tag": "Free Tier",
   "date-added": "2026-03-26",
-  "slug": "spl-token-metadata"
+  "slug": "spl-token-metadata",
+  "useCase": "Build a Solana token analytics page that loads complete token context — name, symbol, supply, logo, and current price — from a single GoldRush endpoint call.",
+  "complexity": "Beginner",
+  "chains": [
+    "solana"
+  ],
+  "creditCost": "1 credit/call",
+  "endpoints": [
+    "GET /v1/pricing/historical_by_addresses_v2/solana-mainnet/USD/{contractAddresses}/",
+    "GET /v1/solana-mainnet/tokens/{tokenAddress}/token_holders_v2/"
+  ],
+  "keyParams": {
+    "contractAddresses": "The SPL token mint address to fetch metadata and current price for",
+    "tokenAddress": "The SPL token mint address to fetch holder count and total supply for",
+    "page_size": "Set to 1 to efficiently retrieve metadata alongside total holder count"
+  },
+  "responseFields": [
+    "data[].contract_address",
+    "data[].contract_name",
+    "data[].contract_ticker_symbol",
+    "data[].contract_decimals",
+    "data[].logo_url",
+    "data[].prices[].price",
+    "data[].prices[].date",
+    "items[].total_supply",
+    "pagination.total_count"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\ninterface SPLTokenMetadata {\n  mintAddress: string;\n  name: string;\n  symbol: string;\n  decimals: number;\n  totalSupply: number;\n  logoUrl: string;\n  currentPriceUsd: number;\n  holderCount: number;\n  marketCapUsd: number;\n}\n\nasync function getSPLTokenMetadata(mintAddress: string): Promise<SPLTokenMetadata | null> {\n  const client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\n  const today = new Date().toISOString().slice(0, 10);\n  const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);\n\n  const [priceResp, holdersResp] = await Promise.all([\n    client.PricingService.getTokenPrices('solana-mainnet', 'USD', mintAddress, { from: yesterday, to: today }),\n    client.BaseService.getTokenHoldersV2('solana-mainnet', mintAddress, { pageSize: 1 }),\n  ]);\n\n  if (priceResp.error) {\n    console.error('GoldRush error:', priceResp.error_message);\n    return null;\n  }\n\n  const tokenData = priceResp.data?.[0];\n  if (!tokenData) return null;\n\n  const latestPrice = tokenData.prices?.[tokenData.prices.length - 1];\n  const currentPriceUsd = Number(latestPrice?.price ?? 0);\n  const holderCount = holdersResp.data?.pagination?.total_count ?? 0;\n  const totalSupplyRaw = Number(holdersResp.data?.items?.[0]?.total_supply ?? 0);\n  const decimals = tokenData.contract_decimals ?? 0;\n  const totalSupply = totalSupplyRaw / Math.pow(10, decimals);\n  const marketCapUsd = parseFloat((totalSupply * currentPriceUsd).toFixed(2));\n\n  return {\n    mintAddress,\n    name: tokenData.contract_name ?? '',\n    symbol: tokenData.contract_ticker_symbol ?? '',\n    decimals,\n    totalSupply,\n    logoUrl: tokenData.logo_url ?? '',\n    currentPriceUsd,\n    holderCount,\n    marketCapUsd,\n  };\n}\n\n// Usage\ngetSPLTokenMetadata('So11111111111111111111111111111111111111112').then((meta) => {\n  if (meta) {\n    console.log(`${meta.symbol} (${meta.name})`);\n    console.log(`Price: $${meta.currentPriceUsd} | Holders: ${meta.holderCount} | MCap: $${meta.marketCapUsd}`);\n  }\n});",
+  "buildsWith": [
+    "solana-token-price-history",
+    "solana-token-holders-snapshot",
+    "solana-token-risk-scorer",
+    "token-metadata-api"
+  ]
 }

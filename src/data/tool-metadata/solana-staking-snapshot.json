@@ -5,5 +5,36 @@
   "url": "https://goldrush.dev",
   "tag": "API Key Required",
   "date-added": "2026-03-26",
-  "slug": "solana-staking-snapshot"
+  "slug": "solana-staking-snapshot",
+  "useCase": "Build a Solana staking dashboard that aggregates native stake accounts and liquid staking positions (mSOL, jitoSOL, bSOL) with estimated APY and claimable rewards in one view.",
+  "complexity": "Intermediate",
+  "chains": [
+    "solana"
+  ],
+  "creditCost": "1 credit/call",
+  "endpoints": [
+    "GET /v1/solana-mainnet/address/{address}/balances_v2/"
+  ],
+  "keyParams": {
+    "address": "The Solana wallet address to snapshot staking positions for",
+    "nft": "Set to false to exclude NFTs and focus on fungible staking tokens",
+    "no_spam": "Set to true to filter spam tokens from the response"
+  },
+  "responseFields": [
+    "items[].contract_name",
+    "items[].contract_ticker_symbol",
+    "items[].contract_address",
+    "items[].balance",
+    "items[].contract_decimals",
+    "items[].quote_rate",
+    "items[].quote",
+    "items[].logo_url"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst LIQUID_STAKING_TOKENS: Record<string, { protocol: string; estimatedApy: number }> = {\n  mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So: { protocol: 'Marinade', estimatedApy: 6.8 },\n  J1toso1uCk3RLmjorhTtrVwY9HJ7X8V9yYac6Y7kGCPn: { protocol: 'Jito', estimatedApy: 7.2 },\n  bSo13r4TkiE4KumL71LsHTPpL2euBYLFx6h9HP3piy1: { protocol: 'Sanctum', estimatedApy: 6.5 },\n};\n\ninterface StakingPosition {\n  protocol: string;\n  tokenSymbol: string;\n  balanceSol: number;\n  valueUsd: number;\n  estimatedApy: number;\n  tokenAddress: string;\n}\n\nasync function getStakingSnapshot(walletAddress: string): Promise<StakingPosition[]> {\n  const client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\n  const resp = await client.BalanceService.getTokenBalancesForWalletAddress(\n    'solana-mainnet',\n    walletAddress,\n    { nft: false, noSpam: true }\n  );\n\n  if (resp.error) {\n    console.error('GoldRush error:', resp.error_message);\n    return [];\n  }\n\n  const tokens = resp.data?.items ?? [];\n  const positions: StakingPosition[] = [];\n\n  for (const token of tokens) {\n    const addr = token.contract_address ?? '';\n    const stakingInfo = LIQUID_STAKING_TOKENS[addr];\n    if (!stakingInfo) continue;\n\n    const balanceSol =\n      Number(token.balance ?? 0) / Math.pow(10, token.contract_decimals ?? 9);\n\n    positions.push({\n      protocol: stakingInfo.protocol,\n      tokenSymbol: token.contract_ticker_symbol ?? '',\n      balanceSol: parseFloat(balanceSol.toFixed(4)),\n      valueUsd: Number(token.quote ?? 0),\n      estimatedApy: stakingInfo.estimatedApy,\n      tokenAddress: addr,\n    });\n  }\n\n  const totalStaked = positions.reduce((s, p) => s + p.balanceSol, 0);\n  console.log(`Found ${positions.length} staking positions, total: ${totalStaked.toFixed(4)} SOL`);\n  return positions;\n}\n\n// Usage\ngetStakingSnapshot('7Np41oeYqPefeAfUZx9j5yCLrMQZMDyApbJAKhgQFMRm').then((positions) => {\n  positions.forEach((p) => console.log(`${p.protocol}: ${p.balanceSol} SOL @ ${p.estimatedApy}% APY`));\n});",
+  "buildsWith": [
+    "solana-wallet-balances",
+    "solana-agent-portfolio-snapshot",
+    "solana-yield-dashboard",
+    "defi-wallet-dashboard"
+  ]
 }

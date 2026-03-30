@@ -5,5 +5,48 @@
   "url": "https://goldrush.dev",
   "tag": "Free Tier",
   "date-added": "2026-03-12",
-  "slug": "cross-chain-address-lookup"
+  "slug": "cross-chain-address-lookup",
+  "complexity": "Beginner",
+  "useCase": "Build a cross-chain identity card for any wallet — show which chains they use, when they were last active on each, and link to chain-specific explorers.",
+  "chains": [
+    "ethereum",
+    "base",
+    "polygon",
+    "bsc",
+    "optimism",
+    "arbitrum",
+    "avalanche",
+    "gnosis",
+    "fantom",
+    "celo",
+    "moonbeam",
+    "blast",
+    "linea",
+    "scroll",
+    "zkSync",
+    "mantle",
+    "sonic",
+    "unichain",
+    "sei",
+    "bitcoin"
+  ],
+  "creditCost": "0.1 credit/call",
+  "endpoints": [
+    "GET /v1/address/{walletAddress}/activity/"
+  ],
+  "keyParams": {
+    "walletAddress": "0x wallet address to look up across all chains"
+  },
+  "responseFields": [
+    "items[].name",
+    "items[].chain_id",
+    "items[].is_testnet",
+    "items[].last_seen_at"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function crossChainAddressLookup(walletAddress: string) {\n  const resp = await client.BaseService.getAddressActivity(walletAddress);\n\n  if (resp.error) throw new Error(resp.error_message);\n\n  const activeChains = resp.data.items.filter(c => !c.is_testnet);\n\n  return {\n    address: walletAddress,\n    activeChainCount: activeChains.length,\n    chains: activeChains.map(c => ({\n      name: c.name,\n      chainId: c.chain_id,\n      lastSeen: c.last_seen_at,\n    })),\n  };\n}",
+  "buildsWith": [
+    "address-activity-scanner",
+    "multichain-portfolio",
+    "multichain-activity-discovery"
+  ]
 }

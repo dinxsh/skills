@@ -5,5 +5,50 @@
   "url": "https://goldrush.dev",
   "tag": "Beta",
   "date-added": "2026-03-16",
-  "slug": "agent-fleet-monitor"
+  "slug": "agent-fleet-monitor",
+  "complexity": "Intermediate",
+  "useCase": "Build a fleet health dashboard for autonomous agents — monitor gas balances, flag wallets that need refuelling, and surface any unusual on-chain activity across a set of agent addresses.",
+  "chains": [
+    "ethereum",
+    "base",
+    "polygon",
+    "bsc",
+    "optimism",
+    "arbitrum",
+    "avalanche",
+    "gnosis",
+    "fantom",
+    "celo",
+    "moonbeam",
+    "blast",
+    "linea",
+    "scroll",
+    "zkSync",
+    "mantle",
+    "sonic",
+    "unichain",
+    "sei"
+  ],
+  "creditCost": "1 credit/wallet",
+  "endpoints": [
+    "GET /v1/{chainName}/address/{walletAddress}/balances_v2/",
+    "GET /v1/{chainName}/address/{walletAddress}/transactions_summary/"
+  ],
+  "keyParams": {
+    "chainName": "EVM chain the agents operate on",
+    "walletAddresses": "Array of agent wallet addresses to monitor"
+  },
+  "responseFields": [
+    "items[].contract_ticker_symbol",
+    "items[].balance",
+    "items[].quote",
+    "items[].total_count",
+    "items[].latest_transaction.block_signed_at"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function monitorAgentFleet(chainName: string, agentWallets: string[]) {\n  const results = await Promise.all(\n    agentWallets.map(async (addr) => {\n      const [balResp, sumResp] = await Promise.all([\n        client.BalanceService.getNativeTokenBalance(chainName, addr),\n        client.TransactionService.getTransactionSummary(chainName, addr),\n      ]);\n\n      const nativeBalance = balResp.error ? 0 : Number(balResp.data.items[0]?.balance) / 1e18;\n      const summary = sumResp.error ? null : sumResp.data.items[0];\n\n      return {\n        address: addr,\n        nativeBalance,\n        needsRefuel: nativeBalance < 0.01,\n        totalTxs: summary?.total_count ?? 0,\n        lastActive: summary?.latest_transaction?.block_signed_at ?? null,\n      };\n    })\n  );\n  return results;\n}",
+  "buildsWith": [
+    "native-token-balance",
+    "wallet-age-summary",
+    "agent-wallet-skill"
+  ]
 }

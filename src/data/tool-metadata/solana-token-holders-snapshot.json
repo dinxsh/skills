@@ -5,5 +5,37 @@
   "url": "https://goldrush.dev",
   "tag": "API Key Required",
   "date-added": "2026-03-26",
-  "slug": "solana-token-holders-snapshot"
+  "slug": "solana-token-holders-snapshot",
+  "useCase": "Generate a complete SPL token holder distribution snapshot for airdrop eligibility lists, DAO governance registries, or holder concentration risk analysis.",
+  "complexity": "Beginner",
+  "chains": [
+    "solana"
+  ],
+  "creditCost": "1 credit/call",
+  "endpoints": [
+    "GET /v1/solana-mainnet/tokens/{tokenAddress}/token_holders_v2/"
+  ],
+  "keyParams": {
+    "tokenAddress": "The SPL token mint address to fetch holder distribution for",
+    "page_size": "Number of holders per page (max 100 for efficient pagination)",
+    "page": "Page number to paginate through the full holder list"
+  },
+  "responseFields": [
+    "items[].address",
+    "items[].balance",
+    "items[].total_supply",
+    "items[].contract_decimals",
+    "items[].contract_name",
+    "items[].contract_ticker_symbol",
+    "pagination.total_count",
+    "pagination.page_number",
+    "pagination.page_size"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\ninterface TokenHolder {\n  walletAddress: string;\n  balance: number;\n  balanceFormatted: number;\n  supplyPct: number;\n  rank: number;\n}\n\ninterface HolderSnapshot {\n  tokenAddress: string;\n  tokenSymbol: string;\n  totalSupply: number;\n  totalHolders: number;\n  top100Holders: TokenHolder[];\n  top10ConcentrationPct: number;\n}\n\nasync function getTokenHoldersSnapshot(tokenAddress: string): Promise<HolderSnapshot | null> {\n  const client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\n  const resp = await client.BaseService.getTokenHoldersV2(\n    'solana-mainnet',\n    tokenAddress,\n    { pageSize: 100, page: 0 }\n  );\n\n  if (resp.error) {\n    console.error('GoldRush error:', resp.error_message);\n    return null;\n  }\n\n  const items = resp.data?.items ?? [];\n  const totalHolders = resp.data?.pagination?.total_count ?? items.length;\n  const decimals = items[0]?.contract_decimals ?? 0;\n  const totalSupply = Number(items[0]?.total_supply ?? 0);\n\n  const top100Holders: TokenHolder[] = items.map((holder, i) => {\n    const balance = Number(holder.balance ?? 0);\n    return {\n      walletAddress: holder.address ?? '',\n      balance,\n      balanceFormatted: parseFloat((balance / Math.pow(10, decimals)).toFixed(4)),\n      supplyPct:\n        totalSupply > 0 ? parseFloat(((balance / totalSupply) * 100).toFixed(4)) : 0,\n      rank: i + 1,\n    };\n  });\n\n  const top10ConcentrationPct = top100Holders\n    .slice(0, 10)\n    .reduce((sum, h) => sum + h.supplyPct, 0);\n\n  return {\n    tokenAddress,\n    tokenSymbol: items[0]?.contract_ticker_symbol ?? '',\n    totalSupply,\n    totalHolders,\n    top100Holders,\n    top10ConcentrationPct: parseFloat(top10ConcentrationPct.toFixed(2)),\n  };\n}\n\n// Usage\ngetTokenHoldersSnapshot('DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263').then((snap) => {\n  if (snap) {\n    console.log(`${snap.tokenSymbol}: ${snap.totalHolders} holders`);\n    console.log(`Top 10 hold ${snap.top10ConcentrationPct}% of supply`);\n  }\n});",
+  "buildsWith": [
+    "spl-token-metadata",
+    "solana-token-risk-scorer",
+    "token-holder-list",
+    "solana-token-whale-alert"
+  ]
 }

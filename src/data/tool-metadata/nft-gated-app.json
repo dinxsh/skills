@@ -5,5 +5,33 @@
   "url": "https://goldrush.dev",
   "tag": "Free Tier",
   "date-added": "2026-03-23",
-  "slug": "nft-gated-app"
+  "slug": "nft-gated-app",
+  "complexity": "Intermediate",
+  "useCase": "Ship a token-gated product (Discord alternative, exclusive content site, holder dashboard) where access requires owning any NFT in a specific collection.",
+  "chains": [
+    "ethereum",
+    "base",
+    "polygon",
+    "arbitrum",
+    "optimism",
+    "bsc"
+  ],
+  "creditCost": "1 credit/check",
+  "endpoints": [
+    "GET /v1/{chainName}/tokens/{collectionContract}/nft_check/{walletAddress}/"
+  ],
+  "keyParams": {
+    "chainName": "EVM chain where the NFT collection is deployed",
+    "walletAddress": "Wallet address of the user requesting access",
+    "collectionContract": "NFT collection contract address to check ownership against"
+  },
+  "responseFields": [
+    "data.is_owner"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\nimport { NextRequest, NextResponse } from 'next/server';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\n// pages/api/auth/nft-gate.ts — Next.js API route\nexport async function POST(req: NextRequest) {\n  try {\n    const { walletAddress, signature, message } = await req.json();\n\n    // 1. Verify SIWE message signature (use siwe package in production)\n    if (!walletAddress || !signature) {\n      return NextResponse.json({ error: 'Missing wallet or signature' }, { status: 400 });\n    }\n\n    const chainName = process.env.NFT_CHAIN ?? 'eth-mainnet';\n    const collectionContract = process.env.NFT_CONTRACT!;\n\n    // 2. Check NFT ownership via GoldRush\n    const resp = await client.NftService.checkOwnershipInNft(\n      chainName, walletAddress, collectionContract\n    );\n\n    const isOwner = resp.data?.is_owner ?? false;\n\n    if (!isOwner) {\n      return NextResponse.json(\n        { isOwner: false, error: 'You do not hold a token from this collection.' },\n        { status: 403 }\n      );\n    }\n\n    // 3. Issue a session cookie or JWT here — return success\n    return NextResponse.json({\n      isOwner: true,\n      redirect: '/dashboard',\n      wallet: walletAddress,\n    });\n  } catch (err: any) {\n    return NextResponse.json({ error: err.message }, { status: 500 });\n  }\n}",
+  "buildsWith": [
+    "nft-gate",
+    "nft-metadata-fetcher",
+    "nft-gallery-viewer"
+  ]
 }

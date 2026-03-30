@@ -5,5 +5,29 @@
   "url": "https://goldrush.dev/docs/api/balances/get-bitcoin-non-hd-wallet-balances/",
   "tag": "API Key Required",
   "date-added": "2026-03-23",
-  "slug": "bitcoin-balance-checker"
+  "slug": "bitcoin-balance-checker",
+  "complexity": "Beginner",
+  "useCase": "Build a Bitcoin balance widget that shows confirmed BTC balance and live USD value for any Bitcoin address — no chainName parameter needed.",
+  "chains": [
+    "bitcoin"
+  ],
+  "creditCost": "1 credit/call",
+  "endpoints": [
+    "GET /v1/btc-mainnet/address/{walletAddress}/balances/"
+  ],
+  "keyParams": {
+    "walletAddress": "Bitcoin address (P2PKH, P2SH, bech32) — no chainName needed, always btc-mainnet"
+  },
+  "responseFields": [
+    "items[].address",
+    "items[].balance",
+    "items[].quote",
+    "items[].quote_rate"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function getBitcoinBalance(btcAddress: string) {\n  // No chainName parameter — Bitcoin is hardcoded to btc-mainnet\n  const resp = await client.BalanceService.getBitcoinNonHdWalletBalances(btcAddress);\n\n  if (resp.error) throw new Error(resp.error_message);\n\n  const item = resp.data.items[0];\n  return {\n    address: item.address,\n    balanceSatoshi: item.balance,\n    balanceBtc: Number(item.balance) / 1e8,\n    usdValue: item.quote,\n    btcPriceUsd: item.quote_rate,\n  };\n}\n\n// Example usage\nconst balance = await getBitcoinBalance('1A1zP1eP5QGefi2DMPTfTL5SLmv7Divf');\nconsole.log(`BTC: ${balance.balanceBtc} (~$${balance.usdValue?.toFixed(2)})`);\n",
+  "buildsWith": [
+    "bitcoin-hd-wallet-scanner",
+    "bitcoin-transaction-explorer",
+    "net-worth-calculator"
+  ]
 }

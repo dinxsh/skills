@@ -5,5 +5,38 @@
   "url": "https://goldrush.dev",
   "tag": "API Key Required",
   "date-added": "2026-03-26",
-  "slug": "solana-smart-money-tracker"
+  "slug": "solana-smart-money-tracker",
+  "useCase": "Build a Solana copy-trading radar that identifies consistently profitable wallets and sends real-time alerts the moment they buy a new token.",
+  "complexity": "Advanced",
+  "chains": [
+    "solana"
+  ],
+  "creditCost": "2 credits/call",
+  "endpoints": [
+    "GET /v1/solana-mainnet/address/{address}/transactions_v3/",
+    "GET /v1/solana-mainnet/address/{address}/balances_v2/"
+  ],
+  "keyParams": {
+    "address": "The Solana wallet address to analyze for smart money signals",
+    "page_size": "Number of transactions to analyze (use 100 for sufficient history)",
+    "page": "Page number to paginate through 30-day transaction history"
+  },
+  "responseFields": [
+    "items[].tx_hash",
+    "items[].block_signed_at",
+    "items[].successful",
+    "items[].from_address",
+    "items[].fees_paid",
+    "items[].value",
+    "items[].log_events[].sender_name",
+    "items[].log_events[].decoded.name",
+    "items[].log_events[].decoded.params[].value"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\ninterface SmartMoneyProfile {\n  walletAddress: string;\n  totalSwaps: number;\n  successfulSwaps: number;\n  winRate: number;\n  mostUsedDex: string;\n  recentBuys: Array<{ token: string; blockTime: string; txHash: string }>;\n  isSmartMoney: boolean;\n}\n\nconst DEX_NAMES = ['jupiter', 'raydium', 'orca', 'meteora'];\nconst MIN_WIN_RATE = 60;\nconst MIN_SWAP_COUNT = 10;\n\nasync function analyzeSmartMoney(walletAddress: string): Promise<SmartMoneyProfile | null> {\n  const client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\n  const resp = await client.TransactionService.getTransactionsForAddressV3(\n    'solana-mainnet',\n    walletAddress,\n    { pageSize: 100 }\n  );\n\n  if (resp.error) {\n    console.error('GoldRush error:', resp.error_message);\n    return null;\n  }\n\n  const txs = resp.data?.items ?? [];\n  const swapTxs = txs.filter((tx) =>\n    tx.log_events?.some((e) => DEX_NAMES.some((d) => e.sender_name?.toLowerCase().includes(d)))\n  );\n\n  const successfulSwaps = swapTxs.filter((tx) => tx.successful).length;\n  const winRate = swapTxs.length > 0 ? (successfulSwaps / swapTxs.length) * 100 : 0;\n\n  const dexCounts = new Map<string, number>();\n  for (const tx of swapTxs) {\n    const dexName = tx.log_events?.find((e) =>\n      DEX_NAMES.some((d) => e.sender_name?.toLowerCase().includes(d))\n    )?.sender_name ?? 'Unknown';\n    dexCounts.set(dexName, (dexCounts.get(dexName) ?? 0) + 1);\n  }\n  const mostUsedDex = [...dexCounts.entries()].sort((a, b) => b[1] - a[1])[0]?.[0] ?? 'Unknown';\n\n  const recentBuys = swapTxs.slice(0, 5).map((tx) => ({\n    token: tx.log_events?.[0]?.decoded?.params?.[0]?.value ?? 'unknown',\n    blockTime: tx.block_signed_at ?? '',\n    txHash: tx.tx_hash ?? '',\n  }));\n\n  return {\n    walletAddress,\n    totalSwaps: swapTxs.length,\n    successfulSwaps,\n    winRate: parseFloat(winRate.toFixed(2)),\n    mostUsedDex,\n    recentBuys,\n    isSmartMoney: winRate >= MIN_WIN_RATE && swapTxs.length >= MIN_SWAP_COUNT,\n  };\n}\n\n// Usage\nanalyzeSmartMoney('7Np41oeYqPefeAfUZx9j5yCLrMQZMDyApbJAKhgQFMRm').then((profile) => {\n  if (profile) console.log(`Smart money: ${profile.isSmartMoney} | Win rate: ${profile.winRate}%`);\n});",
+  "buildsWith": [
+    "solana-dex-trade-history",
+    "solana-transaction-history",
+    "solana-agent-wallet-watcher",
+    "token-whale-alert"
+  ]
 }

@@ -5,5 +5,38 @@
   "url": "https://goldrush.dev",
   "tag": "API Key Required",
   "date-added": "2026-03-26",
-  "slug": "solana-program-activity-monitor"
+  "slug": "solana-program-activity-monitor",
+  "useCase": "Build a Solana protocol analytics dashboard that tracks daily active users, instruction volume, and week-over-week growth for any program to surface breakout protocols.",
+  "complexity": "Intermediate",
+  "chains": [
+    "solana"
+  ],
+  "creditCost": "1 credit/call",
+  "endpoints": [
+    "GET /v1/solana-mainnet/address/{address}/transactions_v3/"
+  ],
+  "keyParams": {
+    "address": "The Solana program address to monitor for activity metrics",
+    "page_size": "Number of transactions to fetch per page for aggregation (max 100)",
+    "page": "Page index for paginating through 90-day transaction history",
+    "block_signed_at_asc": "Set to true to retrieve oldest-first for chronological aggregation"
+  },
+  "responseFields": [
+    "items[].tx_hash",
+    "items[].block_signed_at",
+    "items[].successful",
+    "items[].from_address",
+    "items[].fees_paid",
+    "items[].log_events[].sender_name",
+    "items[].log_events[].decoded.name",
+    "pagination.total_count",
+    "pagination.page_number"
+  ],
+  "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\ninterface DailyMetric {\n  date: string;\n  txCount: number;\n  uniqueWallets: number;\n}\n\ninterface ProgramActivityReport {\n  programAddress: string;\n  totalTxs: number;\n  uniqueWallets: number;\n  dailyBreakdown: DailyMetric[];\n  weekOverWeekGrowth: number;\n}\n\nasync function monitorProgramActivity(\n  programAddress: string\n): Promise<ProgramActivityReport | null> {\n  const client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\n  const resp = await client.TransactionService.getTransactionsForAddressV3(\n    'solana-mainnet',\n    programAddress,\n    { pageSize: 100 }\n  );\n\n  if (resp.error) {\n    console.error('GoldRush error:', resp.error_message);\n    return null;\n  }\n\n  const txs = resp.data?.items ?? [];\n  const totalTxs = resp.data?.pagination?.total_count ?? txs.length;\n\n  const dailyMap = new Map<string, { txCount: number; wallets: Set<string> }>();\n  const allWallets = new Set<string>();\n\n  for (const tx of txs) {\n    const date = (tx.block_signed_at ?? '').slice(0, 10);\n    if (!date) continue;\n    if (!dailyMap.has(date)) dailyMap.set(date, { txCount: 0, wallets: new Set() });\n    const day = dailyMap.get(date)!;\n    day.txCount++;\n    if (tx.from_address) {\n      day.wallets.add(tx.from_address);\n      allWallets.add(tx.from_address);\n    }\n  }\n\n  const dailyBreakdown: DailyMetric[] = Array.from(dailyMap.entries())\n    .sort(([a], [b]) => a.localeCompare(b))\n    .map(([date, { txCount, wallets }]) => ({ date, txCount, uniqueWallets: wallets.size }));\n\n  const n = dailyBreakdown.length;\n  const thisWeekTxs = dailyBreakdown.slice(-7).reduce((s, d) => s + d.txCount, 0);\n  const lastWeekTxs = dailyBreakdown.slice(Math.max(0, n - 14), n - 7).reduce((s, d) => s + d.txCount, 0);\n  const weekOverWeekGrowth =\n    lastWeekTxs > 0 ? parseFloat((((thisWeekTxs - lastWeekTxs) / lastWeekTxs) * 100).toFixed(2)) : 0;\n\n  return { programAddress, totalTxs, uniqueWallets: allWallets.size, dailyBreakdown, weekOverWeekGrowth };\n}\n\n// Usage\nmonitorProgramActivity('JUP6LkbZbjS1jKKwapdHNy74zcZ3tLUZoi5QNyVTaV4').then((report) => {\n  if (report) console.log(`WoW growth: ${report.weekOverWeekGrowth}% | ${report.uniqueWallets} unique wallets`);\n});",
+  "buildsWith": [
+    "solana-transaction-history",
+    "solana-program-verifier",
+    "solana-smart-money-tracker",
+    "address-activity-scanner"
+  ]
 }
