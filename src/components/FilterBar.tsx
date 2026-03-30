@@ -1,6 +1,7 @@
 import './FilterBar.css';
 import data from '../data/tools.json';
 import type { Category } from '../types';
+import SearchInput from './SearchInput';
 
 export interface FilterState {
     category: string;
@@ -70,6 +71,10 @@ export default function FilterBar({ filters, onChange, totalCount, filteredCount
     return (
         <div className="filter-bar-container">
             <div className="filter-bar">
+                <div className="filter-bar-left">
+                <div className="filter-search-wrap">
+                    <SearchInput placeholder="Search skills..." />
+                </div>
                 <div className="filter-selects">
                     <select
                         className="filter-select"
@@ -114,6 +119,7 @@ export default function FilterBar({ filters, onChange, totalCount, filteredCount
                             <option key={c.value} value={c.value}>{c.label}</option>
                         ))}
                     </select>
+                </div>
                 </div>
 
                 <div className="filter-bar-meta">

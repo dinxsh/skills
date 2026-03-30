@@ -141,9 +141,6 @@ const {
                     <span class="logo-text">GoldRush Skills</span>
                 </a>
             </div>
-            <div class="nav-search-wrap">
-                <SearchInput client:load placeholder={searchPlaceholder} />
-            </div>
             <div class="btn-group">
                 <button
                     class="new-filter-toggle"
@@ -333,25 +330,15 @@ const {
         position: sticky;
         top: 0;
         padding: var(--spacing-03) var(--spacing-09);
-        display: grid;
-        grid-template-columns: 1fr auto 1fr;
+        display: flex;
         align-items: center;
+        justify-content: space-between;
         gap: var(--spacing-04);
         z-index: 9999999;
         background-color: var(--background-high-contrast);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
         border-bottom: 0.5px solid var(--border-muted);
-    }
-    .nav-search-wrap {
-        width: min(480px, 100%);
-        pointer-events: auto;
-    }
-    .nav-search-wrap :global(.search-container) {
-        width: 100%;
-    }
-    .nav-search-wrap :global(.search-input-wrapper) {
-        width: 100%;
     }
     .btn-group {
         display: flex;
@@ -529,10 +516,6 @@ const {
     @media (max-width: 48rem) {
         .floating-nav {
             padding: var(--spacing-03) var(--spacing-06);
-            grid-template-columns: 1fr auto;
-        }
-        .nav-search-wrap {
-            display: none;
         }
         .favorites-text {
             display: none;
