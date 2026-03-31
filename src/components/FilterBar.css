@@ -4,7 +4,6 @@
     z-index: 999999;
     background-color: var(--background-high-contrast);
     border-bottom: 0.5px solid var(--border-muted);
-    /* break out of main's horizontal margins without scrollbar-width skew */
     width: calc(100% + 2 * var(--spacing-09));
     margin-left: calc(-1 * var(--spacing-09));
 }
@@ -14,7 +13,7 @@
     align-items: center;
     justify-content: space-between;
     gap: var(--spacing-03);
-    padding: 5px var(--spacing-09);
+    padding: 4px var(--spacing-09);
     overflow-x: auto;
     scrollbar-width: none;
 }
@@ -32,7 +31,7 @@
 }
 
 .filter-search-row {
-    padding: 6px var(--spacing-09) 5px;
+    padding: 5px var(--spacing-09) 4px;
     border-bottom: 0.5px solid var(--border-muted);
 }
 

@@ -1,21 +1,18 @@
 .rv-section {
-    padding: var(--spacing-04) var(--spacing-09) var(--spacing-03);
+    margin-bottom: 0; /* override global section { margin-bottom: var(--spacing-10) } */
+    padding: var(--spacing-02) var(--spacing-09) var(--spacing-03);
     border-bottom: 0.5px solid var(--border-muted);
-    background-color: var(--background-high-contrast);
-    /* break out to full width like the filter bar */
-    width: calc(100% + 2 * var(--spacing-09));
-    margin-left: calc(-1 * var(--spacing-09));
-    box-sizing: border-box;
 }
 
 .rv-heading {
     font-family: var(--monospace);
-    font-size: 0.6rem;
+    font-size: 0.55rem;
     font-weight: 500;
     color: var(--content-secondary-alt);
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     margin: 0 0 var(--spacing-02);
+    opacity: 0.6;
 }
 
 .rv-strip {
@@ -26,12 +23,10 @@
     -ms-overflow-style: none;
 }
 
-.rv-strip::-webkit-scrollbar {
-    display: none;
-}
+.rv-strip::-webkit-scrollbar { display: none; }
 
 .rv-card {
-    flex: 0 0 10rem;
+    flex: 0 0 9.5rem;
     display: flex;
     flex-direction: column;
     gap: 3px;
@@ -65,6 +60,8 @@
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .rv-body {
@@ -79,20 +76,10 @@
 }
 
 @media (max-width: 640px) {
-    .rv-section {
-        padding: var(--spacing-03) var(--spacing-05) var(--spacing-02);
-        width: calc(100% + 2 * var(--spacing-05));
-        margin-left: calc(-1 * var(--spacing-05));
-    }
-    .rv-card {
-        flex: 0 0 8.5rem;
-    }
+    .rv-section { padding: var(--spacing-02) var(--spacing-05) var(--spacing-03); }
+    .rv-card { flex: 0 0 8rem; }
 }
 
 @media (max-width: 30rem) {
-    .rv-section {
-        width: calc(100% + 2 * var(--spacing-06));
-        margin-left: calc(-1 * var(--spacing-06));
-        padding: var(--spacing-03) var(--spacing-06) var(--spacing-02);
-    }
+    .rv-section { padding: var(--spacing-02) var(--spacing-06) var(--spacing-03); }
 }
