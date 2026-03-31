@@ -60,45 +60,58 @@ const complexityCounts = {
   </main>
 
   <style>
-    .kits-page { max-width: 60rem; margin: var(--spacing-08) auto; padding: 0 var(--spacing-09); }
+    .kits-page { max-width: 60rem; margin: var(--spacing-05) auto; padding: 0 var(--spacing-09); }
     .kits-back { font-family: var(--monospace); font-size: 0.7rem; color: var(--content-secondary); text-decoration: none; }
     .kits-back:hover { color: var(--content-primary); }
-    .kits-header { margin-bottom: var(--spacing-07); }
-    .kits-title { margin: var(--spacing-04) 0 var(--spacing-03); font-size: 1.5rem; color: var(--content-primary); }
-    .kits-subtitle { margin: 0; color: var(--content-secondary); font-size: var(--desktop-body-sm); line-height: 1.6; }
-    .kits-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr)); gap: var(--spacing-03); }
-    .kit-card { display: flex; flex-direction: column; gap: var(--spacing-03); padding: var(--spacing-06); background: var(--background); border: 0.5px solid var(--border-muted); text-decoration: none; transition: border-color 0.15s, background-color 0.15s; }
-    .kit-card:hover { border-color: var(--border); background-color: var(--background-secondary); }
+    .kits-header { margin-bottom: var(--spacing-05); }
+    .kits-title {
+      margin: var(--spacing-03) 0 var(--spacing-02);
+      font-size: 1.25rem;
+      font-family: var(--monospace);
+      font-weight: 700;
+      color: var(--content-primary);
+      letter-spacing: -0.01em;
+    }
+    .kits-subtitle { margin: 0; color: var(--content-secondary); font-size: 0.8rem; line-height: 1.5; }
+    .kits-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)); gap: var(--spacing-03); }
+    .kit-card {
+      display: flex; flex-direction: column; gap: var(--spacing-02);
+      padding: var(--spacing-04) var(--spacing-05);
+      background: var(--background); border: 0.5px solid var(--border-muted);
+      text-decoration: none;
+      transition: border-color 0.15s, background-color 0.15s, box-shadow 0.15s;
+    }
+    .kit-card:hover { border-color: var(--border); background-color: var(--background-secondary); box-shadow: 0 2px 12px rgba(0,0,0,0.18); }
     .kit-card-top { display: flex; align-items: center; justify-content: space-between; }
-    .kit-card-emoji { font-size: 1.25rem; }
-    .kit-card-complexity { font-family: var(--monospace); font-size: 0.6rem; padding: 1px 6px; }
+    .kit-card-emoji { font-size: 1.1rem; }
+    .kit-card-complexity { font-family: var(--monospace); font-size: 0.58rem; padding: 1px 5px; letter-spacing: 0.03em; }
     .kit-card-complexity--beginner     { background: rgba(110,224,110,.08); color: #6ee06e; }
     .kit-card-complexity--intermediate { background: rgba(224,200,78,.08);  color: #e0c84e; }
     .kit-card-complexity--advanced     { background: rgba(224,110,110,.08); color: #e06e6e; }
-    .kit-card-title { color: var(--content-primary); font-size: var(--desktop-body-sm); }
-    .kit-card-desc { margin: 0; color: var(--content-secondary); font-size: var(--desktop-caption); line-height: 1.5; flex: 1; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-    .kit-card-footer { display: flex; align-items: center; justify-content: space-between; margin-top: auto; }
-    .kit-card-count { font-family: var(--monospace); font-size: 0.65rem; color: var(--content-secondary-alt); }
-    .kit-card-chains { display: flex; gap: 4px; flex-wrap: wrap; }
-    .kit-card-chain { font-family: var(--monospace); font-size: 0.6rem; color: var(--content-secondary-alt); padding: 0 5px; background: var(--background-secondary); border: 0.5px solid var(--border-muted); }
-    .kits-filters { display: flex; gap: var(--spacing-02); margin-top: var(--spacing-05); flex-wrap: wrap; }
+    .kit-card-title { color: var(--content-primary); font-size: 0.9rem; font-weight: 600; line-height: 1.3; letter-spacing: -0.01em; }
+    .kit-card-desc { margin: 0; color: var(--content-secondary); font-size: 0.75rem; line-height: 1.5; flex: 1; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .kit-card-footer { display: flex; align-items: center; justify-content: space-between; margin-top: var(--spacing-02); padding-top: var(--spacing-02); border-top: 0.5px solid var(--border-muted); }
+    .kit-card-count { font-family: var(--monospace); font-size: 0.6rem; color: var(--content-secondary-alt); }
+    .kit-card-chains { display: flex; gap: 3px; flex-wrap: wrap; }
+    .kit-card-chain { font-family: var(--monospace); font-size: 0.58rem; color: var(--content-secondary-alt); padding: 0 4px; background: var(--background-secondary); border: 0.5px solid var(--border-muted); }
+    .kits-filters { display: flex; gap: var(--spacing-02); margin-top: var(--spacing-03); flex-wrap: wrap; }
     .kits-filter { background: none; border: 0.5px solid var(--border-muted); color: var(--content-secondary); font-family: var(--monospace); font-size: 0.65rem; padding: 0 var(--spacing-03); height: 1.5rem; cursor: pointer; transition: border-color 0.15s, color 0.15s; letter-spacing: 0.02em; }
     .kits-filter span { opacity: 0.5; margin-left: 3px; }
     .kits-filter:hover { border-color: var(--border); color: var(--content-primary); }
     .kits-filter--active { border-color: DarkOrange; color: DarkOrange; }
     .kits-filter--active span { opacity: 0.7; }
     .kit-card[hidden] { display: none; }
-    .kits-search-row { margin-top: var(--spacing-05); }
+    .kits-search-row { margin-top: var(--spacing-04); }
     .kits-search {
       background: var(--background);
       border: 0.5px solid var(--border-muted);
       color: var(--content-primary);
       font-family: var(--monospace);
-      font-size: 0.65rem;
+      font-size: 0.7rem;
       padding: 0 var(--spacing-04);
       height: 1.75rem;
       width: 100%;
-      max-width: 22rem;
+      max-width: 26rem;
       outline: none;
       letter-spacing: 0.02em;
     }
@@ -107,6 +120,7 @@ const complexityCounts = {
     @media (max-width: 640px) {
       .kits-page { padding: 0 var(--spacing-05); }
       .kits-grid { grid-template-columns: 1fr; }
+      .kits-search { max-width: 100%; }
     }
   </style>
 
