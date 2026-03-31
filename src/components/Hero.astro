@@ -1,5 +1,9 @@
 ---
-// Minimal hero — one-liner CTA strip linking to goldrush.dev
+import toolsData from '../data/tools.json';
+import type { Category } from '../types';
+
+const totalSkills = (toolsData.tools as Category[]).reduce((acc, cat) => acc + cat.content.length, 0);
+const totalCategories = (toolsData.tools as Category[]).length;
 ---
 
 <div class="hero-strip">
@@ -16,9 +20,9 @@
         >Start building →</a>
     </div>
     <div class="hero-stats">
-        <span class="hero-stat">138 skills</span>
+        <span class="hero-stat">{totalSkills} skills</span>
         <span class="hero-sep">·</span>
-        <span class="hero-stat">10 categories</span>
+        <span class="hero-stat">{totalCategories} categories</span>
         <span class="hero-sep">·</span>
         <span class="hero-stat">200+ chains</span>
     </div>

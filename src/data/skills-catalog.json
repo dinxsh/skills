@@ -117,7 +117,10 @@
     "endpoints": [
       "GET /v1/chains/status/"
     ],
-    "keyParams": {},
+    "keyParams": {
+      "chainName": "Optional EVM chain to check sync status for (e.g. eth-mainnet) — omit for all chains",
+      "noTestnets": "Filter: exclude testnet chains from results (filter client-side, default true)"
+    },
     "responseFields": [
       "items[].name",
       "items[].synced_block_height",
@@ -284,7 +287,10 @@
     "endpoints": [
       "GET /v1/chains/status/"
     ],
-    "keyParams": {},
+    "keyParams": {
+      "noTestnets": "Filter: exclude testnet chains from results (filter client-side, default true)",
+      "search": "Optional client-side filter string to search chain names"
+    },
     "responseFields": [
       "items[].name",
       "items[].synced_block_height",
@@ -355,7 +361,13 @@
     "keyParams": {
       "apiKey": "GoldRush API key for authenticated test calls in the playground"
     },
-    "responseFields": [],
+    "responseFields": [
+      "endpoint path",
+      "HTTP method",
+      "required parameters",
+      "optional parameters",
+      "response schema"
+    ],
     "creditCost": "Free to browse",
     "complexity": "Beginner"
   },
@@ -1563,7 +1575,13 @@
     "keyParams": {
       "apiKey": "GoldRush API key entered in the playground UI"
     },
-    "responseFields": [],
+    "responseFields": [
+      "request preview",
+      "response body JSON",
+      "HTTP status code",
+      "credits used",
+      "response time ms"
+    ],
     "creditCost": "Free to use",
     "complexity": "Beginner"
   },
@@ -1642,7 +1660,13 @@
     "keyParams": {
       "apiKey": "GoldRush API key — get one free at goldrush.dev"
     },
-    "responseFields": [],
+    "responseFields": [
+      "resp.data.items[]",
+      "resp.error",
+      "resp.error_message",
+      "resp.error_code",
+      "pagination.hasMore"
+    ],
     "creditCost": "Free to install",
     "complexity": "Beginner"
   },
@@ -1834,7 +1858,10 @@
     "endpoints": [
       "wss://streaming.goldrushdata.com/graphql — newPairs subscription"
     ],
-    "keyParams": {},
+    "keyParams": {
+      "chainName": "Chain to monitor for new DEX pair launches (e.g. eth-mainnet, base-mainnet)",
+      "minLiquidityUsd": "Minimum initial liquidity in USD to include in alerts (e.g. 1000)"
+    },
     "responseFields": [
       "pairAddress",
       "token0.symbol",
@@ -2945,7 +2972,13 @@
     "keyParams": {
       "NEXT_PUBLIC_GOLDRUSH_API_KEY": "GoldRush API key added to .env.local"
     },
-    "responseFields": [],
+    "responseFields": [
+      "package.json",
+      ".env.local",
+      "src/app/page.tsx",
+      "src/lib/goldrush.ts",
+      "src/components/"
+    ],
     "creditCost": "Free",
     "complexity": "Beginner"
   },

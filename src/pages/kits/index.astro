@@ -25,6 +25,9 @@ const complexityCounts = {
       <a href="/" class="kits-back">← All skills</a>
       <h1 class="kits-title">Starter Kits</h1>
       <p class="kits-subtitle">18 pre-composed bundles of 6 GoldRush skills each. Copy one prompt, build a complete deployable app.</p>
+      <div class="kits-search-row">
+        <input type="search" id="kitsSearch" placeholder="Search kits…" class="kits-search" autocomplete="off" />
+      </div>
       <div class="kits-filters" id="kitsFilters">
         <button class="kits-filter kits-filter--active" data-filter="all">All <span>{complexityCounts.all}</span></button>
         <button class="kits-filter" data-filter="beginner">Beginner <span>{complexityCounts.beginner}</span></button>
@@ -85,6 +88,22 @@ const complexityCounts = {
     .kits-filter--active { border-color: DarkOrange; color: DarkOrange; }
     .kits-filter--active span { opacity: 0.7; }
     .kit-card[hidden] { display: none; }
+    .kits-search-row { margin-top: var(--spacing-05); }
+    .kits-search {
+      background: var(--background);
+      border: 0.5px solid var(--border-muted);
+      color: var(--content-primary);
+      font-family: var(--monospace);
+      font-size: 0.65rem;
+      padding: 0 var(--spacing-04);
+      height: 1.75rem;
+      width: 100%;
+      max-width: 22rem;
+      outline: none;
+      letter-spacing: 0.02em;
+    }
+    .kits-search:focus { border-color: var(--border); }
+    .kits-search::placeholder { color: var(--content-secondary-alt); }
     @media (max-width: 640px) {
       .kits-page { padding: 0 var(--spacing-05); }
       .kits-grid { grid-template-columns: 1fr; }
@@ -94,15 +113,33 @@ const complexityCounts = {
   <script type="module">
     const filters = document.querySelectorAll('.kits-filter');
     const cards = document.querySelectorAll('.kit-card[data-complexity]');
+    const searchInput = document.getElementById('kitsSearch');
+    let activeFilter = 'all';
+    let searchQuery = '';
+
+    function applyFilters() {
+      cards.forEach(card => {
+        const matchComplexity = activeFilter === 'all' || card.dataset.complexity === activeFilter;
+        const q = searchQuery.toLowerCase().trim();
+        const matchSearch = !q ||
+          card.querySelector('.kit-card-title')?.textContent.toLowerCase().includes(q) ||
+          card.querySelector('.kit-card-desc')?.textContent.toLowerCase().includes(q);
+        card.hidden = !(matchComplexity && matchSearch);
+      });
+    }
+
     filters.forEach(btn => {
       btn.addEventListener('click', () => {
         filters.forEach(b => b.classList.remove('kits-filter--active'));
         btn.classList.add('kits-filter--active');
-        const f = btn.dataset.filter;
-        cards.forEach(card => {
-          card.hidden = f !== 'all' && card.dataset.complexity !== f;
-        });
+        activeFilter = btn.dataset.filter;
+        applyFilters();
       });
+    });
+
+    searchInput?.addEventListener('input', e => {
+      searchQuery = e.target.value;
+      applyFilters();
     });
   </script>
 </Layout>

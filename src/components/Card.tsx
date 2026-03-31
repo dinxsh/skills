@@ -14,6 +14,7 @@ interface CardProps {
     onCartToggle?: (slug: string) => void;
     completeness?: number;
     complexity?: string;
+    kitLabel?: string;
 }
 
 export default function Card({
@@ -28,6 +29,7 @@ export default function Card({
     onCartToggle,
     completeness = 0,
     complexity = '',
+    kitLabel,
 }: CardProps) {
     const linkUrl = slug ? `/tools/${slug}` : href;
     const isNew = isRecentlyAdded(dateAdded, 30);
@@ -51,6 +53,14 @@ export default function Card({
                 <p className="card-body">{body}</p>
                 <div className="card-footer">
                     {tag && <span className="tag">{tag}</span>}
+                    {kitLabel && (
+                        <a
+                            href={`/kits`}
+                            className="card-kit-badge"
+                            title={`Part of ${kitLabel} starter kit`}
+                            onClick={e => e.stopPropagation()}
+                        >{kitLabel}</a>
+                    )}
                     {completeness > 0 && (
                         <span className="card-completeness" title={`Prompt quality: ${completeness}/4`} aria-label={`Prompt quality ${completeness} out of 4`}>
                             {Array.from({ length: 4 }, (_, i) => (

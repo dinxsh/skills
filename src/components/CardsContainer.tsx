@@ -6,9 +6,13 @@ import './CardsContainer.css';
 import data from '../data/tools.json';
 import skillsMeta from '../data/skills-meta.json';
 import catalog from '../data/skills-catalog.json';
+import skillKits from '../data/skill-kits.json';
 import type { Tool, Category } from '../types';
 import { toolComparators, seededShuffle, type SortKey } from '../utils/sorting';
 import { isRecentlyAdded } from '../utils/dates';
+
+type KitEntry = { id: string; title: string; emoji: string; complexity: string };
+const skillKitsMap = skillKits as Record<string, KitEntry[]>;
 
 const ITEMS_PER_PAGE = 32;
 
@@ -160,8 +164,12 @@ export default function CardsContainer({
         if (sort === 'random') {
             const DEFAULT_SEED = 42;
             return seededShuffle(base, randomSeed || DEFAULT_SEED);
+        } else if (sort === 'completenessDesc') {
+            return [...base].sort((a, b) =>
+                (completenessMap[b.slug ?? ''] ?? 0) - (completenessMap[a.slug ?? ''] ?? 0)
+            );
         } else {
-            const comparator = toolComparators[sort] || toolComparators.nameAsc;
+            const comparator = toolComparators[sort as keyof typeof toolComparators] || toolComparators.nameAsc;
             return [...base].sort(comparator);
         }
     }, [filter, chainFilter, typeFilter, difficultyFilter, sort, randomSeed, searchQuery, filterNew, fuse]);
@@ -300,6 +308,7 @@ export default function CardsContainer({
                         onCartToggle={onCartToggle}
                         completeness={slug ? (completenessMap[slug] ?? 0) : 0}
                         complexity={slug ? ((skillsMeta as Record<string, { chains: string[]; complexity: string }>)[slug]?.complexity ?? '') : ''}
+                        kitLabel={slug ? (skillKitsMap[slug]?.[0] ? `${skillKitsMap[slug][0]!.emoji} ${skillKitsMap[slug][0]!.title.split(' ').slice(0, 2).join(' ')}` : undefined) : undefined}
                     />
                 ))}
             </ul>

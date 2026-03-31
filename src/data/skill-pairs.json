@@ -1,0 +1,488 @@
+{
+  "wallet-balances-skill": [
+    "defi-wallet-dashboard",
+    "dex-trade-history",
+    "wallet-pnl-tracker",
+    "token-price-history"
+  ],
+  "defi-wallet-dashboard": [
+    "wallet-balances-skill",
+    "dex-trade-history",
+    "wallet-pnl-tracker",
+    "token-price-history"
+  ],
+  "dex-trade-history": [
+    "wallet-balances-skill",
+    "defi-wallet-dashboard",
+    "wallet-pnl-tracker",
+    "token-price-history"
+  ],
+  "wallet-pnl-tracker": [
+    "token-price-history",
+    "wallet-balances-skill",
+    "defi-wallet-dashboard",
+    "dex-trade-history"
+  ],
+  "token-price-history": [
+    "wallet-pnl-tracker",
+    "wallet-balances-skill",
+    "defi-wallet-dashboard",
+    "dex-trade-history"
+  ],
+  "historical-portfolio-value": [
+    "wallet-balances-skill",
+    "defi-wallet-dashboard",
+    "dex-trade-history",
+    "wallet-pnl-tracker"
+  ],
+  "nft-gallery-viewer": [
+    "nft-metadata-fetcher",
+    "nft-portfolio-valuation",
+    "nft-sale-history",
+    "nft-traits-explorer"
+  ],
+  "nft-metadata-fetcher": [
+    "nft-portfolio-valuation",
+    "multichain-nft-gallery",
+    "nft-gallery-viewer",
+    "nft-sale-history"
+  ],
+  "nft-portfolio-valuation": [
+    "nft-metadata-fetcher",
+    "nft-sale-history",
+    "nft-traits-explorer",
+    "multichain-nft-gallery"
+  ],
+  "nft-sale-history": [
+    "nft-portfolio-valuation",
+    "nft-traits-explorer",
+    "nft-gallery-viewer",
+    "nft-metadata-fetcher"
+  ],
+  "nft-traits-explorer": [
+    "nft-portfolio-valuation",
+    "nft-sale-history",
+    "nft-gallery-viewer",
+    "nft-metadata-fetcher"
+  ],
+  "multichain-nft-gallery": [
+    "nft-metadata-fetcher",
+    "nft-portfolio-valuation",
+    "nft-gallery-viewer",
+    "nft-sale-history"
+  ],
+  "agent-wallet-skill": [
+    "agent-counterparty-verification",
+    "agent-fleet-monitor",
+    "agent-data-budget-manager",
+    "realtime-wallet-stream"
+  ],
+  "agent-counterparty-verification": [
+    "agent-wallet-skill",
+    "agent-fleet-monitor",
+    "agent-data-budget-manager",
+    "realtime-wallet-stream"
+  ],
+  "agent-fleet-monitor": [
+    "agent-wallet-skill",
+    "agent-counterparty-verification",
+    "agent-data-budget-manager",
+    "realtime-wallet-stream"
+  ],
+  "agent-data-budget-manager": [
+    "agent-wallet-skill",
+    "agent-counterparty-verification",
+    "agent-fleet-monitor",
+    "realtime-wallet-stream"
+  ],
+  "realtime-wallet-stream": [
+    "agent-wallet-skill",
+    "agent-counterparty-verification",
+    "agent-fleet-monitor",
+    "agent-data-budget-manager"
+  ],
+  "onchain-activity-verifier": [
+    "agent-wallet-skill",
+    "agent-counterparty-verification",
+    "agent-fleet-monitor",
+    "agent-data-budget-manager"
+  ],
+  "token-holders-snapshot": [
+    "token-risk-analyzer",
+    "token-holders-leaderboard",
+    "token-price-history",
+    "token-whale-alert"
+  ],
+  "token-holders-leaderboard": [
+    "token-holders-snapshot",
+    "token-price-history",
+    "token-whale-alert",
+    "token-risk-analyzer"
+  ],
+  "token-whale-alert": [
+    "token-holders-snapshot",
+    "token-holders-leaderboard",
+    "token-price-history",
+    "token-risk-analyzer"
+  ],
+  "token-risk-analyzer": [
+    "token-holders-snapshot",
+    "token-holders-leaderboard",
+    "token-price-history",
+    "token-whale-alert"
+  ],
+  "token-ohlcv-chart": [
+    "token-holders-snapshot",
+    "token-holders-leaderboard",
+    "token-price-history",
+    "token-whale-alert"
+  ],
+  "address-activity-scanner": [
+    "cross-chain-address-lookup",
+    "multichain-portfolio",
+    "wallet-activity-heatmap",
+    "transaction-history"
+  ],
+  "cross-chain-address-lookup": [
+    "address-activity-scanner",
+    "multichain-portfolio",
+    "wallet-activity-heatmap",
+    "transaction-history"
+  ],
+  "multichain-portfolio": [
+    "address-activity-scanner",
+    "cross-chain-address-lookup",
+    "wallet-activity-heatmap",
+    "transaction-history"
+  ],
+  "wallet-activity-heatmap": [
+    "address-activity-scanner",
+    "cross-chain-address-lookup",
+    "multichain-portfolio",
+    "transaction-history"
+  ],
+  "transaction-history": [
+    "address-activity-scanner",
+    "cross-chain-address-lookup",
+    "multichain-portfolio",
+    "wallet-activity-heatmap"
+  ],
+  "cross-chain-activity-report": [
+    "address-activity-scanner",
+    "cross-chain-address-lookup",
+    "multichain-portfolio",
+    "wallet-activity-heatmap"
+  ],
+  "solana-wallet-balances": [
+    "spl-token-metadata",
+    "solana-dex-trade-history",
+    "solana-nft-collection-stats",
+    "solana-staking-snapshot"
+  ],
+  "spl-token-metadata": [
+    "solana-wallet-balances",
+    "solana-dex-trade-history",
+    "solana-nft-collection-stats",
+    "solana-staking-snapshot"
+  ],
+  "solana-dex-trade-history": [
+    "solana-wallet-balances",
+    "spl-token-metadata",
+    "solana-nft-collection-stats",
+    "solana-staking-snapshot"
+  ],
+  "solana-nft-collection-stats": [
+    "solana-wallet-balances",
+    "spl-token-metadata",
+    "solana-dex-trade-history",
+    "solana-staking-snapshot"
+  ],
+  "solana-staking-snapshot": [
+    "solana-wallet-balances",
+    "spl-token-metadata",
+    "solana-dex-trade-history",
+    "solana-nft-collection-stats"
+  ],
+  "solana-wallet-age-activity": [
+    "solana-wallet-balances",
+    "spl-token-metadata",
+    "solana-dex-trade-history",
+    "solana-nft-collection-stats"
+  ],
+  "crypto-tax-exporter": [
+    "transaction-history",
+    "erc20-transfer-history",
+    "token-price-history",
+    "wallet-pnl-tracker"
+  ],
+  "erc20-transfer-history": [
+    "crypto-tax-exporter",
+    "transaction-history",
+    "token-price-history",
+    "wallet-pnl-tracker"
+  ],
+  "cross-chain-transaction-history": [
+    "crypto-tax-exporter",
+    "transaction-history",
+    "erc20-transfer-history",
+    "token-price-history"
+  ],
+  "whale-wallet-watchlist": [
+    "wallet-activity-feed",
+    "institutional-wallet-tracker",
+    "smart-money-copier",
+    "token-whale-alert"
+  ],
+  "institutional-wallet-tracker": [
+    "whale-wallet-watchlist",
+    "smart-money-copier",
+    "token-whale-alert",
+    "wallet-activity-feed"
+  ],
+  "smart-money-copier": [
+    "whale-wallet-watchlist",
+    "institutional-wallet-tracker",
+    "token-whale-alert",
+    "wallet-activity-feed"
+  ],
+  "wallet-activity-feed": [
+    "whale-wallet-watchlist",
+    "institutional-wallet-tracker",
+    "smart-money-copier",
+    "token-whale-alert"
+  ],
+  "token-launch-screener": [
+    "live-dex-pair-stream",
+    "token-risk-analyzer",
+    "base-memecoin-screener",
+    "token-holders-snapshot"
+  ],
+  "live-dex-pair-stream": [
+    "token-launch-screener",
+    "token-risk-analyzer",
+    "base-memecoin-screener",
+    "token-holders-snapshot"
+  ],
+  "base-memecoin-screener": [
+    "token-launch-screener",
+    "live-dex-pair-stream",
+    "token-risk-analyzer",
+    "token-holders-snapshot"
+  ],
+  "dex-pool-spot-price": [
+    "token-launch-screener",
+    "live-dex-pair-stream",
+    "token-risk-analyzer",
+    "base-memecoin-screener"
+  ],
+  "onchain-resume": [
+    "proof-of-onchain-activity",
+    "wallet-age-summary",
+    "onchain-credit-widget",
+    "cross-chain-activity-report"
+  ],
+  "proof-of-onchain-activity": [
+    "wallet-age-summary",
+    "multichain-activity-discovery",
+    "onchain-resume",
+    "onchain-credit-widget"
+  ],
+  "wallet-age-summary": [
+    "proof-of-onchain-activity",
+    "multichain-activity-discovery",
+    "onchain-resume",
+    "onchain-credit-widget"
+  ],
+  "onchain-credit-widget": [
+    "onchain-resume",
+    "proof-of-onchain-activity",
+    "wallet-age-summary",
+    "cross-chain-activity-report"
+  ],
+  "multichain-activity-discovery": [
+    "proof-of-onchain-activity",
+    "wallet-age-summary",
+    "onchain-resume",
+    "onchain-credit-widget"
+  ],
+  "token-approval-scanner": [
+    "smart-contract-interaction-risk",
+    "stale-approval-cleaner",
+    "approval-auditor",
+    "token-risk-analyzer"
+  ],
+  "smart-contract-interaction-risk": [
+    "token-approval-scanner",
+    "stale-approval-cleaner",
+    "approval-auditor",
+    "token-risk-analyzer"
+  ],
+  "stale-approval-cleaner": [
+    "token-approval-scanner",
+    "smart-contract-interaction-risk",
+    "approval-auditor",
+    "token-risk-analyzer"
+  ],
+  "approval-auditor": [
+    "token-approval-scanner",
+    "smart-contract-interaction-risk",
+    "stale-approval-cleaner",
+    "token-risk-analyzer"
+  ],
+  "contract-interaction-history": [
+    "token-approval-scanner",
+    "smart-contract-interaction-risk",
+    "stale-approval-cleaner",
+    "approval-auditor"
+  ],
+  "nft-collection-analytics": [
+    "nft-sale-history",
+    "nft-traits-explorer",
+    "nft-transfer-tracker",
+    "token-holders-leaderboard"
+  ],
+  "nft-transfer-tracker": [
+    "nft-collection-analytics",
+    "nft-sale-history",
+    "nft-traits-explorer",
+    "token-holders-leaderboard"
+  ],
+  "governance-token-snapshot": [
+    "token-holders-leaderboard",
+    "token-holder-list",
+    "token-unlock-tracker",
+    "wallet-activity-heatmap"
+  ],
+  "token-holder-list": [
+    "governance-token-snapshot",
+    "token-holders-leaderboard",
+    "token-unlock-tracker",
+    "wallet-activity-heatmap"
+  ],
+  "token-unlock-tracker": [
+    "governance-token-snapshot",
+    "token-holders-leaderboard",
+    "token-holder-list",
+    "wallet-activity-heatmap"
+  ],
+  "token-supply-metadata": [
+    "governance-token-snapshot",
+    "token-holders-leaderboard",
+    "token-holder-list",
+    "token-unlock-tracker"
+  ],
+  "webhook-builder": [
+    "wallet-activity-feed",
+    "realtime-wallet-stream",
+    "token-transfer-stream",
+    "whale-wallet-watchlist"
+  ],
+  "token-transfer-stream": [
+    "webhook-builder",
+    "wallet-activity-feed",
+    "realtime-wallet-stream",
+    "whale-wallet-watchlist"
+  ],
+  "nft-transfer-monitor": [
+    "webhook-builder",
+    "wallet-activity-feed",
+    "realtime-wallet-stream",
+    "token-transfer-stream"
+  ],
+  "nft-gated-app": [
+    "nft-gate",
+    "multichain-nft-gallery",
+    "nft-metadata-fetcher",
+    "nft-portfolio-valuation"
+  ],
+  "nft-gate": [
+    "nft-gated-app",
+    "multichain-nft-gallery",
+    "nft-metadata-fetcher",
+    "nft-portfolio-valuation"
+  ],
+  "bitcoin-balance-checker": [
+    "bitcoin-transaction-explorer",
+    "bitcoin-hd-wallet-scanner",
+    "native-token-balance",
+    "block-explorer-toolkit"
+  ],
+  "bitcoin-transaction-explorer": [
+    "bitcoin-balance-checker",
+    "bitcoin-hd-wallet-scanner",
+    "native-token-balance",
+    "block-explorer-toolkit"
+  ],
+  "bitcoin-hd-wallet-scanner": [
+    "bitcoin-balance-checker",
+    "bitcoin-transaction-explorer",
+    "native-token-balance",
+    "block-explorer-toolkit"
+  ],
+  "native-token-balance": [
+    "bitcoin-balance-checker",
+    "bitcoin-transaction-explorer",
+    "bitcoin-hd-wallet-scanner",
+    "block-explorer-toolkit"
+  ],
+  "block-explorer-toolkit": [
+    "bitcoin-balance-checker",
+    "bitcoin-transaction-explorer",
+    "bitcoin-hd-wallet-scanner",
+    "native-token-balance"
+  ],
+  "block-date-lookup": [
+    "bitcoin-balance-checker",
+    "bitcoin-transaction-explorer",
+    "bitcoin-hd-wallet-scanner",
+    "native-token-balance"
+  ],
+  "solana-agent-portfolio-snapshot": [
+    "solana-agent-defi-navigator",
+    "solana-agent-risk-gate",
+    "solana-agent-wallet-watcher",
+    "solana-agent-token-launch-detector"
+  ],
+  "solana-agent-defi-navigator": [
+    "solana-agent-portfolio-snapshot",
+    "solana-agent-risk-gate",
+    "solana-agent-wallet-watcher",
+    "solana-agent-token-launch-detector"
+  ],
+  "solana-agent-risk-gate": [
+    "solana-agent-portfolio-snapshot",
+    "solana-agent-defi-navigator",
+    "solana-agent-wallet-watcher",
+    "solana-agent-token-launch-detector"
+  ],
+  "solana-agent-wallet-watcher": [
+    "solana-agent-portfolio-snapshot",
+    "solana-agent-defi-navigator",
+    "solana-agent-risk-gate",
+    "solana-agent-token-launch-detector"
+  ],
+  "solana-agent-token-launch-detector": [
+    "solana-agent-portfolio-snapshot",
+    "solana-agent-defi-navigator",
+    "solana-agent-risk-gate",
+    "solana-agent-wallet-watcher"
+  ],
+  "solana-agent-transaction-validator": [
+    "solana-agent-portfolio-snapshot",
+    "solana-agent-defi-navigator",
+    "solana-agent-risk-gate",
+    "solana-agent-wallet-watcher"
+  ],
+  "airdrop-eligibility-checker": [
+    "proof-of-onchain-activity",
+    "wallet-activity-heatmap",
+    "multichain-activity-discovery",
+    "wallet-age-summary"
+  ],
+  "wallet-comparison-tool": [
+    "airdrop-eligibility-checker",
+    "proof-of-onchain-activity",
+    "wallet-activity-heatmap",
+    "multichain-activity-discovery"
+  ]
+}

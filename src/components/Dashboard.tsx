@@ -4,6 +4,7 @@ import CardsContainer from './CardsContainer';
 import BuildCart from './BuildCart';
 import data from '../data/tools.json';
 import type { Category } from '../types';
+import type { SortKey } from '../utils/sorting';
 
 interface DashboardProps {
     category: string;
@@ -23,13 +24,14 @@ const totalSkillCount = (data.tools as Category[]).reduce(
 );
 
 function readUrlFilters(defaultCategory: string): FilterState {
-    if (typeof window === 'undefined') return { category: defaultCategory, chain: 'all', type: 'all', difficulty: 'all' };
+    if (typeof window === 'undefined') return { category: defaultCategory, chain: 'all', type: 'all', difficulty: 'all', sort: 'nameAsc' };
     const p = new URLSearchParams(window.location.search);
     return {
         category: p.get('category') || defaultCategory,
         chain: p.get('chain') || 'all',
         type: p.get('type') || 'all',
         difficulty: p.get('difficulty') || 'all',
+        sort: p.get('sort') || 'nameAsc',
     };
 }
 
@@ -40,6 +42,7 @@ function writeUrlFilters(filters: FilterState) {
     if (filters.chain !== 'all') p.set('chain', filters.chain);
     if (filters.type !== 'all') p.set('type', filters.type);
     if (filters.difficulty !== 'all') p.set('difficulty', filters.difficulty);
+    if (filters.sort && filters.sort !== 'nameAsc') p.set('sort', filters.sort);
     const qs = p.toString();
     window.history.replaceState(null, '', qs ? `?${qs}` : window.location.pathname);
 }
@@ -54,16 +57,42 @@ export default function Dashboard({ category }: DashboardProps) {
     const [selectedSlugs, setSelectedSlugs] = useState<string[]>(() => {
         if (typeof window === 'undefined') return [];
         try {
-            const raw = sessionStorage.getItem('build_cart');
+            // Shareable cart URL: ?cart=slug1,slug2,...
+            const cartParam = new URLSearchParams(window.location.search).get('cart');
+            if (cartParam) {
+                const slugs = cartParam.split(',').map(s => s.trim()).filter(Boolean);
+                if (slugs.length > 0) {
+                    localStorage.setItem('build_cart', JSON.stringify(slugs));
+                    return slugs;
+                }
+            }
+            const raw = localStorage.getItem('build_cart');
             if (raw) { const slugs = JSON.parse(raw); if (Array.isArray(slugs)) return slugs; }
         } catch {}
         return [];
     });
 
-    // Persist cart to sessionStorage
+    // Persist cart to localStorage
     useEffect(() => {
-        try { sessionStorage.setItem('build_cart', JSON.stringify(selectedSlugs)); } catch {}
+        try {
+            localStorage.setItem('build_cart', JSON.stringify(selectedSlugs));
+            window.dispatchEvent(new CustomEvent('cart:changed'));
+        } catch {}
     }, [selectedSlugs]);
+
+    // Sync cart from other tabs (localStorage storage event)
+    useEffect(() => {
+        const handleStorage = (e: StorageEvent) => {
+            if (e.key === 'build_cart' && e.newValue !== null) {
+                try {
+                    const slugs = JSON.parse(e.newValue);
+                    if (Array.isArray(slugs)) setSelectedSlugs(slugs);
+                } catch {}
+            }
+        };
+        window.addEventListener('storage', handleStorage);
+        return () => window.removeEventListener('storage', handleStorage);
+    }, []);
 
     // Sync filters to URL
     useEffect(() => {
@@ -132,6 +161,7 @@ export default function Dashboard({ category }: DashboardProps) {
                 chainFilter={filters.chain}
                 typeFilter={filters.type}
                 difficultyFilter={filters.difficulty}
+                sort={filters.sort as SortKey}
                 searchQuery={searchQuery}
                 filterNew={filterNew}
                 onFilteredCountChange={setFilteredCount}

@@ -12,6 +12,7 @@ export interface FilterState {
     chain: string;
     type: string;
     difficulty: string;
+    sort: string;
 }
 
 interface FilterBarProps {
@@ -50,6 +51,14 @@ const DIFFICULTIES = [
     { value: 'Advanced',     label: 'Advanced' },
 ];
 
+const SORTS = [
+    { value: 'nameAsc',           label: 'Name A–Z' },
+    { value: 'nameDesc',          label: 'Name Z–A' },
+    { value: 'dateNewest',        label: 'Newest first' },
+    { value: 'dateOldest',        label: 'Oldest first' },
+    { value: 'completenessDesc',  label: 'Best prompt' },
+];
+
 export default function FilterBar({ filters, onChange, totalCount, filteredCount }: FilterBarProps) {
     const [drawerOpen, setDrawerOpen] = useState(false);
 
@@ -68,13 +77,14 @@ export default function FilterBar({ filters, onChange, totalCount, filteredCount
         filters.difficulty !== 'all',
     ].filter(Boolean).length;
 
+    const clearAll = () =>
+        onChange({ category: 'all', chain: 'all', type: 'all', difficulty: 'all', sort: filters.sort });
+
     const set = (key: keyof FilterState) => (e: React.ChangeEvent<HTMLSelectElement>) => {
         track(key, e.target.value);
         onChange({ ...filters, [key]: e.target.value });
     };
 
-    const clearAll = () =>
-        onChange({ category: 'all', chain: 'all', type: 'all', difficulty: 'all' });
 
     const selects = (
         <>
@@ -89,6 +99,9 @@ export default function FilterBar({ filters, onChange, totalCount, filteredCount
             </select>
             <select className="filter-select" value={filters.difficulty} onChange={set('difficulty')} aria-label="Filter by difficulty">
                 {DIFFICULTIES.map(c => <option key={c.value} value={c.value}>{c.label}</option>)}
+            </select>
+            <select className="filter-select" value={filters.sort} onChange={set('sort')} aria-label="Sort skills">
+                {SORTS.map(c => <option key={c.value} value={c.value}>{c.label}</option>)}
             </select>
         </>
     );
@@ -155,6 +168,10 @@ export default function FilterBar({ filters, onChange, totalCount, filteredCount
                             <label className="filter-drawer-label">Level</label>
                             <select className="filter-select filter-select--full" value={filters.difficulty} onChange={set('difficulty')} aria-label="Filter by difficulty">
                                 {DIFFICULTIES.map(c => <option key={c.value} value={c.value}>{c.label}</option>)}
+                            </select>
+                            <label className="filter-drawer-label">Sort</label>
+                            <select className="filter-select filter-select--full" value={filters.sort} onChange={set('sort')} aria-label="Sort skills">
+                                {SORTS.map(c => <option key={c.value} value={c.value}>{c.label}</option>)}
                             </select>
                         </div>
                         <div className="filter-drawer-footer">

@@ -6,6 +6,11 @@ import type { ToolsConfig, Category, Tool } from '../src/types/index.ts';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+const skillPairsPath = path.join(__dirname, '../src/data/skill-pairs.json');
+const skillPairs: Record<string, string[]> = fs.existsSync(skillPairsPath)
+    ? JSON.parse(fs.readFileSync(skillPairsPath, 'utf-8'))
+    : {};
+
 console.log('🔧 Generating individual tool metadata files...\n');
 
 // Paths
@@ -68,6 +73,14 @@ try {
                     const existing = JSON.parse(fs.readFileSync(outputPath, 'utf-8'));
                     toolMetadata = { ...existing, ...baseMetadata };
                 } catch {}
+            }
+
+            // Seed buildsWith from skill-pairs co-occurrence (overrides empty/missing only)
+            if (tool.slug && (!toolMetadata.buildsWith || toolMetadata.buildsWith.length === 0)) {
+                const pairs = skillPairs[tool.slug];
+                if (pairs && pairs.length > 0) {
+                    toolMetadata.buildsWith = pairs.slice(0, 4);
+                }
             }
 
             const jsonContent = JSON.stringify(toolMetadata, null, 2);

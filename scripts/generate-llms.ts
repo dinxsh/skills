@@ -21,6 +21,14 @@ const toolsData = JSON.parse(fs.readFileSync(toolsPath, 'utf-8')) as {
 
 const totalSkills = toolsData.tools.reduce((acc, cat) => acc + cat.content.length, 0);
 
+// Fix Windows-1252 mojibake: bytes E2 80 9x decoded as Win-1252 chars
+const clean = (s: string) => s
+    .replace(/\u00e2\u20ac\u201d/g, '\u2014')  // â€" → em-dash
+    .replace(/\u00e2\u20ac\u2018/g, '\u2013')  // â€" → en-dash
+    .replace(/\u00e2\u20ac\u2122/g, '\u2019')  // â€™ → right single quote
+    .replace(/\u00e2\u20ac\u0153/g, '\u201c')  // â€œ → left double quote
+    .replace(/\u00e2\u20ac\u009d/g, '\u201d'); // â€  → right double quote
+
 const lines: string[] = [];
 
 lines.push(`# GoldRush Skills`);
@@ -73,8 +81,8 @@ for (const cat of toolsData.tools) {
             continue;
         }
         lines.push(`**${slug}**`);
-        lines.push(`  Description: ${meta.description || tool.body}`);
-        if (meta.useCase) lines.push(`  Use case: ${meta.useCase}`);
+        lines.push(`  Description: ${clean(meta.description || tool.body)}`);
+        if (meta.useCase) lines.push(`  Use case: ${clean(meta.useCase)}`);
         if (meta.endpoints?.length > 0) lines.push(`  Endpoint: ${meta.endpoints[0]}`);
         if (meta.creditCost) lines.push(`  Cost: ${meta.creditCost}`);
         if (meta.complexity) lines.push(`  Level: ${meta.complexity}`);

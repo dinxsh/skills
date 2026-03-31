@@ -81,7 +81,7 @@ Each entry: slug | description | use case | endpoint (first) | cost | complexity
   URL: https://skills.goldrush.dev/tools/wallet-erc20-transfers
 
 **historical-portfolio-value**
-  Description: 30-day rolling historical portfolio value with open/close/high/low per token per day â€” build P&L charts, portfolio performance dashboards, and DeFi fund trackers.
+  Description: 30-day rolling historical portfolio value with open/close/high/low per token per day — build P&L charts, portfolio performance dashboards, and DeFi fund trackers.
   Use case: Build a 30-day portfolio performance chart with per-token OHLC data — show gains, losses, and asset allocation change over time.
   Endpoint: GET /v1/{chainName}/address/{walletAddress}/portfolio_v2/
   Cost: 1 credit/call
@@ -126,7 +126,7 @@ Each entry: slug | description | use case | endpoint (first) | cost | complexity
   URL: https://skills.goldrush.dev/tools/net-worth-calculator
 
 **portfolio-history**
-  Description: 30-day historical portfolio value over time â€” asset-by-asset breakdown per day.
+  Description: 30-day historical portfolio value over time — asset-by-asset breakdown per day.
   Use case: Render a stacked area chart of total portfolio value over 30 days — ideal for fund dashboards and DeFi performance trackers.
   Endpoint: GET /v1/{chainName}/address/{walletAddress}/portfolio_v2/
   Cost: 1 credit/call
@@ -207,7 +207,7 @@ Each entry: slug | description | use case | endpoint (first) | cost | complexity
   URL: https://skills.goldrush.dev/tools/wallet-activity-feed
 
 **wallet-age-summary**
-  Description: Get first and last transaction date, total transaction count, and gas spent for any wallet â€” the foundation for wallet age verification and on-chain identity.
+  Description: Get first and last transaction date, total transaction count, and gas spent for any wallet — the foundation for wallet age verification and on-chain identity.
   Use case: Build a wallet age badge for a DeFi app — show how long a wallet has been active and its total transaction count as a trust and Sybil-resistance signal.
   Endpoint: GET /v1/{chainName}/address/{walletAddress}/transactions_summary/
   Cost: 0.1 credit/call
@@ -355,7 +355,7 @@ Each entry: slug | description | use case | endpoint (first) | cost | complexity
   URL: https://skills.goldrush.dev/tools/nft-collection-analytics
 
 **nft-gallery-viewer**
-  Description: Drop-in React component that renders a full NFT gallery for any wallet using GoldRush Kit's NFTWalletCollectionView â€” zero custom UI needed.
+  Description: Drop-in React component that renders a full NFT gallery for any wallet using GoldRush Kit's NFTWalletCollectionView — zero custom UI needed.
   Use case: Add a fully styled NFT gallery to any React/Next.js app in under 10 lines — no custom UI required, just drop in the GoldRush Kit component.
   Endpoint: GET /v1/{chainName}/address/{walletAddress}/balances_nft/
   Cost: 1 credit/call
@@ -382,7 +382,7 @@ Each entry: slug | description | use case | endpoint (first) | cost | complexity
   URL: https://skills.goldrush.dev/tools/nft-portfolio-valuation
 
 **nft-sale-history**
-  Description: Full transfer and sale history for a single NFT token ID â€” who owned it, when it sold, and for how much. Powers provenance viewers and NFT detail pages.
+  Description: Full transfer and sale history for a single NFT token ID — who owned it, when it sold, and for how much. Powers provenance viewers and NFT detail pages.
   Use case: Build an NFT provenance page showing every historical owner, transfer timestamp, and inferred sale price from ERC-20 payments — ideal for NFT detail pages and rarity tools.
   Endpoint: GET /v1/{chainName}/address/{walletAddress}/balances_nft/
   Cost: 1 credit/call
@@ -447,7 +447,7 @@ Each entry: slug | description | use case | endpoint (first) | cost | complexity
 ### Analytics (16 skills)
 
 **block-explorer-toolkit**
-  Description: Fetch block details, all transactions in a block, and decode individual transactions â€” all the building blocks for a custom block explorer.
+  Description: Fetch block details, all transactions in a block, and decode individual transactions — all the building blocks for a custom block explorer.
   Use case: Build a custom block explorer that shows block details, gas utilization, and a decoded transaction list — replacing Etherscan for your specific chain or dApp.
   Endpoint: GET /v1/{chainName}/block_v2/{blockHeight}/
   Cost: 1 credit/call
@@ -465,7 +465,7 @@ Each entry: slug | description | use case | endpoint (first) | cost | complexity
   URL: https://skills.goldrush.dev/tools/contract-event-dashboard
 
 **contract-event-log-monitor**
-  Description: Stream all decoded event logs emitted by any smart contract â€” filter by topic hash, date, or block range. The foundation for DEX analytics, protocol dashboards, and real-time monitoring.
+  Description: Stream all decoded event logs emitted by any smart contract — filter by topic hash, date, or block range. The foundation for DEX analytics, protocol dashboards, and real-time monitoring.
   Use case: Build a protocol activity dashboard that shows every event emitted by a contract — Deposit, Withdraw, Swap — with decoded parameters and timestamps.
   Endpoint: GET /v1/{chainName}/events/address/{contractAddress}/
   Cost: 1 credit/call
@@ -474,7 +474,7 @@ Each entry: slug | description | use case | endpoint (first) | cost | complexity
   URL: https://skills.goldrush.dev/tools/contract-event-log-monitor
 
 **cross-contract-event-scanner**
-  Description: Scan ALL contracts on a chain for a specific event by topic hash â€” e.g. find every ERC-20 Transfer or every Uniswap Swap across the entire chain.
+  Description: Scan ALL contracts on a chain for a specific event by topic hash — e.g. find every ERC-20 Transfer or every Uniswap Swap across the entire chain.
   Use case: Find every Uniswap V3 Swap event on Base within the last 1000 blocks — build cross-protocol DEX aggregators, airdrop eligibility scanners, and chain-wide analytics.
   Endpoint: GET /v1/{chainName}/events/topics/{topicHash}/
   Cost: 1 credit/call
@@ -564,7 +564,7 @@ Each entry: slug | description | use case | endpoint (first) | cost | complexity
   URL: https://skills.goldrush.dev/tools/token-price-history
 
 **wallet-activity-heatmap**
-  Description: Generate a GitHub-style activity heatmap showing daily transaction counts for any wallet â€” visualize on-chain behaviour patterns.
+  Description: Generate a GitHub-style activity heatmap showing daily transaction counts for any wallet — visualize on-chain behaviour patterns.
   Use case: Render a year-long activity heatmap for a wallet address showing which days had the most transactions — like a GitHub contributions chart but for on-chain activity.
   Endpoint: GET /v1/{chainName}/address/{walletAddress}/transactions_summary/
   Cost: 1 credit/call
@@ -629,7 +629,7 @@ Each entry: slug | description | use case | endpoint (first) | cost | complexity
   URL: https://skills.goldrush.dev/tools/agent-wallet-skill
 
 **claude-goldrush-skill**
-  Description: Claude agent skill for querying GoldRush APIs â€” fetch wallet data, prices, and NFTs.
+  Description: Claude agent skill for querying GoldRush APIs — fetch wallet data, prices, and NFTs.
   Use case: Enable a Claude agent to answer on-chain questions like 'What is the ETH balance of vitalik.eth?' or 'Show me the last 5 transactions for this address' using real GoldRush data.
   Endpoint: Multiple GoldRush endpoints wrapped as Claude tools
   Cost: Varies by tool called
@@ -647,7 +647,7 @@ Each entry: slug | description | use case | endpoint (first) | cost | complexity
   URL: https://skills.goldrush.dev/tools/goldrush-mcp-server
 
 **realtime-wallet-stream**
-  Description: Subscribe to live wallet activity events via WebSocket â€” zero polling, instant updates.
+  Description: Subscribe to live wallet activity events via WebSocket — zero polling, instant updates.
   Use case: Build a live transaction alert system for an AI agent — trigger actions (e.g. notify, rebalance, log) the instant any on-chain activity occurs for a monitored wallet.
   Endpoint: wss://streaming.goldrushdata.com/graphql — walletTxs subscription
   Cost: Streaming subscription
@@ -712,7 +712,7 @@ Each entry: slug | description | use case | endpoint (first) | cost | complexity
 ### Developer (15 skills)
 
 **all-chains-status**
-  Description: Fetch the real-time sync status of all 200+ GoldRush-supported chains â€” latest indexed block, sync lag, and chain metadata. Ideal for multi-chain app health checks.
+  Description: Fetch the real-time sync status of all 200+ GoldRush-supported chains — latest indexed block, sync lag, and chain metadata. Ideal for multi-chain app health checks.
   Use case: Build a chain health dashboard that shows the last indexed block and sync lag for every supported chain — surface stale chains before running queries against them.
   Endpoint: GET /v1/chains/status/
   Cost: 0.1 credit/call
@@ -766,7 +766,7 @@ Each entry: slug | description | use case | endpoint (first) | cost | complexity
   URL: https://skills.goldrush.dev/tools/gas-price-widget
 
 **goldrush-kit-approvals**
-  Description: Drop-in React component that shows all active ERC-20 and NFT approvals for a wallet using ApprovalsListView â€” with built-in revoke functionality.
+  Description: Drop-in React component that shows all active ERC-20 and NFT approvals for a wallet using ApprovalsListView — with built-in revoke functionality.
   Use case: Add a token approval manager to any wallet app — show users all their active approvals with risk scores and let them revoke dangerous ones in one click.
   Endpoint: GET /v1/{chainName}/approvals/{walletAddress}/
   Cost: 1 credit/call
@@ -775,7 +775,7 @@ Each entry: slug | description | use case | endpoint (first) | cost | complexity
   URL: https://skills.goldrush.dev/tools/goldrush-kit-approvals
 
 **goldrush-kit-token-balances**
-  Description: Drop-in React component for a full token balances table â€” ERC-20 + native â€” using GoldRush Kit's TokenBalancesListView. Ships with sorting, USD values, logos, and spam filtering.
+  Description: Drop-in React component for a full token balances table — ERC-20 + native — using GoldRush Kit's TokenBalancesListView. Ships with sorting, USD values, logos, and spam filtering.
   Use case: Add a production-quality token balances table to a wallet app in minutes — no custom UI needed, just drop in the component and pass a wallet address.
   Endpoint: GET /v1/{chainName}/address/{walletAddress}/balances_v2/
   Cost: 1 credit/call
@@ -802,7 +802,7 @@ Each entry: slug | description | use case | endpoint (first) | cost | complexity
   URL: https://skills.goldrush.dev/tools/goldrush-playground
 
 **goldrush-react-hooks**
-  Description: Drop-in React hooks for balances, NFTs, and token prices â€” onchain data made simple.
+  Description: Drop-in React hooks for balances, NFTs, and token prices — onchain data made simple.
   Use case: Build React components that fetch on-chain data with a single hook call — handle loading and error states automatically without writing fetch logic yourself.
   Endpoint: GET /v1/{chainName}/address/{walletAddress}/balances_v2/
   Cost: 1 credit/call
@@ -876,7 +876,7 @@ Each entry: slug | description | use case | endpoint (first) | cost | complexity
   URL: https://skills.goldrush.dev/tools/cross-chain-address-lookup
 
 **cross-chain-transaction-history**
-  Description: Fetch and merge transaction history across multiple chains for a single wallet â€” great for multichain explorers, unified activity timelines, and tax reporting tools.
+  Description: Fetch and merge transaction history across multiple chains for a single wallet — great for multichain explorers, unified activity timelines, and tax reporting tools.
   Use case: Build a unified transaction timeline that merges activity from Ethereum, Base, Polygon, and more into a single chronological feed — perfect for tax reporting and portfolio analytics.
   Endpoint: GET /v1/transactions/{walletAddress}/
   Cost: 1 credit/call
@@ -885,7 +885,7 @@ Each entry: slug | description | use case | endpoint (first) | cost | complexity
   URL: https://skills.goldrush.dev/tools/cross-chain-transaction-history
 
 **multichain-activity-discovery**
-  Description: Scan every supported chain simultaneously to discover which networks a wallet has been active on â€” single call, 200+ chains. The must-have entry point for any cross-chain app.
+  Description: Scan every supported chain simultaneously to discover which networks a wallet has been active on — single call, 200+ chains. The must-have entry point for any cross-chain app.
   Use case: Detect all chains a user has ever been active on before loading their portfolio — use this as the first call in any multi-chain app to skip querying inactive chains.
   Endpoint: GET /v1/address/{walletAddress}/activity/
   Cost: 0.1 credit/call
@@ -894,7 +894,7 @@ Each entry: slug | description | use case | endpoint (first) | cost | complexity
   URL: https://skills.goldrush.dev/tools/multichain-activity-discovery
 
 **multichain-token-aggregator**
-  Description: Aggregate all token balances across every chain a wallet is active on â€” auto-discovers chains then fetches balances in parallel. One function call for a complete cross-chain portfolio.
+  Description: Aggregate all token balances across every chain a wallet is active on — auto-discovers chains then fetches balances in parallel. One function call for a complete cross-chain portfolio.
   Use case: Build a complete cross-chain token dashboard that automatically discovers active chains and aggregates all token holdings — no hard-coded chain list needed.
   Endpoint: GET /v1/address/{walletAddress}/balances/
   Cost: 1 credit/call
@@ -1123,7 +1123,7 @@ Each entry: slug | description | use case | endpoint (first) | cost | complexity
   URL: https://skills.goldrush.dev/tools/nft-gate
 
 **onchain-activity-verifier**
-  Description: Verify on-chain activity depth with transaction count, wallet age, chains used, and token diversity â€” build KYC-lite gates, Sybil filters, and proof-of-personhood checks.
+  Description: Verify on-chain activity depth with transaction count, wallet age, chains used, and token diversity — build KYC-lite gates, Sybil filters, and proof-of-personhood checks.
   Use case: Build a Sybil-resistance gate for a DeFi airdrop — score wallets by age, total transactions, and chain diversity to filter out bot accounts and fresh wallets.
   Endpoint: GET /v1/{chainName}/address/{walletAddress}/transactions_summary/
   Cost: 0.1 credit/call
@@ -1215,7 +1215,7 @@ Each entry: slug | description | use case | endpoint (first) | cost | complexity
   URL: https://skills.goldrush.dev/tools/stale-approval-cleaner
 
 **token-approval-risk-scanner**
-  Description: Scan all active ERC-20 and NFT approvals for a wallet and score each by risk level â€” identify dangerous unlimited approvals, deprecated protocols, and known exploited contracts.
+  Description: Scan all active ERC-20 and NFT approvals for a wallet and score each by risk level — identify dangerous unlimited approvals, deprecated protocols, and known exploited contracts.
   Use case: Build a comprehensive approval risk report for any wallet — categorize every approval as low/medium/high risk, sum up total value at risk, and recommend which to revoke.
   Endpoint: GET /v1/{chainName}/approvals/{walletAddress}/
   Cost: 1 credit/call
@@ -1233,7 +1233,7 @@ Each entry: slug | description | use case | endpoint (first) | cost | complexity
   URL: https://skills.goldrush.dev/tools/token-risk-analyzer
 
 **transaction-decoded-receipt**
-  Description: Fetch a fully decoded transaction receipt including internal transfers, decoded log events, ERC-20/NFT movements, and gas analytics â€” the core of any transaction detail page.
+  Description: Fetch a fully decoded transaction receipt including internal transfers, decoded log events, ERC-20/NFT movements, and gas analytics — the core of any transaction detail page.
   Use case: Build a transaction detail page that shows every token transfer, internal call, and decoded event in a human-readable format — like Etherscan's transaction view but for your own app.
   Endpoint: GET /v1/{chainName}/transaction_v2/{txHash}/
   Cost: 1 credit/call

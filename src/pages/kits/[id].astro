@@ -3,6 +3,7 @@ import Layout from "../../layouts/Layout.astro";
 import kitsData from "../../data/kits.json";
 import catalog from "../../data/skills-catalog.json";
 import slugMap from "../../data/slug-map.json";
+import { buildCombinedPrompt } from "../../utils/prompt";
 
 export async function getStaticPaths() {
   return kitsData.kits.map(kit => ({ params: { id: kit.id } }));
@@ -21,67 +22,31 @@ type CatalogEntry = {
 };
 const cat = catalog as Record<string, CatalogEntry>;
 
-// Build skills metadata
+// Build skills metadata for display
 const skills = kit.skills
   .map(slug => ({ slug, ...(cat[slug] ?? { title: slug, description: '', useCase: '', chains: [], snippet: '', endpoints: [], keyParams: {}, responseFields: [], creditCost: '', complexity: 'Beginner' }) }))
   .filter(Boolean);
 
-// Build combined prompt
-const chainNameMap: Record<string, string> = {
-  ethereum: "eth-mainnet", polygon: "matic-mainnet", base: "base-mainnet",
-  arbitrum: "arbitrum-mainnet", optimism: "optimism-mainnet", bsc: "bsc-mainnet",
-  avalanche: "avalanche-mainnet", solana: "solana-mainnet",
-};
 const allChains = [...new Set(skills.flatMap(s => s.chains))];
-const chainOptions = allChains.slice(0, 8).map(c =>
-  `{ label: "${c.charAt(0).toUpperCase() + c.slice(1)}", value: "${chainNameMap[c] ?? c + '-mainnet'}" }`
-).join(', ');
 
-const skillSections = skills.map((s, i) => {
-  const epLine = s.endpoints.length > 0 ? `\n  Endpoint: ${s.endpoints[0]}` : '';
-  const useLine = s.useCase ? `\n  Purpose: ${s.useCase}` : '';
-  const snippetBlock = s.snippet
-    ? `\n\n  Starting code:\n  \`\`\`typescript\n${s.snippet.split('\n').map((l: string) => '  ' + l).join('\n')}\n  \`\`\``
-    : '';
-  return `### ${i + 1}. ${s.title}${useLine}${epLine}${snippetBlock}`;
-}).join('\n\n');
-
-const combinedPrompt = `Build a production-ready "${kit.title}" web application using GoldRush.
-
-## What to build
-${kit.description}
-
-## Skills to implement (${skills.length} total)
-
-${skillSections}
-
-## Architecture
-- Next.js 14 App Router + TypeScript + Tailwind CSS
-- @covalenthq/client-sdk (GoldRush SDK v3)
-- Environment variable: GOLDRUSH_API_KEY
-- Shared GoldRush client: lib/goldrush.ts
-- Each skill = its own React component + custom hook
-- Shared chain selector at top level
-
-## Chain support
-const CHAINS = [${chainOptions}];
-
-When chain changes, all components re-fetch simultaneously.
-
-## Requirements
-1. Chain dropdown at page top — change re-fetches all
-2. Loading skeleton per section
-3. Error state per section with retry
-4. Responsive grid layout
-5. Full TypeScript — no any types
-
-Build the complete app: all components, hooks, the main page, and shared utilities. Ready to deploy on Vercel.`;
+// Use shared prompt builder (same engine as BuildCart)
+const combinedPrompt = buildCombinedPrompt(kit.skills, { title: kit.title, description: kit.description });
 
 const canonicalUrl = `https://skills.goldrush.dev/kits/${kit.id}`;
+
+// Related kits: sorted by number of shared skills
+const relatedKits = kitsData.kits
+  .filter(k => k.id !== kit.id)
+  .map(k => ({ ...k, sharedCount: k.skills.filter(s => kit.skills.includes(s)).length }))
+  .filter(k => k.sharedCount > 0)
+  .sort((a, b) => b.sharedCount - a.sharedCount)
+  .slice(0, 3);
+
 const slugMapTyped = slugMap as Record<string, string[]>;
 const skillCategories = Object.fromEntries(
   skills.map(s => [s.slug, slugMapTyped[s.slug]?.[0] ?? ''])
 );
+const kitFilename = kit.title.toLowerCase().replace(/[^a-z0-9]+/g, '-') + '-prompt.md';
 ---
 
 <Layout
@@ -126,18 +91,43 @@ const skillCategories = Object.fromEntries(
         {skills.map(skill => {
           const category = skillCategories[skill.slug] ?? '';
           return (
-            <a href={`/tools/${skill.slug}`} class="kit-skill-card">
-              <span class="kit-skill-category">{category}</span>
-              <strong class="kit-skill-title">{skill.title}</strong>
-              <p class="kit-skill-desc">{skill.description}</p>
-              <span class={`kit-skill-level kit-skill-level--${(skill.complexity ?? 'beginner').toLowerCase()}`}>
-                {skill.complexity}
-              </span>
-            </a>
+            <div class="kit-skill-card" data-slug={skill.slug}>
+              <a href={`/tools/${skill.slug}`} class="kit-skill-card-link">
+                <span class="kit-skill-category">{category}</span>
+                <strong class="kit-skill-title">{skill.title}</strong>
+                <p class="kit-skill-desc">{skill.description}</p>
+              </a>
+              <div class="kit-skill-footer">
+                <span class={`kit-skill-level kit-skill-level--${(skill.complexity ?? 'beginner').toLowerCase()}`}>
+                  {skill.complexity}
+                </span>
+                <button class="kit-skill-cart-btn" data-slug={skill.slug} aria-label={`Add ${skill.title} to build cart`}>+</button>
+              </div>
+            </div>
           );
         })}
       </div>
     </section>
+
+    <!-- Related kits -->
+    {relatedKits.length > 0 && (
+      <section class="kit-section">
+        <h2 class="kit-section-title">You might also like</h2>
+        <div class="kit-related-grid">
+          {relatedKits.map(rk => (
+            <a href={`/kits/${rk.id}`} class="kit-related-card">
+              <div class="kit-related-top">
+                <span class="kit-related-emoji">{rk.emoji}</span>
+                <span class={`kit-card-complexity kit-card-complexity--${rk.complexity.toLowerCase()}`}>{rk.complexity}</span>
+              </div>
+              <strong class="kit-related-title">{rk.title}</strong>
+              <p class="kit-related-desc">{rk.description}</p>
+              <span class="kit-related-shared">{rk.sharedCount} shared skill{rk.sharedCount !== 1 ? 's' : ''}</span>
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
 
     <!-- Combined prompt -->
     <section class="kit-section">
@@ -147,10 +137,16 @@ const skillCategories = Object.fromEntries(
             <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
             Combined Claude prompt
           </span>
-          <button class="kit-copy-btn" id="kitCopyBtn">
-            <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" fill="currentColor" viewBox="0 0 256 256"><path d="M216,32H88a8,8,0,0,0-8,8V80H40a8,8,0,0,0-8,8V216a8,8,0,0,0,8,8H168a8,8,0,0,0,8-8V176h40a8,8,0,0,0,8-8V40A8,8,0,0,0,216,32ZM160,208H48V96H160Zm48-48H176V88a8,8,0,0,0-8-8H96V48H208Z"/></svg>
-            <span id="kitCopyLabel">Copy prompt</span>
-          </button>
+          <div class="kit-prompt-actions">
+            <button class="kit-download-btn" id="kitDownloadBtn" data-filename={kitFilename}>
+              <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" fill="currentColor" viewBox="0 0 256 256"><path d="M224,144v64a8,8,0,0,1-8,8H40a8,8,0,0,1-8-8V144a8,8,0,0,1,16,0v56H208V144a8,8,0,0,1,16,0Zm-101.66,5.66a8,8,0,0,0,11.32,0l40-40a8,8,0,0,0-11.32-11.32L136,124.69V32a8,8,0,0,0-16,0v92.69L93.66,98.34a8,8,0,0,0-11.32,11.32Z"/></svg>
+              .md
+            </button>
+            <button class="kit-copy-btn" id="kitCopyBtn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" fill="currentColor" viewBox="0 0 256 256"><path d="M216,32H88a8,8,0,0,0-8,8V80H40a8,8,0,0,0-8,8V216a8,8,0,0,0,8,8H168a8,8,0,0,0,8-8V176h40a8,8,0,0,0,8-8V40A8,8,0,0,0,216,32ZM160,208H48V96H160Zm48-48H176V88a8,8,0,0,0-8-8H96V48H208Z"/></svg>
+              <span id="kitCopyLabel">Copy prompt</span>
+            </button>
+          </div>
         </div>
         <p class="kit-prompt-hint">Paste into Claude → complete {kit.title} app with chain switching and all {skills.length} skills.</p>
         <textarea id="kitPromptText" readonly class="kit-prompt-textarea">{combinedPrompt}</textarea>
@@ -183,7 +179,8 @@ const skillCategories = Object.fromEntries(
       buildBtn.addEventListener("click", () => {
         try {
           const skills = JSON.parse(buildBtn.dataset.skills || "[]");
-          sessionStorage.setItem("build_cart", JSON.stringify(skills));
+          localStorage.setItem("build_cart", JSON.stringify(skills));
+          window.dispatchEvent(new CustomEvent("cart:changed"));
           window.gtag?.("event", "kit_start_building", { kit_id: window.location.pathname.split("/").pop(), skill_count: skills.length });
         } catch {}
         window.location.href = "/";
@@ -203,6 +200,53 @@ const skillCategories = Object.fromEntries(
         });
       });
     }
+
+    const dlBtn = document.getElementById("kitDownloadBtn");
+    if (dlBtn && textarea) {
+      dlBtn.addEventListener("click", () => {
+        const filename = dlBtn.dataset.filename || "kit-prompt.md";
+        const blob = new Blob([textarea.value], { type: "text/markdown" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url; a.download = filename; a.click();
+        URL.revokeObjectURL(url);
+        window.gtag?.("event", "kit_prompt_download", { kit_id: window.location.pathname.split("/").pop() });
+      });
+    }
+
+    // Individual skill cart toggle
+    function getCart() {
+      try { const r = localStorage.getItem("build_cart"); return r ? JSON.parse(r) : []; } catch { return []; }
+    }
+    function setCart(slugs) {
+      try {
+        localStorage.setItem("build_cart", JSON.stringify(slugs));
+        window.dispatchEvent(new CustomEvent("cart:changed"));
+      } catch {}
+    }
+    function updateCartBtns() {
+      const cart = getCart();
+      document.querySelectorAll(".kit-skill-cart-btn").forEach(btn => {
+        const slug = btn.dataset.slug;
+        const inCart = cart.includes(slug);
+        btn.textContent = inCart ? "−" : "+";
+        btn.classList.toggle("kit-skill-cart-btn--active", inCart);
+        btn.title = inCart ? "Remove from build cart" : "Add to build cart";
+      });
+    }
+    updateCartBtns();
+    document.querySelectorAll(".kit-skill-cart-btn").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const slug = btn.dataset.slug;
+        let cart = getCart();
+        cart = cart.includes(slug) ? cart.filter(s => s !== slug) : [...cart, slug];
+        setCart(cart);
+        updateCartBtns();
+        window.gtag?.("event", cart.includes(slug) ? "build_cart_add" : "build_cart_remove", { skill_slug: slug, source: "kit_page" });
+      });
+    });
+    window.addEventListener("storage", e => { if (e.key === "build_cart") updateCartBtns(); });
   </script>
 
   <style>
@@ -229,8 +273,13 @@ const skillCategories = Object.fromEntries(
     .kit-section { margin-bottom: var(--spacing-08); }
     .kit-section-title { font-size: 0.75rem; font-family: var(--monospace); color: var(--content-secondary-alt); letter-spacing: 0.06em; text-transform: uppercase; margin: 0 0 var(--spacing-04); font-weight: normal; }
     .kit-skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr)); gap: var(--spacing-03); }
-    .kit-skill-card { display: flex; flex-direction: column; gap: var(--spacing-02); padding: var(--spacing-05); background: var(--background); border: 0.5px solid var(--border-muted); text-decoration: none; transition: border-color 0.15s; }
+    .kit-skill-card { display: flex; flex-direction: column; gap: var(--spacing-02); padding: var(--spacing-05); background: var(--background); border: 0.5px solid var(--border-muted); transition: border-color 0.15s; }
     .kit-skill-card:hover { border-color: var(--border); }
+    .kit-skill-card-link { display: flex; flex-direction: column; gap: var(--spacing-02); text-decoration: none; flex: 1; }
+    .kit-skill-footer { display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: var(--spacing-02); }
+    .kit-skill-cart-btn { background: none; border: 0.5px solid var(--border-muted); color: var(--content-secondary-alt); font-family: var(--monospace); font-size: 0.75rem; width: 1.4rem; height: 1.4rem; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: border-color 0.15s, color 0.15s, background 0.15s; line-height: 1; }
+    .kit-skill-cart-btn:hover { border-color: DarkOrange; color: DarkOrange; }
+    .kit-skill-cart-btn--active { background: rgba(255,140,0,.1); border-color: rgba(255,140,0,.4); color: DarkOrange; }
     .kit-skill-category { font-family: var(--monospace); font-size: 0.6rem; color: var(--content-secondary-alt); text-transform: uppercase; letter-spacing: 0.08em; }
     .kit-skill-title { color: var(--content-primary); font-size: var(--desktop-body-sm); }
     .kit-skill-desc { margin: 0; color: var(--content-secondary); font-size: var(--desktop-caption); line-height: 1.5; flex: 1; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
@@ -238,9 +287,21 @@ const skillCategories = Object.fromEntries(
     .kit-skill-level--beginner     { background: rgba(110,224,110,.08); color: #6ee06e; }
     .kit-skill-level--intermediate { background: rgba(224,200,78,.08);  color: #e0c84e; }
     .kit-skill-level--advanced     { background: rgba(224,110,110,.08); color: #e06e6e; }
+    .kit-related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr)); gap: var(--spacing-03); }
+    .kit-related-card { display: flex; flex-direction: column; gap: var(--spacing-02); padding: var(--spacing-05); background: var(--background); border: 0.5px solid var(--border-muted); text-decoration: none; transition: border-color 0.15s, background-color 0.15s; }
+    .kit-related-card:hover { border-color: var(--border); background-color: var(--background-secondary); }
+    .kit-related-top { display: flex; align-items: center; justify-content: space-between; }
+    .kit-related-emoji { font-size: 1.1rem; }
+    .kit-related-title { color: var(--content-primary); font-size: var(--desktop-body-sm); }
+    .kit-related-desc { margin: 0; color: var(--content-secondary); font-size: var(--desktop-caption); line-height: 1.5; flex: 1; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .kit-related-shared { font-family: var(--monospace); font-size: 0.6rem; color: DarkOrange; margin-top: auto; opacity: 0.7; }
+
     .kit-prompt-block { background: var(--background); border: 0.5px solid var(--border-muted); }
     .kit-prompt-head { display: flex; align-items: center; justify-content: space-between; padding: var(--spacing-03) var(--spacing-04); border-bottom: 0.5px solid var(--border-muted); }
     .kit-prompt-label { display: flex; align-items: center; gap: var(--spacing-02); font-family: var(--monospace); font-size: 0.7rem; color: var(--content-secondary); }
+    .kit-prompt-actions { display: flex; align-items: center; gap: var(--spacing-02); }
+    .kit-download-btn { display: inline-flex; align-items: center; gap: var(--spacing-02); background: none; border: 0.5px solid var(--border-muted); color: var(--content-secondary); font-family: var(--monospace); font-size: 0.65rem; padding: 0 var(--spacing-03); height: 1.5rem; cursor: pointer; transition: border-color 0.15s, color 0.15s; }
+    .kit-download-btn:hover { border-color: var(--border); color: var(--content-primary); }
     .kit-copy-btn { display: inline-flex; align-items: center; gap: var(--spacing-02); background: DarkOrange; border: none; color: #000; font-family: var(--monospace); font-size: 0.65rem; font-weight: 600; padding: 0 var(--spacing-04); height: 1.5rem; cursor: pointer; transition: opacity 0.15s; }
     .kit-copy-btn:hover { opacity: 0.88; }
     .kit-prompt-hint { margin: 0; padding: var(--spacing-02) var(--spacing-04); font-family: var(--monospace); font-size: 0.65rem; color: var(--content-secondary-alt); border-bottom: 0.5px solid var(--border-muted); }

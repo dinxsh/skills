@@ -23,7 +23,7 @@
   "scripts": {
     "add-slugs": "bun run scripts/add-slugs.ts",
     "clean": "rm -rf dist .astro src/data/slug-map.json src/data/tool-metadata",
-    "prepare-data": "bun run add-slugs && bun run scripts/split-data.ts && bun run scripts/generate-slug-map.ts && bun run scripts/generate-tool-metadata.ts && bun run scripts/generate-skills-catalog.ts && bun run scripts/generate-llms.ts",
+    "prepare-data": "bun run add-slugs && bun run scripts/split-data.ts && bun run scripts/generate-slug-map.ts && bun run scripts/generate-tool-metadata.ts && bun run scripts/generate-skills-catalog.ts && bun run scripts/generate-llms.ts && bun run scripts/generate-llms-full.ts && bun run scripts/generate-skill-pairs.ts && bun run scripts/generate-skill-kits.ts",
     "prepublishOnly": "bun run prepare-data",
     "dev": "bun run prepare-data && astro dev",
     "start": "astro dev",
@@ -33,7 +33,8 @@
     "test": "vitest",
     "test:run": "vitest run",
     "check-data": "bun run scripts/check-data.ts",
-    "update-metadata": "bun run scripts/update-metadata.ts"
+    "update-metadata": "bun run scripts/update-metadata.ts",
+    "audit": "bun run scripts/audit-catalog.ts"
   },
   "dependencies": {
     "@astrojs/netlify": "^6.6.4",

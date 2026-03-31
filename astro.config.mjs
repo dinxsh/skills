@@ -12,7 +12,15 @@ export default defineConfig({
         forward: ["dataLayer.push"],
       },
     }
-  ), sitemap()],
+  ), sitemap({
+    serialize(item) {
+      if (item.url === 'https://skills.goldrush.dev/') return { ...item, priority: 1.0, changefreq: 'weekly' };
+      if (item.url === 'https://skills.goldrush.dev/kits') return { ...item, priority: 0.9, changefreq: 'weekly' };
+      if (item.url.startsWith('https://skills.goldrush.dev/kits/')) return { ...item, priority: 0.8, changefreq: 'monthly' };
+      if (item.url.startsWith('https://skills.goldrush.dev/tools/')) return { ...item, priority: 0.7, changefreq: 'monthly' };
+      return { ...item, priority: 0.5 };
+    },
+  })],
 
   adapter: netlify()
 });

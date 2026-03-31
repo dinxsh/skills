@@ -76,7 +76,7 @@ const {
         <meta
             name="description"
             content={pageDescription ||
-                "138 copy-paste code skills for building onchain apps with GoldRush — blockchain data APIs for wallets, DeFi, NFTs, AI agents, and more across 200+ chains."}
+                "132 copy-paste code skills for building onchain apps with GoldRush — blockchain data APIs for wallets, DeFi, NFTs, AI agents, and more across 200+ chains."}
         />
 
         <!-- Keywords for search engines -->
@@ -93,12 +93,12 @@ const {
         <meta property="og:site_name" content={ogSiteName || "GoldRush Skills"} />
         <meta property="og:type" content={ogType || "website"} />
         <meta property="og:title" content={ogTitle || (pageTitle ? `${pageTitle} | GoldRush Skills` : "GoldRush Skills — Build anything onchain")} />
-        <meta property="og:description" content={ogDescription || pageDescription || "138 copy-paste code skills for building onchain products with GoldRush. Wallets, DeFi, NFTs, AI agents — across 200+ chains."} />
+        <meta property="og:description" content={ogDescription || pageDescription || "132 copy-paste code skills for building onchain products with GoldRush. Wallets, DeFi, NFTs, AI agents — across 200+ chains."} />
         <meta property="og:url" content={ogUrl || `https://skills.goldrush.dev${Astro.url.pathname}`} />
         <meta property="og:image" content={ogImage || "https://skills.goldrush.dev/og.svg"} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
-        <meta property="og:image:alt" content="GoldRush Skills — 138 onchain data skills across 200+ chains" />
+        <meta property="og:image:alt" content="GoldRush Skills — 132 onchain data skills across 200+ chains" />
         <meta property="og:locale" content="en_US" />
 
         <!-- Twitter / X card -->
@@ -106,12 +106,13 @@ const {
         <meta name="twitter:site" content="@covalenthq" />
         <meta name="twitter:creator" content="@covalenthq" />
         <meta name="twitter:title" content={twitterTitle || ogTitle || (pageTitle ? `${pageTitle} | GoldRush Skills` : "GoldRush Skills — Build anything onchain")} />
-        <meta name="twitter:description" content={twitterDescription || ogDescription || "138 copy-paste code skills for building onchain products with GoldRush. Wallets, DeFi, NFTs, AI agents — across 200+ chains."} />
+        <meta name="twitter:description" content={twitterDescription || ogDescription || "132 copy-paste code skills for building onchain products with GoldRush. Wallets, DeFi, NFTs, AI agents — across 200+ chains."} />
         <meta name="twitter:image" content={twitterImage || ogImage || "https://skills.goldrush.dev/og.svg"} />
-        <meta name="twitter:image:alt" content="GoldRush Skills — 138 onchain data skills" />
+        <meta name="twitter:image:alt" content="GoldRush Skills — 132 onchain data skills" />
 
         <!-- LLM / AI crawler hints -->
         <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-readable site index" />
+        <link rel="alternate" type="text/plain" href="/llms-full.txt" title="LLM-readable site index with full code snippets" />
 
         <!-- Google tag (gtag.js) -->
         <script
@@ -161,6 +162,17 @@ const {
                 >
                     <span class="favorites-text">Saved skills</span>
                     <span class="favorites-count" id="favoritesCount"></span>
+                </a>
+                <a
+                    href="/saved"
+                    class="cart-badge-link"
+                    id="cartBadgeLink"
+                    style="display: none;"
+                    title="Build cart"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" fill="currentColor" viewBox="0 0 256 256"><path d="M222.14,58.87A8,8,0,0,0,216,56H54.68L49.79,29.14A16,16,0,0,0,34.05,16H16a8,8,0,0,0,0,16H34.05a.06.06,0,0,1,.06,0l32,159.86A24,24,0,1,0,120,208a23.84,23.84,0,0,0-1.73-9h19.46A23.84,23.84,0,0,0,136,208a24,24,0,1,0,24-24H84.58L78.16,152h129.42a16,16,0,0,0,15.74-13.14l12.16-66.86A8,8,0,0,0,222.14,58.87Z"/></svg>
+                    <span class="cart-badge-text">Build cart</span>
+                    <span class="cart-badge-count" id="cartBadgeCount"></span>
                 </a>
                 <a
                     href="https://goldrush.dev"
@@ -538,6 +550,30 @@ const {
         display: none;
     }
 
+    .cart-badge-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        padding: 0 var(--spacing-04);
+        height: 1.5rem;
+        border: 0.5px solid rgba(255, 140, 0, 0.45);
+        background-color: rgba(255, 140, 0, 0.06);
+        color: DarkOrange;
+        text-decoration: none;
+        font-family: var(--monospace);
+        font-size: 0.65rem;
+        letter-spacing: 0.03em;
+        border-radius: var(--spacing-00);
+        outline: none;
+        white-space: nowrap;
+        transition: opacity 0.15s ease, transform 0.15s ease;
+    }
+
+    .cart-badge-link:hover { opacity: 0.8; }
+    .cart-badge-link:active { transform: scale(0.97); }
+    .cart-badge-link:focus { outline: 1px solid DarkOrange; }
+    .cart-badge-count { font-weight: 600; }
+
     @media (max-width: 48rem) {
         .floating-nav {
             padding: 5px var(--spacing-06);
@@ -547,6 +583,9 @@ const {
         }
         .favorites-count {
             display: inline;
+        }
+        .cart-badge-text {
+            display: none;
         }
     }
 
@@ -735,6 +774,23 @@ const {
             } catch (e) {}
         };
 
+        const updateCartBadge = () => {
+            try {
+                const linkEl = document.getElementById("cartBadgeLink");
+                const countEl = document.getElementById("cartBadgeCount");
+                if (!linkEl || !countEl) return;
+                const raw = localStorage.getItem("build_cart");
+                const count = raw ? JSON.parse(raw).length : 0;
+                if (count > 0) {
+                    linkEl.style.display = "inline-flex";
+                    countEl.textContent = count;
+                } else {
+                    linkEl.style.display = "none";
+                    countEl.textContent = "";
+                }
+            } catch (e) {}
+        };
+
         // Create throttled scroll handler once
         const throttledNavScroll = throttle(handleNavScroll, 80);
 
@@ -786,6 +842,7 @@ const {
             }
 
             updateFavoritesLink();
+            updateCartBadge();
         };
 
         // Scroll Restoration
@@ -797,6 +854,8 @@ const {
             window.addEventListener("scroll", throttledNavScroll);
             window.addEventListener("bookmarks:changed", updateFavoritesLink);
             window.addEventListener("pageshow", updateFavoritesLink);
+            window.addEventListener("storage", (e) => { if (e.key === "build_cart") updateCartBadge(); });
+            window.addEventListener("cart:changed", updateCartBadge);
             document.addEventListener("astro:page-load", init);
             window.__rom_initialized = true;
         }

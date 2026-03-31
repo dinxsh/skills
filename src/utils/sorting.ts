@@ -12,7 +12,7 @@ export const toolComparators = {
         new Date(a['date-added'] || 0).getTime() - new Date(b['date-added'] || 0).getTime(),
 } as const;
 
-export type SortKey = keyof typeof toolComparators | 'random';
+export type SortKey = keyof typeof toolComparators | 'random' | 'completenessDesc';
 
 /**
  * Sort an array of tools by the specified key

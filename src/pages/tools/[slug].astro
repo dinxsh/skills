@@ -2,6 +2,8 @@
 import Layout from "../../layouts/Layout.astro";
 import { Code } from "astro:components";
 import slugMap from "../../data/slug-map.json";
+import skillPairs from "../../data/skill-pairs.json";
+import skillKits from "../../data/skill-kits.json";
 import SoftwareApplicationSchema from "../../components/schema/SoftwareApplicationSchema.astro";
 import BreadcrumbSchema from "../../components/schema/BreadcrumbSchema.astro";
 import BookmarkButton from "../../components/BookmarkButton";
@@ -74,6 +76,10 @@ const seoTitle = meta.title || tool.title;
 const seoDescription = meta.description || tool.body;
 const seoOgImage = "https://skills.goldrush.dev/og.svg";
 const seoOgType = "website";
+
+// Kit membership
+type KitEntry = { id: string; title: string; emoji: string; complexity: string };
+const kitMemberships: KitEntry[] = (skillKits as Record<string, KitEntry[]>)[slug as string] ?? [];
 
 // Rich skill metadata
 const snippet: string | null = meta.snippet || null;
@@ -174,9 +180,23 @@ const xShareUrl = `https://x.com/intent/post?text=${encodedShareText}&url=${enco
 const linkedinShareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedCanonicalUrl}`;
 const redditShareUrl = `https://www.reddit.com/submit?url=${encodedCanonicalUrl}&title=${encodedShareText}`;
 
-const allCategoryTools = categoryTools.default || [];
-const otherTools = allCategoryTools.filter((t: any) => t.slug !== slug);
-const relatedTools = otherTools.sort(() => Math.random() - 0.5).slice(0, 4);
+// Resolve "pairs well with" from kit co-occurrence, fall back to same-category
+const pairSlugs: string[] = (skillPairs as Record<string, string[]>)[slug as string] ?? [];
+const relatedTools: any[] = [];
+for (const pairSlug of pairSlugs.slice(0, 4)) {
+  const pairCategory = (slugMap as Record<string, string[]>)[pairSlug]?.[0];
+  if (!pairCategory) continue;
+  try {
+    const pairCat = await import(`../../data/tools/${pairCategory}.json`);
+    const pairTool = pairCat.default.find((x: any) => x.slug === pairSlug);
+    if (pairTool) relatedTools.push({ ...pairTool, category: pairCategory });
+  } catch {}
+}
+if (relatedTools.length === 0) {
+  const allCategoryTools = categoryTools.default || [];
+  const otherTools = allCategoryTools.filter((t: any) => t.slug !== slug);
+  relatedTools.push(...otherTools.sort(() => Math.random() - 0.5).slice(0, 4));
+}
 
 const categoryTitle = category.charAt(0).toUpperCase() + category.slice(1);
 const breadcrumbs = [
@@ -259,6 +279,17 @@ const breadcrumbs = [
             </div>
           )}
 
+          {kitMemberships.length > 0 && (
+            <div class="field field--row">
+              <span class="field-label">Kits</span>
+              <div class="chips">
+                {kitMemberships.map(k => (
+                  <a href={`/kits/${k.id}`} class="chip chip--kit">{k.emoji} {k.title}</a>
+                ))}
+              </div>
+            </div>
+          )}
+
           <!-- Meta row -->
           <div class="meta-strip">
             <div class="meta-item">
@@ -291,6 +322,10 @@ const breadcrumbs = [
               <button class="btn-copy" id="copyClaudeBtn">
                 <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" fill="currentColor" viewBox="0 0 256 256"><path d="M216,32H88a8,8,0,0,0-8,8V80H40a8,8,0,0,0-8,8V216a8,8,0,0,0,8,8H168a8,8,0,0,0,8-8V176h40a8,8,0,0,0,8-8V40A8,8,0,0,0,216,32ZM160,208H48V96H160Zm48-48H176V88a8,8,0,0,0-8-8H96V48H208Z"/></svg>
                 <span class="copy-claude-label">Copy prompt</span>
+              </button>
+              <button class="btn-copy" id="downloadClaudeBtn" title="Download prompt as .md">
+                <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" fill="currentColor" viewBox="0 0 256 256"><path d="M224,144v64a8,8,0,0,1-8,8H40a8,8,0,0,1-8-8V144a8,8,0,0,1,16,0v56H208V144a8,8,0,0,1,16,0Zm-101.66,5.66a8,8,0,0,0,11.32,0l40-40a8,8,0,0,0-11.32-11.32L136,124.69V32a8,8,0,0,0-16,0v92.69L93.66,98.34a8,8,0,0,0-11.32,11.32Z"/></svg>
+                <span class="download-claude-label">.md</span>
               </button>
             </div>
             <p class="prompt-hint">Paste into Claude → complete Next.js app with chain switching.</p>
@@ -454,6 +489,18 @@ const breadcrumbs = [
         });
       }
 
+      const downloadBtn = e.target.closest("#downloadClaudeBtn");
+      if (downloadBtn) {
+        const promptEl = document.getElementById("claudePromptText");
+        const text = promptEl ? promptEl.value : "";
+        const skillSlug = document.querySelector("[data-skill-slug]")?.dataset.skillSlug ?? "skill";
+        const blob = new Blob([text], { type: "text/markdown;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url; a.download = `${skillSlug}-prompt.md`; a.click();
+        URL.revokeObjectURL(url);
+      }
+
       const claudeBtn = e.target.closest("#copyClaudeBtn");
       if (claudeBtn) {
         const promptEl = document.getElementById("claudePromptText");
@@ -502,6 +549,18 @@ const breadcrumbs = [
       document.addEventListener("click", handleInteraction);
       document.addEventListener("keydown", handleKeydown);
     }
+
+    // Track recently viewed
+    (function trackRecentlyViewed() {
+      try {
+        const slug = document.querySelector("[data-skill-slug]")?.dataset.skillSlug;
+        if (!slug) return;
+        const raw = localStorage.getItem("recently_viewed");
+        const arr = raw ? JSON.parse(raw) : [];
+        const filtered = arr.filter((s) => s !== slug);
+        localStorage.setItem("recently_viewed", JSON.stringify([slug, ...filtered].slice(0, 8)));
+      } catch {}
+    })();
 
     // Initialize on load
     init();
@@ -643,6 +702,9 @@ const breadcrumbs = [
       font-size: 10px;
       font-family: var(--monospace);
     }
+
+    .chip--kit { color: DarkOrange; border-color: rgba(255,140,0,0.25); background: rgba(255,140,0,0.05); text-decoration: none; }
+    .chip--kit:hover { border-color: rgba(255,140,0,0.5); }
 
     /* ── Meta strip ────────────────────────────────── */
     .meta-strip {

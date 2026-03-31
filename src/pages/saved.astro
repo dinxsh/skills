@@ -1,6 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import FavoritesView from "../components/FavoritesView";
+import SavedWithCart from "../components/SavedWithCart";
 import BreadcrumbSchema from "../components/schema/BreadcrumbSchema.astro";
 
 const breadcrumbs = [
@@ -18,6 +18,6 @@ const breadcrumbs = [
 >
     <BreadcrumbSchema items={breadcrumbs} />
     <main id="main-content">
-        <FavoritesView client:load />
+        <SavedWithCart client:load />
     </main>
 </Layout>
