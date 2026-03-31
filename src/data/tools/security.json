@@ -1,13 +1,5 @@
 [
   {
-    "title": "Approval Auditor",
-    "body": "Scan and identify dangerous ERC-20 token approvals to revoke from any wallet.",
-    "tag": "Free Tier",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-12",
-    "slug": "approval-auditor"
-  },
-  {
     "title": "Contract Interaction History",
     "body": "Full history of contract interactions for security forensics and incident response.",
     "tag": "API Key Required",
@@ -38,14 +30,6 @@
     "url": "https://goldrush.dev",
     "date-added": "2026-03-26",
     "slug": "solana-token-risk-scorer"
-  },
-  {
-    "title": "Stale Approval Cleaner",
-    "body": "Surface all active ERC-20 and NFT approvals sorted by risk level — identify unlimited approvals, deprecated protocol spenders, and dead contracts that should be revoked.",
-    "tag": "Free Tier",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-23",
-    "slug": "stale-approval-cleaner"
   },
   {
     "title": "Token Approval Risk Scanner",

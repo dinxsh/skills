@@ -1,27 +1,11 @@
 [
   {
-    "title": "Address Activity Scanner",
-    "body": "Discover every chain a wallet address is active on with a single API call.",
-    "tag": "Free Tier",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-12",
-    "slug": "address-activity-scanner"
-  },
-  {
     "title": "Cross-Chain Activity Report",
     "body": "Full cross-chain footprint for any wallet — active chains, combined net worth, unified transaction timeline, and per-chain asset breakdown in one API call.",
     "tag": "API Key Required",
     "url": "https://goldrush.dev",
     "date-added": "2026-03-23",
     "slug": "cross-chain-activity-report"
-  },
-  {
-    "title": "Cross-chain Address Lookup",
-    "body": "Resolve and look up the same address across all supported EVM chains at once.",
-    "tag": "Free Tier",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-12",
-    "slug": "cross-chain-address-lookup"
   },
   {
     "title": "Cross-Chain Transaction History",
@@ -38,21 +22,5 @@
     "url": "https://goldrush.dev",
     "date-added": "2026-03-16",
     "slug": "multichain-activity-discovery"
-  },
-  {
-    "title": "Multi-Chain Token Aggregator",
-    "body": "Aggregate all token balances across every chain a wallet is active on â€” auto-discovers chains then fetches balances in parallel. One function call for a complete cross-chain portfolio.",
-    "tag": "API Key Required",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-16",
-    "slug": "multichain-token-aggregator"
-  },
-  {
-    "title": "Multichain Portfolio",
-    "body": "Unified portfolio view aggregating assets across every GoldRush-supported chain.",
-    "tag": "API Key Required",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-12",
-    "slug": "multichain-portfolio"
   }
 ]

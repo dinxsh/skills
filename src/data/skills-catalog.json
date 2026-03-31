@@ -1,46 +1,4 @@
 {
-  "address-activity-scanner": {
-    "title": "Address Activity Scanner",
-    "description": "Discover every chain a wallet address is active on with a single API call.",
-    "useCase": "Build the first screen of a multi-chain wallet app — discover which chains a user is active on before fetching balances, saving API credits by only querying active chains.",
-    "chains": [
-      "ethereum",
-      "base",
-      "polygon",
-      "bsc",
-      "optimism",
-      "arbitrum",
-      "avalanche",
-      "gnosis",
-      "fantom",
-      "celo",
-      "moonbeam",
-      "blast",
-      "linea",
-      "scroll",
-      "zkSync",
-      "mantle",
-      "sonic",
-      "unichain",
-      "sei",
-      "bitcoin"
-    ],
-    "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function scanAddressActivity(walletAddress: string) {\n  const resp = await client.BaseService.getAddressActivity(walletAddress);\n\n  if (resp.error) throw new Error(resp.error_message);\n\n  return resp.data.items\n    .filter(chain => !chain.is_testnet)\n    .map(chain => ({\n      chainName: chain.name,\n      chainId: chain.chain_id,\n      lastSeenAt: chain.last_seen_at,\n    }))\n    .sort((a, b) =>\n      new Date(b.lastSeenAt!).getTime() - new Date(a.lastSeenAt!).getTime()\n    );\n}",
-    "endpoints": [
-      "GET /v1/address/{walletAddress}/activity/"
-    ],
-    "keyParams": {
-      "walletAddress": "0x wallet address to scan for activity across all chains"
-    },
-    "responseFields": [
-      "items[].name",
-      "items[].chain_id",
-      "items[].is_testnet",
-      "items[].last_seen_at"
-    ],
-    "creditCost": "0.1 credit/call",
-    "complexity": "Beginner"
-  },
   "agent-counterparty-verification": {
     "title": "Agent Counterparty Verification",
     "description": "Verify counterparty wallets before agent-initiated transactions using risk signals.",
@@ -86,91 +44,6 @@
       "items[].earliest_transaction.block_signed_at"
     ],
     "creditCost": "1 credit/call",
-    "complexity": "Intermediate"
-  },
-  "agent-data-budget-manager": {
-    "title": "Agent Data Budget Manager",
-    "description": "Track and optimise GoldRush API credit consumption across AI agent workflows.",
-    "useCase": "Build a credit-aware AI agent wrapper that checks chain sync status before issuing queries and tracks cumulative API credit spend across a multi-step workflow.",
-    "chains": [
-      "ethereum",
-      "base",
-      "polygon",
-      "bsc",
-      "optimism",
-      "arbitrum",
-      "avalanche",
-      "gnosis",
-      "fantom",
-      "celo",
-      "moonbeam",
-      "blast",
-      "linea",
-      "scroll",
-      "zkSync",
-      "mantle",
-      "sonic",
-      "unichain",
-      "sei"
-    ],
-    "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nlet totalCreditsSpent = 0;\n\nasync function checkChainFreshness(chainName: string) {\n  const resp = await client.BaseService.getAllChainStatus();\n  totalCreditsSpent += 0.1;\n\n  if (resp.error) throw new Error(resp.error_message);\n\n  const chain = resp.data.items.find(c => c.name === chainName);\n  if (!chain) throw new Error(`Chain ${chainName} not found`);\n\n  const lagMs = chain.synced_blocked_signed_at\n    ? Date.now() - new Date(chain.synced_blocked_signed_at).getTime()\n    : Infinity;\n\n  return {\n    isFresh: lagMs < 60_000,      // synced within last 60s\n    lagSeconds: Math.floor(lagMs / 1000),\n    syncedBlock: chain.synced_block_height,\n    totalCreditsSpent,\n  };\n}",
-    "endpoints": [
-      "GET /v1/chains/status/"
-    ],
-    "keyParams": {
-      "chainName": "Optional EVM chain to check sync status for (e.g. eth-mainnet) — omit for all chains",
-      "noTestnets": "Filter: exclude testnet chains from results (filter client-side, default true)"
-    },
-    "responseFields": [
-      "items[].name",
-      "items[].synced_block_height",
-      "items[].synced_blocked_signed_at"
-    ],
-    "creditCost": "0.1 credit/call",
-    "complexity": "Intermediate"
-  },
-  "agent-fleet-monitor": {
-    "title": "Agent Fleet Monitor",
-    "description": "Monitor a fleet of AI agent wallets for health, balances, and activity in one view.",
-    "useCase": "Build a fleet health dashboard for autonomous agents — monitor gas balances, flag wallets that need refuelling, and surface any unusual on-chain activity across a set of agent addresses.",
-    "chains": [
-      "ethereum",
-      "base",
-      "polygon",
-      "bsc",
-      "optimism",
-      "arbitrum",
-      "avalanche",
-      "gnosis",
-      "fantom",
-      "celo",
-      "moonbeam",
-      "blast",
-      "linea",
-      "scroll",
-      "zkSync",
-      "mantle",
-      "sonic",
-      "unichain",
-      "sei"
-    ],
-    "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function monitorAgentFleet(chainName: string, agentWallets: string[]) {\n  const results = await Promise.all(\n    agentWallets.map(async (addr) => {\n      const [balResp, sumResp] = await Promise.all([\n        client.BalanceService.getNativeTokenBalance(chainName, addr),\n        client.TransactionService.getTransactionSummary(chainName, addr),\n      ]);\n\n      const nativeBalance = balResp.error ? 0 : Number(balResp.data.items[0]?.balance) / 1e18;\n      const summary = sumResp.error ? null : sumResp.data.items[0];\n\n      return {\n        address: addr,\n        nativeBalance,\n        needsRefuel: nativeBalance < 0.01,\n        totalTxs: summary?.total_count ?? 0,\n        lastActive: summary?.latest_transaction?.block_signed_at ?? null,\n      };\n    })\n  );\n  return results;\n}",
-    "endpoints": [
-      "GET /v1/{chainName}/address/{walletAddress}/balances_v2/",
-      "GET /v1/{chainName}/address/{walletAddress}/transactions_summary/"
-    ],
-    "keyParams": {
-      "chainName": "EVM chain the agents operate on",
-      "walletAddresses": "Array of agent wallet addresses to monitor"
-    },
-    "responseFields": [
-      "items[].contract_ticker_symbol",
-      "items[].balance",
-      "items[].quote",
-      "items[].total_count",
-      "items[].latest_transaction.block_signed_at"
-    ],
-    "creditCost": "1 credit/wallet",
     "complexity": "Intermediate"
   },
   "agent-wallet-skill": {
@@ -287,132 +160,13 @@
     "endpoints": [
       "GET /v1/chains/status/"
     ],
-    "keyParams": {
-      "noTestnets": "Filter: exclude testnet chains from results (filter client-side, default true)",
-      "search": "Optional client-side filter string to search chain names"
-    },
+    "keyParams": {},
     "responseFields": [
       "items[].name",
       "items[].synced_block_height",
       "items[].synced_blocked_signed_at"
     ],
     "creditCost": "0.1 credit/call",
-    "complexity": "Beginner"
-  },
-  "anchor-program-data-reader": {
-    "title": "Anchor Program Data Reader",
-    "description": "Fetch and decode the on-chain state of any Anchor-based Solana program account via GoldRush — pass a program ID and account address to get fully-typed, human-readable account data with field names and values, using the program's published IDL for deserialization. No custom Borsh deserializer required. Works with any program that has a public IDL: Raydium AMM pools, Drift user accounts, Kamino lending positions, Marinade stake state. Read protocol state directly in your app or agent without a local Anchor client.",
-    "useCase": "Build a protocol state inspector that reads and displays decoded Anchor account data for any Solana program without requiring a local Anchor client or custom Borsh deserializer.",
-    "chains": [
-      "solana"
-    ],
-    "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\ninterface AnchorAccountField {\n  name: string;\n  type: string;\n  value: unknown;\n}\n\ninterface AnchorAccountData {\n  programId: string;\n  accountAddress: string;\n  fields: AnchorAccountField[];\n  decodedAt: string;\n}\n\nasync function readAnchorProgramData(\n  programId: string,\n  accountAddress: string\n): Promise<AnchorAccountData | null> {\n  const client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\n  const resp = await client.BalanceService.getTokenBalancesForWalletAddress(\n    'solana-mainnet',\n    accountAddress\n  );\n\n  if (resp.error) {\n    console.error('GoldRush error:', resp.error_message);\n    return null;\n  }\n\n  const items = resp.data?.items ?? [];\n\n  const fields: AnchorAccountField[] = items.map((item) => ({\n    name: item.contract_name ?? 'unknown',\n    type: 'token_balance',\n    value: {\n      balance: item.balance,\n      quote: item.quote,\n      symbol: item.contract_ticker_symbol,\n      decimals: item.contract_decimals,\n    },\n  }));\n\n  return {\n    programId,\n    accountAddress,\n    fields,\n    decodedAt: new Date().toISOString(),\n  };\n}\n\n// Usage\nreadAnchorProgramData(\n  'RVKd61ztZW9GUwhRbbLoYVRE5Xf1B2tVscKqwZqXgEr',\n  '7Np41oeYqPefeAfUZx9j5yCLrMQZMDyApbJAKhgQFMRm'\n).then((data) => {\n  if (data) {\n    console.log(`Decoded ${data.fields.length} fields for program ${data.programId}`);\n    console.log(JSON.stringify(data, null, 2));\n  }\n});",
-    "endpoints": [
-      "GET /v1/solana-mainnet/address/{address}/balances_v2/",
-      "GET /v1/solana-mainnet/address/{address}/transactions_v3/"
-    ],
-    "keyParams": {
-      "address": "The program-owned account address whose state you want to decode",
-      "programId": "The Anchor program ID whose IDL will be used for deserialization",
-      "chain_name": "Blockchain network identifier — use solana-mainnet"
-    },
-    "responseFields": [
-      "items[].contract_address",
-      "items[].contract_name",
-      "items[].contract_ticker_symbol",
-      "items[].balance",
-      "items[].contract_decimals",
-      "items[].quote",
-      "items[].quote_rate"
-    ],
-    "creditCost": "1 credit/call",
-    "complexity": "Advanced"
-  },
-  "api-reference": {
-    "title": "API Reference",
-    "description": "Interactive API explorer and full reference docs for all GoldRush endpoints.",
-    "useCase": "Explore every available GoldRush API endpoint in your browser — test calls with your API key, see live responses, and copy ready-to-use SDK code snippets.",
-    "chains": [
-      "ethereum",
-      "base",
-      "polygon",
-      "bsc",
-      "optimism",
-      "arbitrum",
-      "avalanche",
-      "gnosis",
-      "fantom",
-      "celo",
-      "moonbeam",
-      "blast",
-      "linea",
-      "scroll",
-      "zkSync",
-      "mantle",
-      "sonic",
-      "unichain",
-      "sei",
-      "bitcoin"
-    ],
-    "snippet": "// No SDK call needed — browse at https://goldrush.dev/docs/api/\n// But here is how to get started with the TypeScript SDK:\n\n// 1. Install the SDK\n// npm install @covalenthq/client-sdk\n\nimport { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\n// 2. Get all supported chains\nconst chainsResp = await client.BaseService.getAllChains();\nif (!chainsResp.error) {\n  console.log('Supported chains:', chainsResp.data.items.map(c => c.name));\n}\n\n// 3. Verify your key works\nconst statusResp = await client.BaseService.getAllChainStatus();\nconsole.log('API key valid:', !statusResp.error);",
-    "endpoints": [
-      "https://goldrush.dev/docs/api/"
-    ],
-    "keyParams": {
-      "apiKey": "GoldRush API key for authenticated test calls in the playground"
-    },
-    "responseFields": [
-      "endpoint path",
-      "HTTP method",
-      "required parameters",
-      "optional parameters",
-      "response schema"
-    ],
-    "creditCost": "Free to browse",
-    "complexity": "Beginner"
-  },
-  "approval-auditor": {
-    "title": "Approval Auditor",
-    "description": "Scan and identify dangerous ERC-20 token approvals to revoke from any wallet.",
-    "useCase": "Build a wallet security scanner that shows all active token approvals, flags the dangerous ones, and calculates the total USD value at risk from unlimited approvals.",
-    "chains": [
-      "ethereum",
-      "base",
-      "polygon",
-      "bsc",
-      "optimism",
-      "arbitrum",
-      "avalanche",
-      "gnosis",
-      "fantom",
-      "celo",
-      "moonbeam",
-      "blast",
-      "linea",
-      "scroll",
-      "zkSync",
-      "mantle",
-      "sonic",
-      "unichain",
-      "sei"
-    ],
-    "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function auditApprovals(chainName: string, walletAddress: string) {\n  const resp = await client.SecurityService.getApprovals(\n    chainName,\n    walletAddress\n  );\n\n  if (resp.error) throw new Error(resp.error_message);\n\n  const approvals = resp.data.items;\n  const totalAtRisk = approvals.reduce((sum, a) => sum + (a.value_at_risk ?? 0), 0);\n  const highRisk = approvals.filter(a => (a.risk_factor ?? 0) > 0.7);\n\n  return {\n    totalApprovals: approvals.length,\n    totalValueAtRisk: totalAtRisk,\n    highRiskCount: highRisk.length,\n    approvals: approvals.map(a => ({\n      token: a.token_ticker_symbol,\n      spender: a.spender_name ?? a.spender_address,\n      valueAtRisk: a.value_at_risk,\n      risk: a.risk_factor,\n    })),\n  };\n}",
-    "endpoints": [
-      "GET /v1/{chainName}/approvals/{walletAddress}/"
-    ],
-    "keyParams": {
-      "chainName": "EVM chain identifier (e.g. eth-mainnet, matic-mainnet)",
-      "walletAddress": "0x wallet address to audit"
-    },
-    "responseFields": [
-      "items[].token_address",
-      "items[].token_ticker_symbol",
-      "items[].spender_address",
-      "items[].spender_name",
-      "items[].value_at_risk",
-      "items[].risk_factor"
-    ],
-    "creditCost": "1 credit/call",
     "complexity": "Beginner"
   },
   "base-memecoin-screener": {
@@ -446,81 +200,6 @@
     ],
     "creditCost": "Streaming subscription",
     "complexity": "Intermediate"
-  },
-  "bitcoin-balance-checker": {
-    "title": "Bitcoin Balance Checker",
-    "description": "Fetch confirmed UTXOs, current balance, and USD value for any Bitcoin address.",
-    "useCase": "Build a Bitcoin balance widget that shows confirmed BTC balance and live USD value for any Bitcoin address — no chainName parameter needed.",
-    "chains": [
-      "bitcoin"
-    ],
-    "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function getBitcoinBalance(btcAddress: string) {\n  // No chainName parameter — Bitcoin is hardcoded to btc-mainnet\n  const resp = await client.BalanceService.getBitcoinNonHdWalletBalances(btcAddress);\n\n  if (resp.error) throw new Error(resp.error_message);\n\n  const item = resp.data.items[0];\n  return {\n    address: item.address,\n    balanceSatoshi: item.balance,\n    balanceBtc: Number(item.balance) / 1e8,\n    usdValue: item.quote,\n    btcPriceUsd: item.quote_rate,\n  };\n}\n\n// Example usage\nconst balance = await getBitcoinBalance('1A1zP1eP5QGefi2DMPTfTL5SLmv7Divf');\nconsole.log(`BTC: ${balance.balanceBtc} (~$${balance.usdValue?.toFixed(2)})`);\n",
-    "endpoints": [
-      "GET /v1/btc-mainnet/address/{walletAddress}/balances/"
-    ],
-    "keyParams": {
-      "walletAddress": "Bitcoin address (P2PKH, P2SH, bech32) — no chainName needed, always btc-mainnet"
-    },
-    "responseFields": [
-      "items[].address",
-      "items[].balance",
-      "items[].quote",
-      "items[].quote_rate"
-    ],
-    "creditCost": "1 credit/call",
-    "complexity": "Beginner"
-  },
-  "bitcoin-hd-wallet-scanner": {
-    "title": "Bitcoin HD Wallet Scanner",
-    "description": "Enumerate all derived addresses and balances from a Bitcoin xpub/ypub/zpub HD wallet key.",
-    "useCase": "Scan an entire Bitcoin HD wallet from a single xpub/ypub/zpub key — discover all derived addresses, their balances, and total BTC holdings without exposing private keys.",
-    "chains": [
-      "bitcoin"
-    ],
-    "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function scanHdWallet(xpub: string) {\n  // Pass xpub/ypub/zpub as the wallet address — no chainName parameter\n  const resp = await client.BalanceService.getBitcoinHdWalletBalances(xpub);\n\n  if (resp.error) throw new Error(resp.error_message);\n\n  const addresses = resp.data.items;\n  const totalSatoshi = addresses.reduce((sum, a) => sum + Number(a.balance ?? 0), 0);\n\n  return {\n    totalBtc: totalSatoshi / 1e8,\n    addressCount: addresses.length,\n    addresses: addresses.map(a => ({\n      address: a.address,\n      balanceBtc: Number(a.balance) / 1e8,\n      account: a.account,\n      index: a.index,\n    })),\n  };\n}",
-    "endpoints": [
-      "GET /v1/btc-mainnet/address/{xpub}/balances_hd/"
-    ],
-    "keyParams": {
-      "walletAddress": "Bitcoin HD wallet extended public key — xpub, ypub, or zpub format"
-    },
-    "responseFields": [
-      "items[].address",
-      "items[].balance",
-      "items[].quote",
-      "items[].account",
-      "items[].index"
-    ],
-    "creditCost": "1 credit/call",
-    "complexity": "Intermediate"
-  },
-  "bitcoin-transaction-explorer": {
-    "title": "Bitcoin Transaction Explorer",
-    "description": "Paginated transaction history for any Bitcoin address — inputs, outputs, fees, and confirmation status.",
-    "useCase": "Build a Bitcoin transaction explorer that shows the full UTXO history for any address — inputs, outputs, fees, and amounts in BTC and USD.",
-    "chains": [
-      "bitcoin"
-    ],
-    "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function getBitcoinTransactions(btcAddress: string, pageNumber = 0) {\n  const resp = await client.TransactionService.getTransactionsForBtcAddress(\n    btcAddress,\n    pageNumber\n  );\n\n  if (resp.error) throw new Error(resp.error_message);\n\n  return resp.data.items.map(tx => ({\n    txHash: tx.tx_hash,\n    timestamp: tx.block_signed_at,\n    valueBtc: Number(tx.value) / 1e8,\n    feeBtc: Number(tx.fees) / 1e8,\n    inputs: (tx.inputs ?? []).map(i => ({ address: i.address, valueBtc: Number(i.value) / 1e8 })),\n    outputs: (tx.outputs ?? []).map(o => ({ address: o.address, valueBtc: Number(o.value) / 1e8 })),\n  }));\n}",
-    "endpoints": [
-      "GET /v1/btc-mainnet/address/{walletAddress}/transactions/"
-    ],
-    "keyParams": {
-      "walletAddress": "Bitcoin address (P2PKH, P2SH, or bech32)",
-      "pageNumber": "Page number starting from 0 for pagination"
-    },
-    "responseFields": [
-      "items[].block_signed_at",
-      "items[].tx_hash",
-      "items[].value",
-      "items[].fees",
-      "items[].inputs[].address",
-      "items[].inputs[].value",
-      "items[].outputs[].address",
-      "items[].outputs[].value"
-    ],
-    "creditCost": "1 credit/call",
-    "complexity": "Beginner"
   },
   "block-date-lookup": {
     "title": "Block Date Lookup",
@@ -892,48 +571,6 @@
     "creditCost": "0.5 + 2.5 + 0.25/tx",
     "complexity": "Intermediate"
   },
-  "cross-chain-address-lookup": {
-    "title": "Cross-chain Address Lookup",
-    "description": "Resolve and look up the same address across all supported EVM chains at once.",
-    "useCase": "Build a cross-chain identity card for any wallet — show which chains they use, when they were last active on each, and link to chain-specific explorers.",
-    "chains": [
-      "ethereum",
-      "base",
-      "polygon",
-      "bsc",
-      "optimism",
-      "arbitrum",
-      "avalanche",
-      "gnosis",
-      "fantom",
-      "celo",
-      "moonbeam",
-      "blast",
-      "linea",
-      "scroll",
-      "zkSync",
-      "mantle",
-      "sonic",
-      "unichain",
-      "sei",
-      "bitcoin"
-    ],
-    "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function crossChainAddressLookup(walletAddress: string) {\n  const resp = await client.BaseService.getAddressActivity(walletAddress);\n\n  if (resp.error) throw new Error(resp.error_message);\n\n  const activeChains = resp.data.items.filter(c => !c.is_testnet);\n\n  return {\n    address: walletAddress,\n    activeChainCount: activeChains.length,\n    chains: activeChains.map(c => ({\n      name: c.name,\n      chainId: c.chain_id,\n      lastSeen: c.last_seen_at,\n    })),\n  };\n}",
-    "endpoints": [
-      "GET /v1/address/{walletAddress}/activity/"
-    ],
-    "keyParams": {
-      "walletAddress": "0x wallet address to look up across all chains"
-    },
-    "responseFields": [
-      "items[].name",
-      "items[].chain_id",
-      "items[].is_testnet",
-      "items[].last_seen_at"
-    ],
-    "creditCost": "0.1 credit/call",
-    "complexity": "Beginner"
-  },
   "cross-chain-transaction-history": {
     "title": "Cross-Chain Transaction History",
     "description": "Fetch and merge transaction history across multiple chains for a single wallet â€” great for multichain explorers, unified activity timelines, and tax reporting tools.",
@@ -1190,53 +827,6 @@
       "data.name"
     ],
     "creditCost": "0.1 credit/call",
-    "complexity": "Beginner"
-  },
-  "erc20-transfer-history": {
-    "title": "ERC-20 Transfer History",
-    "description": "Full paginated ERC-20 transfer history for any wallet and token contract pair.",
-    "useCase": "Build a per-token transfer history page showing every time a specific ERC-20 entered or left a wallet — essential for tax tools and token-specific analytics.",
-    "chains": [
-      "ethereum",
-      "base",
-      "polygon",
-      "bsc",
-      "optimism",
-      "arbitrum",
-      "avalanche",
-      "gnosis",
-      "fantom",
-      "celo",
-      "moonbeam",
-      "blast",
-      "linea",
-      "scroll",
-      "zkSync",
-      "mantle",
-      "sonic",
-      "unichain",
-      "sei"
-    ],
-    "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function getTokenTransferHistory(\n  chainName: string,\n  walletAddress: string,\n  tokenContract: string\n) {\n  const resp = await client.BalanceService.getErc20TransfersForWalletAddress(\n    chainName,\n    walletAddress\n  );\n\n  if (resp.error) throw new Error(resp.error_message);\n\n  return resp.data.items\n    .flatMap(item => item.transfers ?? [])\n    .filter(t => t.contract_address?.toLowerCase() === tokenContract.toLowerCase())\n    .map(t => ({\n      direction: t.to_address?.toLowerCase() === walletAddress.toLowerCase() ? 'IN' : 'OUT',\n      amount: Number(t.delta) / 10 ** (t.contract_decimals ?? 18),\n      usdValue: t.quote,\n      txHash: t.tx_hash,\n      timestamp: t.block_signed_at,\n    }));\n}",
-    "endpoints": [
-      "GET /v1/{chainName}/address/{walletAddress}/transfers_v2/"
-    ],
-    "keyParams": {
-      "chainName": "EVM chain identifier (e.g. eth-mainnet, base-mainnet)",
-      "walletAddress": "0x wallet address",
-      "contractAddress": "ERC-20 token contract to filter transfers for"
-    },
-    "responseFields": [
-      "items[].transfers[].contract_ticker_symbol",
-      "items[].transfers[].from_address",
-      "items[].transfers[].to_address",
-      "items[].transfers[].contract_decimals",
-      "items[].transfers[].delta",
-      "items[].transfers[].quote",
-      "items[].transfers[].block_signed_at",
-      "items[].transfers[].tx_hash"
-    ],
-    "creditCost": "1 credit/call",
     "complexity": "Beginner"
   },
   "event-log-decoder": {
@@ -1542,49 +1132,6 @@
     "creditCost": "Varies by tool called",
     "complexity": "Beginner"
   },
-  "goldrush-playground": {
-    "title": "GoldRush Playground",
-    "description": "Browser-based API playground for testing GoldRush queries without writing code.",
-    "useCase": "Prototype API calls and validate responses before writing any code — perfect for exploring new endpoints or debugging unexpected data shapes.",
-    "chains": [
-      "ethereum",
-      "base",
-      "polygon",
-      "bsc",
-      "optimism",
-      "arbitrum",
-      "avalanche",
-      "gnosis",
-      "fantom",
-      "celo",
-      "moonbeam",
-      "blast",
-      "linea",
-      "scroll",
-      "zkSync",
-      "mantle",
-      "sonic",
-      "unichain",
-      "sei",
-      "bitcoin"
-    ],
-    "snippet": "// No SDK call needed — use the playground at https://goldrush.dev/platform/\n// Once you've validated your query, convert it to SDK code:\n\nimport { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\n// Example: the query you tested in the playground\nconst resp = await client.BalanceService.getTokenBalancesForWalletAddress(\n  'eth-mainnet',\n  '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045' // vitalik.eth\n);\n\nif (!resp.error) {\n  console.log('Token count:', resp.data.items.length);\n}",
-    "endpoints": [
-      "https://goldrush.dev/platform/"
-    ],
-    "keyParams": {
-      "apiKey": "GoldRush API key entered in the playground UI"
-    },
-    "responseFields": [
-      "request preview",
-      "response body JSON",
-      "HTTP status code",
-      "credits used",
-      "response time ms"
-    ],
-    "creditCost": "Free to use",
-    "complexity": "Beginner"
-  },
   "goldrush-react-hooks": {
     "title": "GoldRush React Hooks",
     "description": "Drop-in React hooks for balances, NFTs, and token prices â€” onchain data made simple.",
@@ -1660,13 +1207,7 @@
     "keyParams": {
       "apiKey": "GoldRush API key — get one free at goldrush.dev"
     },
-    "responseFields": [
-      "resp.data.items[]",
-      "resp.error",
-      "resp.error_message",
-      "resp.error_code",
-      "pagination.hasMore"
-    ],
+    "responseFields": [],
     "creditCost": "Free to install",
     "complexity": "Beginner"
   },
@@ -1763,50 +1304,6 @@
     "creditCost": "1 credit/call",
     "complexity": "Intermediate"
   },
-  "institutional-wallet-tracker": {
-    "title": "Institutional Wallet Tracker",
-    "description": "Monitor large-wallet movements and institutional-grade position changes across chains.",
-    "useCase": "Build a whale watcher dashboard that tracks top wallet positions across chains — flag large buys, sells, and new positions as they happen.",
-    "chains": [
-      "ethereum",
-      "base",
-      "polygon",
-      "bsc",
-      "optimism",
-      "arbitrum",
-      "avalanche",
-      "gnosis",
-      "fantom",
-      "celo",
-      "moonbeam",
-      "blast",
-      "linea",
-      "scroll",
-      "zkSync",
-      "mantle",
-      "sonic",
-      "unichain",
-      "sei"
-    ],
-    "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nconst WHALE_WALLETS = [\n  '0x28c6c06298d514db089934071355e5743bf21d60', // Binance hot wallet\n  '0x47ac0fb4f2d84898e4d9e7b4dab3c24507a6d503', // Jump Trading\n];\n\nasync function trackWhalePositions(chainName: string) {\n  const results = await Promise.all(\n    WHALE_WALLETS.map(async (addr) => {\n      const resp = await client.BalanceService.getTokenBalancesForWalletAddress(\n        chainName, addr\n      );\n      if (resp.error) return null;\n      const totalUsd = resp.data.items.reduce((s, t) => s + (t.quote ?? 0), 0);\n      return { address: addr, totalUsd, topHoldings: resp.data.items.slice(0, 5) };\n    })\n  );\n  return results.filter(Boolean);\n}",
-    "endpoints": [
-      "GET /v1/{chainName}/address/{walletAddress}/balances_v2/",
-      "GET /v1/{chainName}/address/{walletAddress}/transactions_v3/"
-    ],
-    "keyParams": {
-      "chainName": "EVM chain identifier (e.g. eth-mainnet, base-mainnet)",
-      "walletAddress": "0x address of the whale or institutional wallet to track"
-    },
-    "responseFields": [
-      "items[].contract_name",
-      "items[].contract_ticker_symbol",
-      "items[].balance",
-      "items[].quote",
-      "items[].logo_url"
-    ],
-    "creditCost": "1 credit/call per wallet",
-    "complexity": "Intermediate"
-  },
   "jupiter-swap-route-finder": {
     "title": "Jupiter Swap Route Finder",
     "description": "Query Jupiter's on-chain routing data indexed by GoldRush to find the best swap path for any SPL token pair — returns the expected output amount, minimum output after slippage tolerance, price impact percentage, and the full multi-hop route through intermediate DEXes (Raydium, Orca, Meteora, Lifinity, etc.). Feed this into an agent's trade execution loop: if price impact exceeds your threshold, hold the position; otherwise use the route data to construct and submit the swap transaction.",
@@ -1858,10 +1355,7 @@
     "endpoints": [
       "wss://streaming.goldrushdata.com/graphql — newPairs subscription"
     ],
-    "keyParams": {
-      "chainName": "Chain to monitor for new DEX pair launches (e.g. eth-mainnet, base-mainnet)",
-      "minLiquidityUsd": "Minimum initial liquidity in USD to include in alerts (e.g. 1000)"
-    },
+    "keyParams": {},
     "responseFields": [
       "pairAddress",
       "token0.symbol",
@@ -2019,89 +1513,6 @@
       "items[].nft_data[].external_data.attributes[].value"
     ],
     "creditCost": "0.5/call (activity) + 1/chain (NFTs)",
-    "complexity": "Intermediate"
-  },
-  "multichain-portfolio": {
-    "title": "Multichain Portfolio",
-    "description": "Unified portfolio view aggregating assets across every GoldRush-supported chain.",
-    "useCase": "Build the 'Total Portfolio' view of a cross-chain wallet app — show assets grouped by chain with per-chain totals and a grand total USD net worth.",
-    "chains": [
-      "ethereum",
-      "base",
-      "polygon",
-      "bsc",
-      "optimism",
-      "arbitrum",
-      "avalanche",
-      "gnosis",
-      "fantom",
-      "celo",
-      "moonbeam",
-      "blast",
-      "linea",
-      "scroll",
-      "zkSync",
-      "mantle",
-      "sonic",
-      "unichain",
-      "sei"
-    ],
-    "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function getMultichainPortfolio(walletAddress: string) {\n  const resp = await client.BalanceService.getTokenBalances(walletAddress);\n\n  if (resp.error) throw new Error(resp.error_message);\n\n  let grandTotal = 0;\n  const chains = resp.data.items.map(chain => {\n    const chainTotal = chain.items.reduce((s, t) => s + (t.quote ?? 0), 0);\n    grandTotal += chainTotal;\n    return {\n      chain: chain.chain_name,\n      totalUsd: chainTotal,\n      tokenCount: chain.items.length,\n    };\n  });\n\n  return { grandTotal, chains };\n}",
-    "endpoints": [
-      "GET /v1/address/{walletAddress}/balances/"
-    ],
-    "keyParams": {
-      "walletAddress": "0x wallet address to fetch multichain balances for"
-    },
-    "responseFields": [
-      "items[].chain_name",
-      "items[].items[].contract_name",
-      "items[].items[].balance",
-      "items[].items[].quote"
-    ],
-    "creditCost": "1 credit/call",
-    "complexity": "Beginner"
-  },
-  "multichain-token-aggregator": {
-    "title": "Multi-Chain Token Aggregator",
-    "description": "Aggregate all token balances across every chain a wallet is active on â€” auto-discovers chains then fetches balances in parallel. One function call for a complete cross-chain portfolio.",
-    "useCase": "Build a complete cross-chain token dashboard that automatically discovers active chains and aggregates all token holdings — no hard-coded chain list needed.",
-    "chains": [
-      "ethereum",
-      "base",
-      "polygon",
-      "bsc",
-      "optimism",
-      "arbitrum",
-      "avalanche",
-      "gnosis",
-      "fantom",
-      "celo",
-      "moonbeam",
-      "blast",
-      "linea",
-      "scroll",
-      "zkSync",
-      "mantle",
-      "sonic",
-      "unichain",
-      "sei"
-    ],
-    "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function aggregateAllTokens(walletAddress: string) {\n  const resp = await client.BalanceService.getTokenBalances(walletAddress);\n\n  if (resp.error) throw new Error(resp.error_message);\n\n  // Flatten all tokens across all chains into one list\n  const allTokens = resp.data.items.flatMap(chain =>\n    chain.items.map(t => ({\n      chain: chain.chain_name,\n      symbol: t.contract_ticker_symbol,\n      name: t.contract_name,\n      balance: t.balance,\n      usdValue: t.quote ?? 0,\n    }))\n  );\n\n  return allTokens\n    .filter(t => t.usdValue > 0)\n    .sort((a, b) => b.usdValue - a.usdValue);\n}",
-    "endpoints": [
-      "GET /v1/address/{walletAddress}/balances/"
-    ],
-    "keyParams": {
-      "walletAddress": "0x wallet address to aggregate tokens across all chains"
-    },
-    "responseFields": [
-      "items[].chain_name",
-      "items[].items[].contract_name",
-      "items[].items[].contract_ticker_symbol",
-      "items[].items[].balance",
-      "items[].items[].quote"
-    ],
-    "creditCost": "1 credit/call",
     "complexity": "Intermediate"
   },
   "native-token-balance": {
@@ -2549,50 +1960,6 @@
     "creditCost": "0.01/event",
     "complexity": "Intermediate"
   },
-  "nft-transfer-tracker": {
-    "title": "NFT Transfer Tracker",
-    "description": "Monitor NFT mints, transfers, and burns as they happen onchain.",
-    "useCase": "Build an NFT transfer notification system that alerts users when NFTs enter or leave their wallet — mint detector, transfer feed, and burn tracker in one.",
-    "chains": [
-      "ethereum",
-      "base",
-      "polygon",
-      "bsc",
-      "optimism",
-      "arbitrum",
-      "avalanche",
-      "gnosis",
-      "fantom",
-      "celo",
-      "moonbeam",
-      "blast",
-      "linea",
-      "scroll",
-      "zkSync",
-      "mantle",
-      "sonic",
-      "unichain",
-      "sei"
-    ],
-    "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nconst ZERO = '0x0000000000000000000000000000000000000000';\n\nasync function trackNftTransfers(chainName: string, walletAddress: string) {\n  const resp = await client.BalanceService.getErc20TransfersForWalletAddress(\n    chainName,\n    walletAddress\n  );\n\n  if (resp.error) throw new Error(resp.error_message);\n\n  return resp.data.items\n    .flatMap(item => item.transfers ?? [])\n    .map(t => ({\n      type: t.from_address === ZERO ? 'mint'\n          : t.to_address === ZERO ? 'burn'\n          : 'transfer',\n      symbol: t.contract_ticker_symbol,\n      from: t.from_address,\n      to: t.to_address,\n      txHash: t.tx_hash,\n      timestamp: t.block_signed_at,\n    }));\n}",
-    "endpoints": [
-      "GET /v1/{chainName}/address/{walletAddress}/transfers_v2/"
-    ],
-    "keyParams": {
-      "chainName": "EVM chain identifier (e.g. eth-mainnet, matic-mainnet)",
-      "walletAddress": "0x wallet address to track NFT movements for"
-    },
-    "responseFields": [
-      "items[].transfers[].contract_ticker_symbol",
-      "items[].transfers[].from_address",
-      "items[].transfers[].to_address",
-      "items[].transfers[].delta",
-      "items[].transfers[].block_signed_at",
-      "items[].transfers[].tx_hash"
-    ],
-    "creditCost": "1 credit/call",
-    "complexity": "Beginner"
-  },
   "onchain-activity-verifier": {
     "title": "Onchain Activity Verifier",
     "description": "Verify on-chain activity depth with transaction count, wallet age, chains used, and token diversity â€” build KYC-lite gates, Sybil filters, and proof-of-personhood checks.",
@@ -2672,51 +2039,6 @@
     "creditCost": "~4 credits/score",
     "complexity": "Intermediate"
   },
-  "onchain-data-query": {
-    "title": "Onchain Data Query",
-    "description": "Query indexed blockchain data across 100+ chains with a single unified API.",
-    "useCase": "Build a wallet analytics dashboard that combines token balances and recent transactions into a single unified view — the entry point for any onchain data product.",
-    "chains": [
-      "ethereum",
-      "base",
-      "polygon",
-      "bsc",
-      "optimism",
-      "arbitrum",
-      "avalanche",
-      "gnosis",
-      "fantom",
-      "celo",
-      "moonbeam",
-      "blast",
-      "linea",
-      "scroll",
-      "zkSync",
-      "mantle",
-      "sonic",
-      "unichain",
-      "sei"
-    ],
-    "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function queryWalletData(chainName: string, walletAddress: string) {\n  const [balResp, txResp] = await Promise.all([\n    client.BalanceService.getTokenBalancesForWalletAddress(chainName, walletAddress),\n    client.TransactionService.getTransactionsForAddressV3(chainName, walletAddress, 0),\n  ]);\n\n  if (balResp.error) throw new Error(balResp.error_message);\n  if (txResp.error) throw new Error(txResp.error_message);\n\n  return {\n    balances: balResp.data.items.filter(t => !t.is_spam),\n    recentTxs: txResp.data.items.slice(0, 10),\n  };\n}",
-    "endpoints": [
-      "GET /v1/{chainName}/address/{walletAddress}/balances_v2/",
-      "GET /v1/{chainName}/address/{walletAddress}/transactions_v3/"
-    ],
-    "keyParams": {
-      "chainName": "EVM chain identifier (e.g. eth-mainnet, base-mainnet)",
-      "walletAddress": "0x wallet address"
-    },
-    "responseFields": [
-      "items[].contract_name",
-      "items[].balance",
-      "items[].quote",
-      "items[].tx_hash",
-      "items[].block_signed_at",
-      "items[].successful"
-    ],
-    "creditCost": "1 credit/call",
-    "complexity": "Beginner"
-  },
   "onchain-resume": {
     "title": "Onchain Resume",
     "description": "Generate a shareable public profile page for any wallet — wallet age, chain activity, top assets, NFTs, and DeFi history all in one URL.",
@@ -2785,130 +2107,6 @@
     "creditCost": "1 credit/call",
     "complexity": "Intermediate"
   },
-  "portfolio-performance-report": {
-    "title": "Portfolio Performance Report",
-    "description": "30-day rolling P&L report with per-token open/high/low/close — build fund-grade performance dashboards for any wallet on foundational chains.",
-    "useCase": "Build a hedge fund-style monthly performance report showing each token's 30-day price range, unrealized gain/loss, and portfolio allocation shift.",
-    "chains": [
-      "ethereum",
-      "base",
-      "bsc",
-      "polygon",
-      "optimism",
-      "gnosis"
-    ],
-    "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\ninterface TokenPerf {\n  name: string; symbol: string;\n  startValue: number; endValue: number;\n  high30d: number; low30d: number;\n  pnl: number; pnlPct: number;\n}\n\nasync function buildPerformanceReport(chainName: string, walletAddress: string) {\n  const resp = await client.BalanceService.getHistoricalPortfolioForWalletAddress(\n    chainName, walletAddress\n  );\n  const items = resp.data?.items ?? [];\n\n  const tokenPerf: TokenPerf[] = items\n    .filter(item => (item.holdings?.length ?? 0) > 1)\n    .map(item => {\n      const holdings = item.holdings!;\n      const startValue = holdings[0].close?.quote ?? 0;\n      const endValue = holdings[holdings.length - 1].close?.quote ?? 0;\n      const high30d = Math.max(...holdings.map(h => h.high?.quote ?? 0));\n      const low30d = Math.min(...holdings.filter(h => (h.low?.quote ?? 0) > 0).map(h => h.low!.quote!));\n      const pnl = endValue - startValue;\n      const pnlPct = startValue > 0 ? (pnl / startValue) * 100 : 0;\n      return {\n        name: item.contract_name ?? '',\n        symbol: item.contract_ticker_symbol ?? '',\n        startValue, endValue, high30d, low30d, pnl, pnlPct,\n      };\n    })\n    .sort((a, b) => b.pnl - a.pnl);\n\n  const totalPnl = tokenPerf.reduce((s, t) => s + t.pnl, 0);\n  const totalEndValue = tokenPerf.reduce((s, t) => s + t.endValue, 0);\n  return { totalPnl, totalEndValue, positions: tokenPerf };\n}",
-    "endpoints": [
-      "GET /v1/{chainName}/address/{walletAddress}/portfolio_v2/"
-    ],
-    "keyParams": {
-      "chainName": "Foundational chain only — eth-mainnet, base-mainnet, bsc-mainnet, matic-mainnet, optimism-mainnet, gnosis-mainnet",
-      "walletAddress": "0x wallet address for the performance report"
-    },
-    "responseFields": [
-      "items[].contract_name",
-      "items[].contract_ticker_symbol",
-      "items[].holdings[].timestamp",
-      "items[].holdings[].open.quote",
-      "items[].holdings[].high.quote",
-      "items[].holdings[].low.quote",
-      "items[].holdings[].close.quote"
-    ],
-    "creditCost": "2 credits/item",
-    "complexity": "Intermediate"
-  },
-  "portfolio-tracker": {
-    "title": "Portfolio Tracker",
-    "description": "Monitor multi-chain portfolio value and asset composition in real time.",
-    "useCase": "Build a real-time portfolio dashboard that shows every asset a wallet holds with live USD prices and spam tokens filtered out automatically.",
-    "chains": [
-      "ethereum",
-      "base",
-      "polygon",
-      "bsc",
-      "optimism",
-      "arbitrum",
-      "avalanche",
-      "gnosis",
-      "fantom",
-      "celo",
-      "moonbeam",
-      "blast",
-      "linea",
-      "scroll",
-      "zkSync",
-      "mantle",
-      "sonic",
-      "unichain",
-      "sei"
-    ],
-    "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function getPortfolio(chainName: string, walletAddress: string) {\n  const resp = await client.BalanceService.getTokenBalancesForWalletAddress(\n    chainName,\n    walletAddress\n  );\n\n  if (resp.error) throw new Error(resp.error_message);\n\n  const tokens = resp.data.items\n    .filter(t => !t.is_spam && (t.quote ?? 0) > 0)\n    .map(t => ({\n      name: t.contract_name,\n      symbol: t.contract_ticker_symbol,\n      balance: Number(t.balance) / 10 ** (t.contract_decimals ?? 18),\n      usdValue: t.quote,\n      logo: t.logo_url,\n    }));\n\n  const totalUsd = tokens.reduce((sum, t) => sum + (t.usdValue ?? 0), 0);\n  return { totalUsd, tokens };\n}",
-    "endpoints": [
-      "GET /v1/{chainName}/address/{walletAddress}/balances_v2/"
-    ],
-    "keyParams": {
-      "chainName": "EVM chain identifier (e.g. eth-mainnet, base-mainnet, matic-mainnet)",
-      "walletAddress": "0x wallet address or ENS name"
-    },
-    "responseFields": [
-      "items[].contract_name",
-      "items[].contract_ticker_symbol",
-      "items[].contract_address",
-      "items[].contract_decimals",
-      "items[].balance",
-      "items[].quote",
-      "items[].quote_rate",
-      "items[].logo_url",
-      "items[].is_spam",
-      "items[].type"
-    ],
-    "creditCost": "1 credit/call",
-    "complexity": "Beginner"
-  },
-  "proof-of-onchain-activity": {
-    "title": "Proof of Onchain Activity",
-    "description": "Verify wallet activity depth and onchain history as a proof of genuine use.",
-    "useCase": "Issue a proof-of-personhood score for any wallet — score wallets on transaction history, wallet age, and multi-chain diversity to filter Sybil accounts from airdrop campaigns.",
-    "chains": [
-      "ethereum",
-      "base",
-      "polygon",
-      "bsc",
-      "optimism",
-      "arbitrum",
-      "avalanche",
-      "gnosis",
-      "fantom",
-      "celo",
-      "moonbeam",
-      "blast",
-      "linea",
-      "scroll",
-      "zkSync",
-      "mantle",
-      "sonic",
-      "unichain",
-      "sei",
-      "bitcoin"
-    ],
-    "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function generateActivityProof(walletAddress: string) {\n  const activityResp = await client.BaseService.getAddressActivity(walletAddress);\n  if (activityResp.error) throw new Error(activityResp.error_message);\n\n  const activeChains = activityResp.data.items.filter(c => !c.is_testnet);\n\n  // Check activity on each active chain\n  const chainSummaries = await Promise.all(\n    activeChains.slice(0, 5).map(c =>\n      client.TransactionService.getTransactionSummary(c.name!, walletAddress)\n    )\n  );\n\n  const totalTxs = chainSummaries.reduce((sum, r) =>\n    sum + (r.error ? 0 : (r.data.items[0]?.total_count ?? 0)), 0\n  );\n\n  return {\n    walletAddress,\n    activeChainCount: activeChains.length,\n    totalTransactions: totalTxs,\n    proof: {\n      level: totalTxs > 100 ? 'GOLD' : totalTxs > 10 ? 'SILVER' : 'BRONZE',\n      generatedAt: new Date().toISOString(),\n    },\n  };\n}",
-    "endpoints": [
-      "GET /v1/{chainName}/address/{walletAddress}/transactions_summary/",
-      "GET /v1/address/{walletAddress}/activity/"
-    ],
-    "keyParams": {
-      "chainName": "Primary chain to check activity on (e.g. eth-mainnet)",
-      "walletAddress": "0x wallet address to generate proof for"
-    },
-    "responseFields": [
-      "items[].total_count",
-      "items[].earliest_transaction.block_signed_at",
-      "items[].name",
-      "items[].last_seen_at"
-    ],
-    "creditCost": "0.1 credit/call",
-    "complexity": "Intermediate"
-  },
   "pumpfun-token-scanner": {
     "title": "Pump.fun Token Scanner",
     "description": "Monitor pump.fun's bonding curve program on Solana mainnet via GoldRush event logs — fetch the current market cap in USD, SOL held in the bonding curve, percentage progress toward graduation (~$69K), and the top 10 buyers ranked by SOL spent for any pump.fun token mint address. Subscribe to the graduation event stream to know the exact block when a token migrates to Raydium and acquires its first real liquidity pool — essential for launch-tracker UIs and autonomous sniper agents.",
@@ -2972,13 +2170,7 @@
     "keyParams": {
       "NEXT_PUBLIC_GOLDRUSH_API_KEY": "GoldRush API key added to .env.local"
     },
-    "responseFields": [
-      "package.json",
-      ".env.local",
-      "src/app/page.tsx",
-      "src/lib/goldrush.ts",
-      "src/components/"
-    ],
+    "responseFields": [],
     "creditCost": "Free",
     "complexity": "Beginner"
   },
@@ -3054,31 +2246,6 @@
     ],
     "creditCost": "Streaming subscription",
     "complexity": "Intermediate"
-  },
-  "ronin-nft-inventory": {
-    "title": "Ronin NFT Inventory",
-    "description": "List all NFTs held in a Ronin wallet — Axie Infinity, Land, and other Sky Mavis NFT collections.",
-    "useCase": "Build a Ronin wallet NFT viewer showing all Axie Infinity, Land, and Sky Mavis NFT collections held by any Ronin address — the foundation for Axie portfolio apps.",
-    "chains": [
-      "ronin"
-    ],
-    "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function getRoninNftInventory(walletAddress: string) {\n  // Always use 'axie-mainnet' for Ronin chain\n  const resp = await client.NftService.getNftsForAddress(\n    'axie-mainnet',\n    walletAddress\n  );\n\n  if (resp.error) throw new Error(resp.error_message);\n\n  return resp.data.items.map(collection => ({\n    collectionName: collection.contract_name,\n    contractAddress: collection.contract_address,\n    nftCount: (collection.nft_data ?? []).length,\n    nfts: (collection.nft_data ?? []).map(nft => ({\n      tokenId: nft.token_id,\n      name: nft.external_data?.name,\n      image: nft.external_data?.image,\n      traits: nft.external_data?.attributes ?? [],\n    })),\n  }));\n}",
-    "endpoints": [
-      "GET /v1/axie-mainnet/address/{walletAddress}/balances_nft/"
-    ],
-    "keyParams": {
-      "walletAddress": "Ronin wallet address (0x format or ronin: prefix stripped)"
-    },
-    "responseFields": [
-      "items[].contract_name",
-      "items[].contract_address",
-      "items[].nft_data[].token_id",
-      "items[].nft_data[].external_data.name",
-      "items[].nft_data[].external_data.image",
-      "items[].nft_data[].external_data.attributes[]"
-    ],
-    "creditCost": "1 credit/call",
-    "complexity": "Beginner"
   },
   "smart-contract-interaction-risk": {
     "title": "Smart Contract Interaction Risk",
@@ -3885,40 +3052,6 @@
     "creditCost": "1 credit/call",
     "complexity": "Beginner"
   },
-  "stale-approval-cleaner": {
-    "title": "Stale Approval Cleaner",
-    "description": "Surface all active ERC-20 and NFT approvals sorted by risk level — identify unlimited approvals, deprecated protocol spenders, and dead contracts that should be revoked.",
-    "useCase": "Build a wallet security dashboard that shows every active token approval grouped by risk (critical/high/medium/safe), with the dollar value at risk and a direct Etherscan revoke link for each.",
-    "chains": [
-      "ethereum",
-      "base",
-      "bsc",
-      "polygon",
-      "optimism",
-      "arbitrum",
-      "avalanche"
-    ],
-    "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\ntype RiskGroup = 'critical' | 'high' | 'medium' | 'safe';\n\nfunction classifyRisk(riskFactor: number): RiskGroup {\n  if (riskFactor >= 4) return 'critical';\n  if (riskFactor >= 3) return 'high';\n  if (riskFactor >= 2) return 'medium';\n  return 'safe';\n}\n\nasync function scanStaleApprovals(chainName: string, walletAddress: string) {\n  const resp = await client.SecurityService.getApprovals(chainName, walletAddress);\n  const approvals = resp.data?.items ?? [];\n\n  const sorted = [...approvals].sort((a, b) => (b.risk_factor ?? 0) - (a.risk_factor ?? 0));\n\n  const riskGroups: Record<RiskGroup, any[]> = {\n    critical: [], high: [], medium: [], safe: [],\n  };\n\n  for (const approval of sorted) {\n    const group = classifyRisk(approval.risk_factor ?? 0);\n    const etherscanBase = chainName === 'eth-mainnet' ? 'https://etherscan.io' : '#';\n    riskGroups[group].push({\n      tokenSymbol: approval.token_ticker_symbol,\n      tokenAddress: approval.token_address,\n      spenderName: approval.spender_name ?? 'Unknown',\n      spenderAddress: approval.spender_address,\n      allowance: approval.allowance,\n      valueAtRisk: approval.value_at_risk ?? 0,\n      riskFactor: approval.risk_factor ?? 0,\n      revokeUrl: `${etherscanBase}/tokenapprovalchecker`,\n    });\n  }\n\n  const totalValueAtRisk = sorted.reduce((s, a) => s + (a.value_at_risk ?? 0), 0);\n\n  return {\n    totalValueAtRisk,\n    totalApprovals: sorted.length,\n    riskGroups,\n  };\n}",
-    "endpoints": [
-      "GET /v1/{chainName}/approvals/{walletAddress}/"
-    ],
-    "keyParams": {
-      "chainName": "EVM chain to scan approvals on",
-      "walletAddress": "0x wallet address to audit approvals for"
-    },
-    "responseFields": [
-      "items[].token_ticker_symbol",
-      "items[].spender_name",
-      "items[].spender_address",
-      "items[].value_at_risk",
-      "items[].risk_factor",
-      "items[].allowance",
-      "items[].token_address",
-      "items[].token_balance"
-    ],
-    "creditCost": "2 credits/call",
-    "complexity": "Beginner"
-  },
   "token-approval-risk-scanner": {
     "title": "Token Approval Risk Scanner",
     "description": "Scan all active ERC-20 and NFT approvals for a wallet and score each by risk level â€” identify dangerous unlimited approvals, deprecated protocols, and known exploited contracts.",
@@ -3962,112 +3095,6 @@
     ],
     "creditCost": "1 credit/call",
     "complexity": "Intermediate"
-  },
-  "token-approval-scanner": {
-    "title": "Token Approval Scanner",
-    "description": "Identify and audit all ERC-20 token approvals granted by any wallet address.",
-    "useCase": "Build a token approval checker that shows every active approval a wallet has granted — highlight unlimited approvals and flag spenders by risk level.",
-    "chains": [
-      "ethereum",
-      "base",
-      "polygon",
-      "bsc",
-      "optimism",
-      "arbitrum",
-      "avalanche",
-      "gnosis",
-      "fantom",
-      "celo",
-      "moonbeam",
-      "blast",
-      "linea",
-      "scroll",
-      "zkSync",
-      "mantle",
-      "sonic",
-      "unichain",
-      "sei"
-    ],
-    "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function scanTokenApprovals(chainName: string, walletAddress: string) {\n  const resp = await client.SecurityService.getApprovals(\n    chainName,\n    walletAddress\n  );\n\n  if (resp.error) throw new Error(resp.error_message);\n\n  return resp.data.items.map(a => ({\n    token: a.token_ticker_symbol,\n    tokenAddress: a.token_address,\n    spender: a.spender_name ?? a.spender_address,\n    valueAtRisk: a.value_at_risk,\n    riskFactor: a.risk_factor,\n    isHighRisk: (a.risk_factor ?? 0) > 0.7,\n  }));\n}",
-    "endpoints": [
-      "GET /v1/{chainName}/approvals/{walletAddress}/"
-    ],
-    "keyParams": {
-      "chainName": "EVM chain identifier (e.g. eth-mainnet, matic-mainnet)",
-      "walletAddress": "0x wallet address to scan approvals for"
-    },
-    "responseFields": [
-      "items[].token_address",
-      "items[].token_ticker_symbol",
-      "items[].spender_address",
-      "items[].spender_name",
-      "items[].value_at_risk",
-      "items[].risk_factor"
-    ],
-    "creditCost": "1 credit/call",
-    "complexity": "Beginner"
-  },
-  "token-holder-list": {
-    "title": "Token Holder List",
-    "description": "Retrieve a ranked list of holders for any token contract address across chains.",
-    "useCase": "Build a token holder leaderboard showing the top 100 holders of any ERC-20 — display wallet addresses, balances, and ownership percentages for community dashboards.",
-    "chains": [
-      "ethereum",
-      "base",
-      "bsc",
-      "polygon",
-      "optimism",
-      "gnosis"
-    ],
-    "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\nasync function getTokenHolders(\n  chainName: string,\n  tokenAddress: string,\n  pageNumber = 0\n) {\n  const resp = await client.BalanceService.getTokenHoldersV2ForTokenAddress(\n    chainName,\n    tokenAddress,\n    { pageNumber, pageSize: 100 }\n  );\n\n  if (resp.error) throw new Error(resp.error_message);\n\n  return resp.data.items.map((h, rank) => ({\n    rank: rank + 1 + pageNumber * 100,\n    address: h.address,\n    balance: h.balance,\n    percentOfSupply: h.balance_percent_of_total,\n  }));\n}",
-    "endpoints": [
-      "GET /v1/{chainName}/tokens/{tokenAddress}/token_holders_v2/"
-    ],
-    "keyParams": {
-      "chainName": "Foundational chain only: eth-mainnet, base-mainnet, bsc-mainnet, matic-mainnet, optimism-mainnet, gnosis-mainnet",
-      "tokenAddress": "ERC-20 token contract address",
-      "pageNumber": "Page number (0-indexed)",
-      "pageSize": "Items per page (max 1000)"
-    },
-    "responseFields": [
-      "items[].address",
-      "items[].balance",
-      "items[].total_supply",
-      "items[].balance_percent_of_total"
-    ],
-    "creditCost": "1 credit/call",
-    "complexity": "Intermediate"
-  },
-  "token-holders-leaderboard": {
-    "title": "Token Holders Leaderboard",
-    "description": "Paginated leaderboard of every token holder with balance, percentage of supply, and rank — build airdrop lists, DAO voter registries, and holder dashboards.",
-    "useCase": "Build a token holders leaderboard page for any ERC-20 showing the top 1000 holders sorted by balance, with % of total supply and wallet labels.",
-    "chains": [
-      "ethereum",
-      "base",
-      "bsc",
-      "polygon",
-      "optimism",
-      "gnosis"
-    ],
-    "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\ninterface HolderRow {\n  rank: number;\n  address: string;\n  balance: string;\n  pctOfSupply: number;\n}\n\nasync function getTokenHoldersLeaderboard(\n  chainName: string,\n  tokenAddress: string,\n  pageNumber = 0,\n  pageSize = 100\n): Promise<{ holders: HolderRow[]; totalSupply: string; hasMore: boolean }> {\n  const resp = await client.BalanceService.getTokenHoldersV2ForTokenAddress(\n    chainName, tokenAddress, { pageNumber, pageSize }\n  );\n\n  const items = resp.data?.items ?? [];\n  const totalSupply = items[0]?.total_supply ?? '0';\n\n  const holders: HolderRow[] = items.map((item, idx) => ({\n    rank: pageNumber * pageSize + idx + 1,\n    address: item.address ?? '',\n    balance: item.balance ?? '0',\n    pctOfSupply: item.balance_percent_of_total ?? 0,\n  }));\n\n  return {\n    holders,\n    totalSupply,\n    hasMore: items.length === pageSize,\n  };\n}\n\n// Fetch top 1000 holders (10 pages)\nasync function getTop1000Holders(chainName: string, tokenAddress: string) {\n  const allHolders: HolderRow[] = [];\n  for (let page = 0; page < 10; page++) {\n    const { holders, hasMore } = await getTokenHoldersLeaderboard(chainName, tokenAddress, page);\n    allHolders.push(...holders);\n    if (!hasMore) break;\n  }\n  return allHolders;\n}",
-    "endpoints": [
-      "GET /v1/{chainName}/tokens/{tokenAddress}/token_holders_v2/"
-    ],
-    "keyParams": {
-      "chainName": "Foundational chain only — eth-mainnet, base-mainnet, bsc-mainnet, matic-mainnet, optimism-mainnet, gnosis-mainnet",
-      "tokenAddress": "ERC-20 token contract address",
-      "pageNumber": "0-indexed page number",
-      "pageSize": "Holders per page — max 100"
-    },
-    "responseFields": [
-      "items[].address",
-      "items[].balance",
-      "items[].total_supply",
-      "items[].balance_percent_of_total"
-    ],
-    "creditCost": "0.02/holder",
-    "complexity": "Beginner"
   },
   "token-holders-snapshot": {
     "title": "Token Holders Snapshot",
@@ -4136,52 +3163,6 @@
     ],
     "creditCost": "Streaming subscription",
     "complexity": "Intermediate"
-  },
-  "token-metadata-api": {
-    "title": "Token Metadata API",
-    "description": "Fetch logos, decimals, contract info, and supply data for any ERC-20 token.",
-    "useCase": "Build a token info card that shows name, symbol, logo, decimals, and current USD price for any ERC-20 — use getTokenBalancesForWalletAddress and filter by contract address.",
-    "chains": [
-      "ethereum",
-      "base",
-      "polygon",
-      "bsc",
-      "optimism",
-      "arbitrum",
-      "avalanche",
-      "gnosis",
-      "fantom",
-      "celo",
-      "moonbeam",
-      "blast",
-      "linea",
-      "scroll",
-      "zkSync",
-      "mantle",
-      "sonic",
-      "unichain",
-      "sei"
-    ],
-    "snippet": "import { GoldRushClient } from '@covalenthq/client-sdk';\n\nconst client = new GoldRushClient(process.env.GOLDRUSH_API_KEY!);\n\n// Use a well-known holder to fetch token metadata\nconst VITALIK = '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045';\n\nasync function getTokenMetadata(chainName: string, tokenAddress: string) {\n  const resp = await client.BalanceService.getTokenBalancesForWalletAddress(\n    chainName,\n    VITALIK\n  );\n\n  if (resp.error) throw new Error(resp.error_message);\n\n  const token = resp.data.items.find(\n    t => t.contract_address?.toLowerCase() === tokenAddress.toLowerCase()\n  );\n\n  if (!token) throw new Error('Token not found in response');\n\n  return {\n    name: token.contract_name,\n    symbol: token.contract_ticker_symbol,\n    decimals: token.contract_decimals,\n    logo: token.logo_url,\n    priceUsd: token.quote_rate,\n    type: token.type,\n  };\n}",
-    "endpoints": [
-      "GET /v1/{chainName}/address/{walletAddress}/balances_v2/"
-    ],
-    "keyParams": {
-      "chainName": "EVM chain identifier (e.g. eth-mainnet, base-mainnet)",
-      "walletAddress": "Any wallet address that holds the token",
-      "contractAddress": "ERC-20 contract address to get metadata for"
-    },
-    "responseFields": [
-      "items[].contract_name",
-      "items[].contract_ticker_symbol",
-      "items[].contract_address",
-      "items[].contract_decimals",
-      "items[].logo_url",
-      "items[].quote_rate",
-      "items[].type"
-    ],
-    "creditCost": "1 credit/call",
-    "complexity": "Beginner"
   },
   "token-ohlcv-chart": {
     "title": "Token OHLCV Chart",

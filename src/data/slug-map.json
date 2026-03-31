@@ -1,13 +1,4 @@
 {
-  "bitcoin-balance-checker": [
-    "wallet"
-  ],
-  "bitcoin-hd-wallet-scanner": [
-    "wallet"
-  ],
-  "bitcoin-transaction-explorer": [
-    "wallet"
-  ],
   "crypto-tax-exporter": [
     "wallet"
   ],
@@ -30,12 +21,6 @@
     "wallet"
   ],
   "portfolio-history": [
-    "wallet"
-  ],
-  "portfolio-performance-report": [
-    "wallet"
-  ],
-  "portfolio-tracker": [
     "wallet"
   ],
   "solana-staking-snapshot": [
@@ -122,13 +107,7 @@
   "nft-transfer-monitor": [
     "nft"
   ],
-  "nft-transfer-tracker": [
-    "nft"
-  ],
   "nft-gated-app": [
-    "nft"
-  ],
-  "ronin-nft-inventory": [
     "nft"
   ],
   "solana-nft-collection-stats": [
@@ -150,12 +129,6 @@
     "analytics"
   ],
   "gas-analytics": [
-    "analytics"
-  ],
-  "institutional-wallet-tracker": [
-    "analytics"
-  ],
-  "onchain-data-query": [
     "analytics"
   ],
   "smart-money-copier": [
@@ -183,12 +156,6 @@
     "analytics"
   ],
   "agent-counterparty-verification": [
-    "agents"
-  ],
-  "agent-data-budget-manager": [
-    "agents"
-  ],
-  "agent-fleet-monitor": [
     "agents"
   ],
   "agent-wallet-skill": [
@@ -224,12 +191,6 @@
   "all-chains-status": [
     "developer"
   ],
-  "anchor-program-data-reader": [
-    "developer"
-  ],
-  "api-reference": [
-    "developer"
-  ],
   "block-date-lookup": [
     "developer"
   ],
@@ -248,9 +209,6 @@
   "goldrush-kit-tx-feed": [
     "developer"
   ],
-  "goldrush-playground": [
-    "developer"
-  ],
   "goldrush-react-hooks": [
     "developer"
   ],
@@ -266,13 +224,7 @@
   "webhook-builder": [
     "developer"
   ],
-  "address-activity-scanner": [
-    "crosschain"
-  ],
   "cross-chain-activity-report": [
-    "crosschain"
-  ],
-  "cross-chain-address-lookup": [
     "crosschain"
   ],
   "cross-chain-transaction-history": [
@@ -281,16 +233,7 @@
   "multichain-activity-discovery": [
     "crosschain"
   ],
-  "multichain-token-aggregator": [
-    "crosschain"
-  ],
-  "multichain-portfolio": [
-    "crosschain"
-  ],
   "dex-pool-spot-price": [
-    "token"
-  ],
-  "erc20-transfer-history": [
     "token"
   ],
   "pumpfun-token-scanner": [
@@ -311,19 +254,7 @@
   "spot-price-ticker": [
     "token"
   ],
-  "token-approval-scanner": [
-    "token"
-  ],
-  "token-holder-list": [
-    "token"
-  ],
-  "token-holders-leaderboard": [
-    "token"
-  ],
   "token-holders-snapshot": [
-    "token"
-  ],
-  "token-metadata-api": [
     "token"
   ],
   "token-price-chart": [
@@ -365,12 +296,6 @@
   "onchain-resume": [
     "identity"
   ],
-  "proof-of-onchain-activity": [
-    "identity"
-  ],
-  "approval-auditor": [
-    "security"
-  ],
   "contract-interaction-history": [
     "security"
   ],
@@ -381,9 +306,6 @@
     "security"
   ],
   "solana-token-risk-scorer": [
-    "security"
-  ],
-  "stale-approval-cleaner": [
     "security"
   ],
   "token-approval-risk-scanner": [

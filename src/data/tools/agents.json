@@ -8,22 +8,6 @@
     "slug": "agent-counterparty-verification"
   },
   {
-    "title": "Agent Data Budget Manager",
-    "body": "Track and optimise GoldRush API credit consumption across AI agent workflows.",
-    "tag": "Open Source",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-16",
-    "slug": "agent-data-budget-manager"
-  },
-  {
-    "title": "Agent Fleet Monitor",
-    "body": "Monitor a fleet of AI agent wallets for health, balances, and activity in one view.",
-    "tag": "Beta",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-16",
-    "slug": "agent-fleet-monitor"
-  },
-  {
     "title": "Agent Wallet Skill",
     "body": "Give AI agents the ability to read wallet state, balances, and transaction data.",
     "tag": "Open Source",

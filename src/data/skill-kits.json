@@ -165,7 +165,7 @@
       "complexity": "Advanced"
     }
   ],
-  "agent-fleet-monitor": [
+  "goldrush-mcp-server": [
     {
       "id": "ai-wallet-agent",
       "title": "AI Wallet Agent",
@@ -173,7 +173,7 @@
       "complexity": "Advanced"
     }
   ],
-  "agent-data-budget-manager": [
+  "claude-goldrush-skill": [
     {
       "id": "ai-wallet-agent",
       "title": "AI Wallet Agent",
@@ -221,19 +221,19 @@
       "title": "Token Launch Radar",
       "emoji": "🚀",
       "complexity": "Advanced"
+    },
+    {
+      "id": "dao-governance",
+      "title": "DAO Governance Toolkit",
+      "emoji": "🏛️",
+      "complexity": "Intermediate"
     }
   ],
-  "token-holders-leaderboard": [
+  "token-unlock-tracker": [
     {
       "id": "token-analytics",
       "title": "Token Analytics",
       "emoji": "🔍",
-      "complexity": "Intermediate"
-    },
-    {
-      "id": "nft-market-intel",
-      "title": "NFT Market Intelligence",
-      "emoji": "🎨",
       "complexity": "Intermediate"
     },
     {
@@ -283,25 +283,49 @@
       "title": "Token Analytics",
       "emoji": "🔍",
       "complexity": "Intermediate"
+    },
+    {
+      "id": "whale-intelligence",
+      "title": "Whale Intelligence",
+      "emoji": "🐋",
+      "complexity": "Advanced"
     }
   ],
-  "address-activity-scanner": [
+  "multichain-activity-discovery": [
     {
       "id": "multichain-explorer",
       "title": "Multichain Explorer",
       "emoji": "🌐",
       "complexity": "Beginner"
+    },
+    {
+      "id": "web3-identity",
+      "title": "Web3 Identity & Reputation",
+      "emoji": "🪪",
+      "complexity": "Intermediate"
+    },
+    {
+      "id": "airdrop-toolkit",
+      "title": "Airdrop Farming Toolkit",
+      "emoji": "🪂",
+      "complexity": "Intermediate"
     }
   ],
-  "cross-chain-address-lookup": [
+  "cross-chain-transaction-history": [
     {
       "id": "multichain-explorer",
       "title": "Multichain Explorer",
       "emoji": "🌐",
       "complexity": "Beginner"
+    },
+    {
+      "id": "crypto-tax-reporter",
+      "title": "Crypto Tax Reporter",
+      "emoji": "🧾",
+      "complexity": "Intermediate"
     }
   ],
-  "multichain-portfolio": [
+  "multi-wallet-aggregator": [
     {
       "id": "multichain-explorer",
       "title": "Multichain Explorer",
@@ -393,6 +417,12 @@
       "title": "Solana Builder Kit",
       "emoji": "⚡",
       "complexity": "Intermediate"
+    },
+    {
+      "id": "nft-market-intel",
+      "title": "NFT Market Intelligence",
+      "emoji": "🎨",
+      "complexity": "Intermediate"
     }
   ],
   "solana-staking-snapshot": [
@@ -419,15 +449,7 @@
       "complexity": "Intermediate"
     }
   ],
-  "erc20-transfer-history": [
-    {
-      "id": "crypto-tax-reporter",
-      "title": "Crypto Tax Reporter",
-      "emoji": "🧾",
-      "complexity": "Intermediate"
-    }
-  ],
-  "cross-chain-transaction-history": [
+  "wallet-erc20-transfers": [
     {
       "id": "crypto-tax-reporter",
       "title": "Crypto Tax Reporter",
@@ -446,14 +468,6 @@
       "id": "realtime-alerts",
       "title": "Real-Time Alerts & Monitoring",
       "emoji": "📡",
-      "complexity": "Advanced"
-    }
-  ],
-  "institutional-wallet-tracker": [
-    {
-      "id": "whale-intelligence",
-      "title": "Whale Intelligence",
-      "emoji": "🐋",
       "complexity": "Advanced"
     }
   ],
@@ -519,11 +533,23 @@
       "complexity": "Intermediate"
     }
   ],
-  "proof-of-onchain-activity": [
+  "airdrop-eligibility-checker": [
     {
       "id": "web3-identity",
       "title": "Web3 Identity & Reputation",
       "emoji": "🪪",
+      "complexity": "Intermediate"
+    },
+    {
+      "id": "dao-governance",
+      "title": "DAO Governance Toolkit",
+      "emoji": "🏛️",
+      "complexity": "Intermediate"
+    },
+    {
+      "id": "airdrop-toolkit",
+      "title": "Airdrop Farming Toolkit",
+      "emoji": "🪂",
       "complexity": "Intermediate"
     },
     {
@@ -555,21 +581,7 @@
       "complexity": "Intermediate"
     }
   ],
-  "multichain-activity-discovery": [
-    {
-      "id": "web3-identity",
-      "title": "Web3 Identity & Reputation",
-      "emoji": "🪪",
-      "complexity": "Intermediate"
-    },
-    {
-      "id": "airdrop-toolkit",
-      "title": "Airdrop Farming Toolkit",
-      "emoji": "🪂",
-      "complexity": "Intermediate"
-    }
-  ],
-  "token-approval-scanner": [
+  "goldrush-kit-approvals": [
     {
       "id": "wallet-security-audit",
       "title": "Wallet Security Audit",
@@ -585,7 +597,7 @@
       "complexity": "Intermediate"
     }
   ],
-  "stale-approval-cleaner": [
+  "solana-token-risk-scorer": [
     {
       "id": "wallet-security-audit",
       "title": "Wallet Security Audit",
@@ -593,7 +605,7 @@
       "complexity": "Intermediate"
     }
   ],
-  "approval-auditor": [
+  "transaction-decoded-receipt": [
     {
       "id": "wallet-security-audit",
       "title": "Wallet Security Audit",
@@ -617,31 +629,21 @@
       "complexity": "Intermediate"
     }
   ],
-  "nft-transfer-tracker": [
+  "nft-transfer-monitor": [
     {
       "id": "nft-market-intel",
       "title": "NFT Market Intelligence",
       "emoji": "🎨",
       "complexity": "Intermediate"
+    },
+    {
+      "id": "realtime-alerts",
+      "title": "Real-Time Alerts & Monitoring",
+      "emoji": "📡",
+      "complexity": "Advanced"
     }
   ],
   "governance-token-snapshot": [
-    {
-      "id": "dao-governance",
-      "title": "DAO Governance Toolkit",
-      "emoji": "🏛️",
-      "complexity": "Intermediate"
-    }
-  ],
-  "token-holder-list": [
-    {
-      "id": "dao-governance",
-      "title": "DAO Governance Toolkit",
-      "emoji": "🏛️",
-      "complexity": "Intermediate"
-    }
-  ],
-  "token-unlock-tracker": [
     {
       "id": "dao-governance",
       "title": "DAO Governance Toolkit",
@@ -673,14 +675,6 @@
       "complexity": "Advanced"
     }
   ],
-  "nft-transfer-monitor": [
-    {
-      "id": "realtime-alerts",
-      "title": "Real-Time Alerts & Monitoring",
-      "emoji": "📡",
-      "complexity": "Advanced"
-    }
-  ],
   "nft-gated-app": [
     {
       "id": "nft-gated-platform",
@@ -694,54 +688,6 @@
       "id": "nft-gated-platform",
       "title": "NFT-Gated Platform",
       "emoji": "🔐",
-      "complexity": "Intermediate"
-    }
-  ],
-  "bitcoin-balance-checker": [
-    {
-      "id": "bitcoin-explorer",
-      "title": "Bitcoin Explorer",
-      "emoji": "₿",
-      "complexity": "Intermediate"
-    }
-  ],
-  "bitcoin-transaction-explorer": [
-    {
-      "id": "bitcoin-explorer",
-      "title": "Bitcoin Explorer",
-      "emoji": "₿",
-      "complexity": "Intermediate"
-    }
-  ],
-  "bitcoin-hd-wallet-scanner": [
-    {
-      "id": "bitcoin-explorer",
-      "title": "Bitcoin Explorer",
-      "emoji": "₿",
-      "complexity": "Intermediate"
-    }
-  ],
-  "native-token-balance": [
-    {
-      "id": "bitcoin-explorer",
-      "title": "Bitcoin Explorer",
-      "emoji": "₿",
-      "complexity": "Intermediate"
-    }
-  ],
-  "block-explorer-toolkit": [
-    {
-      "id": "bitcoin-explorer",
-      "title": "Bitcoin Explorer",
-      "emoji": "₿",
-      "complexity": "Intermediate"
-    }
-  ],
-  "block-date-lookup": [
-    {
-      "id": "bitcoin-explorer",
-      "title": "Bitcoin Explorer",
-      "emoji": "₿",
       "complexity": "Intermediate"
     }
   ],
@@ -791,14 +737,6 @@
       "title": "Solana AI Agent Suite",
       "emoji": "🧠",
       "complexity": "Advanced"
-    }
-  ],
-  "airdrop-eligibility-checker": [
-    {
-      "id": "airdrop-toolkit",
-      "title": "Airdrop Farming Toolkit",
-      "emoji": "🪂",
-      "complexity": "Intermediate"
     }
   ],
   "wallet-comparison-tool": [

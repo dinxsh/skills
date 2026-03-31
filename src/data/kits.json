@@ -4,8 +4,21 @@
       "id": "defi-dashboard",
       "title": "DeFi Dashboard",
       "description": "A complete DeFi portfolio tracker showing token balances, USD values, DEX trade history, P&L, and historical portfolio performance across any EVM chain.",
-      "skills": ["wallet-balances-skill", "defi-wallet-dashboard", "dex-trade-history", "wallet-pnl-tracker", "token-price-history", "historical-portfolio-value"],
-      "chains": ["ethereum", "base", "polygon", "arbitrum", "optimism"],
+      "skills": [
+        "wallet-balances-skill",
+        "defi-wallet-dashboard",
+        "dex-trade-history",
+        "wallet-pnl-tracker",
+        "token-price-history",
+        "historical-portfolio-value"
+      ],
+      "chains": [
+        "ethereum",
+        "base",
+        "polygon",
+        "arbitrum",
+        "optimism"
+      ],
       "complexity": "Intermediate",
       "emoji": "📊"
     },
@@ -13,8 +26,20 @@
       "id": "nft-portfolio-viewer",
       "title": "NFT Portfolio Viewer",
       "description": "Browse and value any wallet's NFT collection with floor prices, trait rarity, sale history, transfer tracking, and multi-chain support.",
-      "skills": ["nft-gallery-viewer", "nft-metadata-fetcher", "nft-portfolio-valuation", "nft-sale-history", "nft-traits-explorer", "multichain-nft-gallery"],
-      "chains": ["ethereum", "base", "polygon", "solana"],
+      "skills": [
+        "nft-gallery-viewer",
+        "nft-metadata-fetcher",
+        "nft-portfolio-valuation",
+        "nft-sale-history",
+        "nft-traits-explorer",
+        "multichain-nft-gallery"
+      ],
+      "chains": [
+        "ethereum",
+        "base",
+        "polygon",
+        "solana"
+      ],
       "complexity": "Intermediate",
       "emoji": "🖼️"
     },
@@ -22,8 +47,20 @@
       "id": "ai-wallet-agent",
       "title": "AI Wallet Agent",
       "description": "An autonomous AI agent that monitors wallets, detects anomalies, verifies counterparties, tracks API credit consumption, and reports onchain activity in real time.",
-      "skills": ["agent-wallet-skill", "agent-counterparty-verification", "agent-fleet-monitor", "agent-data-budget-manager", "realtime-wallet-stream", "onchain-activity-verifier"],
-      "chains": ["ethereum", "base", "polygon", "arbitrum"],
+      "skills": [
+        "agent-wallet-skill",
+        "agent-counterparty-verification",
+        "goldrush-mcp-server",
+        "claude-goldrush-skill",
+        "realtime-wallet-stream",
+        "onchain-activity-verifier"
+      ],
+      "chains": [
+        "ethereum",
+        "base",
+        "polygon",
+        "arbitrum"
+      ],
       "complexity": "Advanced",
       "emoji": "🤖"
     },
@@ -31,8 +68,20 @@
       "id": "token-analytics",
       "title": "Token Analytics",
       "description": "Deep token research with holder distribution, leaderboard, price history, whale alerts, risk scoring, and OHLCV charting.",
-      "skills": ["token-holders-snapshot", "token-holders-leaderboard", "token-price-history", "token-whale-alert", "token-risk-analyzer", "token-ohlcv-chart"],
-      "chains": ["ethereum", "base", "solana", "bsc"],
+      "skills": [
+        "token-holders-snapshot",
+        "token-unlock-tracker",
+        "token-price-history",
+        "token-whale-alert",
+        "token-risk-analyzer",
+        "token-ohlcv-chart"
+      ],
+      "chains": [
+        "ethereum",
+        "base",
+        "solana",
+        "bsc"
+      ],
       "complexity": "Intermediate",
       "emoji": "🔍"
     },
@@ -40,8 +89,23 @@
       "id": "multichain-explorer",
       "title": "Multichain Explorer",
       "description": "Track any address across all chains — transactions, balances, NFTs, activity heatmap, and cross-chain activity report in a single view.",
-      "skills": ["address-activity-scanner", "cross-chain-address-lookup", "multichain-portfolio", "wallet-activity-heatmap", "transaction-history", "cross-chain-activity-report"],
-      "chains": ["ethereum", "base", "polygon", "arbitrum", "optimism", "bsc", "avalanche"],
+      "skills": [
+        "multichain-activity-discovery",
+        "cross-chain-transaction-history",
+        "multi-wallet-aggregator",
+        "wallet-activity-heatmap",
+        "transaction-history",
+        "cross-chain-activity-report"
+      ],
+      "chains": [
+        "ethereum",
+        "base",
+        "polygon",
+        "arbitrum",
+        "optimism",
+        "bsc",
+        "avalanche"
+      ],
       "complexity": "Beginner",
       "emoji": "🌐"
     },
@@ -49,8 +113,17 @@
       "id": "solana-builder",
       "title": "Solana Builder Kit",
       "description": "Everything you need to build Solana apps — wallet balances, SPL tokens, NFTs, DEX trades, staking data, and wallet age activity.",
-      "skills": ["solana-wallet-balances", "spl-token-metadata", "solana-dex-trade-history", "solana-nft-collection-stats", "solana-staking-snapshot", "solana-wallet-age-activity"],
-      "chains": ["solana"],
+      "skills": [
+        "solana-wallet-balances",
+        "spl-token-metadata",
+        "solana-dex-trade-history",
+        "solana-nft-collection-stats",
+        "solana-staking-snapshot",
+        "solana-wallet-age-activity"
+      ],
+      "chains": [
+        "solana"
+      ],
       "complexity": "Intermediate",
       "emoji": "⚡"
     },
@@ -58,8 +131,22 @@
       "id": "crypto-tax-reporter",
       "title": "Crypto Tax Reporter",
       "description": "Generate a complete tax report for any wallet — every buy, sell, and transfer with USD values at time of transaction, realized P&L, and cross-chain coverage.",
-      "skills": ["crypto-tax-exporter", "transaction-history", "erc20-transfer-history", "token-price-history", "wallet-pnl-tracker", "cross-chain-transaction-history"],
-      "chains": ["ethereum", "base", "polygon", "bsc", "optimism", "gnosis"],
+      "skills": [
+        "crypto-tax-exporter",
+        "transaction-history",
+        "wallet-erc20-transfers",
+        "token-price-history",
+        "wallet-pnl-tracker",
+        "cross-chain-transaction-history"
+      ],
+      "chains": [
+        "ethereum",
+        "base",
+        "polygon",
+        "bsc",
+        "optimism",
+        "gnosis"
+      ],
       "complexity": "Intermediate",
       "emoji": "🧾"
     },
@@ -67,8 +154,22 @@
       "id": "whale-intelligence",
       "title": "Whale Intelligence",
       "description": "Monitor top traders and institutions — track their every move, surface new positions in real time, get instant alerts on large transactions, and copy smart money signals.",
-      "skills": ["whale-wallet-watchlist", "institutional-wallet-tracker", "smart-money-copier", "token-whale-alert", "wallet-activity-feed", "cross-chain-activity-report"],
-      "chains": ["ethereum", "base", "polygon", "bsc", "arbitrum", "optimism"],
+      "skills": [
+        "whale-wallet-watchlist",
+        "token-ohlcv-chart",
+        "smart-money-copier",
+        "token-whale-alert",
+        "wallet-activity-feed",
+        "cross-chain-activity-report"
+      ],
+      "chains": [
+        "ethereum",
+        "base",
+        "polygon",
+        "bsc",
+        "arbitrum",
+        "optimism"
+      ],
       "complexity": "Advanced",
       "emoji": "🐋"
     },
@@ -76,8 +177,24 @@
       "id": "token-launch-radar",
       "title": "Token Launch Radar",
       "description": "Catch new token launches the second they go live — real-time DEX pair stream, risk scoring, holder distribution, liquidity checks, and Base memecoin screener.",
-      "skills": ["token-launch-screener", "live-dex-pair-stream", "token-risk-analyzer", "base-memecoin-screener", "token-holders-snapshot", "dex-pool-spot-price"],
-      "chains": ["ethereum", "base", "bsc", "polygon", "arbitrum", "optimism", "avalanche", "sonic"],
+      "skills": [
+        "token-launch-screener",
+        "live-dex-pair-stream",
+        "token-risk-analyzer",
+        "base-memecoin-screener",
+        "token-holders-snapshot",
+        "dex-pool-spot-price"
+      ],
+      "chains": [
+        "ethereum",
+        "base",
+        "bsc",
+        "polygon",
+        "arbitrum",
+        "optimism",
+        "avalanche",
+        "sonic"
+      ],
       "complexity": "Advanced",
       "emoji": "🚀"
     },
@@ -85,8 +202,23 @@
       "id": "web3-identity",
       "title": "Web3 Identity & Reputation",
       "description": "Build a wallet profile page serving as an onchain resume — wallet age, multi-chain activity score, credit rating, proof-of-humanity, and Sybil resistance scoring.",
-      "skills": ["onchain-resume", "proof-of-onchain-activity", "wallet-age-summary", "onchain-credit-widget", "cross-chain-activity-report", "multichain-activity-discovery"],
-      "chains": ["ethereum", "base", "polygon", "bsc", "optimism", "arbitrum", "avalanche"],
+      "skills": [
+        "onchain-resume",
+        "airdrop-eligibility-checker",
+        "wallet-age-summary",
+        "onchain-credit-widget",
+        "cross-chain-activity-report",
+        "multichain-activity-discovery"
+      ],
+      "chains": [
+        "ethereum",
+        "base",
+        "polygon",
+        "bsc",
+        "optimism",
+        "arbitrum",
+        "avalanche"
+      ],
       "complexity": "Intermediate",
       "emoji": "🪪"
     },
@@ -94,8 +226,23 @@
       "id": "wallet-security-audit",
       "title": "Wallet Security Audit",
       "description": "A full wallet security scanner — find risky token approvals, audit contract interaction history, identify unlimited allowances, flag dangerous spenders, and clean up stale approvals.",
-      "skills": ["token-approval-scanner", "smart-contract-interaction-risk", "stale-approval-cleaner", "approval-auditor", "token-risk-analyzer", "contract-interaction-history"],
-      "chains": ["ethereum", "base", "polygon", "bsc", "optimism", "arbitrum", "avalanche"],
+      "skills": [
+        "goldrush-kit-approvals",
+        "smart-contract-interaction-risk",
+        "solana-token-risk-scorer",
+        "transaction-decoded-receipt",
+        "token-risk-analyzer",
+        "contract-interaction-history"
+      ],
+      "chains": [
+        "ethereum",
+        "base",
+        "polygon",
+        "bsc",
+        "optimism",
+        "arbitrum",
+        "avalanche"
+      ],
       "complexity": "Intermediate",
       "emoji": "🔒"
     },
@@ -103,8 +250,22 @@
       "id": "nft-market-intel",
       "title": "NFT Market Intelligence",
       "description": "Deep NFT market research — collection analytics, floor price trends, trait rarity pricing, sales velocity, top holder analysis, and transfer heatmaps.",
-      "skills": ["nft-collection-analytics", "nft-sale-history", "nft-traits-explorer", "nft-transfer-tracker", "token-holders-leaderboard", "nft-portfolio-valuation"],
-      "chains": ["ethereum", "base", "polygon", "arbitrum", "optimism", "bsc"],
+      "skills": [
+        "nft-collection-analytics",
+        "nft-sale-history",
+        "nft-traits-explorer",
+        "nft-transfer-monitor",
+        "solana-nft-collection-stats",
+        "nft-portfolio-valuation"
+      ],
+      "chains": [
+        "ethereum",
+        "base",
+        "polygon",
+        "arbitrum",
+        "optimism",
+        "bsc"
+      ],
       "complexity": "Intermediate",
       "emoji": "🎨"
     },
@@ -112,8 +273,22 @@
       "id": "dao-governance",
       "title": "DAO Governance Toolkit",
       "description": "Everything a DAO needs — snapshot eligible voters at a block, show voting power distribution, track delegate activity, monitor upcoming token unlocks, and query supply metadata.",
-      "skills": ["governance-token-snapshot", "token-holders-leaderboard", "token-holder-list", "token-unlock-tracker", "wallet-activity-heatmap", "token-supply-metadata"],
-      "chains": ["ethereum", "base", "bsc", "polygon", "optimism", "gnosis"],
+      "skills": [
+        "governance-token-snapshot",
+        "airdrop-eligibility-checker",
+        "token-holders-snapshot",
+        "token-unlock-tracker",
+        "wallet-activity-heatmap",
+        "token-supply-metadata"
+      ],
+      "chains": [
+        "ethereum",
+        "base",
+        "bsc",
+        "polygon",
+        "optimism",
+        "gnosis"
+      ],
       "complexity": "Intermediate",
       "emoji": "🏛️"
     },
@@ -121,8 +296,23 @@
       "id": "realtime-alerts",
       "title": "Real-Time Alerts & Monitoring",
       "description": "Build a zero-polling notification system — webhook delivery on wallet activity, live WebSocket streams for transfers and whale moves, and NFT transfer monitoring.",
-      "skills": ["webhook-builder", "wallet-activity-feed", "realtime-wallet-stream", "token-transfer-stream", "whale-wallet-watchlist", "nft-transfer-monitor"],
-      "chains": ["ethereum", "base", "polygon", "bsc", "optimism", "arbitrum", "avalanche"],
+      "skills": [
+        "webhook-builder",
+        "wallet-activity-feed",
+        "realtime-wallet-stream",
+        "token-transfer-stream",
+        "whale-wallet-watchlist",
+        "nft-transfer-monitor"
+      ],
+      "chains": [
+        "ethereum",
+        "base",
+        "polygon",
+        "bsc",
+        "optimism",
+        "arbitrum",
+        "avalanche"
+      ],
       "complexity": "Advanced",
       "emoji": "📡"
     },
@@ -130,26 +320,40 @@
       "id": "nft-gated-platform",
       "title": "NFT-Gated Platform",
       "description": "Ship a token-gated product — exclusive content site, holder dashboard, or Web3 community — where access is controlled by NFT ownership across any chain.",
-      "skills": ["nft-gated-app", "nft-gate", "multichain-nft-gallery", "nft-metadata-fetcher", "nft-portfolio-valuation", "onchain-activity-verifier"],
-      "chains": ["ethereum", "base", "polygon", "arbitrum", "optimism", "bsc"],
+      "skills": [
+        "nft-gated-app",
+        "nft-gate",
+        "multichain-nft-gallery",
+        "nft-metadata-fetcher",
+        "nft-portfolio-valuation",
+        "onchain-activity-verifier"
+      ],
+      "chains": [
+        "ethereum",
+        "base",
+        "polygon",
+        "arbitrum",
+        "optimism",
+        "bsc"
+      ],
       "complexity": "Intermediate",
       "emoji": "🔐"
-    },
-    {
-      "id": "bitcoin-explorer",
-      "title": "Bitcoin Explorer",
-      "description": "A complete Bitcoin wallet explorer — UTXO balances, full transaction history, HD wallet scanning across all derivation paths, block lookups, and native balance checks.",
-      "skills": ["bitcoin-balance-checker", "bitcoin-transaction-explorer", "bitcoin-hd-wallet-scanner", "native-token-balance", "block-explorer-toolkit", "block-date-lookup"],
-      "chains": ["bitcoin"],
-      "complexity": "Intermediate",
-      "emoji": "₿"
     },
     {
       "id": "solana-ai-agents",
       "title": "Solana AI Agent Suite",
       "description": "A full suite of autonomous AI agents for Solana — portfolio snapshotting, DeFi navigation, risk gating, wallet watching, token launch detection, and transaction validation.",
-      "skills": ["solana-agent-portfolio-snapshot", "solana-agent-defi-navigator", "solana-agent-risk-gate", "solana-agent-wallet-watcher", "solana-agent-token-launch-detector", "solana-agent-transaction-validator"],
-      "chains": ["solana"],
+      "skills": [
+        "solana-agent-portfolio-snapshot",
+        "solana-agent-defi-navigator",
+        "solana-agent-risk-gate",
+        "solana-agent-wallet-watcher",
+        "solana-agent-token-launch-detector",
+        "solana-agent-transaction-validator"
+      ],
+      "chains": [
+        "solana"
+      ],
       "complexity": "Advanced",
       "emoji": "🧠"
     },
@@ -157,8 +361,23 @@
       "id": "airdrop-toolkit",
       "title": "Airdrop Farming Toolkit",
       "description": "Check eligibility across multiple airdrops simultaneously, score wallets for Sybil resistance, map activity patterns, measure wallet age, and compare wallets side by side.",
-      "skills": ["airdrop-eligibility-checker", "proof-of-onchain-activity", "wallet-activity-heatmap", "multichain-activity-discovery", "wallet-age-summary", "wallet-comparison-tool"],
-      "chains": ["ethereum", "base", "polygon", "bsc", "optimism", "arbitrum", "avalanche"],
+      "skills": [
+        "airdrop-eligibility-checker",
+        "airdrop-eligibility-checker",
+        "wallet-activity-heatmap",
+        "multichain-activity-discovery",
+        "wallet-age-summary",
+        "wallet-comparison-tool"
+      ],
+      "chains": [
+        "ethereum",
+        "base",
+        "polygon",
+        "bsc",
+        "optimism",
+        "arbitrum",
+        "avalanche"
+      ],
       "complexity": "Intermediate",
       "emoji": "🪂"
     }

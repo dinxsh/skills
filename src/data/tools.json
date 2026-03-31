@@ -5,30 +5,6 @@
       "category": "wallet",
       "content": [
         {
-          "title": "Bitcoin Balance Checker",
-          "body": "Fetch confirmed UTXOs, current balance, and USD value for any Bitcoin address.",
-          "tag": "API Key Required",
-          "url": "https://goldrush.dev/docs/api/balances/get-bitcoin-non-hd-wallet-balances/",
-          "date-added": "2026-03-23",
-          "slug": "bitcoin-balance-checker"
-        },
-        {
-          "title": "Bitcoin HD Wallet Scanner",
-          "body": "Enumerate all derived addresses and balances from a Bitcoin xpub/ypub/zpub HD wallet key.",
-          "tag": "API Key Required",
-          "url": "https://goldrush.dev/docs/api/balances/get-bitcoin-hd-wallet-balances/",
-          "date-added": "2026-03-23",
-          "slug": "bitcoin-hd-wallet-scanner"
-        },
-        {
-          "title": "Bitcoin Transaction Explorer",
-          "body": "Paginated transaction history for any Bitcoin address — inputs, outputs, fees, and confirmation status.",
-          "tag": "API Key Required",
-          "url": "https://goldrush.dev/docs/api/transactions/get-transactions-for-btc-address/",
-          "date-added": "2026-03-23",
-          "slug": "bitcoin-transaction-explorer"
-        },
-        {
           "title": "Crypto Tax Exporter",
           "body": "Export a complete CSV of all ERC-20 transfers and transactions with USD cost basis for tax reporting — Koinly/CoinTracker compatible.",
           "tag": "API Key Required",
@@ -91,22 +67,6 @@
           "url": "https://goldrush.dev",
           "date-added": "2026-03-12",
           "slug": "portfolio-history"
-        },
-        {
-          "title": "Portfolio Performance Report",
-          "body": "30-day rolling P&L report with per-token open/high/low/close — build fund-grade performance dashboards for any wallet on foundational chains.",
-          "tag": "API Key Required",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-23",
-          "slug": "portfolio-performance-report"
-        },
-        {
-          "title": "Portfolio Tracker",
-          "body": "Monitor multi-chain portfolio value and asset composition in real time.",
-          "tag": "Open Source",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-12",
-          "slug": "portfolio-tracker"
         },
         {
           "title": "Solana Staking Snapshot",
@@ -345,28 +305,12 @@
           "slug": "nft-transfer-monitor"
         },
         {
-          "title": "NFT Transfer Tracker",
-          "body": "Monitor NFT mints, transfers, and burns as they happen onchain.",
-          "tag": "Free Tier",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-12",
-          "slug": "nft-transfer-tracker"
-        },
-        {
           "title": "NFT-Gated App Boilerplate",
           "body": "Complete Next.js boilerplate with wallet connect, SIWE authentication, and NFT ownership gating — deploy a token-gated product in under an hour.",
           "tag": "Free Tier",
           "url": "https://goldrush.dev",
           "date-added": "2026-03-23",
           "slug": "nft-gated-app"
-        },
-        {
-          "title": "Ronin NFT Inventory",
-          "body": "List all NFTs held in a Ronin wallet — Axie Infinity, Land, and other Sky Mavis NFT collections.",
-          "tag": "API Key Required",
-          "url": "https://goldrush.dev/docs/api/nft/get-nfts-for-address/",
-          "date-added": "2026-03-23",
-          "slug": "ronin-nft-inventory"
         },
         {
           "title": "Solana NFT Collection Stats",
@@ -429,22 +373,6 @@
           "url": "https://goldrush.dev",
           "date-added": "2026-03-12",
           "slug": "gas-analytics"
-        },
-        {
-          "title": "Institutional Wallet Tracker",
-          "body": "Monitor large-wallet movements and institutional-grade position changes across chains.",
-          "tag": "API Key Required",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-16",
-          "slug": "institutional-wallet-tracker"
-        },
-        {
-          "title": "Onchain Data Query",
-          "body": "Query indexed blockchain data across 100+ chains with a single unified API.",
-          "tag": "Free Tier",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-12",
-          "slug": "onchain-data-query"
         },
         {
           "title": "Smart Money Copier",
@@ -523,22 +451,6 @@
           "url": "https://goldrush.dev",
           "date-added": "2026-03-16",
           "slug": "agent-counterparty-verification"
-        },
-        {
-          "title": "Agent Data Budget Manager",
-          "body": "Track and optimise GoldRush API credit consumption across AI agent workflows.",
-          "tag": "Open Source",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-16",
-          "slug": "agent-data-budget-manager"
-        },
-        {
-          "title": "Agent Fleet Monitor",
-          "body": "Monitor a fleet of AI agent wallets for health, balances, and activity in one view.",
-          "tag": "Beta",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-16",
-          "slug": "agent-fleet-monitor"
         },
         {
           "title": "Agent Wallet Skill",
@@ -635,22 +547,6 @@
           "slug": "all-chains-status"
         },
         {
-          "title": "Anchor Program Data Reader",
-          "body": "Fetch and decode the on-chain state of any Anchor-based Solana program account via GoldRush — pass a program ID and account address to get fully-typed, human-readable account data with field names and values, using the program's published IDL for deserialization. No custom Borsh deserializer required. Works with any program that has a public IDL: Raydium AMM pools, Drift user accounts, Kamino lending positions, Marinade stake state. Read protocol state directly in your app or agent without a local Anchor client.",
-          "tag": "Free Tier",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-26",
-          "slug": "anchor-program-data-reader"
-        },
-        {
-          "title": "API Reference",
-          "body": "Interactive API explorer and full reference docs for all GoldRush endpoints.",
-          "tag": "Free",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-12",
-          "slug": "api-reference"
-        },
-        {
           "title": "Block Date Lookup",
           "body": "Convert any date range to block numbers on any EVM chain — essential for historical queries and event log scanning.",
           "tag": "Free Tier",
@@ -699,14 +595,6 @@
           "slug": "goldrush-kit-tx-feed"
         },
         {
-          "title": "GoldRush Playground",
-          "body": "Browser-based API playground for testing GoldRush queries without writing code.",
-          "tag": "Free",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-12",
-          "slug": "goldrush-playground"
-        },
-        {
           "title": "GoldRush React Hooks",
           "body": "Drop-in React hooks for balances, NFTs, and token prices â€” onchain data made simple.",
           "tag": "Open Source",
@@ -753,28 +641,12 @@
       "category": "crosschain",
       "content": [
         {
-          "title": "Address Activity Scanner",
-          "body": "Discover every chain a wallet address is active on with a single API call.",
-          "tag": "Free Tier",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-12",
-          "slug": "address-activity-scanner"
-        },
-        {
           "title": "Cross-Chain Activity Report",
           "body": "Full cross-chain footprint for any wallet — active chains, combined net worth, unified transaction timeline, and per-chain asset breakdown in one API call.",
           "tag": "API Key Required",
           "url": "https://goldrush.dev",
           "date-added": "2026-03-23",
           "slug": "cross-chain-activity-report"
-        },
-        {
-          "title": "Cross-chain Address Lookup",
-          "body": "Resolve and look up the same address across all supported EVM chains at once.",
-          "tag": "Free Tier",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-12",
-          "slug": "cross-chain-address-lookup"
         },
         {
           "title": "Cross-Chain Transaction History",
@@ -791,22 +663,6 @@
           "url": "https://goldrush.dev",
           "date-added": "2026-03-16",
           "slug": "multichain-activity-discovery"
-        },
-        {
-          "title": "Multi-Chain Token Aggregator",
-          "body": "Aggregate all token balances across every chain a wallet is active on â€” auto-discovers chains then fetches balances in parallel. One function call for a complete cross-chain portfolio.",
-          "tag": "API Key Required",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-16",
-          "slug": "multichain-token-aggregator"
-        },
-        {
-          "title": "Multichain Portfolio",
-          "body": "Unified portfolio view aggregating assets across every GoldRush-supported chain.",
-          "tag": "API Key Required",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-12",
-          "slug": "multichain-portfolio"
         }
       ]
     },
@@ -821,14 +677,6 @@
           "url": "https://goldrush.dev/docs/api/pricing/get-pool-spot-prices/",
           "date-added": "2026-03-23",
           "slug": "dex-pool-spot-price"
-        },
-        {
-          "title": "ERC-20 Transfer History",
-          "body": "Full paginated ERC-20 transfer history for any wallet and token contract pair.",
-          "tag": "API Key Required",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-12",
-          "slug": "erc20-transfer-history"
         },
         {
           "title": "Pump.fun Token Scanner",
@@ -879,44 +727,12 @@
           "slug": "spot-price-ticker"
         },
         {
-          "title": "Token Approval Scanner",
-          "body": "Identify and audit all ERC-20 token approvals granted by any wallet address.",
-          "tag": "Free Tier",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-12",
-          "slug": "token-approval-scanner"
-        },
-        {
-          "title": "Token Holder List",
-          "body": "Retrieve a ranked list of holders for any token contract address across chains.",
-          "tag": "API Key Required",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-12",
-          "slug": "token-holder-list"
-        },
-        {
-          "title": "Token Holders Leaderboard",
-          "body": "Paginated leaderboard of every token holder with balance, percentage of supply, and rank — build airdrop lists, DAO voter registries, and holder dashboards.",
-          "tag": "API Key Required",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-23",
-          "slug": "token-holders-leaderboard"
-        },
-        {
           "title": "Token Holders Snapshot",
           "body": "Paginated list of every holder of an ERC-20 token with balance, percentage of supply, and address. Essential for airdrops, governance snapshots, and holder analytics.",
           "tag": "API Key Required",
           "url": "https://goldrush.dev",
           "date-added": "2026-03-16",
           "slug": "token-holders-snapshot"
-        },
-        {
-          "title": "Token Metadata API",
-          "body": "Fetch logos, decimals, contract info, and supply data for any ERC-20 token.",
-          "tag": "Free Tier",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-12",
-          "slug": "token-metadata-api"
         },
         {
           "title": "Token Price History",
@@ -1027,14 +843,6 @@
           "url": "https://goldrush.dev",
           "date-added": "2026-03-23",
           "slug": "onchain-resume"
-        },
-        {
-          "title": "Proof of Onchain Activity",
-          "body": "Verify wallet activity depth and onchain history as a proof of genuine use.",
-          "tag": "Beta",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-12",
-          "slug": "proof-of-onchain-activity"
         }
       ]
     },
@@ -1042,14 +850,6 @@
       "title": "Security",
       "category": "security",
       "content": [
-        {
-          "title": "Approval Auditor",
-          "body": "Scan and identify dangerous ERC-20 token approvals to revoke from any wallet.",
-          "tag": "Free Tier",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-12",
-          "slug": "approval-auditor"
-        },
         {
           "title": "Contract Interaction History",
           "body": "Full history of contract interactions for security forensics and incident response.",
@@ -1081,14 +881,6 @@
           "url": "https://goldrush.dev",
           "date-added": "2026-03-26",
           "slug": "solana-token-risk-scorer"
-        },
-        {
-          "title": "Stale Approval Cleaner",
-          "body": "Surface all active ERC-20 and NFT approvals sorted by risk level — identify unlimited approvals, deprecated protocol spenders, and dead contracts that should be revoked.",
-          "tag": "Free Tier",
-          "url": "https://goldrush.dev",
-          "date-added": "2026-03-23",
-          "slug": "stale-approval-cleaner"
         },
         {
           "title": "Token Approval Risk Scanner",

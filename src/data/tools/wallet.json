@@ -1,29 +1,5 @@
 [
   {
-    "title": "Bitcoin Balance Checker",
-    "body": "Fetch confirmed UTXOs, current balance, and USD value for any Bitcoin address.",
-    "tag": "API Key Required",
-    "url": "https://goldrush.dev/docs/api/balances/get-bitcoin-non-hd-wallet-balances/",
-    "date-added": "2026-03-23",
-    "slug": "bitcoin-balance-checker"
-  },
-  {
-    "title": "Bitcoin HD Wallet Scanner",
-    "body": "Enumerate all derived addresses and balances from a Bitcoin xpub/ypub/zpub HD wallet key.",
-    "tag": "API Key Required",
-    "url": "https://goldrush.dev/docs/api/balances/get-bitcoin-hd-wallet-balances/",
-    "date-added": "2026-03-23",
-    "slug": "bitcoin-hd-wallet-scanner"
-  },
-  {
-    "title": "Bitcoin Transaction Explorer",
-    "body": "Paginated transaction history for any Bitcoin address — inputs, outputs, fees, and confirmation status.",
-    "tag": "API Key Required",
-    "url": "https://goldrush.dev/docs/api/transactions/get-transactions-for-btc-address/",
-    "date-added": "2026-03-23",
-    "slug": "bitcoin-transaction-explorer"
-  },
-  {
     "title": "Crypto Tax Exporter",
     "body": "Export a complete CSV of all ERC-20 transfers and transactions with USD cost basis for tax reporting — Koinly/CoinTracker compatible.",
     "tag": "API Key Required",
@@ -86,22 +62,6 @@
     "url": "https://goldrush.dev",
     "date-added": "2026-03-12",
     "slug": "portfolio-history"
-  },
-  {
-    "title": "Portfolio Performance Report",
-    "body": "30-day rolling P&L report with per-token open/high/low/close — build fund-grade performance dashboards for any wallet on foundational chains.",
-    "tag": "API Key Required",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-23",
-    "slug": "portfolio-performance-report"
-  },
-  {
-    "title": "Portfolio Tracker",
-    "body": "Monitor multi-chain portfolio value and asset composition in real time.",
-    "tag": "Open Source",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-12",
-    "slug": "portfolio-tracker"
   },
   {
     "title": "Solana Staking Snapshot",

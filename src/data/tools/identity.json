@@ -54,13 +54,5 @@
     "url": "https://goldrush.dev",
     "date-added": "2026-03-23",
     "slug": "onchain-resume"
-  },
-  {
-    "title": "Proof of Onchain Activity",
-    "body": "Verify wallet activity depth and onchain history as a proof of genuine use.",
-    "tag": "Beta",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-12",
-    "slug": "proof-of-onchain-activity"
   }
 ]

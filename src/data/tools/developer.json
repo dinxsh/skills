@@ -8,22 +8,6 @@
     "slug": "all-chains-status"
   },
   {
-    "title": "Anchor Program Data Reader",
-    "body": "Fetch and decode the on-chain state of any Anchor-based Solana program account via GoldRush — pass a program ID and account address to get fully-typed, human-readable account data with field names and values, using the program's published IDL for deserialization. No custom Borsh deserializer required. Works with any program that has a public IDL: Raydium AMM pools, Drift user accounts, Kamino lending positions, Marinade stake state. Read protocol state directly in your app or agent without a local Anchor client.",
-    "tag": "Free Tier",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-26",
-    "slug": "anchor-program-data-reader"
-  },
-  {
-    "title": "API Reference",
-    "body": "Interactive API explorer and full reference docs for all GoldRush endpoints.",
-    "tag": "Free",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-12",
-    "slug": "api-reference"
-  },
-  {
     "title": "Block Date Lookup",
     "body": "Convert any date range to block numbers on any EVM chain — essential for historical queries and event log scanning.",
     "tag": "Free Tier",
@@ -70,14 +54,6 @@
     "url": "https://goldrush.dev",
     "date-added": "2026-03-16",
     "slug": "goldrush-kit-tx-feed"
-  },
-  {
-    "title": "GoldRush Playground",
-    "body": "Browser-based API playground for testing GoldRush queries without writing code.",
-    "tag": "Free",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-12",
-    "slug": "goldrush-playground"
   },
   {
     "title": "GoldRush React Hooks",

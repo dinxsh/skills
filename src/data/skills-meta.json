@@ -1,137 +1,1102 @@
 {
-  "bitcoin-balance-checker":           { "chains": ["bitcoin"], "complexity": "Beginner" },
-  "bitcoin-hd-wallet-scanner":         { "chains": ["bitcoin"], "complexity": "Intermediate" },
-  "bitcoin-transaction-explorer":      { "chains": ["bitcoin"], "complexity": "Intermediate" },
-  "wallet-balances-skill":             { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Beginner" },
-  "wallet-age-summary":                { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Beginner" },
-  "wallet-activity-feed":              { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Intermediate" },
-  "wallet-erc20-transfers":            { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Intermediate" },
-  "wallet-pnl-tracker":                { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Advanced" },
-  "wallet-activity-heatmap":           { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Advanced" },
-  "wallet-comparison-tool":            { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Beginner" },
-  "native-token-balance":              { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Beginner" },
-  "net-worth-calculator":              { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Beginner" },
-  "portfolio-tracker":                 { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Intermediate" },
-  "portfolio-history":                 { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Intermediate" },
-  "historical-token-holdings":         { "chains": ["ethereum","base","polygon","bsc","optimism","gnosis"], "complexity": "Intermediate" },
-  "historical-portfolio-value":        { "chains": ["ethereum","base","polygon","bsc","optimism","gnosis"], "complexity": "Advanced" },
-  "transaction-history":               { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Intermediate" },
-  "crypto-tax-exporter":               { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Intermediate" },
-  "multi-wallet-aggregator":           { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Intermediate" },
-  "portfolio-performance-report":      { "chains": ["ethereum","base","polygon","bsc","optimism","gnosis"], "complexity": "Intermediate" },
-  "solana-wallet-balances":            { "chains": ["solana"], "complexity": "Beginner" },
-  "solana-transaction-history":        { "chains": ["solana"], "complexity": "Intermediate" },
-  "solana-wallet-age-activity":        { "chains": ["solana"], "complexity": "Intermediate" },
-  "solana-staking-snapshot":           { "chains": ["solana"], "complexity": "Intermediate" },
-  "dex-trade-history":                 { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Intermediate" },
-  "live-dex-pair-stream":              { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Advanced" },
-  "token-launch-screener":             { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Intermediate" },
-  "defi-wallet-dashboard":             { "chains": ["ethereum","base","polygon","bsc","optimism","gnosis"], "complexity": "Intermediate" },
-  "base-memecoin-screener":            { "chains": ["base"], "complexity": "Intermediate" },
-  "dex-pool-spot-price":               { "chains": ["ethereum","base","polygon","bsc","optimism","gnosis"], "complexity": "Beginner" },
-  "solana-dex-trade-history":          { "chains": ["solana"], "complexity": "Intermediate" },
-  "raydium-pool-analytics":            { "chains": ["solana"], "complexity": "Intermediate" },
-  "jupiter-swap-route-finder":         { "chains": ["solana"], "complexity": "Intermediate" },
-  "solana-yield-dashboard":            { "chains": ["solana"], "complexity": "Advanced" },
-  "nft-gallery-viewer":                { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum"], "complexity": "Beginner" },
-  "nft-metadata-fetcher":              { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum"], "complexity": "Beginner" },
-  "nft-portfolio-valuation":           { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum"], "complexity": "Intermediate" },
-  "nft-sale-history":                  { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum"], "complexity": "Intermediate" },
-  "nft-traits-explorer":               { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum"], "complexity": "Beginner" },
-  "nft-transfer-tracker":              { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum"], "complexity": "Intermediate" },
-  "nft-gate":                          { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum"], "complexity": "Beginner" },
-  "nft-gated-app":                     { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum"], "complexity": "Intermediate" },
-  "multichain-nft-gallery":            { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Intermediate" },
-  "nft-transfer-monitor":              { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum"], "complexity": "Intermediate" },
-  "nft-collection-analytics":          { "chains": ["ethereum","base","polygon","bsc","optimism","gnosis"], "complexity": "Intermediate" },
-  "ronin-nft-inventory":               { "chains": ["ronin"], "complexity": "Intermediate" },
-  "solana-nft-collection-stats":       { "chains": ["solana"], "complexity": "Intermediate" },
-  "metaplex-nft-portfolio":            { "chains": ["solana"], "complexity": "Intermediate" },
-  "compressed-nft-scanner":            { "chains": ["solana"], "complexity": "Intermediate" },
-  "block-explorer-toolkit":            { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Advanced" },
-  "contract-event-log-monitor":        { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Intermediate" },
-  "cross-contract-event-scanner":      { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Advanced" },
-  "event-log-decoder":                 { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Intermediate" },
-  "gas-analytics":                     { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Intermediate" },
-  "institutional-wallet-tracker":      { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Intermediate" },
-  "onchain-data-query":                { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Intermediate" },
-  "smart-money-copier":                { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum"], "complexity": "Advanced" },
-  "token-ohlcv-chart":                 { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Intermediate" },
-  "token-price-history":               { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Intermediate" },
-  "wallet-activity-heatmap":           { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Advanced" },
-  "whale-wallet-watchlist":            { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Intermediate" },
-  "contract-event-dashboard":          { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Intermediate" },
-  "solana-program-activity-monitor":   { "chains": ["solana"], "complexity": "Advanced" },
-  "solana-smart-money-tracker":        { "chains": ["solana"], "complexity": "Advanced" },
-  "address-activity-scanner":          { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche","solana","bitcoin","ronin"], "complexity": "Intermediate" },
-  "cross-chain-activity-report":       { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche","solana","bitcoin","ronin"], "complexity": "Intermediate" },
-  "cross-chain-address-lookup":        { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche","solana","bitcoin","ronin"], "complexity": "Intermediate" },
-  "cross-chain-transaction-history":   { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche","solana","bitcoin","ronin"], "complexity": "Intermediate" },
-  "multichain-activity-discovery":     { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche","solana","bitcoin","ronin"], "complexity": "Intermediate" },
-  "multichain-portfolio":              { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche","solana","bitcoin","ronin"], "complexity": "Intermediate" },
-  "multichain-token-aggregator":       { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche","solana","bitcoin","ronin"], "complexity": "Intermediate" },
-  "all-chains-status":                 { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche","solana","bitcoin","ronin"], "complexity": "Beginner" },
-  "api-reference":                     { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche","solana","bitcoin","ronin"], "complexity": "Beginner" },
-  "goldrush-playground":               { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Beginner" },
-  "goldrush-react-hooks":              { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Beginner" },
-  "goldrush-typescript-sdk":           { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Beginner" },
-  "quickstart-templates":              { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Beginner" },
-  "goldrush-kit-approvals":            { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Beginner" },
-  "goldrush-kit-token-balances":       { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Beginner" },
-  "goldrush-kit-tx-feed":              { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Intermediate" },
-  "goldrush-mcp-server":               { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche","solana","bitcoin","ronin"], "complexity": "Beginner" },
-  "webhook-builder":                   { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Advanced" },
-  "block-date-lookup":                 { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Beginner" },
-  "block-explorer-lite":               { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Intermediate" },
-  "gas-price-widget":                  { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Beginner" },
-  "solana-goldrush-quickstart":        { "chains": ["solana"], "complexity": "Beginner" },
-  "anchor-program-data-reader":        { "chains": ["solana"], "complexity": "Beginner" },
-  "spot-price-ticker":                 { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Beginner" },
-  "token-approval-scanner":            { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Beginner" },
-  "token-holder-list":                 { "chains": ["ethereum","base","polygon","bsc","optimism","gnosis"], "complexity": "Beginner" },
-  "token-holders-leaderboard":         { "chains": ["ethereum","base","polygon","bsc","optimism","gnosis"], "complexity": "Beginner" },
-  "token-holders-snapshot":            { "chains": ["ethereum","base","polygon","bsc","optimism","gnosis"], "complexity": "Intermediate" },
-  "token-metadata-api":                { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Beginner" },
-  "token-price-chart":                 { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Intermediate" },
-  "token-search":                      { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Beginner" },
-  "token-supply-metadata":             { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Beginner" },
-  "token-transfer-stream":             { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Advanced" },
-  "token-unlock-tracker":              { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Intermediate" },
-  "token-whale-alert":                 { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Intermediate" },
-  "erc20-transfer-history":            { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Intermediate" },
-  "pumpfun-token-scanner":             { "chains": ["solana"], "complexity": "Intermediate" },
-  "solana-token-holders-snapshot":     { "chains": ["solana"], "complexity": "Intermediate" },
-  "solana-token-price-history":        { "chains": ["solana"], "complexity": "Intermediate" },
-  "solana-token-whale-alert":          { "chains": ["solana"], "complexity": "Intermediate" },
-  "spl-token-metadata":                { "chains": ["solana"], "complexity": "Beginner" },
-  "ens-resolver":                      { "chains": ["ethereum"], "complexity": "Beginner" },
-  "governance-token-snapshot":         { "chains": ["ethereum","base","polygon","bsc","optimism","gnosis"], "complexity": "Intermediate" },
-  "nft-gate":                          { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum"], "complexity": "Beginner" },
-  "onchain-activity-verifier":         { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Beginner" },
-  "onchain-credit-widget":             { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Intermediate" },
-  "onchain-resume":                    { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Intermediate" },
-  "proof-of-onchain-activity":         { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Intermediate" },
-  "airdrop-eligibility-checker":       { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Intermediate" },
-  "approval-auditor":                  { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Beginner" },
-  "contract-interaction-history":      { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Advanced" },
-  "smart-contract-interaction-risk":   { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Advanced" },
-  "stale-approval-cleaner":            { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Beginner" },
-  "token-approval-risk-scanner":       { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Intermediate" },
-  "token-risk-analyzer":               { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Intermediate" },
-  "transaction-decoded-receipt":       { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Beginner" },
-  "solana-program-verifier":           { "chains": ["solana"], "complexity": "Intermediate" },
-  "solana-token-risk-scorer":          { "chains": ["solana"], "complexity": "Intermediate" },
-  "agent-counterparty-verification":   { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Advanced" },
-  "agent-data-budget-manager":         { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Advanced" },
-  "agent-fleet-monitor":               { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Advanced" },
-  "agent-wallet-skill":                { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Advanced" },
-  "claude-goldrush-skill":             { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche","solana","bitcoin","ronin"], "complexity": "Beginner" },
-  "goldrush-mcp-server":               { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche","solana","bitcoin","ronin"], "complexity": "Beginner" },
-  "realtime-wallet-stream":            { "chains": ["ethereum","base","polygon","bsc","optimism","arbitrum","avalanche"], "complexity": "Advanced" },
-  "solana-agent-defi-navigator":       { "chains": ["solana"], "complexity": "Advanced" },
-  "solana-agent-portfolio-snapshot":   { "chains": ["solana"], "complexity": "Advanced" },
-  "solana-agent-risk-gate":            { "chains": ["solana"], "complexity": "Advanced" },
-  "solana-agent-token-launch-detector":{ "chains": ["solana"], "complexity": "Advanced" },
-  "solana-agent-transaction-validator":{ "chains": ["solana"], "complexity": "Advanced" },
-  "solana-agent-wallet-watcher":       { "chains": ["solana"], "complexity": "Advanced" }
+  "wallet-balances-skill": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum",
+      "avalanche"
+    ],
+    "complexity": "Beginner"
+  },
+  "wallet-age-summary": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum",
+      "avalanche"
+    ],
+    "complexity": "Beginner"
+  },
+  "wallet-activity-feed": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum",
+      "avalanche"
+    ],
+    "complexity": "Intermediate"
+  },
+  "wallet-erc20-transfers": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum",
+      "avalanche"
+    ],
+    "complexity": "Intermediate"
+  },
+  "wallet-pnl-tracker": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum",
+      "avalanche"
+    ],
+    "complexity": "Advanced"
+  },
+  "wallet-activity-heatmap": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum",
+      "avalanche"
+    ],
+    "complexity": "Advanced"
+  },
+  "wallet-comparison-tool": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum",
+      "avalanche"
+    ],
+    "complexity": "Beginner"
+  },
+  "native-token-balance": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum",
+      "avalanche"
+    ],
+    "complexity": "Beginner"
+  },
+  "net-worth-calculator": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum",
+      "avalanche"
+    ],
+    "complexity": "Beginner"
+  },
+  "portfolio-history": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum",
+      "avalanche"
+    ],
+    "complexity": "Intermediate"
+  },
+  "historical-token-holdings": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "gnosis"
+    ],
+    "complexity": "Intermediate"
+  },
+  "historical-portfolio-value": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "gnosis"
+    ],
+    "complexity": "Advanced"
+  },
+  "transaction-history": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum",
+      "avalanche"
+    ],
+    "complexity": "Intermediate"
+  },
+  "crypto-tax-exporter": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum",
+      "avalanche"
+    ],
+    "complexity": "Intermediate"
+  },
+  "multi-wallet-aggregator": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum",
+      "avalanche"
+    ],
+    "complexity": "Intermediate"
+  },
+  "solana-wallet-balances": {
+    "chains": [
+      "solana"
+    ],
+    "complexity": "Beginner"
+  },
+  "solana-transaction-history": {
+    "chains": [
+      "solana"
+    ],
+    "complexity": "Intermediate"
+  },
+  "solana-wallet-age-activity": {
+    "chains": [
+      "solana"
+    ],
+    "complexity": "Intermediate"
+  },
+  "solana-staking-snapshot": {
+    "chains": [
+      "solana"
+    ],
+    "complexity": "Intermediate"
+  },
+  "dex-trade-history": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum",
+      "avalanche"
+    ],
+    "complexity": "Intermediate"
+  },
+  "live-dex-pair-stream": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum",
+      "avalanche"
+    ],
+    "complexity": "Advanced"
+  },
+  "token-launch-screener": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum",
+      "avalanche"
+    ],
+    "complexity": "Intermediate"
+  },
+  "defi-wallet-dashboard": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "gnosis"
+    ],
+    "complexity": "Intermediate"
+  },
+  "base-memecoin-screener": {
+    "chains": [
+      "base"
+    ],
+    "complexity": "Intermediate"
+  },
+  "dex-pool-spot-price": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "gnosis"
+    ],
+    "complexity": "Beginner"
+  },
+  "solana-dex-trade-history": {
+    "chains": [
+      "solana"
+    ],
+    "complexity": "Intermediate"
+  },
+  "raydium-pool-analytics": {
+    "chains": [
+      "solana"
+    ],
+    "complexity": "Intermediate"
+  },
+  "jupiter-swap-route-finder": {
+    "chains": [
+      "solana"
+    ],
+    "complexity": "Intermediate"
+  },
+  "solana-yield-dashboard": {
+    "chains": [
+      "solana"
+    ],
+    "complexity": "Advanced"
+  },
+  "nft-gallery-viewer": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum"
+    ],
+    "complexity": "Beginner"
+  },
+  "nft-metadata-fetcher": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum"
+    ],
+    "complexity": "Beginner"
+  },
+  "nft-portfolio-valuation": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum"
+    ],
+    "complexity": "Intermediate"
+  },
+  "nft-sale-history": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum"
+    ],
+    "complexity": "Intermediate"
+  },
+  "nft-traits-explorer": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum"
+    ],
+    "complexity": "Beginner"
+  },
+  "nft-gate": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum"
+    ],
+    "complexity": "Beginner"
+  },
+  "nft-gated-app": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum"
+    ],
+    "complexity": "Intermediate"
+  },
+  "multichain-nft-gallery": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum",
+      "avalanche"
+    ],
+    "complexity": "Intermediate"
+  },
+  "nft-transfer-monitor": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum"
+    ],
+    "complexity": "Intermediate"
+  },
+  "nft-collection-analytics": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "gnosis"
+    ],
+    "complexity": "Intermediate"
+  },
+  "solana-nft-collection-stats": {
+    "chains": [
+      "solana"
+    ],
+    "complexity": "Intermediate"
+  },
+  "metaplex-nft-portfolio": {
+    "chains": [
+      "solana"
+    ],
+    "complexity": "Intermediate"
+  },
+  "compressed-nft-scanner": {
+    "chains": [
+      "solana"
+    ],
+    "complexity": "Intermediate"
+  },
+  "block-explorer-toolkit": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum",
+      "avalanche"
+    ],
+    "complexity": "Advanced"
+  },
+  "contract-event-log-monitor": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum",
+      "avalanche"
+    ],
+    "complexity": "Intermediate"
+  },
+  "cross-contract-event-scanner": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum",
+      "avalanche"
+    ],
+    "complexity": "Advanced"
+  },
+  "event-log-decoder": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum",
+      "avalanche"
+    ],
+    "complexity": "Intermediate"
+  },
+  "gas-analytics": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum",
+      "avalanche"
+    ],
+    "complexity": "Intermediate"
+  },
+  "smart-money-copier": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum"
+    ],
+    "complexity": "Advanced"
+  },
+  "token-ohlcv-chart": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum",
+      "avalanche"
+    ],
+    "complexity": "Intermediate"
+  },
+  "token-price-history": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum",
+      "avalanche"
+    ],
+    "complexity": "Intermediate"
+  },
+  "whale-wallet-watchlist": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum",
+      "avalanche"
+    ],
+    "complexity": "Intermediate"
+  },
+  "contract-event-dashboard": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum",
+      "avalanche"
+    ],
+    "complexity": "Intermediate"
+  },
+  "solana-program-activity-monitor": {
+    "chains": [
+      "solana"
+    ],
+    "complexity": "Advanced"
+  },
+  "solana-smart-money-tracker": {
+    "chains": [
+      "solana"
+    ],
+    "complexity": "Advanced"
+  },
+  "cross-chain-activity-report": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum",
+      "avalanche",
+      "solana",
+      "bitcoin",
+      "ronin"
+    ],
+    "complexity": "Intermediate"
+  },
+  "cross-chain-transaction-history": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum",
+      "avalanche",
+      "solana",
+      "bitcoin",
+      "ronin"
+    ],
+    "complexity": "Intermediate"
+  },
+  "multichain-activity-discovery": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum",
+      "avalanche",
+      "solana",
+      "bitcoin",
+      "ronin"
+    ],
+    "complexity": "Intermediate"
+  },
+  "all-chains-status": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum",
+      "avalanche",
+      "solana",
+      "bitcoin",
+      "ronin"
+    ],
+    "complexity": "Beginner"
+  },
+  "goldrush-react-hooks": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum",
+      "avalanche"
+    ],
+    "complexity": "Beginner"
+  },
+  "goldrush-typescript-sdk": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum",
+      "avalanche"
+    ],
+    "complexity": "Beginner"
+  },
+  "quickstart-templates": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum",
+      "avalanche"
+    ],
+    "complexity": "Beginner"
+  },
+  "goldrush-kit-approvals": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum",
+      "avalanche"
+    ],
+    "complexity": "Beginner"
+  },
+  "goldrush-kit-token-balances": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum",
+      "avalanche"
+    ],
+    "complexity": "Beginner"
+  },
+  "goldrush-kit-tx-feed": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum",
+      "avalanche"
+    ],
+    "complexity": "Intermediate"
+  },
+  "goldrush-mcp-server": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum",
+      "avalanche",
+      "solana",
+      "bitcoin",
+      "ronin"
+    ],
+    "complexity": "Beginner"
+  },
+  "webhook-builder": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum",
+      "avalanche"
+    ],
+    "complexity": "Advanced"
+  },
+  "block-date-lookup": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum",
+      "avalanche"
+    ],
+    "complexity": "Beginner"
+  },
+  "block-explorer-lite": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum",
+      "avalanche"
+    ],
+    "complexity": "Intermediate"
+  },
+  "gas-price-widget": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum",
+      "avalanche"
+    ],
+    "complexity": "Beginner"
+  },
+  "solana-goldrush-quickstart": {
+    "chains": [
+      "solana"
+    ],
+    "complexity": "Beginner"
+  },
+  "spot-price-ticker": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum",
+      "avalanche"
+    ],
+    "complexity": "Beginner"
+  },
+  "token-holders-snapshot": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "gnosis"
+    ],
+    "complexity": "Intermediate"
+  },
+  "token-price-chart": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum",
+      "avalanche"
+    ],
+    "complexity": "Intermediate"
+  },
+  "token-search": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum",
+      "avalanche"
+    ],
+    "complexity": "Beginner"
+  },
+  "token-supply-metadata": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum",
+      "avalanche"
+    ],
+    "complexity": "Beginner"
+  },
+  "token-transfer-stream": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum",
+      "avalanche"
+    ],
+    "complexity": "Advanced"
+  },
+  "token-unlock-tracker": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum",
+      "avalanche"
+    ],
+    "complexity": "Intermediate"
+  },
+  "token-whale-alert": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum",
+      "avalanche"
+    ],
+    "complexity": "Intermediate"
+  },
+  "pumpfun-token-scanner": {
+    "chains": [
+      "solana"
+    ],
+    "complexity": "Intermediate"
+  },
+  "solana-token-holders-snapshot": {
+    "chains": [
+      "solana"
+    ],
+    "complexity": "Intermediate"
+  },
+  "solana-token-price-history": {
+    "chains": [
+      "solana"
+    ],
+    "complexity": "Intermediate"
+  },
+  "solana-token-whale-alert": {
+    "chains": [
+      "solana"
+    ],
+    "complexity": "Intermediate"
+  },
+  "spl-token-metadata": {
+    "chains": [
+      "solana"
+    ],
+    "complexity": "Beginner"
+  },
+  "ens-resolver": {
+    "chains": [
+      "ethereum"
+    ],
+    "complexity": "Beginner"
+  },
+  "governance-token-snapshot": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "gnosis"
+    ],
+    "complexity": "Intermediate"
+  },
+  "onchain-activity-verifier": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum",
+      "avalanche"
+    ],
+    "complexity": "Beginner"
+  },
+  "onchain-credit-widget": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum",
+      "avalanche"
+    ],
+    "complexity": "Intermediate"
+  },
+  "onchain-resume": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum",
+      "avalanche"
+    ],
+    "complexity": "Intermediate"
+  },
+  "airdrop-eligibility-checker": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum",
+      "avalanche"
+    ],
+    "complexity": "Intermediate"
+  },
+  "contract-interaction-history": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum",
+      "avalanche"
+    ],
+    "complexity": "Advanced"
+  },
+  "smart-contract-interaction-risk": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum",
+      "avalanche"
+    ],
+    "complexity": "Advanced"
+  },
+  "token-approval-risk-scanner": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum",
+      "avalanche"
+    ],
+    "complexity": "Intermediate"
+  },
+  "token-risk-analyzer": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum",
+      "avalanche"
+    ],
+    "complexity": "Intermediate"
+  },
+  "transaction-decoded-receipt": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum",
+      "avalanche"
+    ],
+    "complexity": "Beginner"
+  },
+  "solana-program-verifier": {
+    "chains": [
+      "solana"
+    ],
+    "complexity": "Intermediate"
+  },
+  "solana-token-risk-scorer": {
+    "chains": [
+      "solana"
+    ],
+    "complexity": "Intermediate"
+  },
+  "agent-counterparty-verification": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum",
+      "avalanche"
+    ],
+    "complexity": "Advanced"
+  },
+  "agent-wallet-skill": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum",
+      "avalanche"
+    ],
+    "complexity": "Advanced"
+  },
+  "claude-goldrush-skill": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum",
+      "avalanche",
+      "solana",
+      "bitcoin",
+      "ronin"
+    ],
+    "complexity": "Beginner"
+  },
+  "realtime-wallet-stream": {
+    "chains": [
+      "ethereum",
+      "base",
+      "polygon",
+      "bsc",
+      "optimism",
+      "arbitrum",
+      "avalanche"
+    ],
+    "complexity": "Advanced"
+  },
+  "solana-agent-defi-navigator": {
+    "chains": [
+      "solana"
+    ],
+    "complexity": "Advanced"
+  },
+  "solana-agent-portfolio-snapshot": {
+    "chains": [
+      "solana"
+    ],
+    "complexity": "Advanced"
+  },
+  "solana-agent-risk-gate": {
+    "chains": [
+      "solana"
+    ],
+    "complexity": "Advanced"
+  },
+  "solana-agent-token-launch-detector": {
+    "chains": [
+      "solana"
+    ],
+    "complexity": "Advanced"
+  },
+  "solana-agent-transaction-validator": {
+    "chains": [
+      "solana"
+    ],
+    "complexity": "Advanced"
+  },
+  "solana-agent-wallet-watcher": {
+    "chains": [
+      "solana"
+    ],
+    "complexity": "Advanced"
+  }
 }

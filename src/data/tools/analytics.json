@@ -48,22 +48,6 @@
     "slug": "gas-analytics"
   },
   {
-    "title": "Institutional Wallet Tracker",
-    "body": "Monitor large-wallet movements and institutional-grade position changes across chains.",
-    "tag": "API Key Required",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-16",
-    "slug": "institutional-wallet-tracker"
-  },
-  {
-    "title": "Onchain Data Query",
-    "body": "Query indexed blockchain data across 100+ chains with a single unified API.",
-    "tag": "Free Tier",
-    "url": "https://goldrush.dev",
-    "date-added": "2026-03-12",
-    "slug": "onchain-data-query"
-  },
-  {
     "title": "Smart Money Copier",
     "body": "Track known alpha wallets and surface their new token buys the moment they execute — build a copy trading radar using wallet activity streaming.",
     "tag": "API Key Required",
