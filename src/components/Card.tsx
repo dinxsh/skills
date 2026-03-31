@@ -12,6 +12,7 @@ interface CardProps {
     category?: string | undefined;
     isSelected?: boolean;
     onCartToggle?: (slug: string) => void;
+    completeness?: number;
 }
 
 export default function Card({
@@ -24,6 +25,7 @@ export default function Card({
     category,
     isSelected = false,
     onCartToggle,
+    completeness = 0,
 }: CardProps) {
     const linkUrl = slug ? `/tools/${slug}` : href;
     const isNew = isRecentlyAdded(dateAdded, 30);
@@ -44,6 +46,13 @@ export default function Card({
                 <p className="card-body">{body}</p>
                 <div className="card-footer">
                     {tag && <span className="tag">{tag}</span>}
+                    {completeness > 0 && (
+                        <span className="card-completeness" title={`Prompt quality: ${completeness}/4`} aria-label={`Prompt quality ${completeness} out of 4`}>
+                            {Array.from({ length: 4 }, (_, i) => (
+                                <span key={i} className={`completeness-dot${i < completeness ? ' completeness-dot--filled' : ''}`} />
+                            ))}
+                        </span>
+                    )}
                 </div>
             </a>
             {slug && (

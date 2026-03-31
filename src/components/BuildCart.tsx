@@ -263,6 +263,20 @@ export default function BuildCart({ selectedSlugs, onClear, onRemove }: BuildCar
         setCopied(false);
     }, []);
 
+    const handleDownload = useCallback(() => {
+        if (!prompt) return;
+        const appTitle = selectedSlugs.length === 1
+            ? ((catalog as Record<string, CatalogEntry>)[selectedSlugs[0]]?.title ?? 'skill')
+            : `${selectedSlugs.slice(0, 3).map(s => (catalog as Record<string, CatalogEntry>)[s]?.title?.split(' ')[0] ?? s).join('-')}-dashboard`;
+        const filename = appTitle.toLowerCase().replace(/[^a-z0-9]+/g, '-') + '-prompt.md';
+        const blob = new Blob([prompt], { type: 'text/markdown' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url; a.download = filename; a.click();
+        URL.revokeObjectURL(url);
+        track('build_prompt_download', { skill_count: selectedSlugs.length, skill_slugs: selectedSlugs.join(',') });
+    }, [prompt, selectedSlugs]);
+
     if (selectedSlugs.length === 0) return null;
 
     const skillEntries = selectedSlugs.map(s => ({
@@ -308,6 +322,10 @@ export default function BuildCart({ selectedSlugs, onClear, onRemove }: BuildCar
                                 <span className="build-modal-badge">{selectedSlugs.length} skills</span>
                             </div>
                             <div className="build-modal-header-actions">
+                                <button className="build-modal-download" onClick={handleDownload} title="Download as .md">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" fill="currentColor" viewBox="0 0 256 256"><path d="M224,144v64a8,8,0,0,1-8,8H40a8,8,0,0,1-8-8V144a8,8,0,0,1,16,0v56H208V144a8,8,0,0,1,16,0Zm-101.66,5.66a8,8,0,0,0,11.32,0l40-40a8,8,0,0,0-11.32-11.32L136,124.69V32a8,8,0,0,0-16,0v92.69L93.66,98.34a8,8,0,0,0-11.32,11.32Z"/></svg>
+                                    .md
+                                </button>
                                 <button className="build-modal-copy" onClick={handleCopy}>
                                     {copied ? (
                                         <>
@@ -332,15 +350,15 @@ export default function BuildCart({ selectedSlugs, onClear, onRemove }: BuildCar
                         <textarea className="build-modal-textarea" readOnly value={prompt} />
                         {copied && (
                             <div className="build-modal-next">
-                                <span className="build-modal-next-label">Next steps</span>
-                                <a href="https://claude.ai" target="_blank" rel="noopener noreferrer" className="build-modal-next-step">
-                                    1 · Open Claude.ai and paste →
+                                <a href="https://claude.ai/new" target="_blank" rel="noopener noreferrer" className="build-modal-open-claude">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                                    Open Claude.ai →
                                 </a>
                                 <a href="https://goldrush.dev/platform/auth/register" target="_blank" rel="noopener noreferrer" className="build-modal-next-step">
-                                    2 · Get your free GoldRush API key →
+                                    Get API key →
                                 </a>
                                 <a href="https://vercel.com/new" target="_blank" rel="noopener noreferrer" className="build-modal-next-step">
-                                    3 · Deploy to Vercel →
+                                    Deploy on Vercel →
                                 </a>
                             </div>
                         )}

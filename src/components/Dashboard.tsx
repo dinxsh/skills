@@ -22,17 +22,53 @@ const totalSkillCount = (data.tools as Category[]).reduce(
     0
 );
 
+function readUrlFilters(defaultCategory: string): FilterState {
+    if (typeof window === 'undefined') return { category: defaultCategory, chain: 'all', type: 'all', difficulty: 'all' };
+    const p = new URLSearchParams(window.location.search);
+    return {
+        category: p.get('category') || defaultCategory,
+        chain: p.get('chain') || 'all',
+        type: p.get('type') || 'all',
+        difficulty: p.get('difficulty') || 'all',
+    };
+}
+
+function writeUrlFilters(filters: FilterState) {
+    if (typeof window === 'undefined') return;
+    const p = new URLSearchParams();
+    if (filters.category !== 'all') p.set('category', filters.category);
+    if (filters.chain !== 'all') p.set('chain', filters.chain);
+    if (filters.type !== 'all') p.set('type', filters.type);
+    if (filters.difficulty !== 'all') p.set('difficulty', filters.difficulty);
+    const qs = p.toString();
+    window.history.replaceState(null, '', qs ? `?${qs}` : window.location.pathname);
+}
+
 export default function Dashboard({ category }: DashboardProps) {
     const [searchQuery, setSearchQuery] = useState('');
     const [filterNew, setFilterNew] = useState(false);
     const [filteredCount, setFilteredCount] = useState(totalSkillCount);
-    const [filters, setFilters] = useState<FilterState>({
-        category: category === 'all' ? 'all' : category,
-        chain: 'all',
-        type: 'all',
-        difficulty: 'all',
+    const [filters, setFilters] = useState<FilterState>(() =>
+        readUrlFilters(category === 'all' ? 'all' : category)
+    );
+    const [selectedSlugs, setSelectedSlugs] = useState<string[]>(() => {
+        if (typeof window === 'undefined') return [];
+        try {
+            const raw = sessionStorage.getItem('build_cart');
+            if (raw) { const slugs = JSON.parse(raw); if (Array.isArray(slugs)) return slugs; }
+        } catch {}
+        return [];
     });
-    const [selectedSlugs, setSelectedSlugs] = useState<string[]>([]);
+
+    // Persist cart to sessionStorage
+    useEffect(() => {
+        try { sessionStorage.setItem('build_cart', JSON.stringify(selectedSlugs)); } catch {}
+    }, [selectedSlugs]);
+
+    // Sync filters to URL
+    useEffect(() => {
+        writeUrlFilters(filters);
+    }, [filters]);
 
     useEffect(() => {
         const handleSearch = (e: Event) => {

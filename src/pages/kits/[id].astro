@@ -107,6 +107,13 @@ const skillCategories = Object.fromEntries(
       <div class="kit-chains">
         {allChains.map(c => <span class="kit-chain">{c}</span>)}
       </div>
+      <div class="kit-cta-row">
+        <button class="kit-build-btn" id="kitBuildBtn" data-skills={JSON.stringify(kit.skills)}>
+          <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          Start building with this kit
+        </button>
+        <span class="kit-build-hint">{kit.skills.length} skills added to your build cart</span>
+      </div>
     </div>
 
     <!-- Skills included -->
@@ -155,6 +162,19 @@ const skillCategories = Object.fromEntries(
   </main>
 
   <script type="module">
+    // "Start building" → pre-load cart then go home
+    const buildBtn = document.getElementById("kitBuildBtn");
+    if (buildBtn) {
+      buildBtn.addEventListener("click", () => {
+        try {
+          const skills = JSON.parse(buildBtn.dataset.skills || "[]");
+          sessionStorage.setItem("build_cart", JSON.stringify(skills));
+          window.gtag?.("event", "kit_start_building", { kit_id: window.location.pathname.split("/").pop(), skill_count: skills.length });
+        } catch {}
+        window.location.href = "/";
+      });
+    }
+
     const btn = document.getElementById("kitCopyBtn");
     const label = document.getElementById("kitCopyLabel");
     const textarea = document.getElementById("kitPromptText");
@@ -184,7 +204,11 @@ const skillCategories = Object.fromEntries(
     .kit-chain-count { font-family: var(--monospace); font-size: 0.65rem; color: var(--content-secondary-alt); }
     .kit-title { margin: 0 0 var(--spacing-03); font-size: 1.5rem; color: var(--content-primary); }
     .kit-description { margin: 0 0 var(--spacing-04); color: var(--content-secondary); font-size: var(--desktop-body-sm); line-height: 1.6; }
-    .kit-chains { display: flex; flex-wrap: wrap; gap: var(--spacing-02); }
+    .kit-chains { display: flex; flex-wrap: wrap; gap: var(--spacing-02); margin-bottom: var(--spacing-04); }
+    .kit-cta-row { display: flex; align-items: center; gap: var(--spacing-04); flex-wrap: wrap; }
+    .kit-build-btn { display: inline-flex; align-items: center; gap: var(--spacing-02); background: DarkOrange; border: none; color: #000; font-family: var(--monospace); font-size: 0.75rem; font-weight: 600; padding: 0 var(--spacing-05); height: 2rem; cursor: pointer; transition: opacity 0.15s; letter-spacing: 0.02em; }
+    .kit-build-btn:hover { opacity: 0.88; }
+    .kit-build-hint { font-family: var(--monospace); font-size: 0.65rem; color: var(--content-secondary-alt); }
     .kit-chain { font-family: var(--monospace); font-size: 0.65rem; padding: 1px 7px; background: var(--background); border: 0.5px solid var(--border-muted); color: var(--content-secondary-alt); }
     .kit-section { margin-bottom: var(--spacing-08); }
     .kit-section-title { font-size: 0.75rem; font-family: var(--monospace); color: var(--content-secondary-alt); letter-spacing: 0.06em; text-transform: uppercase; margin: 0 0 var(--spacing-04); font-weight: normal; }

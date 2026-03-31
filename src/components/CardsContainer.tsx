@@ -5,6 +5,7 @@ import EmptyState, { SearchIcon } from './EmptyState';
 import './CardsContainer.css';
 import data from '../data/tools.json';
 import skillsMeta from '../data/skills-meta.json';
+import catalog from '../data/skills-catalog.json';
 import type { Tool, Category } from '../types';
 import { toolComparators, seededShuffle, type SortKey } from '../utils/sorting';
 import { isRecentlyAdded } from '../utils/dates';
@@ -13,20 +14,41 @@ const ITEMS_PER_PAGE = 32;
 
 interface ToolWithCategory extends Tool {
     category: string;
+    useCase?: string;
 }
 
 const fuseOptions = {
     keys: [
         { name: 'title', weight: 0.4 },
-        { name: 'body', weight: 0.3 },
-        { name: 'category', weight: 0.2 },
-        { name: 'tag', weight: 0.1 }
+        { name: 'body', weight: 0.25 },
+        { name: 'useCase', weight: 0.2 },
+        { name: 'category', weight: 0.1 },
+        { name: 'tag', weight: 0.05 }
     ],
     threshold: 0.3,
     includeScore: true,
     minMatchCharLength: 2,
     ignoreLocation: true
 };
+
+type CatalogEntry = { useCase?: string; snippet?: string; endpoints?: string[]; keyParams?: Record<string, string>; responseFields?: string[] };
+
+const useCaseMap = Object.fromEntries(
+    Object.entries(catalog as Record<string, CatalogEntry>)
+        .map(([slug, entry]) => [slug, entry.useCase ?? ''])
+);
+
+const completenessMap = Object.fromEntries(
+    Object.entries(catalog as Record<string, CatalogEntry>).map(([slug, e]) => {
+        const score = [
+            !!e.snippet,
+            (e.endpoints?.length ?? 0) > 0,
+            Object.keys(e.keyParams ?? {}).length > 0,
+            (e.responseFields?.length ?? 0) > 0,
+        ].filter(Boolean).length;
+        return [slug, score];
+    })
+);
 
 interface CardsContainerProps {
     filter: string;
@@ -84,6 +106,7 @@ export default function CardsContainer({
             item.content.map((tool) => ({
                 ...tool,
                 category: item.category,
+                useCase: useCaseMap[tool.slug ?? ''] ?? '',
             }))
         );
     }, []);
@@ -262,6 +285,7 @@ export default function CardsContainer({
                         category={category}
                         isSelected={slug ? selectedSlugs.includes(slug) : false}
                         onCartToggle={onCartToggle}
+                        completeness={slug ? (completenessMap[slug] ?? 0) : 0}
                     />
                 ))}
             </ul>

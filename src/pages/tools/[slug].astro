@@ -1,5 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import { Code } from "astro:components";
 import slugMap from "../../data/slug-map.json";
 import SoftwareApplicationSchema from "../../components/schema/SoftwareApplicationSchema.astro";
 import BreadcrumbSchema from "../../components/schema/BreadcrumbSchema.astro";
@@ -296,9 +297,9 @@ const breadcrumbs = [
             <textarea id="claudePromptText" readonly class="prompt-textarea">{claudePrompt}</textarea>
             <div class="post-copy-steps" id="postCopySteps" style="display:none">
               <span class="post-copy-label">Next</span>
-              <a href="https://claude.ai" target="_blank" rel="noopener noreferrer" class="post-copy-step">1 · Open Claude.ai →</a>
-              <a href="https://goldrush.dev/platform/auth/register" target="_blank" rel="noopener noreferrer" class="post-copy-step">2 · Get free API key →</a>
-              <a href="https://vercel.com/new" target="_blank" rel="noopener noreferrer" class="post-copy-step">3 · Deploy on Vercel →</a>
+              <a id="openClaudeBtn" href="https://claude.ai/new" target="_blank" rel="noopener noreferrer" class="post-copy-btn">Open in Claude →</a>
+              <a href="https://goldrush.dev/platform/auth/register" target="_blank" rel="noopener noreferrer" class="post-copy-step">Get free API key →</a>
+              <a href="https://vercel.com/new" target="_blank" rel="noopener noreferrer" class="post-copy-step">Deploy on Vercel →</a>
             </div>
           </div>
 
@@ -311,7 +312,9 @@ const breadcrumbs = [
                   <span class="copy-label">Copy</span>
                 </button>
               </div>
-              <pre class="code-pre"><code id="snippetCode">{snippet}</code></pre>
+              <div class="code-shiki" id="snippetCode" data-raw={snippet}>
+                <Code code={snippet} lang="typescript" theme="github-dark-dimmed" />
+              </div>
             </div>
           )}
 
@@ -371,6 +374,9 @@ const breadcrumbs = [
         <div class="modal-footer">
           <a href={category === "all" ? "/" : `/${category}`} class="btn-back">← Back</a>
           <div class="footer-right">
+            <button class="icon-btn" id="copySpecBtn" title="Copy skill spec JSON" aria-label="Copy skill spec">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 256 256"><path d="M69.12,94.15,28.5,128l40.62,33.85a8,8,0,1,1-10.24,12.29l-48-40a8,8,0,0,1,0-12.29l48-40a8,8,0,0,1,10.24,12.3Zm176,27.7-48-40a8,8,0,1,0-10.24,12.3L227.5,128l-40.62,33.85a8,8,0,1,0,10.24,12.29l48-40a8,8,0,0,0,0-12.29ZM162.73,32.48a8,8,0,0,0-10.25,4.79l-64,176a8,8,0,0,0,4.79,10.26A8.14,8.14,0,0,0,96,224a8,8,0,0,0,7.52-5.27l64-176A8,8,0,0,0,162.73,32.48Z"/></svg>
+            </button>
             <a href={xShareUrl} target="_blank" rel="noopener noreferrer" class="icon-btn" title="Share on X" aria-label="Share on X">
               <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 256 256"><path d="M214.75,211.71l-62.6-98.38,61.77-67.95a8,8,0,0,0-11.84-10.76L143.24,99.34,102.75,35.71A8,8,0,0,0,96,32H48a8,8,0,0,0-6.75,12.3l62.6,98.37-61.77,68a8,8,0,1,0,11.84,10.76l58.84-64.72,40.49,63.63A8,8,0,0,0,160,224h48a8,8,0,0,0,6.75-12.29ZM164.39,208,62.57,48h29L193.43,208Z"/></svg>
             </a>
@@ -389,6 +395,8 @@ const breadcrumbs = [
       </div>
     </div>
   </main>
+
+  <script id="skillSpecData" type="application/json" set:html={JSON.stringify(meta, null, 2)}></script>
 
   <script type="module">
     function closeModal() {
@@ -423,7 +431,7 @@ const breadcrumbs = [
 
       const snippetBtn = e.target.closest("#copySnippetBtn");
       if (snippetBtn) {
-        const code = document.getElementById("snippetCode")?.textContent || "";
+        const code = document.getElementById("snippetCode")?.dataset.raw || "";
         navigator.clipboard.writeText(code).then(() => {
           const label = snippetBtn.querySelector(".copy-label");
           if (label) { label.textContent = "Copied!"; setTimeout(() => (label.textContent = "Copy"), 2000); }
@@ -432,6 +440,17 @@ const breadcrumbs = [
               skill_slug: document.querySelector("[data-skill-slug]")?.dataset.skillSlug ?? "",
             });
           }
+        });
+      }
+
+      const copySpecBtn = e.target.closest("#copySpecBtn");
+      if (copySpecBtn) {
+        const spec = document.getElementById("skillSpecData")?.textContent || "";
+        navigator.clipboard.writeText(spec).then(() => {
+          const original = copySpecBtn.innerHTML;
+          copySpecBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>';
+          setTimeout(() => (copySpecBtn.innerHTML = original), 2000);
+          window.gtag?.("event", "skill_spec_copy", { skill_slug: document.querySelector("[data-skill-slug]")?.dataset.skillSlug ?? "" });
         });
       }
 
@@ -678,6 +697,20 @@ const breadcrumbs = [
       text-transform: uppercase;
       white-space: nowrap;
     }
+    .post-copy-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 10px;
+      background: DarkOrange;
+      color: #000;
+      font-size: 11px;
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: opacity 0.15s;
+    }
+    .post-copy-btn:hover { opacity: 0.88; }
     .post-copy-step {
       font-size: 11px;
       color: DarkOrange;
@@ -725,18 +758,15 @@ const breadcrumbs = [
       padding: 7px 12px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
-    .code-pre {
+    .code-shiki { overflow-x: auto; }
+    .code-shiki pre {
       margin: 0;
       padding: 12px;
-      overflow-x: auto;
-      white-space: pre;
-      font-family: var(--monospace);
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       line-height: 1.65;
-      color: #909090;
-      background: none;
+      background: transparent !important;
     }
-    .code-pre code { background: none; padding: 0; }
+    .code-shiki code { font-family: var(--monospace); }
 
     /* ── Endpoints ─────────────────────────────────── */
     .endpoint-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 3px; }

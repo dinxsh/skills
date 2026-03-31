@@ -94,6 +94,26 @@ span.tag-new {
     text-transform: uppercase;
 }
 
+/* Prompt completeness dots */
+.card-completeness {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    margin-left: auto;
+}
+
+.completeness-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: var(--border-muted);
+}
+
+.completeness-dot--filled {
+    background-color: DarkOrange;
+    opacity: 0.6;
+}
+
 /* Bookmark button */
 .card-bookmark {
     position: absolute;

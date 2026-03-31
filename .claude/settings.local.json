@@ -7,7 +7,22 @@
       "Bash(node scripts/add-new-tools.js)",
       "Bash(node scripts/add-new-tools.cjs)",
       "Bash(git add -A)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(git push origin main)",
+      "Bash(npm run build)",
+      "Bash(git add src/components/Hero.astro src/layouts/Layout.astro)",
+      "Bash(git add src/layouts/Layout.astro)",
+      "WebFetch(domain:goldrush.dev)",
+      "Bash(BASE=\"/c/Users/hp/Desktop/code/startups/covalenthq/skills/skills/src/data/tool-metadata\")",
+      "Bash(rm -f \"$BASE/wallet-attestations.json\" \"$BASE/cross-chain-liquidity-map.json\" \"$BASE/defi-bad-debt-monitor.json\" \"$BASE/defi-position-tracker.json\" \"$BASE/liquidity-pool-monitor.json\" \"$BASE/protocol-revenue-feed.json\" \"$BASE/rwa-real-estate-portfolio.json\" \"$BASE/rwa-tokenized-treasury-tracker.json\" \"$BASE/stablecoin-dominance-tracker.json\" \"$BASE/yield-dashboard.json\" \"$BASE/collection-floor-monitor.json\" \"$BASE/nft-collection-browser.json\" \"$BASE/nft-liquidity-scorer.json\" \"$BASE/nft-royalty-tracking.json\" \"$BASE/nft-wash-trading-detector.json\" \"$BASE/rarity-analyzer.json\" \"$BASE/berachain-intelligence.json\" \"$BASE/carbon-credit-regen-tracker.json\" \"$BASE/chain-activity-dashboard.json\" \"$BASE/chain-health-scorecard.json\" \"$BASE/cosmos-ecosystem.json\" \"$BASE/cross-border-payment-analytics.json\" \"$BASE/dao-voter-intelligence.json\" \"$BASE/developer-wallet-classifier.json\" \"$BASE/ethereum-validator-intelligence.json\" \"$BASE/fund-flow-intelligence.json\" \"$BASE/hyperliquid-intelligence.json\" \"$BASE/macro-onchain-sentiment.json\" \"$BASE/near-protocol-intelligence.json\" \"$BASE/onchain-credit-score.json\" \"$BASE/polkadot-parachain-intelligence.json\" \"$BASE/protocol-acquisition-intelligence.json\" \"$BASE/scroll-and-linea-intelligence.json\" \"$BASE/solana-program-analytics.json\" \"$BASE/starknet-intelligence.json\" \"$BASE/sui-and-aptos-intelligence.json\" \"$BASE/ton-blockchain-intelligence.json\" \"$BASE/treasury-management-intelligence.json\" \"$BASE/tron-ecosystem-monitor.json\" \"$BASE/agent-alpha-signal-extractor.json\" \"$BASE/agent-cross-chain-coordinator.json\" \"$BASE/agent-discovery-protocol.json\" \"$BASE/agent-market-surveillance.json\" \"$BASE/agent-onchain-news-aggregator.json\" \"$BASE/agent-payment-optimizer.json\" \"$BASE/agent-reputation-builder.json\" \"$BASE/agent-risk-circuit-breaker.json\" \"$BASE/agent-yield-harvester.json\" \"$BASE/autonomous-defi-agent.json\" \"$BASE/onchain-memory-store.json\" \"$BASE/onchain-research-agent.json\" \"$BASE/bridge-transaction-monitor.json\" \"$BASE/chain-comparison-tool.json\" \"$BASE/token-exchange-flow-tracker.json\" \"$BASE/token-fee-revenue-correlation.json\" \"$BASE/token-memecoin-risk-scorer.json\" \"$BASE/onchain-social-graph.json\" \"$BASE/reputation-score-aggregator.json\" \"$BASE/sybil-resistance-scorer.json\" \"$BASE/wallet-identity-graph.json\" \"$BASE/bridge-security-monitor.json\" \"$BASE/compliance-transaction-screening.json\" \"$BASE/exploit-early-warning-system.json\" \"$BASE/mev-exposure-analyzer.json\" \"$BASE/mev-monitor.json\" \"$BASE/oracle-manipulation-detector.json\" \"$BASE/phishing-address-checker.json\" \"$BASE/phishing-wallet-database.json\" \"$BASE/rugpull-pattern-detector.json\")",
+      "WebFetch(domain:x.com)",
+      "WebFetch(domain:twitter.com)",
+      "Bash(bun run:*)",
+      "Bash(grep -c \"Solana\" src/data/tools/*.json)",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); [print\\(c[''''category''''], len\\(c[''''content'''']\\)\\) for c in d[''''tools'''']]\")",
+      "Bash(bun -e \"const d=require\\(''./src/data/tools.json''\\); d.tools.forEach\\(c=>console.log\\(c.category, c.content.length\\)\\)\")",
+      "Bash(node -e \"const d=require\\(''''./src/data/slug-map.json''''\\); Object.entries\\(d\\).forEach\\(\\([s,c]\\)=>console.log\\(c[0],''''|'''',s\\)\\)\")",
+      "Bash(node -e \"const d=require\\(''./src/data/tools.json''\\); d.tools.forEach\\(c=>console.log\\(c.category, c.title\\)\\)\")"
     ]
   }
 }
