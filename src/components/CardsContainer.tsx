@@ -241,6 +241,12 @@ export default function CardsContainer({
 
     const displayedCards = filteredCards.slice(0, displayedCount);
 
+    const SEARCH_SUGGESTIONS = ['wallet balance', 'whale tracking', 'NFT collection', 'token price', 'DEX trades', 'tax report', 'cross-chain', 'AI agent'];
+
+    const dispatchSearch = (term: string) => {
+        window.dispatchEvent(new CustomEvent('tools:search', { detail: { query: term } }));
+    };
+
     const isSearchingInCategory = searchQuery && searchQuery.length >= 2 && filter !== 'all';
     const hasNoSearchResults = isSearchingInCategory && filteredCards.length === 0;
 
@@ -249,8 +255,10 @@ export default function CardsContainer({
             <section>
                 <EmptyState
                     icon={<SearchIcon />}
-                    message={`No results found for "${searchQuery}" in this category.`}
-                    actionText="Search All Tools"
+                    message={`No results for "${searchQuery}" in this category.`}
+                    suggestions={SEARCH_SUGGESTIONS.slice(0, 4)}
+                    onSuggestion={dispatchSearch}
+                    actionText="Search All Skills"
                     actionHref="/"
                 />
             </section>
@@ -258,11 +266,16 @@ export default function CardsContainer({
     }
 
     if (filteredCards.length === 0) {
+        const suggestions = searchQuery && searchQuery.length >= 2
+            ? SEARCH_SUGGESTIONS.filter(s => !s.toLowerCase().includes(searchQuery.toLowerCase())).slice(0, 4)
+            : undefined;
         return (
             <section>
                 <EmptyState
                     icon={<SearchIcon />}
-                    message="No skills match the selected filters."
+                    message={searchQuery ? `No results for "${searchQuery}".` : 'No skills match the selected filters.'}
+                    suggestions={suggestions}
+                    onSuggestion={suggestions ? dispatchSearch : undefined}
                     actionText="Clear Filters"
                     actionHref="/"
                 />
@@ -286,6 +299,7 @@ export default function CardsContainer({
                         isSelected={slug ? selectedSlugs.includes(slug) : false}
                         onCartToggle={onCartToggle}
                         completeness={slug ? (completenessMap[slug] ?? 0) : 0}
+                        complexity={slug ? ((skillsMeta as Record<string, { chains: string[]; complexity: string }>)[slug]?.complexity ?? '') : ''}
                     />
                 ))}
             </ul>

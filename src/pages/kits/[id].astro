@@ -112,7 +112,10 @@ const skillCategories = Object.fromEntries(
           <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
           Start building with this kit
         </button>
-        <span class="kit-build-hint">{kit.skills.length} skills added to your build cart</span>
+        <button class="kit-share-btn" id="kitShareBtn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" fill="currentColor" viewBox="0 0 256 256"><path d="M240,88.23a54.43,54.43,0,0,1-16,37L189.25,160a54.27,54.27,0,0,1-38.63,16h-.05A54.63,54.63,0,0,1,96,119.84a8,8,0,0,1,16,.45A38.62,38.62,0,0,0,150.58,160h0a38.39,38.39,0,0,0,27.31-11.31l34.75-34.75a38.63,38.63,0,0,0-54.63-54.63l-11,11A8,8,0,0,1,135.7,59l11-11A54.65,54.65,0,0,1,224,48,54.86,54.86,0,0,1,240,88.23ZM109,185.66l-11,11A38.41,38.41,0,0,1,70.6,208h0a38.63,38.63,0,0,1-27.29-65.94L78,107.31A38.63,38.63,0,0,1,144,135.71a8,8,0,0,0,16,.45A54.86,54.86,0,0,0,144,96a54.65,54.65,0,0,0-77.27,0L32,130.75A54.62,54.62,0,0,0,70.56,224h0a54.28,54.28,0,0,0,38.64-16l11-11A8,8,0,0,0,109,185.66Z"/></svg>
+          <span id="kitShareLabel">Share kit</span>
+        </button>
       </div>
     </div>
 
@@ -162,6 +165,18 @@ const skillCategories = Object.fromEntries(
   </main>
 
   <script type="module">
+    // Share kit → copy URL
+    const shareBtn = document.getElementById("kitShareBtn");
+    const shareLabel = document.getElementById("kitShareLabel");
+    if (shareBtn && shareLabel) {
+      shareBtn.addEventListener("click", () => {
+        navigator.clipboard.writeText(window.location.href).then(() => {
+          shareLabel.textContent = "Link copied!";
+          setTimeout(() => (shareLabel.textContent = "Share kit"), 2000);
+        });
+      });
+    }
+
     // "Start building" → pre-load cart then go home
     const buildBtn = document.getElementById("kitBuildBtn");
     if (buildBtn) {
@@ -208,7 +223,8 @@ const skillCategories = Object.fromEntries(
     .kit-cta-row { display: flex; align-items: center; gap: var(--spacing-04); flex-wrap: wrap; }
     .kit-build-btn { display: inline-flex; align-items: center; gap: var(--spacing-02); background: DarkOrange; border: none; color: #000; font-family: var(--monospace); font-size: 0.75rem; font-weight: 600; padding: 0 var(--spacing-05); height: 2rem; cursor: pointer; transition: opacity 0.15s; letter-spacing: 0.02em; }
     .kit-build-btn:hover { opacity: 0.88; }
-    .kit-build-hint { font-family: var(--monospace); font-size: 0.65rem; color: var(--content-secondary-alt); }
+    .kit-share-btn { display: inline-flex; align-items: center; gap: var(--spacing-02); background: none; border: 0.5px solid var(--border-muted); color: var(--content-secondary); font-family: var(--monospace); font-size: 0.7rem; padding: 0 var(--spacing-04); height: 2rem; cursor: pointer; transition: border-color 0.15s, color 0.15s; }
+    .kit-share-btn:hover { border-color: var(--border); color: var(--content-primary); }
     .kit-chain { font-family: var(--monospace); font-size: 0.65rem; padding: 1px 7px; background: var(--background); border: 0.5px solid var(--border-muted); color: var(--content-secondary-alt); }
     .kit-section { margin-bottom: var(--spacing-08); }
     .kit-section-title { font-size: 0.75rem; font-family: var(--monospace); color: var(--content-secondary-alt); letter-spacing: 0.06em; text-transform: uppercase; margin: 0 0 var(--spacing-04); font-weight: normal; }

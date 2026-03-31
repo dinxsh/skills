@@ -1,5 +1,5 @@
 # GoldRush Skills
-> 138 copy-paste code skills for building onchain products with the GoldRush API (by Covalent).
+> 132 copy-paste code skills for building onchain products with the GoldRush API (by Covalent).
 
 GoldRush Skills is a developer resource directory for the GoldRush multichain data API.
 Each skill is a focused, production-ready code snippet using the @covalenthq/client-sdk
@@ -29,165 +29,1217 @@ moonbeam-mainnet, zora-mainnet, solana-mainnet, btc-mainnet, aptos-mainnet,
 sui-mainnet, cosmos-mainnet, osmosis-mainnet, aurora-mainnet, tron-mainnet,
 and 200+ more.
 
-## Skill Categories
+## Skills Reference
 
-### Wallet (11 skills)
-- net-worth-calculator — total USD net worth across tokens on any chain
-- portfolio-tracker — full token balances with USD values and logos
-- portfolio-history — 30-day rolling historical portfolio value
-- historical-portfolio-value — P&L chart data (open/close/high/low per token/day)
-- wallet-erc20-transfers — full ERC-20 transfer history, filterable by token
-- native-token-balance — lightweight native token balance check (ETH, MATIC, BNB…)
-- wallet-age-summary — first tx date, total tx count, wallet age in days
-- transaction-history — paginated full transaction feed
-- wallet-activity-feed — decoded activity timeline
-- wallet-balances-skill — balances with spam filter
-- wallet-attestations — on-chain attestations and identity signals
+Each entry: slug | description | use case | endpoint (first) | cost | complexity
 
-### DeFi (10 skills)
-- defi-position-tracker — active DeFi positions across protocols
-- dex-trade-history — DEX swap history for a wallet
-- liquidity-pool-monitor — LP position monitoring
-- yield-dashboard — yield positions and claimable rewards
-- protocol-revenue-feed — protocol fee revenue via event logs
-- cross-chain-liquidity-map — liquidity distribution across chains
-- defi-bad-debt-monitor — lending protocol liquidation tracking
-- stablecoin-dominance-tracker — stablecoin supply and peg monitoring
-- rwa-real-estate-portfolio — tokenised real estate (RealT, etc.)
-- rwa-tokenized-treasury-tracker — tokenised treasuries (BUIDL, OUSG)
+### Wallet (22 skills)
 
-### NFT (12 skills)
-- nft-portfolio-valuation — wallet NFT holdings with floor prices
-- nft-metadata-fetcher — single NFT metadata, traits, image
-- nft-transfer-tracker — NFT transfer history
-- collection-floor-monitor — collection floor price tracking
-- rarity-analyzer — trait rarity scoring
-- nft-collection-browser — browse all collections on a chain with volume/floor
-- nft-traits-explorer — all trait types and value distributions for a collection
-- nft-gallery-viewer — drop-in GoldRush Kit NFT gallery component
-- nft-sale-history — full sale/transfer history for a single token
-- nft-liquidity-scorer — liquidity score based on sale frequency
-- nft-royalty-tracking — creator royalty income tracking
-- nft-wash-trading-detector — wash trading pattern detection
+**bitcoin-balance-checker**
+  Description: Fetch confirmed UTXOs, current balance, and USD value for any Bitcoin address.
+  Use case: Build a Bitcoin balance widget that shows confirmed BTC balance and live USD value for any Bitcoin address — no chainName parameter needed.
+  Endpoint: GET /v1/btc-mainnet/address/{walletAddress}/balances/
+  Cost: 1 credit/call
+  Level: Beginner
+  Chains: bitcoin
+  URL: https://skills.goldrush.dev/tools/bitcoin-balance-checker
 
-### Analytics (32 skills)
-- chain-activity-dashboard — chain-level activity metrics
-- gas-analytics — gas price and usage analytics
-- event-log-decoder — decode smart contract event logs
-- token-price-history — historical prices for any token
-- onchain-data-query — arbitrary on-chain data queries
-- contract-event-log-monitor — monitor any contract for specific events (getLogs)
-- cross-contract-event-scanner — scan entire chain for event by topic hash
-- block-explorer-toolkit — block details + all transactions in a block
-- wallet-activity-heatmap — daily transaction count heatmap
-- dao-voter-intelligence — governance participation and voting patterns
-- institutional-wallet-tracker — track known institutional/VC wallets
-- fund-flow-intelligence — multi-hop fund flow tracing
-- stablecoin-dominance-tracker — stablecoin market analytics
-- onchain-credit-score — composite credit scoring from on-chain signals
-- developer-wallet-classifier — classify wallets by type (developer/retail/whale)
-- chain-health-scorecard — real-time sync status for all supported chains
-- treasury-management-intelligence — DAO treasury portfolio analysis
-- macro-onchain-sentiment — macro on-chain activity signals
-- berachain-intelligence — Berachain-specific wallet and DeFi data
-- scroll-and-linea-intelligence — zkEVM portfolio and activity data
-- starknet-intelligence — StarkNet bridge and bridged asset tracking
-- solana-program-analytics — Solana wallet balances and SPL tokens
-- sui-and-aptos-intelligence — Move VM (Aptos, Sui) portfolio data
-- cosmos-ecosystem — Cosmos/Osmosis IBC token balances
-- near-protocol-intelligence — NEAR Aurora EVM data
-- ton-blockchain-intelligence — TON bridge activity on Ethereum
-- tron-ecosystem-monitor — TRON/TRC-20 portfolio data
-- polkadot-parachain-intelligence — Moonbeam/Moonriver/Astar portfolios
-- hyperliquid-intelligence — Hyperliquid USDC bridge tracking
-- ethereum-validator-intelligence — ETH staking deposit tracking
-- carbon-credit-regen-tracker — Toucan BCT/MCO2 carbon credit portfolios
-- cross-border-payment-analytics — stablecoin remittance flow analysis
+**bitcoin-hd-wallet-scanner**
+  Description: Enumerate all derived addresses and balances from a Bitcoin xpub/ypub/zpub HD wallet key.
+  Use case: Scan an entire Bitcoin HD wallet from a single xpub/ypub/zpub key — discover all derived addresses, their balances, and total BTC holdings without exposing private keys.
+  Endpoint: GET /v1/btc-mainnet/address/{xpub}/balances_hd/
+  Cost: 1 credit/call
+  Level: Intermediate
+  Chains: bitcoin
+  URL: https://skills.goldrush.dev/tools/bitcoin-hd-wallet-scanner
 
-### AI Agents (19 skills)
-- agent-wallet-skill — give AI agents read access to wallet state
-- autonomous-defi-agent — autonomous DeFi position management
-- claude-goldrush-skill — Claude + GoldRush SDK integration
-- goldrush-mcp-server — Model Context Protocol server for GoldRush
-- onchain-memory-store — on-chain persistent memory for agents
-- onchain-research-agent — autonomous on-chain research agent
-- realtime-wallet-stream — real-time wallet event streaming
-- agent-alpha-signal-extractor — extract alpha signals from smart-money wallets
-- agent-counterparty-verification — verify counterparty wallets before agent txns
-- agent-cross-chain-coordinator — coordinate agent actions across chains
-- agent-data-budget-manager — track and optimise API credit usage
-- agent-discovery-protocol — discover other on-chain agents
-- agent-fleet-monitor — monitor health of multiple agent wallets
-- agent-market-surveillance — real-time DEX/market surveillance for agents
-- agent-onchain-news-aggregator — on-chain event feed for LLM context
-- agent-payment-optimizer — optimal chain/route for agent payments
-- agent-reputation-builder — build verifiable on-chain agent reputation
-- agent-risk-circuit-breaker — automatic safety rails for agent wallets
-- agent-yield-harvester — autonomous yield monitoring and harvesting
+**bitcoin-transaction-explorer**
+  Description: Paginated transaction history for any Bitcoin address — inputs, outputs, fees, and confirmation status.
+  Use case: Build a Bitcoin transaction explorer that shows the full UTXO history for any address — inputs, outputs, fees, and amounts in BTC and USD.
+  Endpoint: GET /v1/btc-mainnet/address/{walletAddress}/transactions/
+  Cost: 1 credit/call
+  Level: Beginner
+  Chains: bitcoin
+  URL: https://skills.goldrush.dev/tools/bitcoin-transaction-explorer
 
-### Developer (10 skills)
-- goldrush-typescript-sdk — @covalenthq/client-sdk setup and usage
-- goldrush-react-hooks — React hooks for GoldRush data
-- goldrush-playground — interactive API playground
-- api-reference — full endpoint reference
-- quickstart-templates — copy-paste starter templates
-- webhook-builder — event-driven webhook setup
-- goldrush-kit-token-balances — TokenBalancesListView React component
-- goldrush-kit-approvals — ApprovalsListView React component with revoke
-- goldrush-kit-tx-feed — WalletActivityListView React component
-- all-chains-status — getAllChains + getAllChainStatuses monitor
+**crypto-tax-exporter**
+  Description: Export a complete CSV of all ERC-20 transfers and transactions with USD cost basis for tax reporting — Koinly/CoinTracker compatible.
+  Use case: Build a one-click tax report tool that exports every buy, sell, and transfer with USD values at time of transaction for any wallet address.
+  Endpoint: GET /v1/{chainName}/address/{walletAddress}/transfers_v2/
+  Cost: 0.05/item (transfers) + 1/call (prices)
+  Level: Intermediate
+  Chains: ethereum, base, bsc, polygon, optimism, gnosis
+  URL: https://skills.goldrush.dev/tools/crypto-tax-exporter
 
-### Cross-chain (8 skills)
-- multichain-portfolio — unified portfolio across all chains
-- address-activity-scanner — discover active chains for any wallet
-- bridge-transaction-monitor — cross-chain bridge tracking
-- chain-comparison-tool — compare chain metrics side by side
-- cross-chain-address-lookup — same address across all EVM chains
-- multichain-activity-discovery — getMultiChainActivity — scan 200+ chains
-- multichain-token-aggregator — aggregate all token balances cross-chain
-- cross-chain-transaction-history — merged tx history across multiple chains
+**wallet-erc20-transfers**
+  Description: Fetch full ERC-20 transfer history for any wallet, optionally filtered by token contract.
+  Use case: Build a complete token transfer timeline showing every ERC-20 sent and received with USD amounts — perfect for tax reporting tools and portfolio trackers.
+  Endpoint: GET /v1/{chainName}/address/{walletAddress}/transfers_v2/
+  Cost: 1 credit/call
+  Level: Beginner
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +13 more
+  URL: https://skills.goldrush.dev/tools/wallet-erc20-transfers
 
-### Tokens (12 skills)
-- spot-price-ticker — current token price
-- token-metadata-api — name/symbol/decimals/logo/supply
-- token-holder-list — all holders of any ERC-20 token
-- erc20-transfer-history — ERC-20 transfer history for a contract
-- token-transfer-stream — real-time token transfer feed
-- token-approval-scanner — active approval scanner
-- token-price-history — historical price chart data (PricingService)
-- token-holders-snapshot — paginated holder snapshot for airdrops/governance
-- token-supply-metadata — supply, logo, decimals via PricingService
-- token-exchange-flow-tracker — CEX inflow/outflow monitoring
-- token-fee-revenue-correlation — protocol fee vs token price correlation
-- token-memecoin-risk-scorer — memecoin concentration and risk scoring
+**historical-portfolio-value**
+  Description: 30-day rolling historical portfolio value with open/close/high/low per token per day â€” build P&L charts, portfolio performance dashboards, and DeFi fund trackers.
+  Use case: Build a 30-day portfolio performance chart with per-token OHLC data — show gains, losses, and asset allocation change over time.
+  Endpoint: GET /v1/{chainName}/address/{walletAddress}/portfolio_v2/
+  Cost: 1 credit/call
+  Level: Intermediate
+  Chains: ethereum, base, bsc, polygon, optimism, gnosis
+  URL: https://skills.goldrush.dev/tools/historical-portfolio-value
 
-### Identity (9 skills)
-- ens-resolver — resolve ENS names and reverse lookups
-- nft-gate — NFT ownership gating
-- proof-of-onchain-activity — verify genuine on-chain history
-- wallet-identity-graph — aggregate identity signals for a wallet
-- onchain-social-graph — map wallet interaction graphs
-- sybil-resistance-scorer — Sybil detection scoring
-- reputation-score-aggregator — unified reputation score
-- governance-token-snapshot — holder snapshot at block height for voting
-- onchain-activity-verifier — verify activity depth for KYC-lite gates
+**historical-token-holdings**
+  Description: Snapshot of every ERC-20 token balance and USD value at any past date — foundational chains only.
+  Use case: Reconstruct a wallet's exact token holdings at any past date — essential for tax calculations, historical P&L reports, and portfolio audits.
+  Endpoint: GET /v1/{chainName}/address/{walletAddress}/historical_balances/
+  Cost: 1 credit/call
+  Level: Intermediate
+  Chains: ethereum, base, bsc, polygon, optimism, gnosis
+  URL: https://skills.goldrush.dev/tools/historical-token-holdings
 
-### Security (15 skills)
-- approval-auditor — full approval audit with risk levels
-- mev-monitor — MEV exposure detection
-- phishing-address-checker — known phishing address lookup
-- token-risk-analyzer — token risk scoring
-- contract-interaction-history — contract interaction history
-- bridge-security-monitor — bridge TVL and large withdrawal alerts
-- compliance-transaction-screening — AML/KYC transaction screening
-- exploit-early-warning-system — volume anomaly detection for exploits
-- mev-exposure-analyzer — MEV sandwich attack detection
-- oracle-manipulation-detector — Chainlink oracle anomaly detection
-- phishing-wallet-database — phishing wallet exposure check
-- rugpull-pattern-detector — rug pull risk scoring
-- smart-contract-interaction-risk — pre-interaction risk assessment
-- token-approval-risk-scanner — unlimited approval risk scanner
-- transaction-decoded-receipt — fully decoded transaction receipt
+**multi-wallet-aggregator**
+  Description: Enter multiple wallet addresses and see combined token balances, total net worth, and unified transaction feed — your whole onchain life in one view.
+  Use case: Build a household/team portfolio dashboard that aggregates assets across multiple wallets and shows combined USD net worth, per-wallet breakdown, and top holdings.
+  Endpoint: GET /v1/{chainName}/address/{walletAddress}/balances_v2/
+  Cost: 1 credit/wallet/chain
+  Level: Intermediate
+  Chains: ethereum, base, bsc, polygon, optimism, arbitrum +2 more
+  URL: https://skills.goldrush.dev/tools/multi-wallet-aggregator
+
+**native-token-balance**
+  Description: Lightweight check for the native token balance (ETH, MATIC, BNB, etc.) of any wallet across any chain.
+  Use case: Check if a wallet has enough native gas token to cover a transaction before sending — gate app actions by a minimum ETH/MATIC/BNB balance threshold.
+  Endpoint: GET /v1/{chainName}/address/{walletAddress}/balances_native/
+  Cost: 0.1 credit/call
+  Level: Beginner
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +13 more
+  URL: https://skills.goldrush.dev/tools/native-token-balance
+
+**net-worth-calculator**
+  Description: Calculate total wallet net worth across all EVM and non-EVM chains instantly.
+  Use case: Show a user their total crypto net worth in USD across every chain they hold assets on — the one-call portfolio summary widget.
+  Endpoint: GET /v1/address/{walletAddress}/balances/
+  Cost: 1 credit/call
+  Level: Beginner
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +13 more
+  URL: https://skills.goldrush.dev/tools/net-worth-calculator
+
+**portfolio-history**
+  Description: 30-day historical portfolio value over time â€” asset-by-asset breakdown per day.
+  Use case: Render a stacked area chart of total portfolio value over 30 days — ideal for fund dashboards and DeFi performance trackers.
+  Endpoint: GET /v1/{chainName}/address/{walletAddress}/portfolio_v2/
+  Cost: 1 credit/call
+  Level: Intermediate
+  Chains: ethereum, base, bsc, polygon, optimism, gnosis
+  URL: https://skills.goldrush.dev/tools/portfolio-history
+
+**portfolio-performance-report**
+  Description: 30-day rolling P&L report with per-token open/high/low/close — build fund-grade performance dashboards for any wallet on foundational chains.
+  Use case: Build a hedge fund-style monthly performance report showing each token's 30-day price range, unrealized gain/loss, and portfolio allocation shift.
+  Endpoint: GET /v1/{chainName}/address/{walletAddress}/portfolio_v2/
+  Cost: 2 credits/item
+  Level: Intermediate
+  Chains: ethereum, base, bsc, polygon, optimism, gnosis
+  URL: https://skills.goldrush.dev/tools/portfolio-performance-report
+
+**portfolio-tracker**
+  Description: Monitor multi-chain portfolio value and asset composition in real time.
+  Use case: Build a real-time portfolio dashboard that shows every asset a wallet holds with live USD prices and spam tokens filtered out automatically.
+  Endpoint: GET /v1/{chainName}/address/{walletAddress}/balances_v2/
+  Cost: 1 credit/call
+  Level: Beginner
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +13 more
+  URL: https://skills.goldrush.dev/tools/portfolio-tracker
+
+**solana-staking-snapshot**
+  Description: Query a Solana wallet's complete staking picture: native stake accounts (active, activating, deactivating, inactive) pulled from the on-chain stake program, plus liquid staking positions in mSOL (Marinade), jitoSOL (Jito), bSOL (Sanctum), and stSOL (Lido). Returns stake amount in SOL, activation epoch, estimated APY, and claimable rewards for each position — build a staking dashboard, rewards calculator, or unstaking automation agent in one view.
+  Use case: Build a Solana staking dashboard that aggregates native stake accounts and liquid staking positions (mSOL, jitoSOL, bSOL) with estimated APY and claimable rewards in one view.
+  Endpoint: GET /v1/solana-mainnet/address/{address}/balances_v2/
+  Cost: 1 credit/call
+  Level: Intermediate
+  Chains: solana
+  URL: https://skills.goldrush.dev/tools/solana-staking-snapshot
+
+**solana-transaction-history**
+  Description: Fetch paginated Solana transaction history via `GET /v1/solana-mainnet/address/{wallet}/transactions_v3/` — each transaction is decoded with the top-level program name (Jupiter, Raydium, System, Token, etc.), SOL fee paid, success/fail status, block time, and a human-readable summary. Paginate with `page` and `page-size` params. Build a complete Solana activity feed or trading journal without ever parsing raw instruction data.
+  Use case: Build a decoded Solana transaction activity feed that shows program names, instruction types, fees, and status for any wallet without any raw instruction parsing.
+  Endpoint: GET /v1/solana-mainnet/address/{address}/transactions_v3/
+  Cost: 1 credit/call
+  Level: Beginner
+  Chains: solana
+  URL: https://skills.goldrush.dev/tools/solana-transaction-history
+
+**solana-wallet-age-activity**
+  Description: Use `GET /v1/solana-mainnet/address/{wallet}/transactions_v3/?page-size=1&sort=asc` to find the wallet's first-ever transaction (creation date), then the summary endpoint for total tx count and unique programs interacted with. Returns: first tx date, total lifetime transaction count, top 5 most-called programs, and days since last activity — foundational data for Solana wallet scoring, sybil detection, onchain identity badges, and airdrop eligibility checks.
+  Use case: Build a Solana wallet age and activity scorer for sybil detection, airdrop eligibility checks, and onchain identity badges using first transaction date and lifetime interaction data.
+  Endpoint: GET /v1/solana-mainnet/address/{address}/transactions_v3/
+  Cost: 1 credit/call
+  Level: Beginner
+  Chains: solana
+  URL: https://skills.goldrush.dev/tools/solana-wallet-age-activity
+
+**solana-wallet-balances**
+  Description: Call `GET /v1/solana-mainnet/address/{wallet}/balances_v2/` with your GoldRush API key to retrieve every SPL token held — including name, symbol, logo URI, raw balance, decimals, current USD price, and total USD value per token. Handles associated token accounts (ATAs) automatically with no manual derivation. Add `nft=false` to filter out NFTs and return pure fungible token holdings. Build a full Solana portfolio UI in under 50 lines of TypeScript.
+  Use case: Build a full Solana portfolio UI that lists every SPL token with its USD value and logo, automatically handling all associated token accounts, in under 50 lines of TypeScript.
+  Endpoint: GET /v1/solana-mainnet/address/{address}/balances_v2/
+  Cost: 1 credit/call
+  Level: Beginner
+  Chains: solana
+  URL: https://skills.goldrush.dev/tools/solana-wallet-balances
+
+**transaction-history**
+  Description: Paginated, decoded transaction history with logs for any wallet or contract address.
+  Use case: Build a paginated transaction feed showing decoded event names, ETH value, gas paid, and success status — the core of any wallet explorer or activity page.
+  Endpoint: GET /v1/{chainName}/address/{walletAddress}/transactions_v3/
+  Cost: 1 credit/call
+  Level: Beginner
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +13 more
+  URL: https://skills.goldrush.dev/tools/transaction-history
+
+**wallet-activity-feed**
+  Description: Stream live wallet events and transaction activity across any supported chain.
+  Use case: Add a live activity feed to a wallet dashboard that pushes incoming and outgoing transfers instantly without polling — using the GoldRush streaming WebSocket.
+  Endpoint: wss://streaming.goldrushdata.com/graphql — walletTxs subscription
+  Cost: Streaming subscription
+  Level: Intermediate
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +10 more
+  URL: https://skills.goldrush.dev/tools/wallet-activity-feed
+
+**wallet-age-summary**
+  Description: Get first and last transaction date, total transaction count, and gas spent for any wallet â€” the foundation for wallet age verification and on-chain identity.
+  Use case: Build a wallet age badge for a DeFi app — show how long a wallet has been active and its total transaction count as a trust and Sybil-resistance signal.
+  Endpoint: GET /v1/{chainName}/address/{walletAddress}/transactions_summary/
+  Cost: 0.1 credit/call
+  Level: Beginner
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +13 more
+  URL: https://skills.goldrush.dev/tools/wallet-age-summary
+
+**wallet-balances-skill**
+  Description: Fetch token balances and portfolio state for any wallet across 100+ chains.
+  Use case: Build a multi-chain token portfolio dashboard that shows every asset a wallet holds with live USD prices.
+  Endpoint: GET /v1/{chainName}/address/{walletAddress}/balances_v2/
+  Cost: 1 credit/call
+  Level: Beginner
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +13 more
+  URL: https://skills.goldrush.dev/tools/wallet-balances-skill
+
+**wallet-pnl-tracker**
+  Description: Unrealized P&L for every token in a wallet — shows entry price, current price, and total gain/loss per position.
+  Use case: Build an unrealized P&L dashboard that shows every open token position — entry cost, current value, and total gain/loss in USD — for any wallet in real time.
+  Endpoint: wss://streaming.goldrushdata.com/graphql — upnlForWallet query
+  Cost: Streaming query
+  Level: Intermediate
+  Chains: ethereum, base, bsc, polygon, arbitrum, optimism
+  URL: https://skills.goldrush.dev/tools/wallet-pnl-tracker
+
+### DeFi (9 skills)
+
+**base-memecoin-screener**
+  Description: Live feed of new token launches on Base — subscribes to new Aerodrome/Uniswap pairs, shows real-time price candles and momentum for meme coin hunters.
+  Use case: Build a Base-specific token launch radar that shows new pairs created in the last 24h with live price candles and initial liquidity — catch early Base memecoins.
+  Endpoint: wss://streaming.goldrushdata.com/graphql — newPairs subscription (filtered to base-mainnet)
+  Cost: Streaming subscription
+  Level: Intermediate
+  Chains: base
+  URL: https://skills.goldrush.dev/tools/base-memecoin-screener
+
+**defi-wallet-dashboard**
+  Description: Complete DeFi overview for any wallet — current token positions with USD values, 30-day portfolio performance curve, and recent swap activity in one dashboard.
+  Use case: Build a full-featured DeFi portfolio dashboard like Zapper that shows token balances, historical portfolio value chart, and recent DEX trades for any wallet.
+  Endpoint: GET /v1/{chainName}/address/{walletAddress}/balances_v2/
+  Cost: 1 + 2/item + 0.05/item
+  Level: Advanced
+  Chains: ethereum, base, bsc, polygon, optimism, gnosis
+  URL: https://skills.goldrush.dev/tools/defi-wallet-dashboard
+
+**dex-trade-history**
+  Description: Pull all DEX swap events and volume for any wallet address or token pair.
+  Use case: Build a DEX trade history page that shows every swap a wallet made — token in/out, USD value, and which protocol handled the trade.
+  Endpoint: GET /v1/{chainName}/address/{walletAddress}/transfers_v2/
+  Cost: 1 credit/call
+  Level: Intermediate
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +13 more
+  URL: https://skills.goldrush.dev/tools/dex-trade-history
+
+**jupiter-swap-route-finder**
+  Description: Query Jupiter's on-chain routing data indexed by GoldRush to find the best swap path for any SPL token pair — returns the expected output amount, minimum output after slippage tolerance, price impact percentage, and the full multi-hop route through intermediate DEXes (Raydium, Orca, Meteora, Lifinity, etc.). Feed this into an agent's trade execution loop: if price impact exceeds your threshold, hold the position; otherwise use the route data to construct and submit the swap transaction.
+  Use case: Build a swap aggregator UI or autonomous trading agent that evaluates the optimal multi-hop route for any SPL token pair and blocks trades when price impact exceeds a threshold.
+  Endpoint: GET /v1/solana-mainnet/address/{address}/transactions_v3/
+  Cost: 1 credit/call
+  Level: Intermediate
+  Chains: solana
+  URL: https://skills.goldrush.dev/tools/jupiter-swap-route-finder
+
+**live-dex-pair-stream**
+  Description: Subscribe to new DEX pair creations as they happen across chains — catch launches the moment liquidity is added.
+  Use case: Build a real-time new token launch detector that fires instantly when a new DEX pair is created — catch launches before they go viral by subscribing to the newPairs stream.
+  Endpoint: wss://streaming.goldrushdata.com/graphql — newPairs subscription
+  Cost: Streaming subscription
+  Level: Intermediate
+  Chains: ethereum, base, bsc, polygon, arbitrum, optimism +2 more
+  URL: https://skills.goldrush.dev/tools/live-dex-pair-stream
+
+**raydium-pool-analytics**
+  Description: Fetch Raydium AMM and CLMM (Concentrated Liquidity) pool data via GoldRush for any pool address or token pair — returns current TVL in USD, 24h trading volume, real-time fee APY, token0/token1 reserve amounts, and current spot price. Use to compare pools before providing liquidity, track impermanent loss on an existing position by comparing entry vs current reserves, or build a Raydium pool leaderboard sorted by fee APY or volume.
+  Use case: Build a Raydium liquidity pool leaderboard that ranks pools by fee APY and 24h trading volume to help liquidity providers identify the best yield opportunities.
+  Endpoint: GET /v1/solana-mainnet/address/{address}/transactions_v3/
+  Cost: 1 credit/call
+  Level: Intermediate
+  Chains: solana
+  URL: https://skills.goldrush.dev/tools/raydium-pool-analytics
+
+**solana-dex-trade-history**
+  Description: Decode all swap transactions for any Solana wallet via GoldRush's transaction decoder on `solana-mainnet` — automatically identifies and extracts trades from Jupiter, Raydium, Orca, and Meteora instructions. Each decoded trade returns: input token + amount, output token + amount, USD value at trade time, DEX used, and tx signature. Returns a clean trade-by-trade list with zero raw instruction parsing. Build a full Solana trading journal, PnL calculator, or strategy performance analyzer.
+  Use case: Build a Solana trading journal and PnL calculator that automatically extracts all DEX swaps from a wallet's transaction history without any raw instruction parsing.
+  Endpoint: GET /v1/solana-mainnet/address/{address}/transactions_v3/
+  Cost: 1 credit/call
+  Level: Intermediate
+  Chains: solana
+  URL: https://skills.goldrush.dev/tools/solana-dex-trade-history
+
+**solana-yield-dashboard**
+  Description: Aggregate current APY/APR data across the top Solana yield venues using GoldRush: Marinade Finance (native staking 6–7% + liquid mSOL), Orca (CLMM fee APY by pool), Kamino (lending supply/borrow rates), Drift (perpetuals funding rates), and Jito (MEV-boosted staking). Returns a unified yield comparison object sortable by APY, protocol, or risk level — use as the data backbone for an autonomous yield-rebalancing agent or a user-facing 'where should I put my SOL?' comparison UI.
+  Use case: Build a Solana yield comparison dashboard that ranks staking and DeFi APY opportunities across Marinade, Jito, Orca, and Kamino to power an autonomous yield-rebalancing agent.
+  Endpoint: GET /v1/solana-mainnet/address/{address}/balances_v2/
+  Cost: 1 credit/call
+  Level: Intermediate
+  Chains: solana
+  URL: https://skills.goldrush.dev/tools/solana-yield-dashboard
+
+**token-launch-screener**
+  Description: Real-time screener for new DEX token launches — filter by minimum liquidity, chain, and pair token. Build a Dexscreener-style new pairs feed.
+  Use case: Build a live token launch feed that surfaces new pairs the moment they are created on any DEX, filtered by minimum liquidity threshold and sorted by chain.
+  Endpoint: wss://streaming.goldrushdata.com/graphql — newPairs subscription
+  Cost: Streaming subscription
+  Level: Intermediate
+  Chains: ethereum, base, bsc, polygon, arbitrum, optimism +2 more
+  URL: https://skills.goldrush.dev/tools/token-launch-screener
+
+### NFT (14 skills)
+
+**compressed-nft-scanner**
+  Description: Fetch all cNFTs (Metaplex Bubblegum / Digital Asset Standard) from any Solana wallet using GoldRush's DAS-compatible NFT endpoint — returns asset ID, Merkle tree address, creator, collection address, and full metadata URI for every compressed NFT. Critical for gaming apps (Aurory, Star Atlas items), DePIN reward programs, and loyalty platforms that mint thousands of cNFTs at ~1/1000th the cost of standard NFTs. One call returns the complete cNFT inventory without running a custom DAS indexer.
+  Use case: Build a gaming inventory browser that displays all compressed NFT assets — items, characters, and rewards — held by a player wallet along with their metadata and collection info.
+  Endpoint: GET /v1/solana-mainnet/address/{address}/nfts/
+  Cost: 1 credit/call
+  Level: Intermediate
+  Chains: solana
+  URL: https://skills.goldrush.dev/tools/compressed-nft-scanner
+
+**metaplex-nft-portfolio**
+  Description: Call `GET /v1/solana-mainnet/address/{wallet}/nfts/` to return every Metaplex NFT held by a wallet — standard NFTs, pNFTs (programmable NFTs with transfer hooks), and print editions — each with name, image URI, collection address, traits array, and estimated USD floor value derived from recent collection sales. Handles both legacy Token Metadata standard and Token Extensions (Token-2022). Build a complete Solana NFT gallery or valuation dashboard with a single API call.
+  Use case: Build a full Solana NFT gallery and valuation dashboard that displays all Metaplex NFTs, pNFTs, and print editions held by a wallet with their traits and estimated USD floor value.
+  Endpoint: GET /v1/solana-mainnet/address/{address}/nfts/
+  Cost: 1 credit/call
+  Level: Beginner
+  Chains: solana
+  URL: https://skills.goldrush.dev/tools/metaplex-nft-portfolio
+
+**multichain-nft-gallery**
+  Description: Discover and display every NFT a wallet holds across all chains in one gallery — scan with getAddressActivity then fetch NFTs per active chain.
+  Use case: Build a cross-chain NFT gallery that shows all NFTs a wallet holds on every chain — Ethereum PFPs, Base collections, Polygon gaming assets — in a single responsive grid.
+  Endpoint: GET /v1/address/{walletAddress}/activity/
+  Cost: 0.5/call (activity) + 1/chain (NFTs)
+  Level: Intermediate
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +4 more
+  URL: https://skills.goldrush.dev/tools/multichain-nft-gallery
+
+**nft-collection-analytics**
+  Description: Holder count, top holders, transfer velocity, and ownership concentration for any ERC-721 collection — build analytics dashboards without a marketplace API.
+  Use case: Build an NFT collection insights page showing unique holder count, top 10 whale holders, daily transfer volume, and holder concentration — all from on-chain data.
+  Endpoint: GET /v1/{chainName}/tokens/{collectionContract}/token_holders_v2/
+  Cost: 0.02/holder + 0.01/event
+  Level: Intermediate
+  Chains: ethereum, base, bsc, polygon, optimism, gnosis
+  URL: https://skills.goldrush.dev/tools/nft-collection-analytics
+
+**nft-gallery-viewer**
+  Description: Drop-in React component that renders a full NFT gallery for any wallet using GoldRush Kit's NFTWalletCollectionView â€” zero custom UI needed.
+  Use case: Add a fully styled NFT gallery to any React/Next.js app in under 10 lines — no custom UI required, just drop in the GoldRush Kit component.
+  Endpoint: GET /v1/{chainName}/address/{walletAddress}/balances_nft/
+  Cost: 1 credit/call
+  Level: Beginner
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +13 more
+  URL: https://skills.goldrush.dev/tools/nft-gallery-viewer
+
+**nft-metadata-fetcher**
+  Description: Retrieve full NFT metadata, traits, and ownership history for any token onchain.
+  Use case: Build an NFT detail page that shows token image, traits, description, and owner for any NFT in a wallet — the foundation for any NFT explorer.
+  Endpoint: GET /v1/{chainName}/address/{walletAddress}/balances_nft/
+  Cost: 1 credit/call
+  Level: Beginner
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +13 more
+  URL: https://skills.goldrush.dev/tools/nft-metadata-fetcher
+
+**nft-portfolio-valuation**
+  Description: Value an entire NFT portfolio using live collection and market data.
+  Use case: Build a wallet NFT portfolio page showing every collection held, total NFT count per collection, and token thumbnails across all supported chains.
+  Endpoint: GET /v1/{chainName}/address/{walletAddress}/balances_nft/
+  Cost: 1 credit/call
+  Level: Intermediate
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +13 more
+  URL: https://skills.goldrush.dev/tools/nft-portfolio-valuation
+
+**nft-sale-history**
+  Description: Full transfer and sale history for a single NFT token ID â€” who owned it, when it sold, and for how much. Powers provenance viewers and NFT detail pages.
+  Use case: Build an NFT provenance page showing every historical owner, transfer timestamp, and inferred sale price from ERC-20 payments — ideal for NFT detail pages and rarity tools.
+  Endpoint: GET /v1/{chainName}/address/{walletAddress}/balances_nft/
+  Cost: 1 credit/call
+  Level: Intermediate
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +13 more
+  URL: https://skills.goldrush.dev/tools/nft-sale-history
+
+**nft-traits-explorer**
+  Description: Fetch all trait types and their value distributions for an NFT collection. Essential for rarity calculators, collection analytics, and trait-based filtering UIs.
+  Use case: Build a trait rarity calculator that shows how rare each attribute combination is across a collection — the core of any NFT analytics platform.
+  Endpoint: GET /v1/{chainName}/address/{walletAddress}/balances_nft/
+  Cost: 1 credit/call
+  Level: Intermediate
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +13 more
+  URL: https://skills.goldrush.dev/tools/nft-traits-explorer
+
+**nft-transfer-monitor**
+  Description: Real-time feed of NFT mints, sales, and transfers for any collection — subscribe to ERC-721 Transfer events via the wallet activity stream.
+  Use case: Build a live collection activity feed that shows every mint, transfer, and sale for an NFT collection as it happens — like OpenSea's activity tab but in real-time via WebSocket.
+  Endpoint: GET /v1/{chainName}/events/topics/{topicHash}/?sender-address={collectionContract}
+  Cost: 0.01/event
+  Level: Intermediate
+  Chains: ethereum, base, polygon, optimism, arbitrum, blast
+  URL: https://skills.goldrush.dev/tools/nft-transfer-monitor
+
+**nft-transfer-tracker**
+  Description: Monitor NFT mints, transfers, and burns as they happen onchain.
+  Use case: Build an NFT transfer notification system that alerts users when NFTs enter or leave their wallet — mint detector, transfer feed, and burn tracker in one.
+  Endpoint: GET /v1/{chainName}/address/{walletAddress}/transfers_v2/
+  Cost: 1 credit/call
+  Level: Beginner
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +13 more
+  URL: https://skills.goldrush.dev/tools/nft-transfer-tracker
+
+**nft-gated-app**
+  Description: Complete Next.js boilerplate with wallet connect, SIWE authentication, and NFT ownership gating — deploy a token-gated product in under an hour.
+  Use case: Ship a token-gated product (Discord alternative, exclusive content site, holder dashboard) where access requires owning any NFT in a specific collection.
+  Endpoint: GET /v1/{chainName}/tokens/{collectionContract}/nft_check/{walletAddress}/
+  Cost: 1 credit/check
+  Level: Intermediate
+  Chains: ethereum, base, polygon, arbitrum, optimism, bsc
+  URL: https://skills.goldrush.dev/tools/nft-gated-app
+
+**ronin-nft-inventory**
+  Description: List all NFTs held in a Ronin wallet — Axie Infinity, Land, and other Sky Mavis NFT collections.
+  Use case: Build a Ronin wallet NFT viewer showing all Axie Infinity, Land, and Sky Mavis NFT collections held by any Ronin address — the foundation for Axie portfolio apps.
+  Endpoint: GET /v1/axie-mainnet/address/{walletAddress}/balances_nft/
+  Cost: 1 credit/call
+  Level: Beginner
+  Chains: ronin
+  URL: https://skills.goldrush.dev/tools/ronin-nft-inventory
+
+**solana-nft-collection-stats**
+  Description: Fetch aggregated on-chain stats for any Solana NFT collection by collection address — floor price in SOL and USD, 24h trading volume, total unique holder count, total listed supply, and top 5 holder wallets ranked by number of items. Pair with GoldRush's real-time NFT transfer stream to track when floor listings are scooped. Build a collection monitor that fires an alert when floor drops below your target price, volume spikes above 2x average, or holder concentration increases.
+  Use case: Build a Solana NFT collection monitor that tracks floor price, 24h volume, and holder concentration and fires alerts when key thresholds are crossed.
+  Endpoint: GET /v1/solana-mainnet/tokens/{tokenAddress}/token_holders_v2/
+  Cost: 1 credit/call
+  Level: Intermediate
+  Chains: solana
+  URL: https://skills.goldrush.dev/tools/solana-nft-collection-stats
+
+### Analytics (16 skills)
+
+**block-explorer-toolkit**
+  Description: Fetch block details, all transactions in a block, and decode individual transactions â€” all the building blocks for a custom block explorer.
+  Use case: Build a custom block explorer that shows block details, gas utilization, and a decoded transaction list — replacing Etherscan for your specific chain or dApp.
+  Endpoint: GET /v1/{chainName}/block_v2/{blockHeight}/
+  Cost: 1 credit/call
+  Level: Intermediate
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +13 more
+  URL: https://skills.goldrush.dev/tools/block-explorer-toolkit
+
+**contract-event-dashboard**
+  Description: Build a real-time event monitor for any smart contract — poll decoded event logs and display a live activity feed for any protocol or token.
+  Use case: Build a live protocol dashboard that shows every decoded event emitted by a smart contract — e.g. Swap, Mint, Transfer, Approval — in a real-time activity feed.
+  Endpoint: GET /v1/{chainName}/events/address/{contractAddress}/
+  Cost: 0.01/event
+  Level: Intermediate
+  Chains: ethereum, base, bsc, polygon, optimism, arbitrum +2 more
+  URL: https://skills.goldrush.dev/tools/contract-event-dashboard
+
+**contract-event-log-monitor**
+  Description: Stream all decoded event logs emitted by any smart contract â€” filter by topic hash, date, or block range. The foundation for DEX analytics, protocol dashboards, and real-time monitoring.
+  Use case: Build a protocol activity dashboard that shows every event emitted by a contract — Deposit, Withdraw, Swap — with decoded parameters and timestamps.
+  Endpoint: GET /v1/{chainName}/events/address/{contractAddress}/
+  Cost: 1 credit/call
+  Level: Intermediate
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +13 more
+  URL: https://skills.goldrush.dev/tools/contract-event-log-monitor
+
+**cross-contract-event-scanner**
+  Description: Scan ALL contracts on a chain for a specific event by topic hash â€” e.g. find every ERC-20 Transfer or every Uniswap Swap across the entire chain.
+  Use case: Find every Uniswap V3 Swap event on Base within the last 1000 blocks — build cross-protocol DEX aggregators, airdrop eligibility scanners, and chain-wide analytics.
+  Endpoint: GET /v1/{chainName}/events/topics/{topicHash}/
+  Cost: 1 credit/call
+  Level: Advanced
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +13 more
+  URL: https://skills.goldrush.dev/tools/cross-contract-event-scanner
+
+**event-log-decoder**
+  Description: Decode and search contract event logs across any block range and chain.
+  Use case: Build a contract debugging tool that shows every event emitted by a contract with fully decoded parameters — from, to, amount, value — in a readable format.
+  Endpoint: GET /v1/{chainName}/events/address/{contractAddress}/
+  Cost: 1 credit/call
+  Level: Intermediate
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +13 more
+  URL: https://skills.goldrush.dev/tools/event-log-decoder
+
+**gas-analytics**
+  Description: Real-time and historical gas price tracking for any EVM-compatible chain.
+  Use case: Build a gas fee estimator widget that shows real-time slow/fast/instant gas prices in gwei and estimated USD cost for a standard transaction.
+  Endpoint: GET /v1/{chainName}/event/{eventType}/gas_prices/
+  Cost: 0.1 credit/call
+  Level: Beginner
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +13 more
+  URL: https://skills.goldrush.dev/tools/gas-analytics
+
+**institutional-wallet-tracker**
+  Description: Monitor large-wallet movements and institutional-grade position changes across chains.
+  Use case: Build a whale watcher dashboard that tracks top wallet positions across chains — flag large buys, sells, and new positions as they happen.
+  Endpoint: GET /v1/{chainName}/address/{walletAddress}/balances_v2/
+  Cost: 1 credit/call per wallet
+  Level: Intermediate
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +13 more
+  URL: https://skills.goldrush.dev/tools/institutional-wallet-tracker
+
+**onchain-data-query**
+  Description: Query indexed blockchain data across 100+ chains with a single unified API.
+  Use case: Build a wallet analytics dashboard that combines token balances and recent transactions into a single unified view — the entry point for any onchain data product.
+  Endpoint: GET /v1/{chainName}/address/{walletAddress}/balances_v2/
+  Cost: 1 credit/call
+  Level: Beginner
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +13 more
+  URL: https://skills.goldrush.dev/tools/onchain-data-query
+
+**smart-money-copier**
+  Description: Track known alpha wallets and surface their new token buys the moment they execute — build a copy trading radar using wallet activity streaming.
+  Use case: Build a copy trading intelligence tool that monitors a curated list of smart money wallets and surfaces new token buys in real-time.
+  Endpoint: wss://streaming.goldrushdata.com/graphql — walletTxs subscription
+  Cost: Streaming + 1 credit/balance check
+  Level: Advanced
+  Chains: ethereum, base, bsc, polygon, arbitrum, optimism
+  URL: https://skills.goldrush.dev/tools/smart-money-copier
+
+**solana-program-activity-monitor**
+  Description: Track the on-chain growth of any Solana program — DEX, lending protocol, game, or DePIN — using GoldRush's transaction data on `solana-mainnet`. Fetch daily instruction call count, unique signing wallets per day, week-over-week growth rate, and cumulative user count over any 90-day window. Compare two programs head-to-head on the same metrics. Use for investor due diligence on early-stage protocols, health monitoring dashboards, or surfacing underrated programs with breakout growth before they trend.
+  Use case: Build a Solana protocol analytics dashboard that tracks daily active users, instruction volume, and week-over-week growth for any program to surface breakout protocols.
+  Endpoint: GET /v1/solana-mainnet/address/{address}/transactions_v3/
+  Cost: 1 credit/call
+  Level: Intermediate
+  Chains: solana
+  URL: https://skills.goldrush.dev/tools/solana-program-activity-monitor
+
+**solana-smart-money-tracker**
+  Description: Identify high-alpha Solana wallets using GoldRush: fetch recent token buys via transaction history, calculate realized PnL from decoded swap history, and surface wallets with consistently profitable trades (>2x average return over 30 days). Once you have a watchlist, subscribe to their real-time activity stream to receive instant push notifications the moment they buy a new token — before it shows up on Dexscreener. Build a Solana copy-trading radar, alpha group feed, or smart-money signal layer for your trading agent.
+  Use case: Build a Solana copy-trading radar that identifies consistently profitable wallets and sends real-time alerts the moment they buy a new token.
+  Endpoint: GET /v1/solana-mainnet/address/{address}/transactions_v3/
+  Cost: 2 credits/call
+  Level: Advanced
+  Chains: solana
+  URL: https://skills.goldrush.dev/tools/solana-smart-money-tracker
+
+**token-ohlcv-chart**
+  Description: Real-time OHLCV candlestick data for any token — stream live candles via WebSocket for TradingView-style charts.
+  Use case: Power a real-time TradingView-style candlestick chart for any token — subscribe to live 1m/5m/1h OHLCV candles via WebSocket and update the chart as new candles close.
+  Endpoint: wss://streaming.goldrushdata.com/graphql — ohlcvCandlesForToken subscription
+  Cost: Streaming subscription
+  Level: Intermediate
+  Chains: ethereum, base, bsc, polygon, arbitrum, optimism +1 more
+  URL: https://skills.goldrush.dev/tools/token-ohlcv-chart
+
+**token-price-history**
+  Description: Fetch historical spot prices and OHLCV data for any ERC-20 token onchain.
+  Use case: Power a price history chart for any ERC-20 token — show daily USD close prices over a custom date range for portfolio analytics and DeFi dashboards.
+  Endpoint: GET /v1/pricing/historical_by_addresses_v2/{chainName}/{quoteCurrency}/{contractAddresses}/
+  Cost: 1 credit/call
+  Level: Beginner
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +14 more
+  URL: https://skills.goldrush.dev/tools/token-price-history
+
+**wallet-activity-heatmap**
+  Description: Generate a GitHub-style activity heatmap showing daily transaction counts for any wallet â€” visualize on-chain behaviour patterns.
+  Use case: Render a year-long activity heatmap for a wallet address showing which days had the most transactions — like a GitHub contributions chart but for on-chain activity.
+  Endpoint: GET /v1/{chainName}/address/{walletAddress}/transactions_summary/
+  Cost: 1 credit/call
+  Level: Intermediate
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +13 more
+  URL: https://skills.goldrush.dev/tools/wallet-activity-heatmap
+
+**wallet-comparison-tool**
+  Description: Compare two wallet addresses side-by-side — token holdings, transaction count, wallet age, and NFT inventory across the same chain.
+  Use case: Build a wallet vs wallet comparison page that shows both addresses' portfolio value, transaction history depth, wallet age, top assets, and NFTs side by side.
+  Endpoint: GET /v1/{chainName}/address/{walletAddress}/balances_v2/
+  Cost: ~4 credits total
+  Level: Beginner
+  Chains: ethereum, base, bsc, polygon, optimism, arbitrum +1 more
+  URL: https://skills.goldrush.dev/tools/wallet-comparison-tool
+
+**whale-wallet-watchlist**
+  Description: Monitor a list of whale wallets in real-time — subscribe to live transaction streams for multiple addresses and alert when they move large amounts.
+  Use case: Build a whale alert dashboard that monitors 10-50 known smart money wallets simultaneously and fires notifications the moment any of them execute a transaction above a threshold.
+  Endpoint: wss://streaming.goldrushdata.com/graphql — walletTxs subscription
+  Cost: Streaming subscription per wallet
+  Level: Intermediate
+  Chains: ethereum, base, bsc, polygon, arbitrum, optimism +1 more
+  URL: https://skills.goldrush.dev/tools/whale-wallet-watchlist
+
+### AI Agents (13 skills)
+
+**agent-counterparty-verification**
+  Description: Verify counterparty wallets before agent-initiated transactions using risk signals.
+  Use case: Build a pre-transaction risk check for AI agents — before sending tokens, verify the recipient is not a flagged address, has a real transaction history, and has no dangerous approvals.
+  Endpoint: GET /v1/{chainName}/approvals/{walletAddress}/
+  Cost: 1 credit/call
+  Level: Intermediate
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +13 more
+  URL: https://skills.goldrush.dev/tools/agent-counterparty-verification
+
+**agent-data-budget-manager**
+  Description: Track and optimise GoldRush API credit consumption across AI agent workflows.
+  Use case: Build a credit-aware AI agent wrapper that checks chain sync status before issuing queries and tracks cumulative API credit spend across a multi-step workflow.
+  Endpoint: GET /v1/chains/status/
+  Cost: 0.1 credit/call
+  Level: Intermediate
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +13 more
+  URL: https://skills.goldrush.dev/tools/agent-data-budget-manager
+
+**agent-fleet-monitor**
+  Description: Monitor a fleet of AI agent wallets for health, balances, and activity in one view.
+  Use case: Build a fleet health dashboard for autonomous agents — monitor gas balances, flag wallets that need refuelling, and surface any unusual on-chain activity across a set of agent addresses.
+  Endpoint: GET /v1/{chainName}/address/{walletAddress}/balances_v2/
+  Cost: 1 credit/wallet
+  Level: Intermediate
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +13 more
+  URL: https://skills.goldrush.dev/tools/agent-fleet-monitor
+
+**agent-wallet-skill**
+  Description: Give AI agents the ability to read wallet state, balances, and transaction data.
+  Use case: Equip a Claude or GPT agent with the ability to answer questions like 'What tokens does this wallet hold?' and 'What did this wallet do recently?' using live on-chain data.
+  Endpoint: GET /v1/{chainName}/address/{walletAddress}/balances_v2/
+  Cost: 1 credit/call
+  Level: Beginner
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +13 more
+  URL: https://skills.goldrush.dev/tools/agent-wallet-skill
+
+**claude-goldrush-skill**
+  Description: Claude agent skill for querying GoldRush APIs â€” fetch wallet data, prices, and NFTs.
+  Use case: Enable a Claude agent to answer on-chain questions like 'What is the ETH balance of vitalik.eth?' or 'Show me the last 5 transactions for this address' using real GoldRush data.
+  Endpoint: Multiple GoldRush endpoints wrapped as Claude tools
+  Cost: Varies by tool called
+  Level: Beginner
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +13 more
+  URL: https://skills.goldrush.dev/tools/claude-goldrush-skill
+
+**goldrush-mcp-server**
+  Description: Model Context Protocol server exposing GoldRush APIs to LLMs and AI agents.
+  Use case: Connect Claude Desktop or Cursor to GoldRush so the AI can answer on-chain questions directly — no custom code needed, just configure the MCP server and start asking questions.
+  Endpoint: MCP tool: get_wallet_balances
+  Cost: Varies by tool called
+  Level: Beginner
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +13 more
+  URL: https://skills.goldrush.dev/tools/goldrush-mcp-server
+
+**realtime-wallet-stream**
+  Description: Subscribe to live wallet activity events via WebSocket â€” zero polling, instant updates.
+  Use case: Build a live transaction alert system for an AI agent — trigger actions (e.g. notify, rebalance, log) the instant any on-chain activity occurs for a monitored wallet.
+  Endpoint: wss://streaming.goldrushdata.com/graphql — walletTxs subscription
+  Cost: Streaming subscription
+  Level: Intermediate
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +10 more
+  URL: https://skills.goldrush.dev/tools/realtime-wallet-stream
+
+**solana-agent-defi-navigator**
+  Description: Pull real-time Jupiter-aggregated route data and Raydium/Orca pool metrics via GoldRush to give an AI agent the swap intelligence it needs: best output amount, price impact, pool liquidity depth, and fee tier — all in one structured call. Feed this into an agent's decision loop to autonomously execute optimal swaps on Solana — if price impact exceeds threshold, hold; otherwise sign and submit.
+  Use case: Build an autonomous Solana DeFi agent that evaluates swap routes, checks price impact and pool liquidity, and executes trades only when conditions meet a configurable risk threshold.
+  Endpoint: GET /v1/solana-mainnet/address/{address}/balances_v2/
+  Cost: 2 credits/call
+  Level: Advanced
+  Chains: solana
+  URL: https://skills.goldrush.dev/tools/solana-agent-defi-navigator
+
+**solana-agent-portfolio-snapshot**
+  Description: Call GoldRush's `/v1/solana-mainnet/address/{address}/balances_v2/` to load a complete structured payload of every SPL token, native SOL balance, staking positions, and USD net worth into your agent's context. Use this as the mandatory first step before any Solana agent makes a DeFi decision — gives the agent full portfolio awareness in a single API call.
+  Use case: Load a full Solana wallet snapshot — every SPL token, native SOL, staking positions, and total USD net worth — into an AI agent's context before any DeFi decision.
+  Endpoint: GET /v1/solana-mainnet/address/{address}/balances_v2/
+  Cost: 1 credit/call
+  Level: Beginner
+  Chains: solana
+  URL: https://skills.goldrush.dev/tools/solana-agent-portfolio-snapshot
+
+**solana-agent-risk-gate**
+  Description: Before any agent-initiated Solana transaction, run the target token's mint address through GoldRush's token risk endpoint: check for active mint authority (creator can inflate supply), freeze authority (creator can lock your tokens), top-3 holder concentration above 50%, and unverified program interactions. Returns a 0–100 risk score plus per-signal breakdown — wire this as a middleware guard in every agent transaction pipeline to block rug pulls before they execute.
+  Use case: Wire a pre-transaction risk gate into every Solana agent pipeline that scores token safety and blocks trades when rug-pull signals like active mint authority or high holder concentration are detected.
+  Endpoint: GET /v1/solana-mainnet/tokens/{tokenAddress}/token_holders_v2/
+  Cost: 1 credit/call
+  Level: Intermediate
+  Chains: solana
+  URL: https://skills.goldrush.dev/tools/solana-agent-risk-gate
+
+**solana-agent-token-launch-detector**
+  Description: Stream new SPL token mint events and pump.fun bonding curve graduations in real-time using GoldRush's event monitoring on `solana-mainnet`. When a token graduates (reaches ~$69K market cap and migrates to Raydium), emit a structured event with the mint address, initial Raydium pool address, launch liquidity in SOL, and top-10 early buyers — giving autonomous sniper and launch-monitor agents a clean trigger with full token context to act on immediately.
+  Use case: Build an autonomous token launch detector that fires a structured event with full context the moment a pump.fun token graduates to Raydium, enabling sniper agents to act within seconds.
+  Endpoint: GET /v1/solana-mainnet/address/{address}/transactions_v3/
+  Cost: 2 credits/call
+  Level: Advanced
+  Chains: solana
+  URL: https://skills.goldrush.dev/tools/solana-agent-token-launch-detector
+
+**solana-agent-transaction-validator**
+  Description: Before an agent signs any Solana transaction, call three GoldRush endpoints in parallel: (1) recipient wallet summary — is this a fresh wallet or known flagged address? (2) token risk score — does the token have active mint/freeze authority? (3) agent wallet balance — is there enough SOL for rent + fees? Combine results into a structured go/no-go payload the agent parses before submitting any instruction to the network.
+  Use case: Build a pre-flight transaction validator that runs three parallel GoldRush checks and returns a structured go/no-go decision before an agent submits any Solana transaction.
+  Endpoint: GET /v1/solana-mainnet/address/{address}/balances_v2/
+  Cost: 2 credits/call
+  Level: Advanced
+  Chains: solana
+  URL: https://skills.goldrush.dev/tools/solana-agent-transaction-validator
+
+**solana-agent-wallet-watcher**
+  Description: Subscribe to any Solana address via GoldRush's wallet activity stream on `solana-mainnet` and receive push events for every SPL token transfer, program invocation, and stake account change — no polling required. Use the event payload (program name, instruction type, token amounts, counterparty address) to trigger downstream agent actions: execute a hedge, send an alert, update agent memory, or rebalance a portfolio the moment a transaction lands.
+  Use case: Build a real-time wallet monitoring agent that triggers automated actions — alerts, hedges, or portfolio rebalancing — the moment a watched Solana address sends or receives tokens.
+  Endpoint: GET /v1/solana-mainnet/address/{address}/transactions_v3/
+  Cost: 2 credits/call
+  Level: Advanced
+  Chains: solana
+  URL: https://skills.goldrush.dev/tools/solana-agent-wallet-watcher
+
+### Developer (15 skills)
+
+**all-chains-status**
+  Description: Fetch the real-time sync status of all 200+ GoldRush-supported chains â€” latest indexed block, sync lag, and chain metadata. Ideal for multi-chain app health checks.
+  Use case: Build a chain health dashboard that shows the last indexed block and sync lag for every supported chain — surface stale chains before running queries against them.
+  Endpoint: GET /v1/chains/status/
+  Cost: 0.1 credit/call
+  Level: Beginner
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +14 more
+  URL: https://skills.goldrush.dev/tools/all-chains-status
+
+**anchor-program-data-reader**
+  Description: Fetch and decode the on-chain state of any Anchor-based Solana program account via GoldRush — pass a program ID and account address to get fully-typed, human-readable account data with field names and values, using the program's published IDL for deserialization. No custom Borsh deserializer required. Works with any program that has a public IDL: Raydium AMM pools, Drift user accounts, Kamino lending positions, Marinade stake state. Read protocol state directly in your app or agent without a local Anchor client.
+  Use case: Build a protocol state inspector that reads and displays decoded Anchor account data for any Solana program without requiring a local Anchor client or custom Borsh deserializer.
+  Endpoint: GET /v1/solana-mainnet/address/{address}/balances_v2/
+  Cost: 1 credit/call
+  Level: Advanced
+  Chains: solana
+  URL: https://skills.goldrush.dev/tools/anchor-program-data-reader
+
+**api-reference**
+  Description: Interactive API explorer and full reference docs for all GoldRush endpoints.
+  Use case: Explore every available GoldRush API endpoint in your browser — test calls with your API key, see live responses, and copy ready-to-use SDK code snippets.
+  Endpoint: https://goldrush.dev/docs/api/
+  Cost: Free to browse
+  Level: Beginner
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +14 more
+  URL: https://skills.goldrush.dev/tools/api-reference
+
+**block-date-lookup**
+  Description: Convert any date range to block numbers on any EVM chain — essential for historical queries and event log scanning.
+  Use case: Find the exact block numbers for a date range before running historical event log queries — convert '2024-01-01' to '2024-01-31' into startingBlock and endingBlock parameters.
+  Endpoint: GET /v1/{chainName}/block_v2/{startDate}/{endDate}/
+  Cost: 0.1 credit/call
+  Level: Beginner
+  Chains: ethereum, base, bsc, polygon, optimism, arbitrum +2 more
+  URL: https://skills.goldrush.dev/tools/block-date-lookup
+
+**block-explorer-lite**
+  Description: Full-featured mini block explorer for any EVM chain — search by block, transaction hash, or wallet address, with decoded event logs and internal transfers.
+  Use case: Build a white-label block explorer page for any EVM chain that lets users search transactions by hash, browse blocks, and see decoded event logs — like a chain-specific Etherscan.
+  Endpoint: GET /v1/{chainName}/block_v2/{blockHeight}/
+  Cost: 1/block + 0.1/tx
+  Level: Advanced
+  Chains: ethereum, base, bsc, polygon, optimism, arbitrum +6 more
+  URL: https://skills.goldrush.dev/tools/block-explorer-lite
+
+**gas-price-widget**
+  Description: Embeddable real-time gas tracker with open/fast/instant tiers and USD fee estimates — drop it into any dApp to show live network conditions.
+  Use case: Build a reusable gas price component that shows open/fast/instant gas tiers with estimated USD fees for an ETH transfer and ERC-20 transfer — refreshes every 15 seconds.
+  Endpoint: GET /v1/{chainName}/event/gas_prices/?event-type={eventType}
+  Cost: 1 credit/call
+  Level: Beginner
+  Chains: ethereum, base, bsc, polygon, optimism, arbitrum +2 more
+  URL: https://skills.goldrush.dev/tools/gas-price-widget
+
+**goldrush-kit-approvals**
+  Description: Drop-in React component that shows all active ERC-20 and NFT approvals for a wallet using ApprovalsListView â€” with built-in revoke functionality.
+  Use case: Add a token approval manager to any wallet app — show users all their active approvals with risk scores and let them revoke dangerous ones in one click.
+  Endpoint: GET /v1/{chainName}/approvals/{walletAddress}/
+  Cost: 1 credit/call
+  Level: Beginner
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +13 more
+  URL: https://skills.goldrush.dev/tools/goldrush-kit-approvals
+
+**goldrush-kit-token-balances**
+  Description: Drop-in React component for a full token balances table â€” ERC-20 + native â€” using GoldRush Kit's TokenBalancesListView. Ships with sorting, USD values, logos, and spam filtering.
+  Use case: Add a production-quality token balances table to a wallet app in minutes — no custom UI needed, just drop in the component and pass a wallet address.
+  Endpoint: GET /v1/{chainName}/address/{walletAddress}/balances_v2/
+  Cost: 1 credit/call
+  Level: Beginner
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +13 more
+  URL: https://skills.goldrush.dev/tools/goldrush-kit-token-balances
+
+**goldrush-kit-tx-feed**
+  Description: Drop-in React component rendering a paginated, decoded transaction activity feed for any wallet using WalletActivityListView.
+  Use case: Add a paginated transaction activity feed to a wallet app — shows decoded event labels, values, and chain info with zero custom UI code required.
+  Endpoint: GET /v1/{chainName}/address/{walletAddress}/transactions_v3/
+  Cost: 1 credit/call
+  Level: Beginner
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +13 more
+  URL: https://skills.goldrush.dev/tools/goldrush-kit-tx-feed
+
+**goldrush-playground**
+  Description: Browser-based API playground for testing GoldRush queries without writing code.
+  Use case: Prototype API calls and validate responses before writing any code — perfect for exploring new endpoints or debugging unexpected data shapes.
+  Endpoint: https://goldrush.dev/platform/
+  Cost: Free to use
+  Level: Beginner
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +14 more
+  URL: https://skills.goldrush.dev/tools/goldrush-playground
+
+**goldrush-react-hooks**
+  Description: Drop-in React hooks for balances, NFTs, and token prices â€” onchain data made simple.
+  Use case: Build React components that fetch on-chain data with a single hook call — handle loading and error states automatically without writing fetch logic yourself.
+  Endpoint: GET /v1/{chainName}/address/{walletAddress}/balances_v2/
+  Cost: 1 credit/call
+  Level: Beginner
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +13 more
+  URL: https://skills.goldrush.dev/tools/goldrush-react-hooks
+
+**goldrush-typescript-sdk**
+  Description: Official TypeScript SDK with full type safety for every GoldRush API endpoint.
+  Use case: Bootstrap any TypeScript or JavaScript project with full on-chain data access in under 5 minutes — install the SDK, paste your API key, and start querying.
+  Endpoint: npm: @covalenthq/client-sdk
+  Cost: Free to install
+  Level: Beginner
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +14 more
+  URL: https://skills.goldrush.dev/tools/goldrush-typescript-sdk
+
+**quickstart-templates**
+  Description: Starter templates for building onchain apps with Next.js, Vite, and React.
+  Use case: Clone a production-ready Next.js starter that ships with GoldRush Kit components, Tailwind styling, and TypeScript — skip boilerplate and start building your dApp immediately.
+  Endpoint: https://github.com/covalenthq/goldrush-kit
+  Cost: Free
+  Level: Beginner
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +13 more
+  URL: https://skills.goldrush.dev/tools/quickstart-templates
+
+**solana-goldrush-quickstart**
+  Description: Scaffold a production-ready Solana wallet dashboard in one command using the GoldRush Next.js starter for Solana — pre-wired with `@covalenthq/client-sdk`, Solana wallet adapter (Phantom/Backpack/Solflare), and four ready-to-run components: SPL token balances table with USD values, decoded transaction history feed with program labels, Metaplex NFT gallery, and a wallet age summary card. Clone, add `GOLDRUSH_API_KEY=your_key` to `.env.local`, run `npm dev`, and ship. No blockchain parsing required.
+  Use case: Scaffold a production-ready Solana wallet dashboard with token balances, transaction history, NFT gallery, and wallet age summary all pre-wired and ready to ship in minutes.
+  Endpoint: GET /v1/solana-mainnet/address/{address}/balances_v2/
+  Cost: 1 credit/call
+  Level: Beginner
+  Chains: solana
+  URL: https://skills.goldrush.dev/tools/solana-goldrush-quickstart
+
+**webhook-builder**
+  Description: Configure real-time webhooks for wallet events, transfers, and contract interactions.
+  Use case: Build a notification system that fires HTTP webhooks when a wallet receives tokens, completes a swap, or interacts with a contract — no polling, pure push delivery.
+  Endpoint: POST /v1/webhooks/
+  Cost: Per event delivery
+  Level: Intermediate
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +13 more
+  URL: https://skills.goldrush.dev/tools/webhook-builder
+
+### Cross-chain (7 skills)
+
+**address-activity-scanner**
+  Description: Discover every chain a wallet address is active on with a single API call.
+  Use case: Build the first screen of a multi-chain wallet app — discover which chains a user is active on before fetching balances, saving API credits by only querying active chains.
+  Endpoint: GET /v1/address/{walletAddress}/activity/
+  Cost: 0.1 credit/call
+  Level: Beginner
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +14 more
+  URL: https://skills.goldrush.dev/tools/address-activity-scanner
+
+**cross-chain-activity-report**
+  Description: Full cross-chain footprint for any wallet — active chains, combined net worth, unified transaction timeline, and per-chain asset breakdown in one API call.
+  Use case: Build a cross-chain analytics page that shows every chain a wallet has ever been active on, their total net worth across all chains, and a unified activity timeline — like DeBank's portfolio but self-hosted.
+  Endpoint: GET /v1/address/{walletAddress}/activity/
+  Cost: 0.5 + 2.5 + 0.25/tx
+  Level: Intermediate
+  Chains: ethereum, base, bsc, polygon, optimism, arbitrum +8 more
+  URL: https://skills.goldrush.dev/tools/cross-chain-activity-report
+
+**cross-chain-address-lookup**
+  Description: Resolve and look up the same address across all supported EVM chains at once.
+  Use case: Build a cross-chain identity card for any wallet — show which chains they use, when they were last active on each, and link to chain-specific explorers.
+  Endpoint: GET /v1/address/{walletAddress}/activity/
+  Cost: 0.1 credit/call
+  Level: Beginner
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +14 more
+  URL: https://skills.goldrush.dev/tools/cross-chain-address-lookup
+
+**cross-chain-transaction-history**
+  Description: Fetch and merge transaction history across multiple chains for a single wallet â€” great for multichain explorers, unified activity timelines, and tax reporting tools.
+  Use case: Build a unified transaction timeline that merges activity from Ethereum, Base, Polygon, and more into a single chronological feed — perfect for tax reporting and portfolio analytics.
+  Endpoint: GET /v1/transactions/{walletAddress}/
+  Cost: 1 credit/call
+  Level: Intermediate
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +13 more
+  URL: https://skills.goldrush.dev/tools/cross-chain-transaction-history
+
+**multichain-activity-discovery**
+  Description: Scan every supported chain simultaneously to discover which networks a wallet has been active on â€” single call, 200+ chains. The must-have entry point for any cross-chain app.
+  Use case: Detect all chains a user has ever been active on before loading their portfolio — use this as the first call in any multi-chain app to skip querying inactive chains.
+  Endpoint: GET /v1/address/{walletAddress}/activity/
+  Cost: 0.1 credit/call
+  Level: Beginner
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +14 more
+  URL: https://skills.goldrush.dev/tools/multichain-activity-discovery
+
+**multichain-token-aggregator**
+  Description: Aggregate all token balances across every chain a wallet is active on â€” auto-discovers chains then fetches balances in parallel. One function call for a complete cross-chain portfolio.
+  Use case: Build a complete cross-chain token dashboard that automatically discovers active chains and aggregates all token holdings — no hard-coded chain list needed.
+  Endpoint: GET /v1/address/{walletAddress}/balances/
+  Cost: 1 credit/call
+  Level: Intermediate
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +13 more
+  URL: https://skills.goldrush.dev/tools/multichain-token-aggregator
+
+**multichain-portfolio**
+  Description: Unified portfolio view aggregating assets across every GoldRush-supported chain.
+  Use case: Build the 'Total Portfolio' view of a cross-chain wallet app — show assets grouped by chain with per-chain totals and a grand total USD net worth.
+  Endpoint: GET /v1/address/{walletAddress}/balances/
+  Cost: 1 credit/call
+  Level: Beginner
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +13 more
+  URL: https://skills.goldrush.dev/tools/multichain-portfolio
+
+### Tokens (19 skills)
+
+**dex-pool-spot-price**
+  Description: Fetch real-time spot prices and liquidity for any AMM pool — Uniswap, Aerodrome, PancakeSwap, and more.
+  Use case: Build a DEX pool price monitor that shows real-time token0/token1 spot prices and total liquidity for any AMM pool — Uniswap, Aerodrome, PancakeSwap, and more.
+  Endpoint: GET /v1/{chainName}/pricing/pool/{contractAddress}/spot_prices/
+  Cost: 1 credit/call
+  Level: Intermediate
+  Chains: ethereum, base, bsc, polygon, optimism, gnosis
+  URL: https://skills.goldrush.dev/tools/dex-pool-spot-price
+
+**erc20-transfer-history**
+  Description: Full paginated ERC-20 transfer history for any wallet and token contract pair.
+  Use case: Build a per-token transfer history page showing every time a specific ERC-20 entered or left a wallet — essential for tax tools and token-specific analytics.
+  Endpoint: GET /v1/{chainName}/address/{walletAddress}/transfers_v2/
+  Cost: 1 credit/call
+  Level: Beginner
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +13 more
+  URL: https://skills.goldrush.dev/tools/erc20-transfer-history
+
+**pumpfun-token-scanner**
+  Description: Monitor pump.fun's bonding curve program on Solana mainnet via GoldRush event logs — fetch the current market cap in USD, SOL held in the bonding curve, percentage progress toward graduation (~$69K), and the top 10 buyers ranked by SOL spent for any pump.fun token mint address. Subscribe to the graduation event stream to know the exact block when a token migrates to Raydium and acquires its first real liquidity pool — essential for launch-tracker UIs and autonomous sniper agents.
+  Use case: Build a real-time pump.fun launch tracker that monitors bonding curve progress and fires an alert the moment a token graduates to Raydium with initial liquidity.
+  Endpoint: GET /v1/solana-mainnet/address/{address}/transactions_v3/
+  Cost: 2 credits/call
+  Level: Advanced
+  Chains: solana
+  URL: https://skills.goldrush.dev/tools/pumpfun-token-scanner
+
+**solana-token-holders-snapshot**
+  Description: Call `GET /v1/solana-mainnet/tokens/{mint}/token_holders/?page-size=100` to retrieve a ranked list of every wallet holding a given SPL token — returns wallet address, raw balance, USD value, and percentage of total supply for each holder. Paginate through all pages for a complete holder distribution. Use for airdrop snapshot lists, DAO governance voter registries, whale identification, or as input to a holder concentration risk score.
+  Use case: Generate a complete SPL token holder distribution snapshot for airdrop eligibility lists, DAO governance registries, or holder concentration risk analysis.
+  Endpoint: GET /v1/solana-mainnet/tokens/{tokenAddress}/token_holders_v2/
+  Cost: 1 credit/call
+  Level: Beginner
+  Chains: solana
+  URL: https://skills.goldrush.dev/tools/solana-token-holders-snapshot
+
+**solana-token-price-history**
+  Description: Fetch OHLCV daily candlestick data for any SPL token via GoldRush's pricing endpoint — specify the mint address and date range (up to 365 days of history for tokens with sufficient liquidity). Each candle returns open, high, low, close price in USD, and 24h trading volume. Use to render price charts with Recharts or Chart.js, run strategy backtests, calculate unrealized P&L for agent-held positions, or power a token screener with momentum signals.
+  Use case: Render a Solana token price chart with OHLCV candlestick data and calculate momentum signals for a token screener or strategy backtester.
+  Endpoint: GET /v1/pricing/historical_by_addresses_v2/solana-mainnet/USD/{contractAddresses}/
+  Cost: 1 credit/call
+  Level: Beginner
+  Chains: solana
+  URL: https://skills.goldrush.dev/tools/solana-token-price-history
+
+**solana-token-whale-alert**
+  Description: Subscribe to SPL token transfer events for any mint address via GoldRush's real-time activity stream on `solana-mainnet` — filter server-side for transfers above a configurable USD threshold (e.g. >$50K). Each alert payload includes: sender wallet, receiver wallet, token amount, USD value at time of transfer, and the tx signature for on-chain verification. Build a Telegram or Discord whale-alert bot that fires within seconds of a large transfer landing on-chain — under 100 lines of code.
+  Use case: Build a Telegram or Discord whale-alert bot that fires within seconds whenever a large SPL token transfer exceeds a configurable USD threshold on Solana.
+  Endpoint: GET /v1/solana-mainnet/address/{address}/transactions_v3/
+  Cost: 2 credits/call
+  Level: Intermediate
+  Chains: solana
+  URL: https://skills.goldrush.dev/tools/solana-token-whale-alert
+
+**spl-token-metadata**
+  Description: Call `GET /v1/solana-mainnet/tokens/{mint}/` with any SPL token mint address to retrieve: token name, symbol, decimals, total supply, logo URI, and current USD price as indexed by GoldRush. Works for any SPL token including newly launched pump.fun tokens, wrapped assets, and DeFi governance tokens. This is the mandatory first call for any Solana token analytics page — gives your app complete token context from a single endpoint.
+  Use case: Build a Solana token analytics page that loads complete token context — name, symbol, supply, logo, and current price — from a single GoldRush endpoint call.
+  Endpoint: GET /v1/pricing/historical_by_addresses_v2/solana-mainnet/USD/{contractAddresses}/
+  Cost: 1 credit/call
+  Level: Beginner
+  Chains: solana
+  URL: https://skills.goldrush.dev/tools/spl-token-metadata
+
+**spot-price-ticker**
+  Description: Live spot prices for thousands of tokens indexed by GoldRush across all chains.
+  Use case: Build a live token price ticker or price lookup widget — fetch the current USD price for any ERC-20 by contract address with a single API call.
+  Endpoint: GET /v1/pricing/historical_by_addresses_v2/{chainName}/{quoteCurrency}/{contractAddresses}/
+  Cost: 1 credit/call
+  Level: Beginner
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +14 more
+  URL: https://skills.goldrush.dev/tools/spot-price-ticker
+
+**token-approval-scanner**
+  Description: Identify and audit all ERC-20 token approvals granted by any wallet address.
+  Use case: Build a token approval checker that shows every active approval a wallet has granted — highlight unlimited approvals and flag spenders by risk level.
+  Endpoint: GET /v1/{chainName}/approvals/{walletAddress}/
+  Cost: 1 credit/call
+  Level: Beginner
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +13 more
+  URL: https://skills.goldrush.dev/tools/token-approval-scanner
+
+**token-holder-list**
+  Description: Retrieve a ranked list of holders for any token contract address across chains.
+  Use case: Build a token holder leaderboard showing the top 100 holders of any ERC-20 — display wallet addresses, balances, and ownership percentages for community dashboards.
+  Endpoint: GET /v1/{chainName}/tokens/{tokenAddress}/token_holders_v2/
+  Cost: 1 credit/call
+  Level: Intermediate
+  Chains: ethereum, base, bsc, polygon, optimism, gnosis
+  URL: https://skills.goldrush.dev/tools/token-holder-list
+
+**token-holders-leaderboard**
+  Description: Paginated leaderboard of every token holder with balance, percentage of supply, and rank — build airdrop lists, DAO voter registries, and holder dashboards.
+  Use case: Build a token holders leaderboard page for any ERC-20 showing the top 1000 holders sorted by balance, with % of total supply and wallet labels.
+  Endpoint: GET /v1/{chainName}/tokens/{tokenAddress}/token_holders_v2/
+  Cost: 0.02/holder
+  Level: Beginner
+  Chains: ethereum, base, bsc, polygon, optimism, gnosis
+  URL: https://skills.goldrush.dev/tools/token-holders-leaderboard
+
+**token-holders-snapshot**
+  Description: Paginated list of every holder of an ERC-20 token with balance, percentage of supply, and address. Essential for airdrops, governance snapshots, and holder analytics.
+  Use case: Export a complete holder snapshot for any ERC-20 token at a specific block height — use for airdrop distribution lists, governance vote eligibility, and holder analytics.
+  Endpoint: GET /v1/{chainName}/tokens/{tokenAddress}/token_holders_v2/
+  Cost: 1 credit/page
+  Level: Intermediate
+  Chains: ethereum, base, bsc, polygon, optimism, gnosis
+  URL: https://skills.goldrush.dev/tools/token-holders-snapshot
+
+**token-metadata-api**
+  Description: Fetch logos, decimals, contract info, and supply data for any ERC-20 token.
+  Use case: Build a token info card that shows name, symbol, logo, decimals, and current USD price for any ERC-20 — use getTokenBalancesForWalletAddress and filter by contract address.
+  Endpoint: GET /v1/{chainName}/address/{walletAddress}/balances_v2/
+  Cost: 1 credit/call
+  Level: Beginner
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +13 more
+  URL: https://skills.goldrush.dev/tools/token-metadata-api
+
+**token-price-chart**
+  Description: Historical USD price for one or more token contracts on any chain. Powers price charts, backtesting, P&L calculation, and DeFi analytics.
+  Use case: Render a 30-day price history chart for any ERC-20 token — show daily USD close prices as a line or candlestick chart for DeFi dashboards and portfolio analytics.
+  Endpoint: GET /v1/pricing/historical_by_addresses_v2/{chainName}/{quoteCurrency}/{contractAddresses}/
+  Cost: 1 credit/call
+  Level: Beginner
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +14 more
+  URL: https://skills.goldrush.dev/tools/token-price-chart
+
+**token-search**
+  Description: Search any token by name or symbol across all indexed chains — returns address, chain, and logo for instant token lookup UIs.
+  Use case: Build a token search input that lets users find any token by name or ticker — returns contract address, chain, and logo for use in swap UIs and token selectors.
+  Endpoint: wss://streaming.goldrushdata.com/graphql — searchToken query
+  Cost: Free
+  Level: Beginner
+  Chains: ethereum, base, bsc, polygon, arbitrum, optimism +2 more
+  URL: https://skills.goldrush.dev/tools/token-search
+
+**token-supply-metadata**
+  Description: Fetch token contract metadata including name, symbol, decimals, total supply, logo, and current USD price from a single endpoint.
+  Use case: Build a token directory that shows name, symbol, decimals, logo, and live USD price for any ERC-20 token in your app — no separate metadata endpoint needed.
+  Endpoint: GET /v1/{chainName}/address/{walletAddress}/balances_v2/
+  Cost: 1 credit/call
+  Level: Beginner
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +13 more
+  URL: https://skills.goldrush.dev/tools/token-supply-metadata
+
+**token-transfer-stream**
+  Description: Real-time stream of ERC-20 transfers for any token or wallet address.
+  Use case: Build a live token transfer alert that fires instantly when any ERC-20 token enters or leaves a watched wallet — no polling, pure WebSocket delivery.
+  Endpoint: wss://streaming.goldrushdata.com/graphql — walletTxs subscription
+  Cost: Streaming subscription
+  Level: Intermediate
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +10 more
+  URL: https://skills.goldrush.dev/tools/token-transfer-stream
+
+**token-unlock-tracker**
+  Description: Monitor Transfer events from known vesting/lock contracts to track token unlocks as they happen — build an unlock calendar or alert system.
+  Use case: Build a token unlock monitor that watches a vesting contract address for Transfer events and alerts when tokens are released, showing recipient, amount, and USD value.
+  Endpoint: GET /v1/{chainName}/events/topics/{topicHash}/
+  Cost: 0.01/event
+  Level: Intermediate
+  Chains: ethereum, base, bsc, polygon, optimism, arbitrum +1 more
+  URL: https://skills.goldrush.dev/tools/token-unlock-tracker
+
+**token-whale-alert**
+  Description: Detect large ERC-20 transfers for any token in real-time — subscribe to wallet activity and fire alerts when a single transfer exceeds a USD threshold.
+  Use case: Build a whale alert bot that monitors a specific token contract and fires a notification whenever a transfer exceeds $100k — shows sender, receiver, amount, and USD value.
+  Endpoint: wss://streaming.goldrushdata.com/graphql — walletTxs subscription
+  Cost: Streaming subscription
+  Level: Intermediate
+  Chains: ethereum, base, bsc, polygon, arbitrum, optimism +1 more
+  URL: https://skills.goldrush.dev/tools/token-whale-alert
+
+### Identity (8 skills)
+
+**airdrop-eligibility-checker**
+  Description: Check whether a wallet meets configurable airdrop criteria — transaction count, wallet age, multi-chain activity, specific protocol interactions, and minimum balance thresholds.
+  Use case: Build an airdrop checker tool that evaluates wallets against a configurable set of criteria and returns a pass/fail with score breakdown — like the Arbitrum or OP airdrop checker.
+  Endpoint: GET /v1/{chainName}/address/{walletAddress}/transactions_summary/
+  Cost: ~3-5 credits/check
+  Level: Intermediate
+  Chains: ethereum, base, bsc, polygon, optimism, arbitrum +1 more
+  URL: https://skills.goldrush.dev/tools/airdrop-eligibility-checker
+
+**ens-resolver**
+  Description: Resolve ENS names and reverse-lookup wallet addresses to human-readable identities.
+  Use case: Add ENS name support to any wallet input — resolve 'vitalik.eth' to its 0x address before querying balances or transactions, and show ENS names alongside addresses in your UI.
+  Endpoint: GET /v1/{chainName}/address/{walletAddress}/resolve_address/
+  Cost: 0.1 credit/call
+  Level: Beginner
+  Chains: ethereum
+  URL: https://skills.goldrush.dev/tools/ens-resolver
+
+**governance-token-snapshot**
+  Description: Snapshot all holders of a governance token at a specific block height for voting power calculation, airdrop distribution, or DAO membership verification.
+  Use case: Take a holder snapshot for a DAO governance token at a specific block — generate the eligible voter list and voting power distribution for an upcoming proposal.
+  Endpoint: GET /v1/{chainName}/tokens/{tokenAddress}/token_holders_v2/
+  Cost: 1 credit/page
+  Level: Intermediate
+  Chains: ethereum, base, bsc, polygon, optimism, gnosis
+  URL: https://skills.goldrush.dev/tools/governance-token-snapshot
+
+**nft-gate**
+  Description: Gate content or app features based on NFT ownership verified through GoldRush.
+  Use case: Lock premium content, Discord roles, or app features behind NFT ownership — check if a connected wallet holds any token from a collection in a single API call.
+  Endpoint: GET /v1/{chainName}/address/{walletAddress}/collection/{collectionContract}/
+  Cost: 0.1 credit/call
+  Level: Beginner
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +13 more
+  URL: https://skills.goldrush.dev/tools/nft-gate
+
+**onchain-activity-verifier**
+  Description: Verify on-chain activity depth with transaction count, wallet age, chains used, and token diversity â€” build KYC-lite gates, Sybil filters, and proof-of-personhood checks.
+  Use case: Build a Sybil-resistance gate for a DeFi airdrop — score wallets by age, total transactions, and chain diversity to filter out bot accounts and fresh wallets.
+  Endpoint: GET /v1/{chainName}/address/{walletAddress}/transactions_summary/
+  Cost: 0.1 credit/call
+  Level: Intermediate
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +14 more
+  URL: https://skills.goldrush.dev/tools/onchain-activity-verifier
+
+**onchain-credit-widget**
+  Description: Embeddable widget that scores any wallet 0–850 based on age, activity depth, asset diversity, and approval hygiene — DeFi's answer to a credit score.
+  Use case: Build an embeddable onchain credit score component that lenders, DAOs, and apps can drop in to gate access based on wallet reputation — score computed from age, tx count, chains, net worth, and risky approvals.
+  Endpoint: GET /v1/{chainName}/address/{walletAddress}/transactions_summary/
+  Cost: ~4 credits/score
+  Level: Intermediate
+  Chains: ethereum, base, bsc, polygon, optimism, arbitrum
+  URL: https://skills.goldrush.dev/tools/onchain-credit-widget
+
+**onchain-resume**
+  Description: Generate a shareable public profile page for any wallet — wallet age, chain activity, top assets, NFTs, and DeFi history all in one URL.
+  Use case: Build a wallet.eth/0x... profile page that serves as an onchain resume — showing when the wallet was created, which chains it's active on, top token holdings, and NFT collection.
+  Endpoint: GET /v1/{chainName}/address/{walletAddress}/transactions_summary/
+  Cost: ~5 credits total
+  Level: Intermediate
+  Chains: ethereum, base, bsc, polygon, optimism, arbitrum +1 more
+  URL: https://skills.goldrush.dev/tools/onchain-resume
+
+**proof-of-onchain-activity**
+  Description: Verify wallet activity depth and onchain history as a proof of genuine use.
+  Use case: Issue a proof-of-personhood score for any wallet — score wallets on transaction history, wallet age, and multi-chain diversity to filter Sybil accounts from airdrop campaigns.
+  Endpoint: GET /v1/{chainName}/address/{walletAddress}/transactions_summary/
+  Cost: 0.1 credit/call
+  Level: Intermediate
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +14 more
+  URL: https://skills.goldrush.dev/tools/proof-of-onchain-activity
+
+### Security (9 skills)
+
+**approval-auditor**
+  Description: Scan and identify dangerous ERC-20 token approvals to revoke from any wallet.
+  Use case: Build a wallet security scanner that shows all active token approvals, flags the dangerous ones, and calculates the total USD value at risk from unlimited approvals.
+  Endpoint: GET /v1/{chainName}/approvals/{walletAddress}/
+  Cost: 1 credit/call
+  Level: Beginner
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +13 more
+  URL: https://skills.goldrush.dev/tools/approval-auditor
+
+**contract-interaction-history**
+  Description: Full history of contract interactions for security forensics and incident response.
+  Use case: Build a contract interaction audit trail — show every time a wallet interacted with a specific contract, what events were emitted, and flag any interactions with known exploit contracts.
+  Endpoint: GET /v1/{chainName}/events/address/{contractAddress}/
+  Cost: 1 credit/call
+  Level: Intermediate
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +13 more
+  URL: https://skills.goldrush.dev/tools/contract-interaction-history
+
+**smart-contract-interaction-risk**
+  Description: Score the risk of interacting with any smart contract based on its onchain history and approvals.
+  Use case: Build a pre-transaction risk check that scores any contract before users interact with it — surface honeypot signals, unusual approval patterns, and known exploited contracts.
+  Endpoint: GET /v1/{chainName}/approvals/{walletAddress}/
+  Cost: 1 credit/call
+  Level: Advanced
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +13 more
+  URL: https://skills.goldrush.dev/tools/smart-contract-interaction-risk
+
+**solana-program-verifier**
+  Description: Before an agent or user interacts with any unknown Solana program, verify its safety via GoldRush: check if the deployed binary matches a verified source build (OtterSec/Sec3/Otter-verified programs list), look up the program ID against known-malicious contract databases, and fetch its historical instruction volume — high usage over 6+ months signals a battle-tested contract. Returns a `verified` / `unverified` / `malicious` enum plus a link to the audit report if one exists.
+  Use case: Build a Solana program safety checker that classifies any program as verified, unverified, or malicious using GoldRush transaction history and known-program lists before user interaction.
+  Endpoint: GET /v1/solana-mainnet/address/{address}/transactions_v3/
+  Cost: 1 credit/call
+  Level: Intermediate
+  Chains: solana
+  URL: https://skills.goldrush.dev/tools/solana-program-verifier
+
+**solana-token-risk-scorer**
+  Description: For any SPL token mint address, check 4 critical rug-pull signals via GoldRush: (1) mint authority — can the deployer print unlimited new tokens? (2) freeze authority — can they lock tokens in your wallet? (3) top-10 holder concentration — are 10 wallets holding >80% of supply? (4) liquidity lock — is the Raydium LP locked or can it be withdrawn instantly? Returns a 0–100 composite risk score plus the raw value of each signal so you can explain exactly why a token scored high risk. Wire as a pre-trade guard in any agent pipeline or wallet UI.
+  Use case: Build a pre-trade Solana token safety checker that scores rug-pull risk from 0–100 based on mint authority, freeze authority, and holder concentration, blocking dangerous trades automatically.
+  Endpoint: GET /v1/solana-mainnet/tokens/{tokenAddress}/token_holders_v2/
+  Cost: 1 credit/call
+  Level: Intermediate
+  Chains: solana
+  URL: https://skills.goldrush.dev/tools/solana-token-risk-scorer
+
+**stale-approval-cleaner**
+  Description: Surface all active ERC-20 and NFT approvals sorted by risk level — identify unlimited approvals, deprecated protocol spenders, and dead contracts that should be revoked.
+  Use case: Build a wallet security dashboard that shows every active token approval grouped by risk (critical/high/medium/safe), with the dollar value at risk and a direct Etherscan revoke link for each.
+  Endpoint: GET /v1/{chainName}/approvals/{walletAddress}/
+  Cost: 2 credits/call
+  Level: Beginner
+  Chains: ethereum, base, bsc, polygon, optimism, arbitrum +1 more
+  URL: https://skills.goldrush.dev/tools/stale-approval-cleaner
+
+**token-approval-risk-scanner**
+  Description: Scan all active ERC-20 and NFT approvals for a wallet and score each by risk level â€” identify dangerous unlimited approvals, deprecated protocols, and known exploited contracts.
+  Use case: Build a comprehensive approval risk report for any wallet — categorize every approval as low/medium/high risk, sum up total value at risk, and recommend which to revoke.
+  Endpoint: GET /v1/{chainName}/approvals/{walletAddress}/
+  Cost: 1 credit/call
+  Level: Intermediate
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +13 more
+  URL: https://skills.goldrush.dev/tools/token-approval-risk-scanner
+
+**token-risk-analyzer**
+  Description: Score tokens for rug-pull signals, ownership concentration, and LP lock status.
+  Use case: Build a token safety checker that scores any ERC-20 for rug-pull risk — combine approval data, price history volatility, and holder concentration into a risk score.
+  Endpoint: GET /v1/{chainName}/approvals/{walletAddress}/
+  Cost: 1 credit/call
+  Level: Advanced
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +13 more
+  URL: https://skills.goldrush.dev/tools/token-risk-analyzer
+
+**transaction-decoded-receipt**
+  Description: Fetch a fully decoded transaction receipt including internal transfers, decoded log events, ERC-20/NFT movements, and gas analytics â€” the core of any transaction detail page.
+  Use case: Build a transaction detail page that shows every token transfer, internal call, and decoded event in a human-readable format — like Etherscan's transaction view but for your own app.
+  Endpoint: GET /v1/{chainName}/transaction_v2/{txHash}/
+  Cost: 1 credit/call
+  Level: Beginner
+  Chains: ethereum, base, polygon, bsc, optimism, arbitrum +13 more
+  URL: https://skills.goldrush.dev/tools/transaction-decoded-receipt
 
 ## How to use these skills
 Each skill page at https://skills.goldrush.dev/tools/{slug} contains:
@@ -209,6 +1261,8 @@ const resp = await client.BalanceService.getTokenBalancesForWalletAddress(
   "eth-mainnet",
   "0xwalletAddress"
 );
+if (resp.error) throw new Error(resp.error_message ?? "API error");
+const items = resp.data?.items ?? [];
 ```
 
 Get a free API key: https://goldrush.dev

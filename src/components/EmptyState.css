@@ -19,3 +19,35 @@
     margin-top: var(--spacing-06);
     display: inline-block;
 }
+
+.empty-state-suggestions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--spacing-02);
+    margin-top: var(--spacing-05);
+}
+
+.empty-state-suggestions-label {
+    font-family: var(--monospace);
+    font-size: 0.65rem;
+    color: var(--content-secondary-alt);
+    letter-spacing: 0.04em;
+}
+
+.empty-state-suggestion {
+    background: none;
+    border: 0.5px solid var(--border-muted);
+    color: DarkOrange;
+    font-family: var(--monospace);
+    font-size: 0.65rem;
+    padding: 1px var(--spacing-03);
+    cursor: pointer;
+    transition: border-color 0.15s, background-color 0.15s;
+    letter-spacing: 0.02em;
+}
+.empty-state-suggestion:hover {
+    border-color: DarkOrange;
+    background-color: rgba(255, 140, 0, 0.06);
+}

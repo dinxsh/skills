@@ -13,6 +13,7 @@ interface CardProps {
     isSelected?: boolean;
     onCartToggle?: (slug: string) => void;
     completeness?: number;
+    complexity?: string;
 }
 
 export default function Card({
@@ -26,6 +27,7 @@ export default function Card({
     isSelected = false,
     onCartToggle,
     completeness = 0,
+    complexity = '',
 }: CardProps) {
     const linkUrl = slug ? `/tools/${slug}` : href;
     const isNew = isRecentlyAdded(dateAdded, 30);
@@ -41,6 +43,9 @@ export default function Card({
                 <div className="card-top">
                     {category && <span className="card-category">{category}</span>}
                     {isNew && <span className="tag-new" title="Recently added">new</span>}
+                    {complexity && (
+                        <span className={`card-complexity card-complexity--${complexity.toLowerCase()}`}>{complexity}</span>
+                    )}
                 </div>
                 <strong className="card-title">{title}</strong>
                 <p className="card-body">{body}</p>

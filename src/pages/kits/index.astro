@@ -1,6 +1,13 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import kitsData from "../../data/kits.json";
+
+const complexityCounts = {
+  all: kitsData.kits.length,
+  beginner: kitsData.kits.filter(k => k.complexity === 'Beginner').length,
+  intermediate: kitsData.kits.filter(k => k.complexity === 'Intermediate').length,
+  advanced: kitsData.kits.filter(k => k.complexity === 'Advanced').length,
+};
 ---
 
 <Layout
@@ -18,11 +25,17 @@ import kitsData from "../../data/kits.json";
       <a href="/" class="kits-back">← All skills</a>
       <h1 class="kits-title">Starter Kits</h1>
       <p class="kits-subtitle">18 pre-composed bundles of 6 GoldRush skills each. Copy one prompt, build a complete deployable app.</p>
+      <div class="kits-filters" id="kitsFilters">
+        <button class="kits-filter kits-filter--active" data-filter="all">All <span>{complexityCounts.all}</span></button>
+        <button class="kits-filter" data-filter="beginner">Beginner <span>{complexityCounts.beginner}</span></button>
+        <button class="kits-filter" data-filter="intermediate">Intermediate <span>{complexityCounts.intermediate}</span></button>
+        <button class="kits-filter" data-filter="advanced">Advanced <span>{complexityCounts.advanced}</span></button>
+      </div>
     </div>
 
-    <div class="kits-grid">
+    <div class="kits-grid" id="kitsGrid">
       {kitsData.kits.map(kit => (
-        <a href={`/kits/${kit.id}`} class="kit-card">
+        <a href={`/kits/${kit.id}`} class="kit-card" data-complexity={kit.complexity.toLowerCase()}>
           <div class="kit-card-top">
             <span class="kit-card-emoji">{kit.emoji}</span>
             <span class={`kit-card-complexity kit-card-complexity--${kit.complexity.toLowerCase()}`}>{kit.complexity}</span>
@@ -65,9 +78,31 @@ import kitsData from "../../data/kits.json";
     .kit-card-count { font-family: var(--monospace); font-size: 0.65rem; color: var(--content-secondary-alt); }
     .kit-card-chains { display: flex; gap: 4px; flex-wrap: wrap; }
     .kit-card-chain { font-family: var(--monospace); font-size: 0.6rem; color: var(--content-secondary-alt); padding: 0 5px; background: var(--background-secondary); border: 0.5px solid var(--border-muted); }
+    .kits-filters { display: flex; gap: var(--spacing-02); margin-top: var(--spacing-05); flex-wrap: wrap; }
+    .kits-filter { background: none; border: 0.5px solid var(--border-muted); color: var(--content-secondary); font-family: var(--monospace); font-size: 0.65rem; padding: 0 var(--spacing-03); height: 1.5rem; cursor: pointer; transition: border-color 0.15s, color 0.15s; letter-spacing: 0.02em; }
+    .kits-filter span { opacity: 0.5; margin-left: 3px; }
+    .kits-filter:hover { border-color: var(--border); color: var(--content-primary); }
+    .kits-filter--active { border-color: DarkOrange; color: DarkOrange; }
+    .kits-filter--active span { opacity: 0.7; }
+    .kit-card[hidden] { display: none; }
     @media (max-width: 640px) {
       .kits-page { padding: 0 var(--spacing-05); }
       .kits-grid { grid-template-columns: 1fr; }
     }
   </style>
+
+  <script type="module">
+    const filters = document.querySelectorAll('.kits-filter');
+    const cards = document.querySelectorAll('.kit-card[data-complexity]');
+    filters.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filters.forEach(b => b.classList.remove('kits-filter--active'));
+        btn.classList.add('kits-filter--active');
+        const f = btn.dataset.filter;
+        cards.forEach(card => {
+          card.hidden = f !== 'all' && card.dataset.complexity !== f;
+        });
+      });
+    });
+  </script>
 </Layout>

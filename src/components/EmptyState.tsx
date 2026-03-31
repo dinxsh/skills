@@ -12,6 +12,10 @@ interface EmptyStateProps {
     actionHref?: string;
     /** Optional onClick handler for the action button */
     onAction?: () => void;
+    /** Optional search suggestions to show as clickable chips */
+    suggestions?: string[];
+    /** Called when a suggestion chip is clicked */
+    onSuggestion?: (term: string) => void;
 }
 
 /**
@@ -23,6 +27,8 @@ export default function EmptyState({
     actionText,
     actionHref = '/',
     onAction,
+    suggestions,
+    onSuggestion,
 }: EmptyStateProps) {
     const ActionElement = onAction ? 'button' : 'a';
     const actionProps = onAction
@@ -35,6 +41,21 @@ export default function EmptyState({
             <p className="nu-c-fs-small nu-u-text--secondary empty-state-message">
                 {message}
             </p>
+            {suggestions && suggestions.length > 0 && (
+                <div className="empty-state-suggestions">
+                    <span className="empty-state-suggestions-label">Try:</span>
+                    {suggestions.map(s => (
+                        <button
+                            key={s}
+                            className="empty-state-suggestion"
+                            onClick={() => onSuggestion?.(s)}
+                            type="button"
+                        >
+                            {s}
+                        </button>
+                    ))}
+                </div>
+            )}
             {actionText && (
                 <ActionElement className="submit-btn empty-state-action" {...actionProps}>
                     {actionText}

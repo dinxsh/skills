@@ -36,6 +36,18 @@
     min-height: 1rem;
 }
 
+.card-complexity {
+    font-size: 0.55rem;
+    font-family: var(--monospace);
+    padding: 0px 4px;
+    letter-spacing: 0.05em;
+    margin-left: auto;
+    opacity: 0.75;
+}
+.card-complexity--beginner     { background: rgba(110, 224, 110, 0.08); color: #6ee06e; }
+.card-complexity--intermediate { background: rgba(224, 200, 78,  0.08); color: #e0c84e; }
+.card-complexity--advanced     { background: rgba(224, 110, 110, 0.08); color: #e06e6e; }
+
 .card-category {
     font-size: 0.65rem;
     font-family: var(--monospace);
