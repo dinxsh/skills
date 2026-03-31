@@ -109,11 +109,14 @@ export default function FilterBar({ filters, onChange, totalCount, filteredCount
     return (
         <>
             <div className="filter-bar-container">
+                {/* Search — full-width top row */}
+                <div className="filter-search-row">
+                    <SearchInput placeholder="Search skills by name, chain, or use case..." />
+                </div>
+
+                {/* Filters + meta — second row */}
                 <div className="filter-bar">
                     <div className="filter-bar-left">
-                        <div className="filter-search-wrap">
-                            <SearchInput placeholder="Search skills..." />
-                        </div>
                         {/* Desktop: show all selects inline */}
                         <div className="filter-selects filter-selects--desktop">
                             {selects}

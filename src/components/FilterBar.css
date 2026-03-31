@@ -31,49 +31,51 @@
     min-width: 0;
 }
 
-.filter-search-wrap {
-    flex-shrink: 0;
-    width: 180px;
+.filter-search-row {
+    padding: 6px var(--spacing-09) 5px;
+    border-bottom: 0.5px solid var(--border-muted);
 }
 
-.filter-search-wrap :global(.search-container) {
+.filter-search-row :global(.search-container) {
     margin-top: 0;
+    width: 100%;
 }
 
-.filter-search-wrap :global(.search-input-wrapper) {
+.filter-search-row :global(.search-input-wrapper) {
     max-width: 100%;
 }
 
-.filter-search-wrap :global(.search-input) {
-    height: 1.5rem;
-    padding: 0 2.25rem 0 1.75rem;
+.filter-search-row :global(.search-input) {
+    height: 1.875rem;
+    width: 100%;
+    padding: 0 2.5rem 0 2rem;
     font-family: var(--monospace);
-    font-size: 0.7rem;
-    letter-spacing: 0.03em;
+    font-size: 0.75rem;
+    letter-spacing: 0.02em;
     background-color: var(--background);
     color: var(--content-secondary);
     border: 0.5px solid var(--border-muted);
 }
 
-.filter-search-wrap :global(.search-input:focus) {
+.filter-search-row :global(.search-input:focus) {
     border-color: var(--border);
     color: var(--content-primary);
 }
 
-.filter-search-wrap :global(.search-icon) {
-    left: 0.5rem;
-    width: 12px;
-    height: 12px;
+.filter-search-row :global(.search-icon) {
+    left: 0.6rem;
+    width: 13px;
+    height: 13px;
 }
 
-.filter-search-wrap :global(.search-shortcut) {
-    right: 0.4rem;
+.filter-search-row :global(.search-shortcut) {
+    right: 0.5rem;
     font-size: 0.6rem;
-    padding: 1px 3px;
+    padding: 1px 4px;
 }
 
-.filter-search-wrap :global(.search-clear) {
-    right: 1.8rem;
+.filter-search-row :global(.search-clear) {
+    right: 2rem;
 }
 
 /* Desktop selects — visible above 640px */
@@ -285,18 +287,17 @@
 
 /* ── Responsive ─────────────────────────────────────── */
 @media (max-width: 640px) {
+    .filter-search-row {
+        padding: 5px var(--spacing-05) 4px;
+    }
+
     .filter-bar {
-        padding: 5px var(--spacing-09);
+        padding: 4px var(--spacing-05);
         gap: var(--spacing-02);
     }
 
     .filter-bar-left {
         gap: var(--spacing-02);
-    }
-
-    .filter-search-wrap {
-        flex: 1;
-        width: auto;
     }
 
     /* Hide desktop selects, show mobile toggle */
@@ -313,6 +314,10 @@
     .filter-bar-container {
         width: calc(100% + 2 * var(--spacing-06));
         margin-left: calc(-1 * var(--spacing-06));
+    }
+
+    .filter-search-row {
+        padding: 5px var(--spacing-06) 4px;
     }
 
     .filter-bar {

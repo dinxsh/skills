@@ -1,26 +1,29 @@
 .rv-section {
-    max-width: 60rem;
-    margin: 0 auto var(--spacing-05);
-    padding: 0 var(--spacing-09);
+    padding: var(--spacing-04) var(--spacing-09) var(--spacing-03);
+    border-bottom: 0.5px solid var(--border-muted);
+    background-color: var(--background-high-contrast);
+    /* break out to full width like the filter bar */
+    width: calc(100% + 2 * var(--spacing-09));
+    margin-left: calc(-1 * var(--spacing-09));
+    box-sizing: border-box;
 }
 
 .rv-heading {
     font-family: var(--monospace);
-    font-size: 0.65rem;
+    font-size: 0.6rem;
     font-weight: 500;
-    color: var(--content-secondary);
-    letter-spacing: 0.08em;
+    color: var(--content-secondary-alt);
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    margin: 0 0 var(--spacing-03);
+    margin: 0 0 var(--spacing-02);
 }
 
 .rv-strip {
     display: flex;
-    gap: var(--spacing-03);
+    gap: var(--spacing-02);
     overflow-x: auto;
     scrollbar-width: none;
     -ms-overflow-style: none;
-    padding-bottom: 2px;
 }
 
 .rv-strip::-webkit-scrollbar {
@@ -28,11 +31,11 @@
 }
 
 .rv-card {
-    flex: 0 0 11rem;
+    flex: 0 0 10rem;
     display: flex;
     flex-direction: column;
-    gap: 4px;
-    padding: var(--spacing-04);
+    gap: 3px;
+    padding: var(--spacing-03) var(--spacing-04);
     background: var(--background);
     border: 0.5px solid var(--border-muted);
     text-decoration: none;
@@ -47,38 +50,49 @@
 
 .rv-tag {
     font-family: var(--monospace);
-    font-size: 0.58rem;
+    font-size: 0.55rem;
     color: var(--content-secondary-alt);
-    letter-spacing: 0.03em;
+    letter-spacing: 0.04em;
     text-transform: uppercase;
 }
 
 .rv-title {
-    font-size: var(--desktop-caption);
+    font-size: 0.7rem;
+    font-weight: 600;
     color: var(--content-primary);
-    line-height: 1.35;
+    line-height: 1.3;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
 
 .rv-body {
     margin: 0;
-    font-size: 0.65rem;
+    font-size: 0.62rem;
     color: var(--content-secondary);
-    line-height: 1.4;
+    line-height: 1.35;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
 
 @media (max-width: 640px) {
     .rv-section {
-        padding: 0 var(--spacing-05);
+        padding: var(--spacing-03) var(--spacing-05) var(--spacing-02);
+        width: calc(100% + 2 * var(--spacing-05));
+        margin-left: calc(-1 * var(--spacing-05));
     }
     .rv-card {
-        flex: 0 0 9rem;
+        flex: 0 0 8.5rem;
+    }
+}
+
+@media (max-width: 30rem) {
+    .rv-section {
+        width: calc(100% + 2 * var(--spacing-06));
+        margin-left: calc(-1 * var(--spacing-06));
+        padding: var(--spacing-03) var(--spacing-06) var(--spacing-02);
     }
 }

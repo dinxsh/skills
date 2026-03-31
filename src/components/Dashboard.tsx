@@ -2,6 +2,7 @@ import { useEffect, useState, useCallback } from 'react';
 import FilterBar, { type FilterState } from './FilterBar';
 import CardsContainer from './CardsContainer';
 import BuildCart from './BuildCart';
+import RecentlyViewed from './RecentlyViewed';
 import data from '../data/tools.json';
 import type { Category } from '../types';
 import type { SortKey } from '../utils/sorting';
@@ -156,6 +157,7 @@ export default function Dashboard({ category }: DashboardProps) {
                 totalCount={totalSkillCount}
                 filteredCount={filteredCount}
             />
+            <RecentlyViewed />
             <CardsContainer
                 filter={filters.category}
                 chainFilter={filters.chain}

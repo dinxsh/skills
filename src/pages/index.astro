@@ -2,7 +2,6 @@
 import Layout from "../layouts/Layout.astro";
 
 import Dashboard from "../components/Dashboard";
-import RecentlyViewed from "../components/RecentlyViewed";
 import OrganizationSchema from "../components/schema/OrganizationSchema.astro";
 import ItemListSchema from "../components/schema/ItemListSchema.astro";
 import data from "../data/tools.json";
@@ -33,7 +32,6 @@ const allTools = data.tools.flatMap((category: any) => category.content);
   <OrganizationSchema />
   <ItemListSchema items={allTools} listName="GoldRush Skills Directory - All Skills" />
   <main id="main-content">
-    <RecentlyViewed client:load />
     <Dashboard client:load category="all" transition:persist />
   </main>
 </Layout>
